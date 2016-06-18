@@ -15,7 +15,16 @@
             .state('home', {
                 url: '/home',
                 templateUrl: '/App/Home/Partials/home.html',
-                controller: ''
+                controller: 'tiposDisponibilidadCtrl',
+                resolve: {
+                    tiposDisponibilidadDF: 'tiposDisponibilidadDF',
+                    prueba: function (tiposDisponibilidadDF) {                        
+                        return tiposDisponibilidadDF.getTiposDisp();
+                    },
+                    loadEmpleadorCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(['App/TiposDisponibilidad/tiposDisponibilidadCtrl.js']);
+                    }]
+                }
             })
             //.state('home', {
             //    url: "/Home",
