@@ -1,0 +1,238 @@
+﻿<div class="bg-dark dk" id="wrap">
+    <!-- fpaz: Header -->
+    <div id="top">
+        <!-- .navbar -->
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <header class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">
+                        <img src="" class="img-responsive" width="40%">
+                    </a>
+                </header>
+                <div class="topnav">
+                    <div class="btn-group">
+                        <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip" class="btn btn-default btn-sm" id="toggleFullScreen">
+                            <i class="glyphicon glyphicon-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a data-placement="bottom" data-original-title="E-mail" data-toggle="tooltip" class="btn btn-default btn-sm">
+                            <i class="fa fa-envelope"></i>
+                            <span class="label label-warning">5</span>
+                        </a>
+                        <a data-placement="bottom" data-original-title="Messages" href="#" data-toggle="tooltip" class="btn btn-default btn-sm">
+                            <i class="fa fa-comments"></i>
+                            <span class="label label-danger">4</span>
+                        </a>
+                        <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
+                            <i class="fa fa-question"></i>
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a ng-click="logOut()" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-comment"></span>  </a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <!-- .nav -->
+                    <ul class="nav navbar-nav">
+                        @*
+                        <li> <a href="dashboard.html">Dashboard</a>  </li>
+                        <li> <a href="table.html">Tables</a>  </li>
+                        <li> <a href="file.html">File Manager</a>  </li>
+                        <li class='dropdown '>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Form Elements
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="form-general.html">General</a>  </li>
+                                <li> <a href="form-validation.html">Validation</a>  </li>
+                                <li> <a href="form-wysiwyg.html">WYSIWYG</a>  </li>
+                                <li> <a href="form-wizard.html">Wizard &amp; File Upload</a>  </li>
+                            </ul>
+                        </li>*@
+                    </ul><!-- /.nav -->
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav><!-- /.navbar -->
+        <header class="head">
+            <div class="main-bar">
+                <h3>
+                    <a href="#">
+                        <i class="fa fa-home"></i>&nbsp; VLAboral
+                    </a>
+                </h3>
+            </div><!-- /.main-bar -->
+        </header><!-- /.head -->
+    </div>
+    <!-- fpaz: End Header -->
+    <!-- fpaz: Menu Left-->
+    <div id="left">
+        <div class="media user-media bg-dark dker">
+            <div class="user-media-toggleHover">
+                <span class="fa fa-user"></span>
+            </div>
+            <div class="user-wrapper bg-dark">
+                <a class="user-link" href="">
+                    <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+                    <span class="label label-danger user-label">16</span>
+                </a>
+                <div class="media-body">
+                    <h5 class="media-heading">{{authentication.userName}}</h5>
+                    <ul class="list-unstyled user-info">
+                        <li> <a href="">Administrator</a>  </li>
+                        <li>
+                            Last Access :
+                            <br>
+                            <small>
+                                <i class="fa fa-calendar"></i>&nbsp;16 Mar 16:32
+                            </small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- #menu -->
+        <ul id="menu" class="bg-blue dker">
+            <li class="nav-divider"></li>
+            <li class="nav-header">Menu</li>
+            <li class="nav-divider"></li>
+            <li class="">
+                <a ui-sref="empleador">
+                    <i class="fa fa-institution"></i><span class="link-title">&nbsp;Empresas</span>
+                </a>
+            </li>
+            <li class="">
+                <a ui-sref="empleadorAdd">
+                    <i class="fa fa-institution"></i><span class="link-title">&nbsp;Alta Empresas</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="fa fa-clipboard"></i>
+                    <span class="link-title">
+                        Ofertas Laborales
+                    </span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul>
+                    <li>
+                        <a ui-sref="oferta">
+                            <i class="fa fa-angle-right"></i>&nbsp; Mis Ofertas
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="ofertaAdd">
+                            <i class="fa fa-angle-right"></i>&nbsp; Nueva Oferta
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="fa fa-clipboard"></i>
+                    <span class="link-title">
+                        Empleados
+                    </span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul>
+                    <li>
+                        <a ui-sref="empleadoList">
+                            <i class="fa fa-angle-right"></i>&nbsp; Mis Empleados
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="empleado">
+                            <i class="fa fa-angle-right"></i>&nbsp; Alta de Empleado
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-angle-right"></i>&nbsp; Historial de Empleado
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-divider"></li>
+            <li class="">
+                <a ui-sref="#">
+                    <i class="fa fa-graduation-cap"></i><span class="link-title">&nbsp; Item</span>
+                </a>
+            </li>
+            <li class="">
+                <a ui-sref="#">
+                    <i class="fa fa-sitemap"></i><span class="link-title">&nbsp;Item</span>
+                </a>
+            </li>
+            <li class="nav-divider"></li>
+            <li class="nav-divider"></li>
+            <li class="">
+                <a href="javascript:;">
+                    <i class="fa fa-wrench"></i>
+                    <span class="link-title">
+                        Configuraciones
+                    </span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-angle-right"></i>&nbsp; Item Config
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-angle-right"></i>&nbsp; Sub Item Config 1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-angle-right"></i>&nbsp; Sub Item Config 2
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-divider"></li>
+            <li>
+                <a ui-sref="login">
+                    <i class="fa fa-sign-in"></i><span class="link-title">&nbsp; Login Page</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="signup">
+                    <i class="fa fa-sign-in"></i><span class="link-title">&nbsp; SignUp</span>
+                </a>
+            </li>
+            <li class="nav-divider"></li>
+        </ul>
+        <!-- /#menu -->
+    </div>
+    <!-- fpaz: End Menu Left-->
+    <!-- fpaz: Content-->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <div ui-view="content"></div>
+            </div>
+        </div>
+    </div>
+    <!-- fpaz: End Content-->
+</div>

@@ -1,0 +1,114 @@
+﻿<!-- <body>-->
+<section class="content-block new">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 bg-transparent">
+                <form role="form" class="columnaLogIn logIn">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h1 class="colorLetras ingresar">
+                                Ingresa
+                            </h1>
+                        </div>
+                        <div class="panle-body" ng-controller="loginCtrl">
+                            <div>
+                                <input type="text" class="form-control" placeholder="Usuario" data-ng-model="loginData.userName" required autofocus>
+                            </div>
+                            <br>
+                            <div>
+                                <input type="password" class="form-control" placeholder="Password" data-ng-model="loginData.password" required>
+                            </div>
+                            <br>
+                            <div>
+                                <button class="btn btn-md btn-info btn-block" type="submit" data-ng-click="login()">Ingresar</button>
+                            </div>
+                            <div data-ng-hide="message == ''" class="alert alert-danger">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 columnaCentrada">
+                <h1 class="contratarGente ingresar cuentaNueva">¡Crea tu cuenta gratis!</h1>                
+                <!--<button type="button" class="btn btn-danger center-block registrarse Registrate" data-target="#registrarEmpleado" data-toggle="modal">Trabajadores</button>
+                <button type="button" class="btn btn-danger center-block registrarse Registrate" data-target="#registrarEmpresa" data-toggle="modal">Empresas</button>-->
+                <button type="button" class="btn btn-danger center-block registrarse Registrate" ui-sref="signup">Trabajadores</button>
+                <button type="button" class="btn btn-danger center-block registrarse Registrate" ui-sref="signup">Empresas</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!--</body>-->
+<div class="modal fade pg-show-modal modal-dialog-center" id="registrarEmpleado" tabindex="-1" role="dialog" aria-hidden="true" data-target="#registrarEmpleado" data-keyboard="true" data-backdrop="true">
+    <div class="modal-dialog" ng-controller="signupCtrl">
+        <form role="form" id="empleado" class="background formModal">
+            <h3 class="letrasModal">Trabajadores</h3>
+            <div class="form-group">
+                <label class="control-label" for="usuario">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="NombreUsuario" placeholder="Nombre de Usuario" data-ng-model="registration.UserName" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" data-ng-model="registration.Email" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" data-ng-model="registration.Password" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="passwordCofirm">Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirmar contraseña" data-ng-model="registration.ConfirmPassword" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" data-ng-model="registration.FirstName" required>                
+            </div>
+            <div class="form-group">
+                <label class="control-label">Apellido</label>
+                <input type="text" class="form-control" placeholder="Apellido" data-ng-model="registration.LastName" required>
+            </div>
+            <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()" data-toggle="modal">Registrarme</button>
+            <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{message}}
+            </div>            
+        </form>
+    </div>
+
+</div>
+<div class="modal fade pg-show-modal modal-dialog-center" id="registrarEmpresa" tabindex="-1" role="dialog" aria-hidden="true" data-target="#registrarEmpresa" data-keyboard="true" data-backdrop="true">
+    <div class="modal-dialog">
+        <form role="form" id="empresa" class="background formModal">
+            <h3 class="letrasModal">Empresas</h3>
+            <div class="form-group">
+                <label class="control-label" for="usuario">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="NombreUsuario" placeholder="Nombre de Usuario" data-ng-model="registration.UserName" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" data-ng-model="registration.Email" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" data-ng-model="registration.Password" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="passwordCofirm">Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirmar contraseña" data-ng-model="registration.ConfirmPassword" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" data-ng-model="registration.FirstName" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Apellido</label>
+                <input type="text" class="form-control" placeholder="Apellido" data-ng-model="registration.LastName" required>
+            </div>
+            <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()" data-toggle="modal">Registrarme</button>
+            <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{message}}
+            </div>
+        </form>
+    </div>
+
+</div>

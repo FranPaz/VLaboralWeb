@@ -1,0 +1,114 @@
+<nav ui-nav>
+  <ul class="nav">
+    <li class="nav-header m-v-sm hidden-folded">
+      Menu General
+    </li>
+      <li>
+          <a md-ink-ripple ui-sref="app.perfil">
+              <i class="icon mdi-action-perm-contact-cal i-20"></i>
+              <span>Mi Perfil</span>
+          </a>
+      </li>
+      <li>
+          <a md-ink-ripple ui-sref="app.imagen">
+              <i class="icon mdi-action-perm-contact-cal i-20"></i>
+              <span>Prueba Imagenes</span>
+          </a>
+      </li>
+      <li>
+          <!--#region Panel de Control-->
+          <a md-ink-ripple ui-sref="app.dashboard">              
+              <i class="icon mdi-action-dashboard i-20"></i>
+              <span>Panel de Control</span>
+          </a>          
+          <!--#endregion-->
+      </li>
+      <li>
+          <!--#region Menu Empleador-->
+          <a md-ink-ripple href>
+              <span class="pull-right text-muted">
+                  <i class="fa fa-caret-down"></i>
+              </span>
+              <i class="icon mdi-social-location-city i-20"></i>
+              <span>Mi Empresa</span>
+          </a>
+          <ul class="nav nav-sub">
+              <li><a md-ink-ripple ui-sref="empleador.info">Informac&oacute;n General</a></li>             
+          </ul>
+          <!--#endregion-->
+      </li>
+      <li>
+          <!--#region Menu Empleados-->
+          <a md-ink-ripple href>
+              <span class="pull-right text-muted">
+                  <i class="fa fa-caret-down"></i>
+              </span>
+              <i class="icon mdi-file-folder-shared i-20"></i>
+              <span>Empleados</span>
+          </a>
+          <ul class="nav nav-sub">
+              <li>
+                  <a md-ink-ripple ui-sref="empleado.list">
+                      <i class="icon mdi-social-group i-20"></i>
+                  Mis Empleados
+                  </a>
+              </li>
+          </ul>
+          <ul class="nav nav-sub">
+              <li>
+              <a md-ink-ripple ui-sref="empleado.add">
+                  <i class="icon mdi-social-person-add i-20"></i>
+                  Carga de Empleados
+              </a>
+              </li>
+          </ul>
+          <!--#endregion-->
+      </li>
+      <li>
+          <!--#region Menu Ofertas Laborales-->
+          <a md-ink-ripple href>
+              <span class="pull-right text-muted">
+                  <i class="fa fa-caret-down"></i>
+              </span>
+              <i class="icon mdi-action-work i-20"></i>
+              <span>Ofertas Laborales</span>
+          </a>
+          <ul class="nav nav-sub">
+              <li><a md-ink-ripple ui-sref="ofertas.lista">Mis Ofertas</a></li>
+          </ul>
+          <ul class="nav nav-sub">
+              <li><a md-ink-ripple ui-sref="ofertas.add">Carga de Ofertas</a></li>
+          </ul>
+          <!--#endregion-->
+      </li>          
+    <li class="b-b b m-v-sm"></li>
+      <li>
+          <a md-ink-ripple ng-click="logOut()">
+              <i class="icon mdi-action-exit-to-app i-20"></i>
+              <span>Cerrar Sesi&oacute;n</span>
+          </a>
+      </li>
+      <li class="m-v-sm b-b b"></li>
+      <li>
+          <a md-ink-ripple ui-fullscreen>
+              <i class="icon mdi-navigation-fullscreen i-24"></i>
+              <span>Fullscreen</span>
+          </a>
+      </li>
+    <li>
+      <a md-ink-ripple ui-toggle-class="hide, show" target="#nav, #account">
+        <span>Settings</span>
+      </a>
+    </li>
+    <li>
+      <a md-ink-ripple ui-sref="page.document">
+        <span>Document</span>
+      </a>
+    </li>
+    <li class="m-b-sm">
+      <a md-ink-ripple href="../html">
+        <span>HTML Version</span>
+      </a>
+    </li>      
+  </ul>
+</nav>
