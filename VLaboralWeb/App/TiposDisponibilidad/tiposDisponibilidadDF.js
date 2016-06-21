@@ -2,7 +2,7 @@
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
     var tiposDisponibilidadDF = {};
 
-    var _getTiposDisp = function () {
+    var _getTiposDisp = function () { //fpaz: devuelve el listado de todos los tipos de disponibilidad guardados en el abd
         var deferred = $q.defer();
         $http.get(urlApi + 'api/TipoDisponibilidads').then(
             function (response) {

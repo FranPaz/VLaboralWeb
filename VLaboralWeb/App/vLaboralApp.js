@@ -1,5 +1,5 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
-  'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial', 
+  'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
   'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
@@ -11,144 +11,116 @@
 
         $stateProvider //fpaz: defino los states que van a guiar el ruteo de las vistas parciales de la app       
 
-            //#region Home            
+            //#region Home 
             .state('home', {
-                url: '/home',
-                templateUrl: '/App/Home/Partials/home.html',
-                controller: 'tiposDisponibilidadCtrl',
-                resolve: {
-                    tiposDisponibilidadDF: 'tiposDisponibilidadDF',
-                    prueba: function (tiposDisponibilidadDF) {                        
-                        return tiposDisponibilidadDF.getTiposDisp();
-                    },
-                    loadEmpleadorCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/TiposDisponibilidad/tiposDisponibilidadCtrl.js']);
-                    }]
-                }
-            })
-            //.state('home', {
-            //    url: "/Home",
-            //    views: {
-            //        'menuHome': {
-            //            templateUrl: '/Scripts/App/Partials/Header.html',
-            //            controller: ''
-            //        },
-            //        'infoHome': {
-            //            templateUrl: '/Scripts/App/Partials/Menu.html',
-            //            controller: ''
-            //        },
-            //        'ofertasHome': {
-            //            templateUrl: '/Scripts/App/Partials/Dashboard.html',
-            //            controller: ''                        
-            //        }
-            //    }
-            //})
-
-            //#endregion
-
-            //#region Seguridad
-            .state('seguridad', {
-                abstract: true,
-                url: '/seguridad',
+                url: "/home",
                 views: {
                     '': {
-                        templateUrl: ''
+                        templateUrl: '/App/Home/Partials/home.html'
                     },
-                    'aside': {
-                        templateUrl: ''
+                    'menuHome': {
+                        templateUrl: '/App/Home/Partials/homeMenu.html',
+                        controller: ''
                     },
-                    'content': {
-                        templateUrl: ''
+                    'infoHome': {
+                        templateUrl: '/App/Home/Partials/homeInfo.html',
+                        controller: ''
+                    },
+                    'ofertasHome': {
+                        templateUrl: '/App/Home/Partials/homeOfertas.html',
+                        controller: ''
                     }
                 }
             })
-            .state('seguridad.login', {
-                url: '/login',
-                templateUrl: '/App/Seguridad/Partials/login.html',
-                controller: 'loginCtrl',                
-                resolve: {
-                    loadLoginCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/Seguridad/loginCtrl.js','App/Seguridad/styleLoginCss.css']);
-                    }]
+                .state('registroProfesional', {
+                    url: "/registro/profesional",
+                    templateUrl: '/App/Seguridad/Partials/registroProfesional.html'
+                })
+                .state('registroEmpresa', {
+                    url: "/registro/empresa",
+                    templateUrl: '/App/Seguridad/Partials/registroEmpresa.html'
+                })
+                .state('login', {
+                    url: "/login",
+                    templateUrl: '/App/Seguridad/Partials/login.html'
+                })
+                .state('solicitud', {
+                    url: "/solicitud",
+                    templateUrl: '/App/Seguridad/Partials/confirmCuenta.html'
+                })
+
+        //#endregion
+
+        //#region Empresa
+        .state('empresa', {
+            abstract: true,
+            url: '/empresa',
+            views: {
+                '': {
+                    templateUrl: '/App/DashboardEmpresa/Partials/empresaDashboard.html'
+                },
+                'menu': {
+                    templateUrl: '/App/DashboardEmpresa/Partials/empresaMenu.html'
+                },
+                'contenido': {
+                    templateUrl: '/App/DashboardEmpresa/Partials/empresaContenido.html'
                 }
-            })
-        .state('seguridad.signup', {
-            url: '/signup',
-            templateUrl: '/App/Seguridad/Partials/signup.html',
-            controller: 'signupCtrl',
-            resolve: {
-                loadLoginCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(['App/Seguridad/signupCtrl.js', 'App/Seguridad/styleLoginCss.css']);
-                }]
             }
         })
-            .state('seguridad.confirm', {
-                url: '/confirm',
-                templateUrl: '/App/Seguridad/Partials/confirmCuenta.html',
-                controller: 'loginCtrl',
-                resolve: {
-                    loadLoginCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/Seguridad/loginCtrl.js']);
-                    }]
-                }
+            .state('empresa.ofertas', {
+                url: '/ofertas',
+                templateUrl: '',
+                controller: ''
             })
-        //#endregion          
-
-            //#region Empleador
-            .state('empleador', {
-                abstract: true,
-                url: '/empleador',
-                views: {
-                    '': {
-                        templateUrl: 'views/layout.html'
-                    },
-                    'aside': {
-                        templateUrl: 'views/aside.html'
-                    },
-                    'content': {
-                        templateUrl: 'views/content.html'
+                .state('empresa.ofertas.add', {
+                    url: '/nueva',
+                    templateUrl: '/App/Ofertas/Partials/ofertasAdd.html',
+                    controller: 'ofertasCtrl',
+                    resolve: {
+                        tiposDisponibilidadDF: 'tiposDisponibilidadDF',
+                        listadoTiposDiponibilidad: function (tiposDisponibilidadDF) {
+                            return tiposDisponibilidadDF.getTiposDisp();
+                        },
+                        tiposContratoDF: 'tiposContratoDF',
+                        listadoTiposContratos: function (tiposContratoDF) {
+                            return tiposContratoDF.getTiposContratos();
+                        },                        
+                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
+                        }]
                     }
+
+                })
+        //#endregion
+
+        //#region Profesional
+        .state('profesional', {
+            abstract: true,
+            url: '/profesional',
+            views: {
+                '': {
+                    templateUrl: '/App/DashboardProfesional/Partials/profesionalDashboard.html'
+                },
+                'menu': {
+                    templateUrl: '/App/DashboardProfesional/Partials/profesionalMenu.html'
+                },
+                'contenido': {
+                    templateUrl: '/App/DashboardProfesional/Partials/profesionalContenido.html'
                 }
+            }
+        })
+            .state('profesional.perfil', {
+                url: '/perfil',
+                templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
+                controller: ''
             })
-            .state('empleador.info', {
-                url: '/info',
-                templateUrl: '/App/Empleador/Partials/empleadorInfo.html',
-                controller: 'empleadorCtrl',
-                data: { title: 'Info Empleador' },
-                resolve: {
-                    empleadorDataFactory: 'empleadorDataFactory',
-                    infoEmpleador: function (empleadorDataFactory, authSvc) {                      
-                        //return authSvc.authentication.empleadorId;
-                        return empleadorDataFactory.getEmpleador(1);
-                    },
-                    listadoEmpleadores: function (empleadorDataFactory) {
-                        return { value: [] };
-                    },
-                    loadEmpleadorCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/Empleador/empleadorCtrl.js', 'App/Empleador/empleadorDataFactory.js']);
-                    }]                  
-                }
+            .state('profesional.ofertas', {
+                url: '/ofertas',
+                templateUrl: '/App/Ofertas/Partials/ofertasList.html',
+                controller: ''
             })
-            //.state('empleador.add', {
-            //    url: '/add',
-            //    templateUrl: '/App/Empleador/Partials/empleadorAdd.html',
-            //    controller: 'empleadorCtrl',
-            //    data: { title: 'Alta de Empleador' },
-            //    resolve: {
-            //        empleadorDataFactory: 'empleadorDataFactory',
-            //        infoEmpleador: function (empleadorDataFactory) {
-            //            return { value: [] };
-            //        },
-            //        listadoEmpleadores: function (empleadorDataFactory) {
-            //            return empleadorDataFactory.query();
-            //        },
-            //        loadEmpleadorCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //            return $ocLazyLoad.load(['App/Empleador/empleadorCtrl.js', 'App/Empleador/empleadorDataFactory.js']);
-            //        }]                         
-            //    }
-            //})        
-            //#endregion
-      
+        //#endregion
+
     })
 
 
