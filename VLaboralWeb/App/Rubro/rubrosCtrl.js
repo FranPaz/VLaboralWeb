@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('rubroCtrl', function ($scope, $stateParams, $state, $filter, ngTableParams, rubroDataFactory) {
-
-
+﻿vLaboravLaboralApp.controller('rubrosCtrl', function ($scope, rubrosDF, prueba) {
+    $scope.prueba = prueba;
+    $scope.user = {};
 });
