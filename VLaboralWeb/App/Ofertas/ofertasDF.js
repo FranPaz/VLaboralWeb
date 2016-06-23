@@ -1,6 +1,6 @@
 ﻿vLaboralApp.factory('ofertasDF', function ($http,$q) {
     //iafar: url del web api de cuentas de usuario, cambiar por el de produccion una vez implementado
-    var urlApi = "http://localhost:32069"; //desarrollo
+    var urlApi = configSvc.urlApi;; //desarrollo
     //var urlApi = ""; //iafar: url azure a definir
     var ofertasDF = {};
 
@@ -19,10 +19,11 @@
 
 
 
-    //iafar: llamada a funciones del DF
+    //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.postOferta = _postOferta;
+    //#endregion
 
-    //iafar: se devuelve objeto con datos de consulta
+    
     return ofertasDF;
 
     
