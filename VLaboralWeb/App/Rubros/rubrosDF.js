@@ -15,7 +15,7 @@
         return deferred.promise;
     }
 
-    var _get = function (prmIdRubro) {
+    var _getRubro = function (prmIdRubro) {
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Rubros/' + prmIdRubro).then(
             function (response) {
@@ -28,7 +28,7 @@
     }
 
     rubrosDF.getRubros = _getRubros;
-    rubrosDF.get = _get;
+    rubrosDF.getRubro = _getRubro;
 
     return rubrosDF;
 });

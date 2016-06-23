@@ -84,7 +84,11 @@
                         tiposContratoDF: 'tiposContratoDF',
                         listadoTiposContratos: function (tiposContratoDF) {
                             return tiposContratoDF.getTiposContratos();
-                        },                        
+                        },
+                        rubrosDF: 'rubrosDF',
+                        listadoRubros: function (rubrosDF) {
+                            return rubrosDF.getRubros();
+                        },
                         loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                         }]
