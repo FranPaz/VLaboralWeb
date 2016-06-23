@@ -112,12 +112,25 @@
             .state('profesional.perfil', {
                 url: '/perfil',
                 templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
-                controller: ''
+                controller: 'profesionalesCtrl',
+                resolve: {
+                    rubrosDF: 'rubrosDF',
+                    habilidadesDF: 'habilidadesDF',
+                    listadoRubros: function (rubrosDF) {
+                        return rubrosDF.getRubros();
+                    },
+                    listadoHabilidades: function (habilidadesDF) {
+                        return habilidadesDF.getHabilidades();
+                    },
+                    loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                    }]
+                }
             })
             .state('profesional.ofertas', {
                 url: '/ofertas',
                 templateUrl: '/App/Ofertas/Partials/ofertasList.html',
-                controller: ''
+                controller: 'profesionalesCtrl'
             })
         //#endregion
 
