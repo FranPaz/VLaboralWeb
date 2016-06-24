@@ -120,11 +120,15 @@
                 resolve: {
                     rubrosDF: 'rubrosDF',
                     habilidadesDF: 'habilidadesDF',
+                    tiposIdentificacionDF : 'tiposIdentificacionDF', 
                     listadoRubros: function (rubrosDF) {
                         return rubrosDF.getRubros();
                     },
                     listadoHabilidades: function (habilidadesDF) {
                         return habilidadesDF.getHabilidades();
+                    },
+                    listadoIdentificacionPro: function (tiposIdentificacionDF) {
+                        return tiposIdentificacionDF.getIdentificacionesProfesional();
                     },
                     loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
