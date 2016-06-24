@@ -1,4 +1,4 @@
-﻿vLaboralApp.factory('ofertasDF', function ($http,$q) {
+﻿vLaboralApp.factory('ofertasDF', function ($http, $q, configSvc) {
     //iafar: url del web api de cuentas de usuario, cambiar por el de produccion una vez implementado
     var urlApi = configSvc.urlApi; //desarrollo
     //var urlApi = ""; //iafar: url azure a definir
