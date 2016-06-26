@@ -9,7 +9,7 @@
     //#endregion
 
     //#region Configuracion del Url del FrontEnd para cambiar entre entornos de produccion y de desarrollo
-    var _urlWeb = "http://localhost:32747/"; //fpaz: desarrollo
+    var _urlWeb = "http://localhost:4371/"; //fpaz: desarrollo
     //var _urlWeb = "http://localhost:32747/"; //fpaz: produccion
 
     //#endregion
