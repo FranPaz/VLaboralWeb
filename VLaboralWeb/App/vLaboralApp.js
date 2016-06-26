@@ -80,7 +80,11 @@
                         tiposContratoDF: 'tiposContratoDF',
                         listadoTiposContratos: function (tiposContratoDF) {
                             return tiposContratoDF.getTiposContratos();
-                        },                        
+                        },
+                        rubrosDF: 'rubrosDF',
+                        listadoRubros: function (rubrosDF) {
+                            return rubrosDF.getRubros();
+                        },
                         loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                         }]
@@ -108,12 +112,29 @@
             .state('profesional.perfil', {
                 url: '/perfil',
                 templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
-                controller: ''
+                controller: 'profesionalesCtrl',
+                resolve: {
+                    rubrosDF: 'rubrosDF',
+                    habilidadesDF: 'habilidadesDF',
+                    tiposIdentificacionDF : 'tiposIdentificacionDF', 
+                    listadoRubros: function (rubrosDF) {
+                        return rubrosDF.getRubros();
+                    },
+                    listadoHabilidades: function (habilidadesDF) {
+                        return habilidadesDF.getHabilidades();
+                    },
+                    listadoIdentificacionPro: function (tiposIdentificacionDF) {
+                        return tiposIdentificacionDF.getIdentificacionesProfesional();
+                    },
+                    loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                    }]
+                }
             })
             .state('profesional.ofertas', {
                 url: '/ofertas',
                 templateUrl: '/App/Ofertas/Partials/ofertasList.html',
-                controller: ''
+                controller: 'profesionalesCtrl'
             })
         //#endregion
 

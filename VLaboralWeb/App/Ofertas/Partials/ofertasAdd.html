@@ -1,1 +1,27 @@
 ﻿<h1>Carga de Ofertas</h1>
+
+
+<div>
+    <h1 class="md-title">Datos de la Oferta</h1>
+
+    <!--#Region SLuna: Rubro y SubRubro-->
+    <div layout="row">
+        <md-input-container>
+            <label>Rubro</label>
+            <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                    {{rubro.Nombre}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-hide="subRubroHide">
+            <label>Sub Rubro</label>
+            <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()">
+                <md-option ng-repeat="subRubro in Rubro.Subrubros" value="{{subRubro.Id}}">
+                    {{subRubro.Nombre}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <!--#Region-->
+</div>
