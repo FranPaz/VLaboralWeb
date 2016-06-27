@@ -63,6 +63,8 @@
     <Content Include="App\DashboardProfesional\Partials\profesionalDashboard.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalContenido.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />
+    <Content Include="App\Habilidades\habilidadesCtrl.js" />
+    <Content Include="App\Habilidades\habilidadesDF.js" />
     <Content Include="App\Home\Partials\home.html" />
     <Content Include="App\Home\Partials\homeMenu.html" />
     <Content Include="App\Home\Partials\homeInfo.html" />
@@ -70,12 +72,17 @@
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
+    <Content Include="App\Requisitos\requisitosCtrl.js" />
+    <Content Include="App\Requisitos\requisitosDF.js" />
+    <Content Include="App\Rubros\rubrosCtrl.js" />
+    <Content Include="App\Rubros\rubrosDF.js" />
     <Content Include="App\Seguridad\Partials\registroEmpresa.html" />
     <Content Include="App\Seguridad\Partials\registroProfesional.html" />
     <Content Include="App\TiposContrato\tiposContratoCtrl.js" />
     <Content Include="App\TiposContrato\tiposContratoDF.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadCtrl.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadDF.js" />
+    <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="favicon.ico" />
     <Content Include="libs\angular\angular-animate\1.5.0\angular-animate.js" />
     <Content Include="libs\angular\angular-animate\1.5.0\angular-animate.min.js" />
@@ -300,8 +307,6 @@
     <Content Include="App\Profesionales\profesionalesDF.js" />
     <Content Include="App\Ofertas\ofertasCtrl.js" />
     <Content Include="App\Ofertas\ofertasDF.js" />
-    <Content Include="App\Rubro\rubrosCtrl.js" />
-    <Content Include="App\Rubro\rubrosDF.js" />
     <Content Include="App\Seguridad\authInterceptorSvc.js" />
     <Content Include="App\Seguridad\authSvc.js" />
     <Content Include="App\Seguridad\cuentaDataFactory.js" />
@@ -446,6 +451,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Empresas\Partials\" />
+    <Folder Include="App\Habilidades\Partials\" />
+    <Folder Include="App\Requisitos\Partials\" />
     <Folder Include="App\TiposContrato\Partials\" />
     <Folder Include="App\TiposDisponibilidad\Partials\" />
   </ItemGroup>
