@@ -4,7 +4,7 @@
 <div>
     <h1 class="md-title">Datos de la Oferta</h1>
 
-    <!--#Region SLuna: Rubro y SubRubro-->
+    <!--#region SLuna: Rubro y SubRubro-->
     <div layout="row">
         <md-input-container>
             <label>Rubro</label>
@@ -23,5 +23,19 @@
             </md-select>
         </md-input-container>
     </div>
-    <!--#Region-->
+    <!--#endregion-->
+    <!--#region iafar: carga de habilidades con sugerencias-->
+    <md-content flex="30">
+        <form name="userForm">
+            <md-chips name="fruits" ng-init="myItems = []" ng-model="myItems" placeholder="Add an item" md-max-chips="5">
+            </md-chips>
+            <div ng-messages="userForm.fruits.$error" ng-if="userForm.$dirty">
+                <div ng-message="md-max-chips">You reached the maximum amount of chips</div>
+            </div>
+
+        </form>
+    </md-content>
+   
+    <!--#endregion-->
+
 </div>
