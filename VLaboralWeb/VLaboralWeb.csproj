@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,7 +69,6 @@
     <Content Include="App\Home\Partials\home.html" />
     <Content Include="App\Home\Partials\homeMenu.html" />
     <Content Include="App\Home\Partials\homeInfo.html" />
-    <Content Include="App\Home\Partials\homeOfertas.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
@@ -84,6 +84,12 @@
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadDF.js" />
     <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fonts\unmundo.svg" />
+    <Content Include="fonts\style.css" />
+    <Content Include="img\logo2.png" />
+    <Content Include="img\logo3.png" />
+    <Content Include="img\logo4.png" />
+    <Content Include="img\ny_street.jpg" />
     <Content Include="libs\angular\angular-animate\1.5.0\angular-animate.js" />
     <Content Include="libs\angular\angular-animate\1.5.0\angular-animate.min.js" />
     <Content Include="libs\angular\angular-animate\angular-animate.js" />
@@ -291,6 +297,10 @@
     <Content Include="libs\jquery\jquery.easy-pie-chart\.DS_Store" />
     <Content Include="libs\jquery\jquery.sparkline\.DS_Store" />
     <Content Include="libs\jquery\waves\dist\waves.min.js.map" />
+    <Content Include="fonts\fonts\unmundo.eot" />
+    <Content Include="fonts\fonts\unmundo.ttf" />
+    <Content Include="fonts\fonts\unmundo.woff" />
+    <Content Include="fonts\selection.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -321,30 +331,30 @@
     <Content Include="App\Seguridad\styleLoginCss.css" />
     <Content Include="App\Seguridad\tokenDataFactory.js" />
     <Content Include="App\vLaboralApp.js" />
-    <Content Include="images\a0.jpg" />
-    <Content Include="images\a1.jpg" />
-    <Content Include="images\a10.jpg" />
-    <Content Include="images\a2.jpg" />
-    <Content Include="images\a3.jpg" />
-    <Content Include="images\a4.jpg" />
-    <Content Include="images\a5.jpg" />
-    <Content Include="images\a6.jpg" />
-    <Content Include="images\a7.jpg" />
-    <Content Include="images\a8.jpg" />
-    <Content Include="images\a9.jpg" />
-    <Content Include="images\bg.png" />
-    <Content Include="images\c0.jpg" />
-    <Content Include="images\c1.jpg" />
-    <Content Include="images\c2.jpg" />
-    <Content Include="images\c3.jpg" />
-    <Content Include="images\c4.jpg" />
-    <Content Include="images\c5.jpg" />
-    <Content Include="images\c6.jpg" />
-    <Content Include="images\c7.jpg" />
-    <Content Include="images\c8.jpg" />
-    <Content Include="images\c9.jpg" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\p0.jpg" />
+    <Content Include="img\a0.jpg" />
+    <Content Include="img\a1.jpg" />
+    <Content Include="img\a10.jpg" />
+    <Content Include="img\a2.jpg" />
+    <Content Include="img\a3.jpg" />
+    <Content Include="img\a4.jpg" />
+    <Content Include="img\a5.jpg" />
+    <Content Include="img\a6.jpg" />
+    <Content Include="img\a7.jpg" />
+    <Content Include="img\a8.jpg" />
+    <Content Include="img\a9.jpg" />
+    <Content Include="img\bg.png" />
+    <Content Include="img\c0.jpg" />
+    <Content Include="img\c1.jpg" />
+    <Content Include="img\c2.jpg" />
+    <Content Include="img\c3.jpg" />
+    <Content Include="img\c4.jpg" />
+    <Content Include="img\c5.jpg" />
+    <Content Include="img\c6.jpg" />
+    <Content Include="img\c7.jpg" />
+    <Content Include="img\c8.jpg" />
+    <Content Include="img\c9.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\p0.jpg" />
     <Content Include="index.html" />
     <Content Include="scripts\app.ctrl.js" />
     <Content Include="scripts\app.src.js" />
@@ -383,6 +393,7 @@
     <Content Include="styles\app.min.css" />
     <Content Include="styles\font.css" />
     <Content Include="styles\material-design-icons.css" />
+    <Content Include="styles\styles.css" />
     <Content Include="views\aside.html" />
     <Content Include="views\content.html" />
     <Content Include="views\layout.html" />
@@ -471,7 +482,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4370</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4370/</IISUrl>
+          <IISUrl>http://localhost:4371/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

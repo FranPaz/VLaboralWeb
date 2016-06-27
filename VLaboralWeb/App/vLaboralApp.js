@@ -18,16 +18,12 @@
                     '': {
                         templateUrl: '/App/Home/Partials/home.html'
                     },
-                    'menuHome': {
-                        templateUrl: '/App/Home/Partials/homeMenu.html',
-                        controller: ''
-                    },
                     'infoHome': {
                         templateUrl: '/App/Home/Partials/homeInfo.html',
                         controller: ''
                     },
                     'ofertasHome': {
-                        templateUrl: '/App/Home/Partials/homeOfertas.html',
+                        templateUrl: '/App/Ofertas/Partials/ofertasList.html',
                         controller: ''
                     }
                 }
