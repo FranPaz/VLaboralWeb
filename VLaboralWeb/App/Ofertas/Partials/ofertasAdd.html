@@ -14,14 +14,30 @@
                 </md-option>
             </md-select>
         </md-input-container>
-        <md-input-container ng-hide="subRubroHide">
+        <md-input-container >
             <label>Sub Rubro</label>
-            <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()">
-                <md-option ng-repeat="subRubro in Rubro.Subrubros" value="{{subRubro.Id}}">
+            <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
+                <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro" >
                     {{subRubro.Nombre}}
                 </md-option>
             </md-select>
         </md-input-container>
+        <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
+    </div>   
+    <div class="row">
+        <h2 class="md-title">Rubros seleecionados</h2>
+        <md-chips>
+            <md-chip ng-repeat="subRubro in Puestos.Subrubros">
+                <md-chip-template>
+                    <strong>{{subRubro.Nombre}}</strong>
+                    <em>(SubRubro)</em>
+                    <button class="md-secondary md-icon-button md-button md-ink-ripple" type="button" ng-click="QuitarSubRubro(subRubro.Id)">
+                        X
+                    </button>
+                </md-chip-template>
+            </md-chip>           
+        </md-chips>      
+
     </div>
     <!--#Region-->
 </div>
