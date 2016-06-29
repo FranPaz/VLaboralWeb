@@ -1,11 +1,14 @@
-﻿vLaboralApp.controller('ofertasCtrl', function ($scope //fpaz: definicion de inyectores de dependencias
-    , ofertasDF, rubrosDF //fpaz: definicion de data factorys
-    , listadoTiposDiponibilidad, listadoTiposContratos, listadoRubros //fpaz: definicion de parametros de entrada 
+﻿vLaboralApp.controller('ofertasCtrl', function ($scope, //fpaz: definicion de inyectores de dependencias
+    ofertasDF, rubrosDF, requisitosDF, habilidadesDF, //fpaz: definicion de data factorys
+     listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
+    listadoRubros, listadoTiposRequisitos, listadoHabilidades//
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
     $scope.tiposDisponibilidad = listadoTiposDiponibilidad;
     $scope.tiposContrato = listadoTiposContratos;
+    $scope.tiposRequisito = listadoTiposRequisitos;
+    $scope.habilidades = listadoHabilidades;
 
     $scope.Rubros = listadoRubros;
     $scope.rubroSelected = {};
@@ -14,7 +17,13 @@
     $scope.subRubroSelected = {};
 
     $scope.subRubroHide = true;
+
+    //$scope.oferta.habilidades = [];
+
+
     //#endregion
+
+    
 
 
 

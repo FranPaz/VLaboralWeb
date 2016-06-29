@@ -81,6 +81,14 @@
                         listadoTiposContratos: function (tiposContratoDF) {
                             return tiposContratoDF.getTiposContratos();
                         },
+                        requisitosDF: 'requisitosDF',
+                        listadoTiposRequisitos: function (requisitosDF) {
+                            return requisitosDF.getTiposRequisito();
+                        },
+                        habilidadesDF:'habilidadesDF',
+                        listadoHabilidades: function (habilidadesDF) {
+                            return habilidadesDF.getHabilidades();
+                        },
                         rubrosDF: 'rubrosDF',
                         listadoRubros: function (rubrosDF) {
                             return rubrosDF.getRubros();

@@ -26,10 +26,19 @@
     <!--#endregion-->
     <!--#region iafar: carga de habilidades con sugerencias-->
     <md-content flex="30">
-        <form name="userForm">
-            <md-chips name="fruits" ng-init="myItems = []" ng-model="myItems" placeholder="Add an item" md-max-chips="5">
+        <form name="frmHabilidades">
+            <md-chips name="chips" ng-init="oferta.habilidades=[]"
+                      ng-model="oferta.habilidades"
+                      placeholder="Agregue habilidades"
+                      md-max-chips="2"
+                      md-autocomplete-snap>
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" 
+                                 md-items="item in oferta.habilidades" 
+                                 md-item-text="item.Nombre">
+                    <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                </md-autocomplete>
             </md-chips>
-            <div ng-messages="userForm.fruits.$error" ng-if="userForm.$dirty">
+            <div ng-messages="frmHabilidades.chips.$error" ng-if="frmHabilidades.$dirty">
                 <div ng-message="md-max-chips">You reached the maximum amount of chips</div>
             </div>
 
