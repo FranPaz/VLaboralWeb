@@ -70,6 +70,9 @@
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
+    <Content Include="App\Puestos\Partials\puestosAdd.html" />
+    <Content Include="App\Puestos\puestosCtrl.js" />
+    <Content Include="App\Puestos\puestosDf.js" />
     <Content Include="App\Seguridad\Partials\registroEmpresa.html" />
     <Content Include="App\Seguridad\Partials\registroProfesional.html" />
     <Content Include="App\TiposContrato\tiposContratoCtrl.js" />

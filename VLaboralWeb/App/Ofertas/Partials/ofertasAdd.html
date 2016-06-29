@@ -1,27 +1,69 @@
 ﻿<h1>Carga de Ofertas</h1>
 
+<div layout="row">     
+    <!--#region fpaz Seccion de datos Basicos de la Oferta-->
+    <div layout="column" class="md-inline-form">        
+        <h1 class="md-title">Datos de la Oferta</h1>
+        <md-content layout-gt-sm="row" layout-padding>
+            <div>
+                <md-input-container>
+                    <label>Nombre de la Oferta</label>
+                    <input ng-model="oferta.Nombre">
+                </md-input-container>                                                
+            </div>
+            <div>
+                <p>Tipo de Oferta:</p>
+                <md-radio-group ng-model="oferta.Publica">
+                    <md-radio-button value=true class="md-primary">Publica</md-radio-button>
+                    <md-radio-button value=false> Privada </md-radio-button>
+                </md-radio-group>
+            </div>            
+        </md-content>
+        <md-content layout-gt-sm="row" layout-padding>
+            <md-datepicker ng-model="oferta.FechaInicioConvocatoria" md-placeholder="Inicio de la Convocatoria">
+            </md-datepicker>
 
-<div>
-    <h1 class="md-title">Datos de la Oferta</h1>
-
-    <!--#Region SLuna: Rubro y SubRubro-->
-    <div layout="row">
-        <md-input-container>
-            <label>Rubro</label>
-            <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
-                <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
-                    {{rubro.Nombre}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container ng-hide="subRubroHide">
-            <label>Sub Rubro</label>
-            <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()">
-                <md-option ng-repeat="subRubro in Rubro.Subrubros" value="{{subRubro.Id}}">
-                    {{subRubro.Nombre}}
-                </md-option>
-            </md-select>
-        </md-input-container>
+            <md-datepicker ng-model="oferta.FechaFinConvocatoria" md-placeholder="Fin de la Convocatoria">
+            </md-datepicker>
+        </md-content>
+        <md-content layout-gt-sm="row">
+            <md-input-container class="md-block">
+                <label>Descripcion</label>
+                <textarea ng-model="oferta.Descripcion" md-maxlength="500" rows="20" md-select-on-focus></textarea>
+            </md-input-container>
+        </md-content>        
     </div>
-    <!--#Region-->
+    <!--#endregion-->
+
+    <!--#region fpaz: seccion de puestos de la oferta-->
+    <div layout="column" class="md-inline-form">
+        <h1 class="md-title">Seccion de puestos</h1>
+        <h1 class="md-title">Cantidad de Puestos Cargados {{oferta.Puestos.length}}</h1>        
+        <div layout="row">
+            <v-accordion class="vAccordion--default" multiple control="accordion">
+                <v-pane id="accordionCategorias" ng-repeat="puesto in oferta.Puestos track by $index" expanded="true">
+                    <v-pane-header>
+                        <label>{{puesto.Nombre}}</label>                                        
+                    </v-pane-header>
+                    <v-pane-content>
+                        <h1>Contenido del Puesto {{puesto.Nombre}}</h1>
+                    </v-pane-content>
+                </v-pane>
+            </v-accordion>            
+        </div> 
+    </div>
+    <!--#endregion-->
 </div>
+
+
+<!--#region Menu De Herramientas Flotante-->
+<nav mfb-menu position="br" effect="zoomin" label="Herramientas"
+     active-icon="fa fa-times" resting-icon="fa fa-plus"
+     toggling-method="hover">
+    <button mfb-button icon="fa fa-floppy-o" label="Guardar Oferta" ng-click="ofertaSave()">
+        <md-icon> face </md-icon>
+    </button>
+    <button mfb-button icon="fa fa-user-plus" label="Agregar Puesto" ng-click="openPuestoAdd()"></button>
+    <button mfb-button icon="fa fa-trash-o" label="Cancelar" ng-click="ofertaCancel()"></button>
+</nav>
+<!--#endregion-->
