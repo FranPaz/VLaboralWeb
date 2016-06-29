@@ -77,7 +77,10 @@
                         listadoTiposDiponibilidad: function (tiposDisponibilidadDF) {
                             return tiposDisponibilidadDF.getTiposDisp();
                         },
-                        tiposContratoDF: 'tiposContratoDF',                        
+                        tiposContratoDF: 'tiposContratoDF',
+                        listadoTiposContratos: function (tiposContratoDF) {
+                            return tiposContratoDF.getTiposContratos();
+                        },
                         rubrosDF: 'rubrosDF',
                         listadoRubros: function (rubrosDF) {
                             return rubrosDF.getRubros();
