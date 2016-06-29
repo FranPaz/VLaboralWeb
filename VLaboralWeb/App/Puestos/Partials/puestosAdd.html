@@ -31,7 +31,6 @@
                     </md-input-container>
                 </div>                
             </div>
-
             <div layout="row">
                 <div flex="50">
                     <md-input-container>
@@ -48,9 +47,46 @@
                     </md-input-container>
                 </div>
             </div>
+            <div layout="row">
+                <div flex="50">
+                    <md-input-container>
+                        <label>Rubro</label>
+                        <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                            <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                                {{rubro.Nombre}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                    <md-input-container>
+                        <label>Sub Rubro</label>
+                        <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
+                            <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
+                                {{subRubro.Nombre}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
+                </div>
+            </div>
+            <div layout="row">
+                <div flex="grow">
+                    <h2 class="md-title">Rubros seleecionados</h2>
+                    <md-chips>
+                        <md-chip ng-repeat="subRubro in puesto.Subrubros">
+                            <md-chip-template>
+                                <strong>{{subRubro.Nombre}}</strong>
+                                <em>(SubRubro)</em>
+                                <button class="md-secondary md-icon-button md-button md-ink-ripple" type="button" ng-click="QuitarSubRubro(subRubro.Id)">
+                                    X
+                                </button>
+                            </md-chip-template>
+                        </md-chip>
+                    </md-chips>   
+                </div>                
+            </div>
         </div>
-
-
     </md-dialog-content>
     <md-dialog-actions>
         <md-button ng-click="addPuesto(puesto)">

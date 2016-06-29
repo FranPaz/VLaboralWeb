@@ -13,27 +13,47 @@
     $scope.subRubros = {};
     $scope.subRubroSelected = {};
 
-    $scope.subRubroHide = true;
+    $scope.subRubroDisabled = true;
+
+    $scope.puesto = {};
+    $scope.puesto.Subrubros = [];
     //#endregion
-
-
-
 
     //#region SLuna: eventos relacionados con Rubros
     $scope.rubroChanged = function () {
         rubrosDF.getRubro($scope.rubroSelected)
             .then(function (data) {
                 $scope.Rubro = data;
-                $scope.subRubroHide = $scope.Rubro.Subrubros.length === 0;//Si no tiene SubRubros, oculta el Select de SubRubros
+                $scope.subRubroDisabled = $scope.Rubro.Subrubros.length === 0;//Si no tiene SubRubros, oculta el Select de SubRubros
             });
     };
 
     $scope.subRubroChanged = function () {
     };
+
+    $scope.subRubroAddClick = function () {
+        for (var i = 0; i < $scope.puesto.Subrubros.length; i++) {
+            if ($scope.puesto.Subrubros[i].Id === $scope.subRubroSelected.Id) {
+                alert("Advertencia: El SubRubro ya está seleccionado.");
+                return;
+            }
+        }
+        $scope.puesto.Subrubros.push($scope.subRubroSelected);
+    };
+
+    $scope.QuitarSubRubro = function (IdSubRubro) {
+        for (var i = 0; i < $scope.puesto.Subrubros.length; i++) {
+            if ($scope.puesto.Subrubros[i].Id === IdSubRubro) {
+                $scope.puesto.Subrubros.splice(i, 1);
+                return;
+            }
+        }
+    };
+
     //#endregion
 
-    //#region fpaz: carga de puestos
 
+    //#region fpaz: carga de puestos
     $scope.addPuesto = function (prmPuesto) {
         $mdDialog.hide(prmPuesto);
     }

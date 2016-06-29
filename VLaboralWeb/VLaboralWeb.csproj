@@ -64,6 +64,8 @@
     <Content Include="App\DashboardProfesional\Partials\profesionalDashboard.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalContenido.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />
+    <Content Include="App\Habilidades\habilidadesCtrl.js" />
+    <Content Include="App\Habilidades\habilidadesDF.js" />
     <Content Include="App\Home\Partials\home.html" />
     <Content Include="App\Home\Partials\homeMenu.html" />
     <Content Include="App\Home\Partials\homeInfo.html" />
@@ -73,12 +75,17 @@
     <Content Include="App\Puestos\Partials\puestosAdd.html" />
     <Content Include="App\Puestos\puestosCtrl.js" />
     <Content Include="App\Puestos\puestosDf.js" />
+    <Content Include="App\Requisitos\requisitosCtrl.js" />
+    <Content Include="App\Requisitos\requisitosDF.js" />
+    <Content Include="App\Rubros\rubrosCtrl.js" />
+    <Content Include="App\Rubros\rubrosDF.js" />
     <Content Include="App\Seguridad\Partials\registroEmpresa.html" />
     <Content Include="App\Seguridad\Partials\registroProfesional.html" />
     <Content Include="App\TiposContrato\tiposContratoCtrl.js" />
     <Content Include="App\TiposContrato\tiposContratoDF.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadCtrl.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadDF.js" />
+    <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fonts\unmundo.svg" />
     <Content Include="fonts\style.css" />
@@ -313,8 +320,6 @@
     <Content Include="App\Profesionales\profesionalesDF.js" />
     <Content Include="App\Ofertas\ofertasCtrl.js" />
     <Content Include="App\Ofertas\ofertasDF.js" />
-    <Content Include="App\Rubro\rubrosCtrl.js" />
-    <Content Include="App\Rubro\rubrosDF.js" />
     <Content Include="App\Seguridad\authInterceptorSvc.js" />
     <Content Include="App\Seguridad\authSvc.js" />
     <Content Include="App\Seguridad\cuentaDataFactory.js" />
@@ -478,6 +483,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4370</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+<IISUrl>http://localhost:4371/</IISUrl>
           <IISUrl>http://localhost:4371/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>

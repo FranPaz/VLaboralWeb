@@ -13,26 +13,10 @@
     $scope.subRubros = {};
     $scope.subRubroSelected = {};
 
-    $scope.subRubroHide = true;
+    $scope.subRubroDisabled = true;
 
     $scope.oferta = {};
     $scope.oferta.Puestos = [];
-    //#endregion
-
-
-
-
-    //#region SLuna: eventos relacionados con Rubros
-    $scope.rubroChanged = function () {
-        rubrosDF.getRubro($scope.rubroSelected)
-            .then(function (data) {
-                $scope.Rubro = data;
-                $scope.subRubroHide = $scope.Rubro.Subrubros.length === 0;//Si no tiene SubRubros, oculta el Select de SubRubros
-            });
-    };
-
-    $scope.subRubroChanged = function () {
-    };
     //#endregion
 
     //#region fpaz: carga de ofertas
