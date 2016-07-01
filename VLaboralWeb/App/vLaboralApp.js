@@ -118,7 +118,7 @@
             }
         })
             .state('profesional.perfil', {
-                url: '/perfil',
+                url: '/perfil/:idPro',
                 templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
                 controller: 'profesionalesCtrl',
                 resolve: {
@@ -134,6 +134,11 @@
                     listadoIdentificacionPro: function (tiposIdentificacionDF) {
                         return tiposIdentificacionDF.getIdentificacionesProfesional();
                     },
+                    //profesionalesDF: 'profesionalesDF',
+                    //infoProfesional: function (profesionalesDF,$stateParams) {
+                    //    var idPro = $stateParams.idPro;
+                    //    return profesionalesDF.getProfesional(idPro);
+                    //},
                     loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                     }]

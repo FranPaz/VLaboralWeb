@@ -1,1 +1,38 @@
 ﻿<h1>Perfil del Profesional</h1>
+<md-container layout="row">
+    <h2>Datos basicos del Profesional</h2>
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Id</label>
+        <input ng-model="profesional.Id" disabled>
+    </md-input-container>
+    <div layout="column">
+        <md-input-container flex="60">
+            <label>Nombre</label>
+            <input ng-model="profesional.Nombre">
+        </md-input-container>
+        <md-input-container flex="40">
+            <label>Apellido</label>
+            <input ng-model="profesional.Apellido">
+        </md-input-container>
+    </div>    
+    <md-input-container>
+        <label>Nacionalidad</label>
+        <input ng-model="profesional.Nacionalidad">
+    </md-input-container>
+    <md-input-container>
+        <label>Fecha de Nacimiento</label>
+        <input ng-model="profesional.FechaNac">
+    </md-input-container>
+    <md-input-container>
+        <label>Domicilio</label>
+        <input ng-model="profesional.Domicilio">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Objetivo Profesional</label>
+        <textarea ng-model="profesional.ObjetivoProfesional" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Descripcion Curricular</label>
+        <textarea ng-model="profesional.DescripcionCurricular" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+</md-container>
