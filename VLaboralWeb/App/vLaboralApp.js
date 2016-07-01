@@ -1,6 +1,6 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
   'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
-  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages'])
+  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload','ngMessages', 'vAccordion'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
         cfpLoadingBarProvider.includeSpinner = true;
@@ -134,11 +134,11 @@
                     listadoIdentificacionPro: function (tiposIdentificacionDF) {
                         return tiposIdentificacionDF.getIdentificacionesProfesional();
                     },
-                    //profesionalesDF: 'profesionalesDF',
-                    //infoProfesional: function (profesionalesDF,$stateParams) {
-                    //    var idPro = $stateParams.idPro;
-                    //    return profesionalesDF.getProfesional(idPro);
-                    //},
+                    profesionalesDF: 'profesionalesDF',
+                    infoProfesional: function (profesionalesDF,$stateParams) {
+                        var idPro = $stateParams.idPro;
+                        return profesionalesDF.getProfesional(idPro);
+                    },
                     loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                     }]
