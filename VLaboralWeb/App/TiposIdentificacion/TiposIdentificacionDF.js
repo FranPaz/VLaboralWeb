@@ -1,4 +1,4 @@
-﻿vLaboralApp.factory('tiposIdentificacionDF', function ($http, $q) {
+﻿vLaboralApp.factory('tiposIdentificacionDF', function ($http, $q, configSvc) {
     var urlApi = configSvc.urlApi;; //desarrollo
     //var urlApi = ""; //iafar: url azure a definir
     var tiposIdentificacionDF = {};

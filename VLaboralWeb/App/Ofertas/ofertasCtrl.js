@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('ofertasCtrl', function ($scope, //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, //fpaz: definicion de inyectores de dependencias
     ofertasDF, rubrosDF, requisitosDF, habilidadesDF, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
     listadoRubros, listadoTiposRequisitos, listadoHabilidades//

@@ -118,7 +118,7 @@
             }
         })
             .state('profesional.perfil', {
-                url: '/perfil/:idPro',
+                url: '/perfil/:idPro',  
                 templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
                 controller: 'profesionalesCtrl',
                 resolve: {
@@ -126,7 +126,7 @@
                     habilidadesDF: 'habilidadesDF',
                     tiposIdentificacionDF : 'tiposIdentificacionDF', 
                     listadoRubros: function (rubrosDF) {
-                        return rubrosDF.getRubros();
+                    return rubrosDF.getRubros();
                     },
                     listadoHabilidades: function (habilidadesDF) {
                         return habilidadesDF.getHabilidades();

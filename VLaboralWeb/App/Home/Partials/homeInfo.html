@@ -1,28 +1,13 @@
-﻿<!--<h1>Info Home</h1>
-
-<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-    <div>
-        <md-input-container>
-            <label>Title</label>
-            <input ng-model="user.title">
-        </md-input-container>
-        <md-input-container>
-            <label>Email</label>
-            <input ng-model="user.email" type="email">
-        </md-input-container>
-    </div>
-</md-content>-->
-
+﻿
 <section class="home">
     <header>
         <a href="index.html">UN MUNDO</a>
         <ul>
-            <a ui-sref="registroEmpresa"><li>Registra tu empresa</li></a>
-            <a ui-sref="registroProfesional"><li>¿ Eres un profesional?</li></a>
-            <a ui-sref="login"><li>INGRESAR</li></a>
+            <a href="#"><li>Registra tu empresa</li></a>
+            <a href="#"><li>¿ Eres un profesional?</li></a>
+            <a href="login.html"><li>INGRESAR</li></a>
         </ul>
     </header>
-    
     <div class="h_container">
         <h1>NOSTROS SOMOS <span>UN MUNDO.</span></h1>
     </div>
@@ -57,7 +42,7 @@
     </div>
 </section>
 <!-- FIN DE PANTALLA DE INICIO-->
-	<!-- COMIENZO DE SECCION PARA ELEGIR TIPO DE REGISTRO (PROFESIONAL/EMPRESA)-->
+<!-- COMIENZO DE SECCION PARA ELEGIR TIPO DE REGISTRO (PROFESIONAL/EMPRESA)-->
 <section class="t_elegir">
     <h1>LA CONEXIÓN ENTRE <span>LA EMPRESA Y EL PROFESIONAL</span></h1>
     <hr>
@@ -68,13 +53,178 @@
     <div class="e_prof">
         <h1>¿ Eres un <span>profesional</span> y buscas ofertas laborales?</h1>
         <h3>Registrate y comienza elegir las mejores ofertas laborales.</h3>
-        <a ui-sref="registroProfesional">COMENZAR</a>
+        <a href="#">COMENZAR</a>
     </div>
 
     <div class="e_empr">
         <h1>¿ Buscas profesionales para tu <span>empresa</span>?</h1>
         <h3>Encuentra los profesionales mas aptos para tu empresa</h3>
-        <a ui-sref="registroEmpresa">COMENZAR</a>
+        <a href="#">COMENZAR</a>
     </div>
 </section>
 <!-- COMIENZO DE SECCION PARA ELEGIR TIPO DE REGISTRO (PROFESIONAL/EMPRESA)-->
+<!-- COMIENZO SECCION LISTA DE OFERTAS -->
+
+<div class="t_list">
+    <h1>Listado de ofertas disponibles</h1>
+
+</div>
+
+<section class="ofertas">
+
+    <aside class="sidebar">
+        <h3><span class="icon-bullhorn icono"></span> Rubro</h3>
+        <ul>
+            <li><a href="#">Informatica</a></li>
+            <li><a href="#">Construcción</a></li>
+            <li><a href="#">Ejecutivo</a></li>
+            <li><a href="#">Economia</a></li>
+            <li><a href="#">Contable</a></li>
+            <li><a href="#">Transporte</a></li>
+            <li><a href="#">Atencion al publico</a></li>
+            <li><a href="#">Pre-ventista</a></li>
+            <li><a href="#">Electricidad</a></li>
+            <li><a href="#">Seguridad</a></li>
+        </ul>
+        <h3><span class="icon-location icono"></span> Ubicación</h3>
+        <ul>
+            <li><a href="#">Buenos aires</a></li>
+            <li><a href="#">Santa fe</a></li>
+            <li><a href="#">Cordoba</a></li>
+            <li><a href="#">Tucuman</a></li>
+            <li><a href="#">Santiago del estero</a></li>
+            <li><a href="#">San juan</a></li>
+            <li><a href="#">Tierra del fuego</a></li>
+            <li><a href="#">Mendoza</a></li>
+            <li><a href="#">Salta</a></li>
+            <li><a href="#">Otros (11)</a></li>
+        </ul>
+        <h3><span class="icon-calendar icono"></span> Fecha de oferta</h3>
+        <ul>
+            <li><a href="#">Hace 3 dias</a></li>
+            <li><a href="#">Hace una semana</a></li>
+            <li><a href="#">Hace 15 dias</a></li>
+            <li><a href="#">Ultimo mes</a></li>
+        </ul>
+        <h3><span class="icon-clock icono"></span> Disponibilidad horaria</h3>
+        <ul>
+            <li><a href="#">Por la mañana</a></li>
+            <li><a href="#">Por la tarde</a></li>
+            <li><a href="#">Horario corrido</a></li>
+            <li><a href="#">Full time</a></li>
+        </ul>
+    </aside>
+
+    <div class="lista">
+        <article>
+            <div class="logo_ofer">
+                <img src="img/logo.png">
+                <h2>nombre empresa</h2>
+            </div>
+
+            <div class="info_ofer">
+                <h1>DISEÑO GRAFICO Y EDICIÓN DE IMAGEN.</h1>
+
+                <hr>
+                <div class="d_ofer">
+                    <h4>fecha de convocatoria: 07/04/2016 a 21/04/2016</h4> <h5>PUBLICO</h5>
+                </div>
+                <h3>Insertar en esta seccion una breve descripción de la oferta laboral disponible, en la que se especifica la area en la que se desempeñara el posible futuro empleado que aplique para la misma...</h3>
+                <a href="#">ver mas</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="logo_ofer">
+                <img src="img/logo2.png">
+                <h2>nombre empresa</h2>
+            </div>
+
+            <div class="info_ofer">
+                <h1>MARKETING DIGITAL, SOCIAL MANAGMENT.</h1>
+
+                <hr>
+                <div class="d_ofer">
+                    <h4>fecha de convocatoria: 07/04/2016 a 21/04/2016</h4> <h5>PUBLICO</h5>
+                </div>
+                <h3>Insertar en esta seccion una breve descripción de la oferta laboral disponible, en la que se especifica la area en la que se desempeñara el posible futuro empleado que aplique para la misma...</h3>
+                <a href="#">ver mas</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="logo_ofer">
+                <img src="img/logo3.png">
+                <h2>nombre empresa</h2>
+            </div>
+
+            <div class="info_ofer">
+                <h1>DESARROLLO DE APLICACIONES ANDROID.</h1>
+
+                <hr>
+                <div class="d_ofer">
+                    <h4>fecha de convocatoria: 07/04/2016 a 21/04/2016</h4> <h5>PRIVADO</h5>
+                </div>
+                <h3>Insertar en esta seccion una breve descripción de la oferta laboral disponible, en la que se especifica la area en la que se desempeñara el posible futuro empleado que aplique para la misma...</h3>
+                <a href="#">ver mas</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="logo_ofer">
+                <img src="img/logo4.png">
+                <h2>nombre empresa</h2>
+            </div>
+
+            <div class="info_ofer">
+                <h1>JAVASCRIPT Y MANEJO DE NODE JS.</h1>
+
+                <hr>
+                <div class="d_ofer">
+                    <h4>fecha de convocatoria: 07/04/2016 a 21/04/2016</h4> <h5>PUBLICO</h5>
+                </div>
+                <h3>Insertar en esta seccion una breve descripción de la oferta laboral disponible, en la que se especifica la area en la que se desempeñara el posible futuro empleado que aplique para la misma...</h3>
+                <a href="#">ver mas</a>
+            </div>
+        </article>
+
+        <article>
+            <div class="logo_ofer">
+                <img src="img/logo2.png">
+                <h2>nombre empresa</h2>
+            </div>
+
+            <div class="info_ofer">
+                <h1>MARKETING DIGITAL, SOCIAL MANAGMENT.</h1>
+
+                <hr>
+                <div class="d_ofer">
+                    <h4>fecha de convocatoria: 07/04/2016 a 21/04/2016</h4> <h5>PUBLICO</h5>
+                </div>
+                <h3>Insertar en esta seccion una breve descripción de la oferta laboral disponible, en la que se especifica la area en la que se desempeñara el posible futuro empleado que aplique para la misma...</h3>
+                <a href="#">ver mas</a>
+            </div>
+        </article>
+
+        <article>
+            <div class="logo_ofer">
+                <img src="img/logo.png">
+                <h2>nombre empresa</h2>
+            </div>
+
+            <div class="info_ofer">
+                <h1>DISEÑO GRAFICO Y EDICIÓN DE IMAGEN.</h1>
+
+                <hr>
+                <div class="d_ofer">
+                    <h4>fecha de convocatoria: 07/04/2016 a 21/04/2016</h4> <h5>PRIVADO</h5>
+                </div>
+                <h3>Insertar en esta seccion una breve descripción de la oferta laboral disponible, en la que se especifica la area en la que se desempeñara el posible futuro empleado que aplique para la misma...</h3>
+                <a href="#">ver mas</a>
+            </div>
+        </article>
+    </div>
+</section>
