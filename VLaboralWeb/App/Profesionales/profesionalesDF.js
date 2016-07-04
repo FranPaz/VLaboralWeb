@@ -5,7 +5,7 @@
     var profesionalesDF = {};
 
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
-        debugger;
+       
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
             function (response) {

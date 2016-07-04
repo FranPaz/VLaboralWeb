@@ -1,38 +1,69 @@
-﻿<h1>Perfil del Profesional</h1>
-<md-container layout="row">
-    <h2>Datos basicos del Profesional</h2>
-    <md-input-container class="md-block" flex-gt-xs>
-        <label>Id</label>
-        <input ng-model="profesional.Id" disabled>
-    </md-input-container>
+﻿<md-content layout-fill>
+
     <div layout="column">
-        <md-input-container flex="60">
-            <label>Nombre</label>
-            <input ng-model="profesional.Nombre">
-        </md-input-container>
-        <md-input-container flex="40">
-            <label>Apellido</label>
-            <input ng-model="profesional.Apellido">
-        </md-input-container>
-    </div>    
-    <md-input-container>
-        <label>Nacionalidad</label>
-        <input ng-model="profesional.Nacionalidad">
-    </md-input-container>
-    <md-input-container>
-        <label>Fecha de Nacimiento</label>
-        <input ng-model="profesional.FechaNac">
-    </md-input-container>
-    <md-input-container>
-        <label>Domicilio</label>
-        <input ng-model="profesional.Domicilio">
-    </md-input-container>
-    <md-input-container class="md-block">
-        <label>Objetivo Profesional</label>
-        <textarea ng-model="profesional.ObjetivoProfesional" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-    </md-input-container>
-    <md-input-container class="md-block">
-        <label>Descripcion Curricular</label>
-        <textarea ng-model="profesional.DescripcionCurricular" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-    </md-input-container>
-</md-container>
+        <div layout="column">
+            <h1>Perfil del Profesional</h1>
+            <h2>Datos basicos del Profesional</h2>
+        </div>
+        <div layout="column">
+            <md-input-container>
+                <label>Id</label>
+                <input ng-model="profesional.Id" disabled>
+            </md-input-container>
+            <div layout="row">
+                <md-input-container flex="60">
+                    <label>Nombre</label>
+                    <input ng-model="profesional.Nombre">
+                </md-input-container>
+                <md-input-container flex="40">
+                    <label>Apellido</label>
+                    <input ng-model="profesional.Apellido">
+                </md-input-container>
+            </div>
+            <md-input-container>
+                <label>Nacionalidad</label>
+                <input ng-model="profesional.Nacionalidad">
+            </md-input-container>
+          <md-container>
+              <form name="frmPro">
+                  <h2 class="md-title">Seleccione sus habilidades</h2>
+                  <md-chips ng-model="chipsHabilidad" name="chipContainer" md-max-chips="5"
+                            md-transform-chip="transformChip($chip)">
+                      <md-autocomplete md-selected-item="selectedItem"
+                                       md-search-text="searchText"
+                                       md-items="item in habilidades"
+                                       md-item-text="item.Nombre">
+                          <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                      </md-autocomplete>
+                      <md-chip-template>
+                          <strong>{{$chip}}</strong>  
+
+                      </md-chip-template>
+
+                  </md-chips>
+                  <div class="errors" ng-messages="frmPro.chipContainer.$error">
+                      <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
+                  </div>
+              </form>
+          </md-container>
+           
+            <md-input-container>
+                <label>Fecha de Nacimiento</label>
+                <input ng-model="profesional.FechaNac">
+            </md-input-container>
+            <md-input-container>
+                <label>Domicilio</label>
+                <input ng-model="profesional.Domicilio">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Objetivo Profesional</label>
+                <textarea ng-model="profesional.ObjetivoProfesional" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Descripcion Curricular</label>
+                <textarea ng-model="profesional.DescripcionCurricular" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+        </div>
+
+    </div>
+</md-content>
