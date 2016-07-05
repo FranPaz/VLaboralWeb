@@ -48,6 +48,31 @@
                 </div>
             </div>
             <div layout="row">
+                <md-container>
+                    <form name="frmPro">
+                        <h2 class="md-title">Seleccione sus habilidades</h2>
+                        <md-chips ng-model="puesto.Habilidades" name="chipContainer" md-max-chips="5"
+                                  md-transform-chip="transformChip($chip)">
+                            <md-autocomplete md-selected-item="selectedItem"
+                                             md-search-text="searchText"
+                                             md-items="item in habilidades"
+                                             md-item-text="item.Nombre">
+                                <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                            </md-autocomplete>
+                            <md-chip-template>
+                                <strong>{{$chip}}</strong>
+
+                            </md-chip-template>
+
+                        </md-chips>
+                        <div class="errors" ng-messages="frmPro.chipContainer.$error">
+                            <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
+                        </div>
+                    </form>
+                </md-container>
+
+            </div>
+            <div layout="row">
                 <div flex="50">
                     <md-input-container>
                         <label>Rubro</label>

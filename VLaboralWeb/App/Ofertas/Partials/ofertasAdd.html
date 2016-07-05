@@ -2,32 +2,34 @@
 
 <div layout="row">     
     <!--#region fpaz Seccion de datos Basicos de la Oferta-->
-    <div layout="column" class="md-inline-form">        
+    <div layout="column" class="md-inline-form" flex="50">        
         <h1 class="md-title">Datos de la Oferta</h1>
         <md-content layout-gt-sm="row" layout-padding>
-            <div>
+            <div flex="45">
                 <md-input-container>
                     <label>Nombre de la Oferta</label>
                     <input ng-model="oferta.Nombre">
                 </md-input-container>                                                
             </div>
-            <div>
-                <p>Tipo de Oferta:</p>
+            <div flex>
+                <h2>Tipo de Oferta:</h2>
                 <md-radio-group ng-model="oferta.Publica">
                     <md-radio-button value=true class="md-primary">Publica</md-radio-button>
                     <md-radio-button value=false> Privada </md-radio-button>
                 </md-radio-group>
             </div>            
         </md-content>
-        <md-content layout-gt-sm="row" layout-padding>
-            <md-datepicker ng-model="oferta.FechaInicioConvocatoria" md-placeholder="Inicio de la Convocatoria">
+        <md-content layout="row">
+
+            <md-datepicker ng-model="oferta.FechaInicioConvocatoria" md-placeholder="Inicio de la Convocatoria" flex="50" layout-fill>
             </md-datepicker>
 
-            <md-datepicker ng-model="oferta.FechaFinConvocatoria" md-placeholder="Fin de la Convocatoria">
+            <md-datepicker ng-model="oferta.FechaFinConvocatoria" md-placeholder="Fin de la Convocatoria" flex="50">
             </md-datepicker>
         </md-content>
+        <br />  
         <md-content layout-gt-sm="row">
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" layout-fill>
                 <label>Descripcion</label>
                 <textarea ng-model="oferta.Descripcion" md-maxlength="500" rows="20" md-select-on-focus></textarea>
             </md-input-container>
@@ -54,28 +56,7 @@
     </div>
     <!--#endregion-->
     
-     <!--#region iafar: carga de habilidades con sugerencias-->
-    <md-content flex="30">
-        <form name="frmHabilidades">
-            <md-chips name="chips" ng-init="oferta.habilidades=[]"
-                      ng-model="oferta.habilidades"
-                      placeholder="Agregue habilidades"
-                      md-max-chips="2"
-                      md-autocomplete-snap>
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" 
-                                 md-items="item in oferta.habilidades" 
-                                 md-item-text="item.Nombre">
-                    <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                </md-autocomplete>
-            </md-chips>
-            <div ng-messages="frmHabilidades.chips.$error" ng-if="frmHabilidades.$dirty">
-                <div ng-message="md-max-chips">You reached the maximum amount of chips</div>
-            </div>
-
-        </form>
-    </md-content>
-   
-    <!--#endregion-->
+ 
     
 </div>
 

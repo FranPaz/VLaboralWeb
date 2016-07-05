@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('puestosCtrl', function ($scope, $mdDialog, $mdMedia //fpaz: definicion de inyectores de dependencias
-    , ofertasDF, rubrosDF //fpaz: definicion de data factorys
+    , ofertasDF, rubrosDF, habilidadesDF //fpaz: definicion de data factorys
     , listadoTiposDiponibilidad, listadoTiposContratos, listadoRubros //fpaz: definicion de parametros de entrada 
     ) {
 
@@ -17,6 +17,9 @@
 
     $scope.puesto = {};
     $scope.puesto.Subrubros = [];
+
+    $scope.habilidades = habilidadesDF.getHabilidades();
+    $scope.puesto.Habilidades = [];
     //#endregion
 
     //#region SLuna: eventos relacionados con Rubros
@@ -63,6 +66,19 @@
     };
 
     //#endregion
+
+    //#region iafar: transformar habilidades de chips en strings
+    $scope.transformChip = function (chip) {
+
+        // iafar: Si es un objeto, es una habilidad desde la BD
+        if (angular.isObject(chip)) {
+            return chip.Nombre.toUpperCase();
+        }
+        // iafar: Sino, no existe en BD
+        return chip.toUpperCase();
+    }
+    //#endregion
+
 });
 
 
