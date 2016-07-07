@@ -128,7 +128,7 @@
 
             <hr>
             <div class="d_ofer">
-                <h4>fecha de convocatoria: {{ oferta.fechaInicioConvocatoria }} a {{ oferta.fechaFinConvocatoria }}</h4>
+                <h4>fecha de convocatoria: {{ oferta.FechaInicioConvocatoria  |  date:'dd/MM/yyyy' }} a {{ oferta.FechaFinConvocatoria  |  date:'dd/MM/yyyy' }}</h4>
                 <div ng-switch on="oferta.Publica">
                     <h5 ng-switch-when="true">Pública</h5>
                     <h5 ng-switch-when="false">Privada</h5>
