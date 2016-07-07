@@ -66,4 +66,55 @@
         </div>
 
     </div>
+    
+    <!--#region fpaz: subrubros del profesional-->
+    <div layout="row">
+        <div flex="50">
+            <md-input-container>
+                <label>Rubro</label>
+                <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                    <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                        {{rubro.Nombre}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div flex="50">
+            <md-input-container>
+                <label>Sub Rubro</label>
+                <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
+                    <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
+                        {{subRubro.Nombre}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
+        </div>
+    </div>
+    <div layout="row">
+        <div flex="grow">
+            <h2 class="md-title">Rubros seleecionados</h2>
+            <md-chips ng-model="profesional.Subrubros" readonly="!editValue ? true : false">
+                <md-chip-template>
+                    <span>
+                        <strong>{{$chip.Nombre}}</strong>
+                    </span>
+                </md-chip-template>
+            </md-chips>            
+        </div>
+    </div>    
+    <!--#endregion-->
+
 </md-content>
+
+<!--#region Menu De Herramientas Flotante-->
+<nav mfb-menu position="br" effect="zoomin" label="Herramientas"
+     active-icon="fa fa-times" resting-icon="fa fa-plus"
+     toggling-method="hover">
+    <button mfb-button icon="mdi-image-edit" label="Editar Perfil" ng-click="edit()"></button>
+    <button mfb-button icon="fa fa-floppy-o" label="Guardar Guardar Cambios" ng-click="profesionalPerfilUpdate(profesional)">
+        <md-icon> face </md-icon>
+    </button>    
+    <button mfb-button icon="fa fa-trash-o" label="Cancelar" ng-click="profesionalPerfilCancel()"></button>
+</nav>
+<!--#endregion-->
