@@ -1,6 +1,6 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
   'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
-  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload','ngMessages', 'vAccordion'])
+  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion', 'angularUtils.directives.dirPagination'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
         cfpLoadingBarProvider.includeSpinner = true;
@@ -126,7 +126,7 @@
                     habilidadesDF: 'habilidadesDF',
                     tiposIdentificacionDF : 'tiposIdentificacionDF', 
                     listadoRubros: function (rubrosDF) {
-                    return rubrosDF.getRubros();
+                        return rubrosDF.getRubros();
                     },
                     listadoHabilidades: function (habilidadesDF) {
                         return habilidadesDF.getHabilidades();
@@ -145,9 +145,35 @@
                 }
             })
             .state('profesional.ofertas', {
-                url: '/ofertas',
+                url: '/ofertas/:idPro',
                 templateUrl: '/App/Ofertas/Partials/ofertasList.html',
-                controller: 'profesionalesCtrl'
+                controller: 'profesionalesCtrl',
+                resolve: {
+                    ofertasDF: 'ofertasDF',
+                    listadoOfertas: function (ofertasDF) {
+                        return ofertasDF.getOfertas(1,10);
+                    },
+                    rubrosDF: 'rubrosDF',
+                    habilidadesDF: 'habilidadesDF',
+                    tiposIdentificacionDF: 'tiposIdentificacionDF',
+                    listadoRubros: function (rubrosDF) {
+                        return rubrosDF.getRubros();
+                    },
+                    listadoHabilidades: function (habilidadesDF) {
+                        return habilidadesDF.getHabilidades();
+                    },
+                    listadoIdentificacionPro: function (tiposIdentificacionDF) {
+                        return tiposIdentificacionDF.getIdentificacionesProfesional();
+                    },
+                    profesionalesDF: 'profesionalesDF',
+                    infoProfesional: function (profesionalesDF, $stateParams) {
+                        var idPro = $stateParams.idPro;
+                        return profesionalesDF.getProfesional(idPro);
+                    },
+                    loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                    }]
+                }
             })
         //#endregion
 
