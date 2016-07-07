@@ -4,17 +4,6 @@
     //var urlApi = ""; //iafar: url azure a definir
     var ofertasDF = {};
 
-    var _getOferta = function (prmObjBusqueda) { //iafar: Traer todas las ofertas segun objeto de busqueda
-        var deferred = $q.defer();
-        $http.post(urlApi + '/api/Ofertas/' + prmObjBusqueda).then(
-            function (response) {
-                deferred.resolve(response);
-            },
-            function (response) {
-                deferred.reject(response.data);
-            });
-        return deferred.promise;
-    };
 
 
     var _postOferta = function (data) { //iafar: alta de una oferta en particular
@@ -29,13 +18,29 @@
         return deferred.promise;
     };
 
-
-
+    //#region SLuna: Traer Ofertas Acticas con paginación
+    var _getOfertas = function (prmPage,prmRows) {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Ofertas?page=' + prmPage + '&rows=' + prmRows).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+    //#endregion
+    
 
     //#region iafar: area de asignacion de funciones a objeto
-    ofertasDF.getOferta = _getOferta;
+    ofertasDF.getOfertas = _getOfertas;
     ofertasDF.postOferta = _postOferta;
     //#endregion
+
+
+
+
 
     
     return ofertasDF;

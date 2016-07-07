@@ -1,5 +1,5 @@
 ﻿	<!-- COMIENZO SECCION LISTA DE OFERTAS -->
-<section class="ofertas">
+<!--<section class="ofertas">
 
 
 
@@ -113,4 +113,30 @@
             <a href="#">ver mas</a>
         </div>
     </article>
+</section>-->
+
+
+<section class="ofertas" dir-paginate="oferta in ofertas | itemsPerPage: ofertasPerPage" total-items="totalOfertas" current-page="pagination.current">
+    <article>
+        <div class="logo_ofer">
+            <img src="img/logo.png">
+            <h2>{{ oferta.Empresa.Nombre }}</h2>
+        </div>
+
+        <div class="info_ofer">
+            <h1>{{ oferta.Nombre }}</h1>
+
+            <hr>
+            <div class="d_ofer">
+                <h4>fecha de convocatoria: {{ oferta.FechaInicioConvocatoria  |  date:'dd/MM/yyyy' }} a {{ oferta.FechaFinConvocatoria  |  date:'dd/MM/yyyy' }}</h4>
+                <div ng-switch on="oferta.Publica">
+                    <h5 ng-switch-when="true">Pública</h5>
+                    <h5 ng-switch-when="false">Privada</h5>
+                </div>
+            </div>
+            <h3>{{ oferta.Descripcion }}</h3>
+            <a href="#">ver más</a>
+        </div>
+    </article>
 </section>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
