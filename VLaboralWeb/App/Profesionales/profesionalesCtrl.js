@@ -1,6 +1,8 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope //fpaz: definicion de inyectores de dependencias
     , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF //fpaz: definicion de data factorys
     , listadoRubros, listadoHabilidades, listadoIdentificacionPro//fpaz: definicion de parametros de entrada
+    , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF //fpaz: definicion de data factorys
+    , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas//fpaz: definicion de parametros de entrada
     ,infoProfesional
     ) {
 
@@ -17,6 +19,13 @@
     $scope.subRubroSelected = {};
 
     $scope.subRubroDisabled = true;
+    $scope.ofertas = listadoOfertas.Results;
+    $scope.totalOfertas = listadoOfertas.TotalRows;
+    
+    $scope.ofertasPerPage = 10;
+    $scope.pagination = {
+        current: 1
+    };
 
     $scope.editValue = false; // variable que voy a usar para activar y desactivar los modos de edicion para hacer el update de la info
     //#endregion
@@ -33,6 +42,13 @@
     }
     //#endregion
 
+    //#region SLuna: Traer Listado de Ofertas
+    $scope.pageChanged = function (newPage) {
+        ofertasDF.getOfertas(newPage, $scope.ofertasPerPage)
+          .then(function (data) {
+              $scope.totalOfertas = data.TotalRows;
+              $scope.ofertas = data.Results;
+          });
     //#region SLuna: eventos relacionados con Rubros
     $scope.rubroChanged = function () {
         rubrosDF.getRubro($scope.rubroSelected)
@@ -41,7 +57,7 @@
                 $scope.subRubroDisabled = $scope.Rubro.Subrubros.length === 0;//Si no tiene SubRubros, oculta el Select de SubRubros
             });
     };
-
+    //#endregion
     $scope.subRubroChanged = function () {
     };
 
