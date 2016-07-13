@@ -32,9 +32,9 @@
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password; // defino los datos que voy a pasar como parametros
         
         var deferred = $q.defer();
-        //$http.post('http://localhost:32069/' + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+        $http.post('http://localhost:32069/' + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-        $http.post('http://vlaboralapi.azurewebsites.net/' + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+            //$http.post('http://vlaboralbe.azurewebsites.net/' + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
             //fpaz: si se obtuvo el token de acceso correctamente, guardo el resultado en el localstorage del navegador junto con el nombre de usuario
             localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
