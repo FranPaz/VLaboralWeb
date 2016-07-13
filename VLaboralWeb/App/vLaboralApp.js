@@ -139,6 +139,9 @@
                         var idPro = $stateParams.idPro;
                         return profesionalesDF.getProfesional(idPro);
                     },
+                    listadoOfertas: function () {
+                        return { value: [] };
+                    },
                     loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                     }]

@@ -1,111 +1,75 @@
-﻿<md-content layout-fill>
+﻿<main>
+    <md-container >
+        <h1>Editar perfil.</h1>
+        <md-whiteframe class="md-whiteframe-1dp wf" flex="100" layout layout-align="center center">
+            <form>
 
-    <div layout="column">
-        <div layout="column">
-            <h1>Perfil del Profesional</h1>
-            <h2>Datos basicos del Profesional</h2>
-        </div>
-        <div layout="column">
-            <md-input-container>
-                <label>Id</label>
-                <input ng-model="profesional.Id" disabled>
-            </md-input-container>
-            <div layout="row">
-                <md-input-container flex="60">
-                    <label>Nombre</label>
-                    <input ng-model="profesional.Nombre">
+                <h3>Seleccione una imagen de perfil.</h3>
+                <input type="file" name="foto" class="archivos" style="margin:2em 0;">
+
+                <h3>Ingrese su nombre</h3>
+                <md-input-container class="ic_p">
+                    <label class="lbl">Nombre</label>
+                    <input ng-model="profesional.Nombre" class="inp">
                 </md-input-container>
-                <md-input-container flex="40">
-                    <label>Apellido</label>
-                    <input ng-model="profesional.Apellido">
+
+                <h3>Ingrese su apellido</h3>
+                <md-input-container class="ic_p">
+                    <label class="lbl">Apellido</label>
+                    <input ng-model="profesional.Apellido" class="inp">
                 </md-input-container>
-            </div>
-            <md-input-container>
-                <label>Nacionalidad</label>
-                <input ng-model="profesional.Nacionalidad">
-            </md-input-container>
-          <md-container>
-              <form name="frmPro">
-                  <h2 class="md-title">Seleccione sus habilidades</h2>
-                  <md-chips ng-model="chipsHabilidad" name="chipContainer" md-max-chips="5"
-                            md-transform-chip="transformChip($chip)">
-                      <md-autocomplete md-selected-item="selectedItem"
-                                       md-search-text="searchText"
-                                       md-items="item in habilidades"
-                                       md-item-text="item.Nombre">
-                          <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                      </md-autocomplete>
-                      <md-chip-template>
-                          <strong>{{$chip}}</strong>  
 
-                      </md-chip-template>
+                <h3>Seleccione Fecha de Nacimiento</h3><md-datepicker ng-model="profesional.FechaNac" md-placeholder="Ingrese la fecha"></md-datepicker>
+                <br />
+                <br />
 
-                  </md-chips>
-                  <div class="errors" ng-messages="frmPro.chipContainer.$error">
-                      <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
-                  </div>
-              </form>
-          </md-container>
-           
-            <md-input-container>
-                <label>Fecha de Nacimiento</label>
-                <input ng-model="profesional.FechaNac">
-            </md-input-container>
-            <md-input-container>
-                <label>Domicilio</label>
-                <input ng-model="profesional.Domicilio">
-            </md-input-container>
-            <md-input-container class="md-block">
-                <label>Objetivo Profesional</label>
-                <textarea ng-model="profesional.ObjetivoProfesional" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-            </md-input-container>
-            <md-input-container class="md-block">
-                <label>Descripcion Curricular</label>
-                <textarea ng-model="profesional.DescripcionCurricular" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-            </md-input-container>
-        </div>
+                <!--#region iafar: deberia ir la seleccion de tipo de identificacion-->
+                <h3>Ingrese su DNI</h3>
+                <md-input-container class="ic_p">
+                    <label class="lbl">DNI</label>
+                    <input ng-model="profesional.dni" class="inp">
+                </md-input-container>
 
-    </div>
-    
-    <!--#region fpaz: subrubros del profesional-->
-    <div layout="row">
-        <div flex="50">
-            <md-input-container>
-                <label>Rubro</label>
-                <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
-                    <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
-                        {{rubro.Nombre}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-        <div flex="50">
-            <md-input-container>
-                <label>Sub Rubro</label>
-                <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
-                    <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
-                        {{subRubro.Nombre}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-            <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
-        </div>
-    </div>
-    <div layout="row">
-        <div flex="grow">
-            <h2 class="md-title">Rubros seleecionados</h2>
-            <md-chips ng-model="profesional.Subrubros" readonly="!editValue ? true : false">
-                <md-chip-template>
-                    <span>
-                        <strong>{{$chip.Nombre}}</strong>
-                    </span>
-                </md-chip-template>
-            </md-chips>            
-        </div>
-    </div>    
-    <!--#endregion-->
+                <h3>Ingrese su CUIT</h3>
+                <md-input-container class="ic_p">
+                    <label class="lbl">CUIT</label>
+                    <input ng-model="cuit_pd" class="inp">
+                </md-input-container>
+                <!-- #endregion -->
+                <h3>Ingrese su nacionalidad</h3>
+                <md-input-container class="ic_p">
+                    <label class="lbl">Nacionalidad</label>
+                    <input ng-model="profesional.Nacionalidad" class="inp">
+                </md-input-container>
 
-</md-content>
+
+
+                <h3>Ingrese su Domicilio</h3>
+                <md-input-container class="ic_p">
+                    <label class="lbl">Domicilio</label>
+                    <input ng-model="profesional.Domicilio" class="inp">
+                </md-input-container>
+
+                <h3>Describa su objetivo como profesional.</h3><br>
+                <textarea ng-model="profesional.ObjetivoProfesional" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Ingrese una descripcion de la oferta.."></textarea>
+                <br>
+                <h3>Ingrese una descripción curricular.</h3><br>
+                <textarea ng-model="profesional.DescripcionCurricular" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Ingrese una descripcion de la oferta.."></textarea>
+                <br>
+                <h3>Subir PDF de su curriculum.</h3>
+                <input type="file" name="foto" class="archivos" style="margin:2em 0;">
+                <br>
+                <md-button class="md-primary md-raised" style="background:rgb(62, 138, 187);">Guardar cambios</md-button>
+            </form>
+        </md-whiteframe>
+    </md-container>
+</main>
+
+
+
+
+
+
 
 <!--#region Menu De Herramientas Flotante-->
 <nav mfb-menu position="br" effect="zoomin" label="Herramientas"
@@ -117,4 +81,111 @@
     </button>    
     <button mfb-button icon="fa fa-trash-o" label="Cancelar" ng-click="profesionalPerfilCancel()"></button>
 </nav>
+<!--#endregion-->
+
+
+<!--#region lo viejo-->
+<!--<div layout="column">
+       <div layout="column">
+           <h1>Perfil del Profesional</h1>
+           <h2>Datos basicos del Profesional</h2>
+       </div>
+       <div layout="column">
+           <md-input-container>
+               <label>Id</label>
+               <input ng-model="profesional.Id" disabled>
+           </md-input-container>
+           <div layout="row">
+               <md-input-container flex="60">
+                   <label>Nombre</label>
+                   <input ng-model="profesional.Nombre">
+               </md-input-container>
+               <md-input-container flex="40">
+                   <label>Apellido</label>
+                   <input ng-model="profesional.Apellido">
+               </md-input-container>
+           </div>
+           <md-input-container>
+               <label>Nacionalidad</label>
+               <input ng-model="profesional.Nacionalidad">
+           </md-input-container>
+         <md-container>
+             <form name="frmPro">
+                 <h2 class="md-title">Seleccione sus habilidades</h2>
+                 <md-chips ng-model="chipsHabilidad" name="chipContainer" md-max-chips="5"
+                           md-transform-chip="transformChip($chip)">
+                     <md-autocomplete md-selected-item="selectedItem"
+                                      md-search-text="searchText"
+                                      md-items="item in habilidades"
+                                      md-item-text="item.Nombre">
+                         <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                     </md-autocomplete>
+                     <md-chip-template>
+                         <strong>{{$chip}}</strong>
+
+                     </md-chip-template>
+
+                 </md-chips>
+                 <div class="errors" ng-messages="frmPro.chipContainer.$error">
+                     <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
+                 </div>
+             </form>
+         </md-container>
+
+           <md-input-container>
+               <label>Fecha de Nacimiento</label>
+               <input ng-model="profesional.FechaNac">
+           </md-input-container>
+           <md-input-container>
+               <label>Domicilio</label>
+               <input ng-model="profesional.Domicilio">
+           </md-input-container>
+           <md-input-container class="md-block">
+               <label>Objetivo Profesional</label>
+               <textarea ng-model="profesional.ObjetivoProfesional" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+           </md-input-container>
+           <md-input-container class="md-block">
+               <label>Descripcion Curricular</label>
+               <textarea ng-model="profesional.DescripcionCurricular" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+           </md-input-container>
+       </div>
+
+   </div>-->
+<!--#region fpaz: subrubros del profesional-->
+<!--<div layout="row">
+    <div flex="50">
+        <md-input-container>
+            <label>Rubro</label>
+            <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                    {{rubro.Nombre}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div flex="50">
+        <md-input-container>
+            <label>Sub Rubro</label>
+            <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
+                <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
+                    {{subRubro.Nombre}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
+    </div>
+</div>
+<div layout="row">
+    <div flex="grow">
+        <h2 class="md-title">Rubros seleecionados</h2>
+        <md-chips ng-model="profesional.Subrubros" readonly="!editValue ? true : false">
+            <md-chip-template>
+                <span>
+                    <strong>{{$chip.Nombre}}</strong>
+                </span>
+            </md-chip-template>
+        </md-chips>
+    </div>
+</div>-->
+<!--#endregion-->
 <!--#endregion-->
