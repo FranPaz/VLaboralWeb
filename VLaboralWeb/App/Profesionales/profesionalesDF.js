@@ -22,7 +22,7 @@
 
         $http.put(urlApi + 'api/Profesionals/' + prmId, data).then(
             function (response) {
-                deferred.resolve(response);
+                deferred.resolve(response.data);
             },
 
             function (response) {

@@ -1,1 +1,53 @@
-﻿<h1>Registro de Empresas</h1>
+﻿<md-container>
+    <section class="login_inicio bg_re">
+        <form action="">
+            <h1>Registra tu empresa</h1>
+            <!-- 			<input type="text" placeholder="Ingrese el nombre de la empresa" class="t_form" />
+                        <input type="text" placeholder="Ingrese el CUIT" class="t_form" />
+                        <input type="text" placeholder="Ingrese la razon social" class="t_form" />
+                        <input type="text" placeholder="Ingrese un e-mail de contacto" class="t_form" />
+                        <input type="password" placeholder="Ingrese una contraseña" class="t_form" />
+                        <input type="password" placeholder="Repita la contraseña" class="t_form" />
+                        <input type="submit" name="enviar" value="ENVIAR" class="enviar"> -->
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese la razon social</label>
+                <input ng-model="rp_pass" class="inp">
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese el CUIT</label>
+                <input ng-model="rp_dni" class="inp">
+
+            </md-input-container>
+
+
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese un e-mail de contacto</label>
+                <input ng-model="rp_rpass" class="inp">
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese una contraseña</label>
+                <input ng-model="rp_rpass" class="inp">
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Repita la contraseña</label>
+                <input ng-model="rp_rpass" class="inp">
+
+            </md-input-container>
+
+            <md-button class="md-primary md-raised" style="background:rgb(62, 138, 187);">Registrarse</md-button>
+
+        </form>
+    </section>
+</md-container>

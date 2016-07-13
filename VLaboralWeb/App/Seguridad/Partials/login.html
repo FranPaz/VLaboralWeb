@@ -1,4 +1,24 @@
-﻿<h1>Login de Usuario</h1>
+﻿<md-container >
+
+    <section class="login_inicio bg_log">
+        <form>
+            <h1>Ingrese sus datos</h1>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese su e-mail..</label>
+                <input ng-model="user.title" class="inp">
+
+            </md-input-container>
+            <md-input-container class="ic">
+                <label class="lbl">Ingrese una contraseña..</label>
+                <input ng-model="user.title" class="inp">
+            </md-input-container>
+            <input type="submit" name="enviar" value="INGRESAR" class="enviar">
+        </form>
+    </section>
+
+</md-container>
 
 <md-button class="md-raised md-primary" ui-sref="empresa.ofertas.add">
     Entrar como Empresa

@@ -42,9 +42,12 @@
                 },
                 listadoTiposContratos: function () {
                     return $scope.tiposContrato;
-                },
+                }, 
                 listadoRubros: function () {
                     return $scope.Rubros;
+                },
+                listadoTiposRequisitos: function () {
+                    return $scope.tiposRequisito;
                 }
             }
         })
@@ -70,13 +73,19 @@
             delete prmOferta.Puestos[i].Disponibilidad;
 
             //para cada subrubro asociado al puesto solo dejo el Id del subrubro
-            //for (var j in oferta.Puestos[i].SubRubros) {
-            //    delete oferta.Puestos[i].SubRubros[j].Nombre;
-            //    delete oferta.Puestos[i].SubRubros[j].Descripcion;
-            //    delete oferta.Puestos[i].SubRubros[j].Empleados;
-            //    delete oferta.Puestos[i].SubRubros[j].Empleadores;
-            //    delete oferta.Puestos[i].SubRubros[j].Puestos;
-            //}
+            for (var x in prmOferta.Puestos[i].SubRubros) {
+                delete prmOferta.Puestos[i].SubRubros[x].Nombre;
+                delete prmOferta.Puestos[i].SubRubros[x].Descripcion;
+                delete prmOferta.Puestos[i].SubRubros[x].Profesionales;
+                delete prmOferta.Puestos[i].SubRubros[x].Puestos;
+                delete prmOferta.Puestos[i].SubRubros[x].RubroId;
+            }
+
+            //para cada requisito asociado al puesto solo dejo el Id del tipo de requisito, el valor y si es exclueyente o no
+            for (var j in prmOferta.Puestos[i].Requisitos) {
+                prmOferta.Puestos[i].Requisitos[j].TipoRequisitoId = prmOferta.Puestos[i].Requisitos[j].TipoRequisito.Id;
+                delete prmOferta.Puestos[i].Requisitos[j].TipoRequisito;                
+            }
         }
 
         ofertasDF.postOferta(prmOferta).then(function (response) {
