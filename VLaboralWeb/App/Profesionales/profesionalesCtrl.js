@@ -1,9 +1,6 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope //fpaz: definicion de inyectores de dependencias
-    , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF //fpaz: definicion de data factorys
-    , listadoRubros, listadoHabilidades, listadoIdentificacionPro//fpaz: definicion de parametros de entrada
     , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF //fpaz: definicion de data factorys
-    , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas//fpaz: definicion de parametros de entrada
-    ,infoProfesional
+    , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas,infoProfesional//fpaz: definicion de parametros de entrada    
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope    
@@ -49,6 +46,9 @@
               $scope.totalOfertas = data.TotalRows;
               $scope.ofertas = data.Results;
           });
+    };
+    //#endregion
+
     //#region SLuna: eventos relacionados con Rubros
     $scope.rubroChanged = function () {
         rubrosDF.getRubro($scope.rubroSelected)
@@ -57,7 +57,7 @@
                 $scope.subRubroDisabled = $scope.Rubro.Subrubros.length === 0;//Si no tiene SubRubros, oculta el Select de SubRubros
             });
     };
-    //#endregion
+    
     $scope.subRubroChanged = function () {
     };
 

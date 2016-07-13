@@ -1,1 +1,43 @@
-﻿<h1>Registro del Profesional</h1>
+﻿<md-container>
+    <section class="login_inicio bg_rp">
+        <form action="">
+            <h1>Complete con sus datos.</h1>
+
+            <!-- 			<input type="text" placeholder="Ingrese un e-mail de contacto" class="t_form" />
+                        <input type="text" placeholder="Ingrese su DNI" class="t_form" />
+                        <input type="password" placeholder="Ingrese una contraseña" class="t_form" />
+                        <input type="password" placeholder="Repita la contraseña" class="t_form" />
+                        <input type="submit" name="enviar" value="ENVIAR" class="enviar"> -->
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese un email de contacto..</label>
+                <input ng-model="rp_email" class="inp">
+
+            </md-input-container>
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese su DNI..</label>
+                <input ng-model="rp_dni" class="inp">
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese una contraseña..</label>
+                <input ng-model="rp_pass" class="inp">
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Repita la contraseña..</label>
+                <input ng-model="rp_rpass" class="inp">
+
+            </md-input-container>
+
+            <md-button class="md-primary md-raised" style="background:rgb(62, 138, 187);">Registrarse</md-button>
+
+        </form>
+    </section>
+</md-container>
