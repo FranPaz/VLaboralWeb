@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, //fpaz: definicion de inyectores de dependencias
-    ofertasDF, rubrosDF, requisitosDF, habilidadesDF, //fpaz: definicion de data factorys
+    ofertasDF, rubrosDF, requisitosDF, habilidadesDF,authSvc, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
     listadoRubros, listadoTiposRequisitos, listadoHabilidades//
     ) {
@@ -61,9 +61,9 @@
 
     //funcion para dar de alta la oferta en la bd
     $scope.ofertaSave = function (prmOferta) {
-        prmOferta.EmpresaId = 1; //hardcode para prueba
+        prmOferta.EmpresaId = authSvc.authentication.empresaId; //id de la empresa logueada
         for (var i in prmOferta.Puestos) { //para cada puesto armo el objeto tal cual lo voy a enviar al post de ofertas
-
+            delete prmOferta.Puestos[i].Habilidades;
             //dejo solamente el Id del tipo de contrato seleccionado
             prmOferta.Puestos[i].TipoContratoId = prmOferta.Puestos[i].TipoContrato.Id;
             delete prmOferta.Puestos[i].TipoContrato;
@@ -73,12 +73,12 @@
             delete prmOferta.Puestos[i].Disponibilidad;
 
             //para cada subrubro asociado al puesto solo dejo el Id del subrubro
-            for (var x in prmOferta.Puestos[i].SubRubros) {
-                delete prmOferta.Puestos[i].SubRubros[x].Nombre;
-                delete prmOferta.Puestos[i].SubRubros[x].Descripcion;
-                delete prmOferta.Puestos[i].SubRubros[x].Profesionales;
-                delete prmOferta.Puestos[i].SubRubros[x].Puestos;
-                delete prmOferta.Puestos[i].SubRubros[x].RubroId;
+//            debugger;
+            for (var x in prmOferta.Puestos[i].Subrubros) {                                
+                delete prmOferta.Puestos[i].Subrubros[x].Nombre;
+                delete prmOferta.Puestos[i].Subrubros[x].Descripcion;
+                delete prmOferta.Puestos[i].Subrubros[x].Profesionales;
+                delete prmOferta.Puestos[i].Subrubros[x].Puestos;                
             }
 
             //para cada requisito asociado al puesto solo dejo el Id del tipo de requisito, el valor y si es exclueyente o no

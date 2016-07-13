@@ -16,7 +16,7 @@
     $scope.subRubroSelected = {};
 
     $scope.subRubroDisabled = true;
-    $scope.ofertas = listadoOfertas.Results;
+    $scope.ofertas = listadoOfertas;
     $scope.totalOfertas = listadoOfertas.TotalRows;
     
     $scope.ofertasPerPage = 10;

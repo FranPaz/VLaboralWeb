@@ -1,4 +1,4 @@
-﻿vLaboralApp.factory('ofertasDF', function ($http, $q, configSvc) {
+﻿vLaboralApp.factory('ofertasDF', function ($http, $q, configSvc, authSvc) {
     //iafar: url del web api de cuentas de usuario, cambiar por el de produccion una vez implementado
     var urlApi = configSvc.urlApi; //desarrollo
     //var urlApi = ""; //iafar: url azure a definir
@@ -30,11 +30,30 @@
         return deferred.promise;
     }
     //#endregion
+
+    //#region fpaz: Traer Ofertas relacionadas con el profesional
+    var _getOfertasProfesional = function () {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Ofertas/',
+            {
+                params: {
+                    prmIdProfesional: authSvc.authentication.profesionalId
+                }
+            }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+    //#endregion
     
 
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;
-
+    ofertasDF.getOfertasProfesional = _getOfertasProfesional;
     ofertasDF.postOferta = _postOferta;
     //#endregion
 
