@@ -1,5 +1,6 @@
-﻿vLaboralApp.service('authSvc', function ($http, $q, cuentaDataFactory, tokenDataFactory, localStorageService, jwtHelper) {
+﻿vLaboralApp.service('authSvc', function ($http, $q, cuentaDataFactory, tokenDataFactory, localStorageService, jwtHelper, configSvc) {
 
+    var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
     var authServiceFactory = {};
 
     
@@ -7,22 +8,42 @@
         isAuth: false,
         userName: "",
         roles: [],
-        empleadorId:""
+        tipoUser:"",
+        empresaId: "",
+        profesionalId: ""
     };
 
-    //#region registracion de usuario
-    var _saveRegistration = function (registration) { //funcion para registrar un usuario
-
+    //#region registracion de usuario Empresa
+    var _saveRegistrationEmpresa = function (registration) {         
         _logOut();
-
-        //return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
-        //    return response;
-        //});
-
-        return cuentaDataFactory.save(registration).$promise.then( //llamo al metodo save para registrar el nuevo usuario
+        var deferred = $q.defer();
+        $http.post(urlApi + 'api/accounts/createEmpresa', registration).then(
             function (response) {
-                return response;
+                //  Registro OK
+                deferred.resolve(response);
+            },
+            function (response) {
+                //  Registro ERROR
+                deferred.reject(response);
             });
+        return deferred.promise
+    };
+    //#endregion
+
+    //#region registracion de usuario Profesional
+    var _saveRegistrationProfesional = function (registration) {        
+        _logOut();
+        var deferred = $q.defer();
+        $http.post(urlApi + 'api/accounts/createProfesional', registration).then(
+            function (response) {
+                //  Registro OK
+                deferred.resolve(response);
+            },
+            function (response) {
+                //  Registro ERROR
+                deferred.reject(response);
+            });
+        return deferred.promise
     };
     //#endregion
 
@@ -31,22 +52,23 @@
 
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password; // defino los datos que voy a pasar como parametros
         
-        var deferred = $q.defer();
-        $http.post('http://localhost:32069/' + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+        var deferred = $q.defer();        
 
-            //$http.post('http://vlaboralbe.azurewebsites.net/' + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+        $http.post(urlApi  + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-            //fpaz: si se obtuvo el token de acceso correctamente, guardo el resultado en el localstorage del navegador junto con el nombre de usuario
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+            var tokenPayload = jwtHelper.decodeToken(response.access_token); //fpaz: decodifico el token para obener los roles y los claims que se hayan definido            
+
+            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, roles: tokenPayload.role, tipoUser: tokenPayload.app_usertype, empresaId: tokenPayload.empresaId, profesionalId: tokenPayload.profesionalId });
 
             //fpaz: seteo en el servicio las credenciales del usuario logueado, para que pueda acceder a esta info desde cualquier parte de la app usando la funcion authSvc.authentication
             // que devuelve todo el objeto con la info del usuario logueado
             _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;            
-            var tokenPayload = jwtHelper.decodeToken(response.access_token); //fpaz: decodifico el token para obener los roles y los claims que se hayan definido
-            _authentication.roles = tokenPayload.role;
-            _authentication.empleadorId = tokenPayload.EmpleadorId;
-            
+            _authentication.userName = loginData.userName;
+            _authentication.roles = tokenPayload.role;            
+            _authentication.tipoUser = tokenPayload.app_usertype;
+            _authentication.empresaId = tokenPayload.empresaId;
+            _authentication.profesionalId = tokenPayload.profesionalId;
+
             deferred.resolve(response);
 
         }).error(function (err, status) {
@@ -64,9 +86,10 @@
 
         _authentication.isAuth = false;
         _authentication.userName = "";        
-        _authentication.roles = [],
-        _authentication.empleadorId =""
-
+        _authentication.roles = [];
+        _authentication.tipoUser = "";
+        _authentication.empresaId = "";
+        _authentication.profesionalId = "";
     };
 
     //#endregion
@@ -77,11 +100,17 @@
         if (authData) {
             _authentication.isAuth = true;
             _authentication.userName = authData.userName;
+            _authentication.roles = authData.roles;
+            _authentication.tipoUser = authData.tipoUser;
+            _authentication.empresaId = authData.empresaId;
+            _authentication.profesionalId = authData.profesionalId;
+            
         }
 
     }
 
-    authServiceFactory.saveRegistration = _saveRegistration;
+    authServiceFactory.saveRegistrationEmpresa = _saveRegistrationEmpresa;
+    authServiceFactory.saveRegistrationProfesional = _saveRegistrationProfesional;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;

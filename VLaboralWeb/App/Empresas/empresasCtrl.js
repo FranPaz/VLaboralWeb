@@ -1,4 +1,5 @@
-﻿vLaboralApp.controller('empresasCtrl.js', function ($scope) {
+﻿vLaboralApp.controller('empresasCtrl', function ($scope, listadoOfertas) {
 
-    
+    $scope.ofertas = listadoOfertas;
+    $scope.totalOfertas = listadoOfertas.TotalRows;
 });

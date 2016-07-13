@@ -58,9 +58,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\DashboardEmpresa\dashboardEmpresaCtrl.js" />
     <Content Include="App\DashboardEmpresa\Partials\empresaDashboard.html" />
     <Content Include="App\DashboardEmpresa\Partials\empresaContenido.html" />
     <Content Include="App\DashboardEmpresa\Partials\empresaMenu.html" />
+    <Content Include="App\DashboardProfesional\dashboardProfesionalCtrl.js" />
     <Content Include="App\DashboardProfesional\Partials\profesionalDashboard.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalContenido.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />

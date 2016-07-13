@@ -1,13 +1,14 @@
-﻿vLaboralApp.factory('profesionalesDF', function ($http, $q, configSvc) {
+﻿vLaboralApp.factory('profesionalesDF', function ($http, $q, configSvc, authSvc) {
     //iafar: url del web api de cuentas de usuario, cambiar por el de produccion una vez implementado
-    var urlApi = configSvc.urlApi; //desarrollo
-    //var urlApi = ""; //iafar: url azure a definir
+    var urlApi = configSvc.urlApi; //desarrollo    
     var profesionalesDF = {};
 
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
-       
+
+        var prmIdProfesional = authSvc.authentication.profesionalId; // fpaz: variable que va a tener el id del profesional logueado
+
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
+        $http.get(urlApi + 'api/Profesionals/' + prmIdProfesional).then(
             function (response) {
                 deferred.resolve(response.data);
             },

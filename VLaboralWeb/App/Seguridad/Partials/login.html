@@ -1,5 +1,4 @@
 ﻿<md-container >
-
     <section class="login_inicio bg_log">
         <form>
             <h1>Ingrese sus datos</h1>
@@ -7,23 +6,18 @@
             <md-input-container class="ic">
 
                 <label class="lbl">Ingrese su e-mail..</label>
-                <input ng-model="user.title" class="inp">
+                <input ng-model="loginData.userName" class="inp" required>
 
             </md-input-container>
             <md-input-container class="ic">
                 <label class="lbl">Ingrese una contraseña..</label>
-                <input ng-model="user.title" class="inp">
+                <input type="password" ng-model="loginData.password" class="inp" required>
             </md-input-container>
-            <input type="submit" name="enviar" value="INGRESAR" class="enviar">
+            <input type="submit" name="enviar" value="INGRESAR" class="enviar" ng-click="login()">
+            <div data-ng-hide="message == ''" class="alert alert-danger">
+                {{message}}
+            </div>
         </form>
     </section>
 
 </md-container>
-
-<md-button class="md-raised md-primary" ui-sref="empresa.ofertas.add">
-    Entrar como Empresa
-</md-button>
-
-<md-button class="md-raised md-primary" ui-sref="profesional.perfil({idPro:1})">
-    Entrar como Profesional
-</md-button>
