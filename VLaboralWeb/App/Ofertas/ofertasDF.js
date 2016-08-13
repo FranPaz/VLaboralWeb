@@ -50,12 +50,32 @@
         return deferred.promise;
     }
     //#endregion
+
+    //#region kikexp: trae una oferta en particular
+    var _getOferta = function (prmId) {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Ofertas/',
+            {
+                params: {
+                    prmId: prmId
+                }
+            }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+    //endregion
     
 
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;
     ofertasDF.getOfertasProfesional = _getOfertasProfesional;
     ofertasDF.postOferta = _postOferta;
+    ofertasDF.getOferta = _getOferta;
     //#endregion
 
 

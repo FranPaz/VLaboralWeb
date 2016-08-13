@@ -222,6 +222,66 @@
             })
         //#endregion
 
+        //#region kikexp: ofertas
+
+        .state('oferta', {
+            abstract: true,
+            url: '/oferta',
+            views: {
+                '': {
+                    templateUrl: ''
+                },
+                'menu': {
+                    templateUrl: '',
+                    controller: 'ofertaCtrl',
+                    resolve: {
+                        loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['App/Oferta/ofertaCtrl.js']);
+                        }]
+                    }
+                },
+                'contenido': {
+                    templateUrl: ''
+                }
+            }
+        })
+            .state('oferta.detalle', {
+                url: 'Oferta/:idOferta',
+                templateUrl: 'ofertaDetalle.html',
+                controller: 'ofertaCtrl',
+                resolve: {
+                    ofertasDF: 'ofertasDF',
+                    listadoOfertas: function () {
+                        return {value:[]};
+                    },
+                    rubrosDF: 'rubrosDF',
+                    habilidadesDF: 'habilidadesDF',
+                    tiposIdentificacionDF: 'tiposIdentificacionDF',
+                    listadoRubros: function () {
+                        return { value: [] };
+                    },
+                    listadoHabilidades: function () {
+                        return { value: [] };
+                    },
+                    listadoIdentificacionPro: function () {
+                        return { value: [] };
+                    },
+                    profesionalesDF: 'profesionalesDF',
+                    infoProfesional: function () {                        
+                        return { value: [] };
+                    },
+                    ofertaDetalle: function (ofertasDF) {
+                        var prmId = $stateParams.idOferta;
+                        return ofertasDF.getOferta(prmId);
+                    },
+                    loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
+                    }]
+
+                }
+            })
+        //#endregion
+
     })
 
 
