@@ -1,4 +1,5 @@
-﻿<md-dialog aria-label="Agregar puesto a la oferta" ng-cloak flex="100">
+﻿
+<md-dialog aria-label="Agregar puesto a la oferta" ng-cloak flex="80">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>Agregar puesto a la oferta</h2>
@@ -8,93 +9,104 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-dialog-content style="min-width:800px;max-height:1810px; ">
-        <div class="md-dialog-content">
-            <div layout="row">
-                <div flex="50">
-                    <md-input-container>
-                        <label>Nombre del Puesto</label>
-                        <input type="text" ng-model="puesto.Nombre" class="mdi-editor-border-color form-control md-input" />
-                    </md-input-container>
-                </div>
+    <md-dialog-content style="min-width:800px;max-height:1810px; " layout layout-align="center center">
 
-                <div flex="25">
-                    <md-input-container>
-                        <label>Cantidad de Vacantes</label>
-                        <input type="number" ng-model="puesto.Vacantes" class="form-control md-input" />
-                    </md-input-container>
-                </div>
-                <div flex="25">
-                    <md-input-container>
-                        <label>Remuneracion (opcional)</label>
-                        <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" />
-                    </md-input-container>
-                </div>                
-            </div>
-            <div layout="row">
-                <div flex="50">
-                    <md-input-container>
-                        <md-select placeholder="Seleccionar Tipo de Contratacion" ng-model="puesto.TipoContrato">
-                            <md-option ng-value="tipoCont" ng-repeat="tipoCont in tiposContrato">{{ tipoCont.Nombre }}</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div flex="50">
-                    <md-input-container>
-                        <md-select placeholder="Seleccionar Disponibilidad" ng-model="puesto.Disponibilidad">
-                            <md-option ng-value="tipoDisp" ng-repeat="tipoDisp in tiposDisponibilidad">{{ tipoDisp.Nombre }}</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-            </div>
-            <div layout="row">
-                <md-container>
-                    <form name="frmPro">
-                        <h2 class="md-title">Seleccione sus habilidades</h2>
-                        <md-chips ng-model="puesto.Habilidades" name="chipContainer" md-max-chips="5"
-                                  md-transform-chip="transformChip($chip)">
-                            <md-autocomplete md-selected-item="selectedItem"
-                                             md-search-text="searchText"
-                                             md-items="item in habilidades"
-                                             md-item-text="item.Nombre">
-                                <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                            </md-autocomplete>
-                            <md-chip-template>
-                                <strong>{{$chip}}</strong>
+        <form>
+            <h3>Titulo del puesto.</h3>
+            <md-input-container style="width:60%;">
 
-                            </md-chip-template>
+                <label class="lbl">Ingrese el nombre del puesto..</label>
+                <input ng-model="puesto.Nombre" class="inp">
 
-                        </md-chips>
-                        <div class="errors" ng-messages="frmPro.chipContainer.$error">
-                            <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
-                        </div>
-                    </form>
-                </md-container>
+            </md-input-container>
+            <h3>Vacantes del puesto</h3>
+            <md-input-container style="width:60%;">
+                <label class="lbl">Numero de vacantes</label>
+                <input ng-model="puesto.Vacantes" class="inp">
 
-            </div>
-            <div layout="row">
-                <div flex="50">
-                    <md-input-container>
-                        <label>Rubro</label>
-                        <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
-                            <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
-                                {{rubro.Nombre}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div flex="50">
-                    <md-input-container>
-                        <label>Sub Rubro</label>
-                        <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
-                            <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
-                                {{subRubro.Nombre}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
-                </div>
-            </div>
+            </md-input-container>
+
+            <h3>Remuneracion (Opcional)</h3>
+            <md-input-container style="width:60%;">
+                <label class="lbl">Remuneracion $</label>
+                <input ng-model="puesto.Remuneracion" class=" inp">
+
+            </md-input-container>
+            <br />
+
+            <md-input-container>
+                <md-select placeholder="Seleccionar Tipo de Contratacion" ng-model="puesto.TipoContrato">
+                    <md-option ng-value="tipoCont" ng-repeat="tipoCont in tiposContrato">{{ tipoCont.Nombre }}</md-option>
+                </md-select>
+            </md-input-container>
+            <br />
+            <md-input-container>
+                <md-select placeholder="Seleccionar Disponibilidad" ng-model="puesto.Disponibilidad">
+                    <md-option ng-value="tipoDisp" ng-repeat="tipoDisp in tiposDisponibilidad">{{ tipoDisp.Nombre }}</md-option>
+                </md-select>
+            </md-input-container>
+
+
+            <br />
+
+
+            <h3>Ingrese la ubicación del puesto.</h3>
+            <md-input-container style="width:25%;">
+
+                <label class="lbl">Lugar</label>
+                <input ng-model="puesto.Ubicacion" class="inp">
+
+            </md-input-container>
+
+            <br>
+
+            <br>
+
+            <h3>Ingrese una descripción</h3><br>
+            <textarea ng-model="puesto.Descripcion" type="text-area" class="ofer_tit ofer_desc" rows="6" placeholder="Ingrese una descripcion de la oferta.."></textarea>
+
+            <br>
+
+            <h3>Seleccione sus habilidades</h3>
+            <md-chips ng-model="puesto.Habilidades" name="chipContainer" md-max-chips="5"
+                      md-transform-chip="transformChip($chip)">
+                <md-autocomplete md-selected-item="selectedItem"
+                                 md-search-text="searchText"
+                                 md-items="item in habilidades"
+                                 md-item-text="item.Nombre">
+                    <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <strong>{{$chip}}</strong>
+
+                </md-chip-template>
+
+            </md-chips>
+
+
+
+            <h3>Seleccione un rubro.</h3>
+            <md-input-container style="width:40%;">
+                <h3>Ingrese rubros.</h3>
+                <label class="lbl">Rubro</label>
+                <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                    <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                        {{rubro.Nombre}}
+                    </md-option>
+                </md-select>
+
+
+            </md-input-container>
+            <md-input-container>
+                <h3>Ingrese sub-rubros.</h3>
+                <label class="lbl">Sub Rubro</label>
+                <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
+                    <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
+                        {{subRubro.Nombre}}
+                    </md-option>
+            </md-input-container>
+            <br>
+            <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
             <div layout="row">
                 <div flex="grow">
                     <h2 class="md-title">Rubros seleecionados</h2>
@@ -108,88 +120,88 @@
                                 </button>
                             </md-chip-template>
                         </md-chip>
-                    </md-chips>   
-                </div>                
-            </div>
-        </div>
-
-        <div layout="row">
-            <div flex="grow">                
-                <!--#region fpaz: del listado de Requisitos-->
-                <div layout="row">
-                    <div flex="30">
-                        <md-input-container>
-                            <md-select placeholder="Seleccionar Tipo de Requisito" ng-model="requisito.TipoRequisito">
-                                <md-option ng-value="tipoReq" ng-repeat="tipoReq in tiposRequisito">{{ tipoReq.Nombre }}</md-option>
-                            </md-select>
-                        </md-input-container>
-                    </div>
-                    <div flex="20">
-                        <md-input-container>
-                            <label>Valor</label>
-                            <input ng-model="requisito.Valor">
-                        </md-input-container>
-                    </div>
-                    <div flex="15">                        
-                        <md-radio-group ng-model="requisito.Excluyente">
-                            <md-radio-button value=true class="md-primary">Requisito Obligatorio</md-radio-button>
-                            <md-radio-button value=false>Requisito Desable</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div flex="15">
-                        <md-input-container layout="row" flex="grow" style="margin-left: 42px">
-                            <div flex>
-                                <md-button class="md-raised md-primary btn-fw m-b-sm" ng-click="agregarRequisito(requisito)">Agregar Requisito</md-button>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div flex="5"></div> 
-                    <div flex="15">
-                        <md-input-container layout="row" flex="grow">
-                            <div flex>
-                                <md-button class="md-raised md-warn btn-fw m-b-sm md-button md-default-theme" ng-click="cancelarRequisito()">Cancelar</md-button>
-                            </div>
-                        </md-input-container>
-                    </div>
+                    </md-chips>
                 </div>
-                <!--#endregion-->
             </div>
-            <div flex="20">
-                <!--#region fpaz: listado partidos cargados de la fecha-->
-                <table ng-table="tableParams" class="table ng-table-responsive">
-                                    <tr ng-repeat="requisito in puesto.Requisitos">
-                                        <td data-title="'Requisitos Cargados'">
-                                            <div>
-                                                <div>
-                                                    <div layout="row">
-                                                        <md-input-container layout="row" flex="50">
-                                                            <div flex="90">
-                                                                <label>Tipo de Requisito</label>
-                                                                <input class="form-control md-input" ng-model="requisito.TipoRequisito.Nombre" ng-disabled="true">
-                                                            </div>
-                                                        </md-input-container>
-                                                        <md-input-container layout="row" flex="25">
-                                                            <div flex="90">
-                                                                <label>Valor</label>
-                                                                <input class="form-control md-input" ng-model="requisito.Valor" ng-disabled="true">
-                                                            </div>
-                                                        </md-input-container>
-                                                        <md-input-container layout="row" flex="25">
-                                                            <div flex="90">
-                                                                <label>Valor</label>
-                                                                <input class="form-control md-input" ng-model="requisito.Excluyente" ng-disabled="true">
-                                                            </div>
-                                                        </md-input-container>
-                                                    </div>
-                                                </div>                                               
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
 
-                <!--#endregion-->
+            <div layout="row">
+                <div flex="grow">
+                    <!--#region fpaz: del listado de Requisitos-->
+                    <div layout="row">
+                        <div flex="30">
+                            <md-input-container>
+                                <md-select placeholder="Seleccionar Tipo de Requisito" ng-model="requisito.TipoRequisito">
+                                    <md-option ng-value="tipoReq" ng-repeat="tipoReq in tiposRequisito">{{ tipoReq.Nombre }}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex="20">
+                            <md-input-container>
+                                <label>Valor</label>
+                                <input ng-model="requisito.Valor">
+                            </md-input-container>
+                        </div>
+                        <div flex="15">
+                            <md-radio-group ng-model="requisito.Excluyente">
+                                <md-radio-button value=true class="md-primary">Requisito Obligatorio</md-radio-button>
+                                <md-radio-button value=false>Requisito Desable</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <div flex="15">
+                            <md-input-container layout="row" flex="grow" style="margin-left: 42px">
+                                <div flex>
+                                    <md-button class="md-raised md-primary btn-fw m-b-sm" ng-click="agregarRequisito(requisito)">Agregar Requisito</md-button>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div flex="5"></div>
+                        <div flex="15">
+                            <md-input-container layout="row" flex="grow">
+                                <div flex>
+                                    <md-button class="md-raised md-warn btn-fw m-b-sm md-button md-default-theme" ng-click="cancelarRequisito()">Cancelar</md-button>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                </div>
+                <div flex="20">
+                    <!--#region fpaz: listado partidos cargados de la fecha-->
+                    <table ng-table="tableParams" class="table ng-table-responsive">
+                        <tr ng-repeat="requisito in puesto.Requisitos">
+                            <td data-title="'Requisitos Cargados'">
+                                <div>
+                                    <div>
+                                        <div layout="row">
+                                            <md-input-container layout="row" flex="50">
+                                                <div flex="90">
+                                                    <label>Tipo de Requisito</label>
+                                                    <input class="form-control md-input" ng-model="requisito.TipoRequisito.Nombre" ng-disabled="true">
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container layout="row" flex="25">
+                                                <div flex="90">
+                                                    <label>Valor</label>
+                                                    <input class="form-control md-input" ng-model="requisito.Valor" ng-disabled="true">
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container layout="row" flex="25">
+                                                <div flex="90">
+                                                    <label>Valor</label>
+                                                    <input class="form-control md-input" ng-model="requisito.Excluyente" ng-disabled="true">
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!--#endregion-->
+                </div>
             </div>
-        </div>
+        </form>
     </md-dialog-content>
     <md-dialog-actions>
         <md-button ng-click="addPuesto(puesto)">
@@ -198,6 +210,9 @@
         <md-button ng-click="cancel()" class="md-primary">
             Cancelar
         </md-button>
-    </md-dialog-actions>    
+    </md-dialog-actions>
 </md-dialog>
+
+
+
 
