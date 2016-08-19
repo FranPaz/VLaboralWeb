@@ -131,6 +131,9 @@
                         etapasObligatorias: function (etapasOfertaDF) {
                             return etapasOfertaDF.getEtapasObligatorias();
                         },
+                        ofertaDetalle: function () {
+                            return { value: [] };    
+                        },
                         loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                         }]
@@ -278,6 +281,9 @@
                     ofertaDetalle: function (ofertasDF) {
                         var prmId = $stateParams.idOferta;
                         return ofertasDF.getOferta(prmId);
+                    },
+                    etapasObligatorias: function () {
+                        return { value: [] };
                     },
                     loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
