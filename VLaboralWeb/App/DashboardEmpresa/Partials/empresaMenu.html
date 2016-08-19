@@ -1,39 +1,21 @@
-﻿<nav>
-    <a href="index.html">UN<span>MUNDO</span></a>
-    <ul>
-        <a href="#">
-            <li><span class="icon-earth icono_de"></span></li>
-        </a>
-        <a href="#">
-            <li><span class="icon-mail4 icono_de"></span></li>
-        </a>
-        <a href="#">
-            <li><img src="img/oc.jpg" alt=""></li>
-        </a>
-        <a ng-click="logOut()">
-            <li><span class="icon-exit icono_de"></span></li>
-        </a>
-    </ul>
-</nav>
-
-<aside>
     <div class="p_info">
-        <img src="img/oc.jpg" alt="">
-        <div class="t_info">
-            <h5>bienvenido</h5>
-            <h2><a>{{authentication.userName}}</a></h2>
-        </div>
+    <img src="img/oc.jpg" alt="">
+    <div class="t_info">
+        <h5>bienvenido</h5>
+<h2><a>{{authentication.userName}}</a></h2>
     </div>
-    <div class="menu_s">
-        <ul>
+</div>
+<div class="menu_s">
+    <ul>
 
-            <h1>OFERTAS</h1>
-            <a ui-sref="empresa.ofertas">
+        <h1>OFERTAS</h1>
+
+       <a ui-sref="empresa.ofertas">
                 <li><span class="icon-bullhorn"></span> Listado de Ofertas</li>
             </a>
             <a ui-sref="empresa.nuevaOferta">
                 <li><span class="icon-bullhorn"></span> Agregar ofertas</li>
             </a>
-        </ul>
-    </div>
-</aside>
+    </ul>
+</div>
+
