@@ -1,6 +1,7 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
   'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
-  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion', 'angularUtils.directives.dirPagination'])
+  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion'
+  , 'angularUtils.directives.dirPagination', 'mdDataTable', 'angular-timeline', 'angular.filter'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
         cfpLoadingBarProvider.includeSpinner = true;
@@ -33,7 +34,7 @@
                     templateUrl: '/App/Seguridad/Partials/registroProfesional.html',
                     controller: 'signupCtrl',
                     resolve: {
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/signupCtrl.js']);
                         }]
                     }
@@ -43,7 +44,7 @@
                     templateUrl: '/App/Seguridad/Partials/registroEmpresa.html',
                     controller: 'signupCtrl',
                     resolve: {                       
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/signupCtrl.js']);
                         }]
                     }
@@ -53,7 +54,7 @@
                     templateUrl: '/App/Seguridad/Partials/login.html',
                     controller: 'loginCtrl',
                     resolve: {
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/loginCtrl.js']);
                         }]
                     }
@@ -126,7 +127,11 @@
                         listadoRubros: function (rubrosDF) {
                             return rubrosDF.getRubros();
                         },
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        etapasOfertaDF: 'etapasOfertaDF',
+                        etapasObligatorias: function (etapasOfertaDF) {
+                            return etapasOfertaDF.getEtapasObligatorias();
+                        },
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                         }]
                     }

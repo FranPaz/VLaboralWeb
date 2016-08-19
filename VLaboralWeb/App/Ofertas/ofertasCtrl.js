@@ -1,7 +1,7 @@
 ﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, //fpaz: definicion de inyectores de dependencias
-    ofertasDF, rubrosDF, requisitosDF, habilidadesDF,authSvc, //fpaz: definicion de data factorys
+    ofertasDF, rubrosDF, requisitosDF, habilidadesDF,authSvc, tiposEtapasDF, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
-    listadoRubros, listadoTiposRequisitos, listadoHabilidades//
+    listadoRubros, listadoTiposRequisitos, listadoHabilidades, etapasObligatorias//
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
@@ -20,6 +20,8 @@
 
     $scope.oferta = {};
     $scope.oferta.Puestos = [];
+
+    $scope.oferta.EtapasOferta = etapasObligatorias;
     //#endregion
 
     //#region fpaz: carga de ofertas
@@ -60,7 +62,7 @@
     
 
     //funcion para dar de alta la oferta en la bd
-    $scope.ofertaSave = function (prmOferta) {
+    $scope.ofertaSave = function (prmOferta) {        
         prmOferta.EmpresaId = authSvc.authentication.empresaId; //id de la empresa logueada
         for (var i in prmOferta.Puestos) { //para cada puesto armo el objeto tal cual lo voy a enviar al post de ofertas
             delete prmOferta.Puestos[i].Habilidades;
@@ -100,7 +102,36 @@
     };
     //#endregion
 
+    //#region fpaz: carga de Etapas de Oferta
 
+    //#region fpaz: llamado al modal de carga de puestos
+    //funcion que abre el modal para la carga de puestos en la oferta
+    $scope.openEtapaOfertaAdd = function (ev) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'etapasOfertaCtrl',
+            templateUrl: 'App/EtapasOferta/Partials/etapaOfertaAdd.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            //fullscreen: true,
+            fullscreen: useFullScreen,
+            resolve: {
+                listadoTiposEtapas: function (tiposEtapasDF) {
+                    return tiposEtapasDF.getTiposEtapas();
+                },
+                etapasCargadas : function () {
+                    return $scope.oferta.EtapasOferta;
+                }
+            }
+        })
+        .then(function (nuevaEtapa) {
+            $scope.oferta.EtapasOferta.push(nuevaEtapa);
+        });
+    }
+    //#endregion
+
+    //#endregion
 
 
 });
