@@ -66,6 +66,9 @@
     <Content Include="App\DashboardProfesional\Partials\profesionalDashboard.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalContenido.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />
+    <Content Include="App\EtapasOferta\etapasOfertaCtrl.js" />
+    <Content Include="App\EtapasOferta\etapasOfertaDF.js" />
+    <Content Include="App\EtapasOferta\Partials\etapaOfertaAdd.html" />
     <Content Include="App\Habilidades\habilidadesCtrl.js" />
     <Content Include="App\Habilidades\habilidadesDF.js" />
     <Content Include="App\Home\Partials\home.html" />
@@ -91,6 +94,8 @@
     <Content Include="App\TiposContrato\tiposContratoDF.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadCtrl.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadDF.js" />
+    <Content Include="App\TiposEtapasOferta\tiposEtapasCtrl.js" />
+    <Content Include="App\TiposEtapasOferta\tiposEtapasDF.js" />
     <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="css\styles.css" />
     <Content Include="favicon.ico" />
@@ -124,6 +129,7 @@
     <Content Include="libs\angular\angular-facebook\angular-facebook.js" />
     <Content Include="libs\angular\angular-facebook\facebook.js" />
     <Content Include="libs\angular\angular-file-upload\angular-file-upload.js" />
+    <Content Include="libs\angular\angular-filter\angular-filter.js" />
     <Content Include="libs\angular\angular-jk-carousel\itemTemplate.html" />
     <Content Include="libs\angular\angular-jk-carousel\jk-carousel.css" />
     <Content Include="libs\angular\angular-jk-carousel\jk-carousel.js" />
@@ -159,6 +165,10 @@
     <Content Include="libs\angular\angular-tags\angular-tags-0.3.1-tpls.min.js" />
     <Content Include="libs\angular\angular-tags\angular-tags-0.3.1.css" />
     <Content Include="libs\angular\angular-tags\angular-tags-0.3.1.js" />
+    <Content Include="libs\angular\angular-timeline\angular-timeline-animations.css" />
+    <Content Include="libs\angular\angular-timeline\angular-timeline-bootstrap.css" />
+    <Content Include="libs\angular\angular-timeline\angular-timeline.css" />
+    <Content Include="libs\angular\angular-timeline\angular-timeline.js" />
     <Content Include="libs\angular\angular-touch\1.5.0\angular-touch.js" />
     <Content Include="libs\angular\angular-touch\1.5.0\angular-touch.min.js" />
     <Content Include="libs\angular\angular-touch\angular-touch.js" />
@@ -189,6 +199,8 @@
     <Content Include="libs\angular\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="libs\angular\angular-ui\ui-bootstrap.js" />
     <Content Include="libs\angular\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="libs\angular\angular-utils-pagination\dirPagination.js" />
+    <Content Include="libs\angular\angular-utils-pagination\dirPagination.tpl.html" />
     <Content Include="libs\angular\angular-xeditable\dist\css\xeditable.css" />
     <Content Include="libs\angular\angular-xeditable\dist\js\xeditable.js" />
     <Content Include="libs\angular\angular-xeditable\dist\js\xeditable.min.js" />
@@ -197,6 +209,9 @@
     <Content Include="libs\angular\angular\angular.js" />
     <Content Include="libs\angular\angular\angular.min.js" />
     <Content Include="libs\angular\jquery.easy-pie-chart\dist\angular.easypiechart.js" />
+    <Content Include="libs\angular\mdDataTable\md-data-table-style.css" />
+    <Content Include="libs\angular\mdDataTable\md-data-table-templates.js" />
+    <Content Include="libs\angular\mdDataTable\md-data-table.js" />
     <Content Include="libs\angular\mdTable\md-data-table.css" />
     <Content Include="libs\angular\mdTable\md-data-table.js" />
     <Content Include="libs\angular\mdTable\md-data-table.min.css" />
@@ -320,6 +335,7 @@
     <Content Include="fonts\fonts\icomoon.woff" />
     <Content Include="fonts\selection.json" />
     <Content Include="css\styles.css.map" />
+    <None Include="Properties\PublishProfiles\vlaboralweb.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -461,6 +477,7 @@
     <Folder Include="App\Requisitos\Partials\" />
     <Folder Include="App\TiposContrato\Partials\" />
     <Folder Include="App\TiposDisponibilidad\Partials\" />
+    <Folder Include="App\TiposEtapasOferta\Partials\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

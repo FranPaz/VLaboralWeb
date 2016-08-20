@@ -1,0 +1,73 @@
+﻿<md-dialog aria-label="Agregar puesto a la oferta" ng-cloak flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Agregar Etapa a la Oferta</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:800px;max-height:1810px; ">
+        <div class="md-dialog-content">            
+            <!--#region fpaz: seleccion del tipo de etapa-->
+            <div layout="row">
+                <div flex="25">
+                    <md-input-container>
+                        <label>Orden de Ejecucion</label>
+                        <input type="number" ng-model="etapaOferta.Orden" class="form-control md-input" min="1" />
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                    <md-input-container>
+                        <label>Tipo de Etapa</label>
+                        <md-select ng-model="etapaOferta.TipoEtapa">
+                            <md-option ng-repeat="tipoEtapa in tiposEtapas" ng-value="tipoEtapa">
+                                {{tipoEtapa.Nombre}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>   
+                <div flex="25">
+                    <md-datepicker ng-model="etapaOferta.FechaFinTentativa" md-placeholder="Fecha de Finalizacion Esperada" flex="50" layout-fill>
+                    </md-datepicker>
+                </div>             
+            </div>            
+            <!--#endregion-->
+
+            <div layout="row">                
+                <div flex="50">
+                    <md-input-container>
+                        <label>Etapa Anterior</label>
+                        <md-select ng-model="etapaAnterior">
+                            <md-option ng-repeat="etapa in etapasCargadas" ng-value="etapa">
+                                {{etapa.TipoEtapa.Nombre}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>                
+                <div flex="50">
+                    <md-input-container>
+                        <label>Etapa Siguiente</label>
+                        <md-select ng-model="etapaSiguiente">
+                            <md-option ng-repeat="etapa in etapasCargadas" ng-value="etapa">
+                                {{etapa.TipoEtapa.Nombre}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>                
+            </div>     
+        </div>
+        
+        <!--#endregion-->
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="addEtapa(etapaOferta)">
+            Agregar Etapa
+        </md-button>
+        <md-button ng-click="cancel()" class="md-primary">
+            Cancelar
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+

@@ -1,6 +1,7 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
   'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
-  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion', 'angularUtils.directives.dirPagination'])
+  'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion'
+  , 'angularUtils.directives.dirPagination', 'mdDataTable', 'angular-timeline', 'angular.filter'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
         cfpLoadingBarProvider.includeSpinner = true;
@@ -33,7 +34,7 @@
                     templateUrl: '/App/Seguridad/Partials/registroProfesional.html',
                     controller: 'signupCtrl',
                     resolve: {
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/signupCtrl.js']);
                         }]
                     }
@@ -43,7 +44,7 @@
                     templateUrl: '/App/Seguridad/Partials/registroEmpresa.html',
                     controller: 'signupCtrl',
                     resolve: {                       
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/signupCtrl.js']);
                         }]
                     }
@@ -53,7 +54,7 @@
                     templateUrl: '/App/Seguridad/Partials/login.html',
                     controller: 'loginCtrl',
                     resolve: {
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/loginCtrl.js']);
                         }]
                     }
@@ -126,10 +127,14 @@
                         listadoRubros: function (rubrosDF) {
                             return rubrosDF.getRubros();
                         },
-                        ofertaDetalle: function () {
-                            return { value: [] };
+                        etapasOfertaDF: 'etapasOfertaDF',
+                        etapasObligatorias: function (etapasOfertaDF) {
+                            return etapasOfertaDF.getEtapasObligatorias();
                         },
-                        loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        ofertaDetalle: function () {
+                            return { value: [] };    
+                        },
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                         }]
                     }
@@ -239,6 +244,9 @@
                     controller: '',
                     resolve: {
                         
+                        loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['App/Oferta/ofertaCtrl.js']);
+                        }]
                     }
                 },
                 'contenido': {
@@ -286,6 +294,9 @@
                     ofertaDetalle: function (ofertasDF,$stateParams) {
                         var prmIdOferta = $stateParams.idOferta;
                         return ofertasDF.getOferta(prmIdOferta);
+                    },
+                    etapasObligatorias: function () {
+                        return { value: [] };
                     },
                           
                     loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

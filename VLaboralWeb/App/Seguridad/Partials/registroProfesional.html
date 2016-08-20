@@ -4,16 +4,24 @@
             <h1>Complete con sus datos.</h1>
             <md-input-container class="ic">
 
+                <label class="lbl">Ingrese su Nombre..</label>
+                <input ng-model="nuevoUser.Nombre" class="inp" required>
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
+                <label class="lbl">Ingrese su Apellido..</label>
+                <input ng-model="nuevoUser.Apellido" class="inp" required>
+
+            </md-input-container>
+
+            <md-input-container class="ic">
+
                 <label class="lbl">Ingrese un email de contacto..</label>
                 <input type="email" ng-model="nuevoUser.Email" class="inp" required>
 
-            </md-input-container>
-            <md-input-container class="ic">
-
-                <label class="lbl">Ingrese su DNI..</label>
-                <input ng-model="nuevoUser.ValorIdentificacion" class="inp" required>
-
-            </md-input-container>
+            </md-input-container>            
 
             <md-input-container class="ic">
 
