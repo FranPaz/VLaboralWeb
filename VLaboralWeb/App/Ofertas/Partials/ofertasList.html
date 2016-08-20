@@ -71,12 +71,13 @@
                                 </div>
                             </div>
                             <h3>{{ oferta.Descripcion }}</h3>
-                            <a ui-sref="oferta.detalle({oferta.Id})">ver más</a>
+                            <a ui-sref="oferta.detalle({idOferta: oferta.Id})">ver más</a>
                         </div>
                     </article>
                 </div>
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
             </div>
+        </section>
 
 
 

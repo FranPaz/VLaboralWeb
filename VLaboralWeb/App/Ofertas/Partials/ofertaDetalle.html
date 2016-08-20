@@ -1,1 +1,86 @@
-﻿
+﻿<!--<head>
+	<meta charset="UTF-8">
+	<title>Ofertas publicadas</title>-->
+
+	<!-- COMIENZO DE CARGA DE CONTENIDOS DE ANGULAR -->
+
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="fonts/style.css">-->
+<!--</head>-->
+<!--<body ng-app="chipDemoApp" class="d_emp">
+<!-- Angular Material requires Angular.js Libraries -->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+<script href="/icons/avatar-icons"></script>-->
+<!-- Angular Material Library -->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>-->
+ 
+<!-- Your application bootstrap  -->
+<!--<script type="text/javascript">    
+angular
+	.module('chipDemoApp', ['ngMaterial', 'ngMessages'])
+	.controller('chipDemoCtrl', function($scope) {
+      $scope.imagePath = 'img/post_1.jpg';
+
+	})
+</script>-->
+
+<!-- FIN DE CONTENIDO DE ANGULAR -->
+
+<md-container flex>
+	<md-content  layout="row" layout-align="center center" >
+
+		<div flex="70" layout="column" class="ofertas_p" style="margin:2em 0;">
+
+			<div class="t_ofer_p" layout="column" layout-align="start center">
+				<h1>{{ofertaDetalle.Nombre}}</h1>
+				<h3>{{ofertaDetalle.Detalle}}</h3>
+				<div class="fechas" layout="row"  layout-align="space-around center">
+					<h2>FECHA DE INICIO: <span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaInicioConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+					<h2>FECHA DE FIN: <span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaFinConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+				</div>
+			</div>
+
+			<hr class="h_op" flex="100">
+			<div class="emp_d" layout="row" layout-align="space-around center">
+				<img src="img/logo.png">
+
+				<div class="emp_desc_ofer" layout="column" flex="70">
+					<h1>{{ofertaDetalle.Empresa.NombreFantasia}}</h1>
+					<h4>{{ofertaDetalle.Empresa.Descripcion}}</h4>
+				</div>
+			</div>
+		
+			<hr class="h_sop">
+
+			<div class="ofer_obj">
+				<h1><span style="font-weight:700;">Obejetivos</span> a cumplir.</h1>
+				<h4> Ingresar objetivos que el nte deberia cumplir si ingresara al puesto de trabajo que esta ofreciendo.  Ingresar objetivos que el postulante umplir si ingresara al puesto de trabajo que esta ofreciendo.  Ingresar objetivos que el pnte deberia cumplir si ingresara al puesto de trabajo que esta ofreciendo.  Ingresar objetivos que el postulante deberia cumplir si ingresara al puesto de t esta ofreciendo. </h4>
+			</div>
+			<hr class="h_sop">
+			<div class="puestos">
+				<h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
+				<div ng-repeat="puestos in ofertaDetalle.Puestos" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
+						<h2>{{puesto.Nombre}}</h2>
+						<h3>{{puesto.Descripcion.}}</h3>
+						<div class="p_items" layout="column" layout-align="space-around start">
+							<h4><span class="p_res">UBICACIÓN:</span> {{puesto.Ubicacion}}</h4>
+							<h4><span class="p_res">HABILIDADES:</span> {{puesto.Habilidades}}</h4>
+							<h4><span class="p_res">REMUNERACIÓN:</span> {{puesto.Remuneracion}}</h4>
+							<h4><span class="p_res">VACANTES:</span> <span class="va">{{puesto.Vacantes}}</span></h4>
+							<h4 ng-repeat="sr in puestos.Subrubros"><span class="p_res">SUB-RUBROS:</span> <span class="etiquetas">{{sr.Nombre}}</span></h4>
+							<h4><span class="p_res">TIPO DE CONTRATO:</span> <i>{{puesto.TipoDeContrato.Nombre}}</i></h4>
+							<h4><span class="p_res">DISPONIBILIDAD:</span> {{puesto.TipoDisponibilidad.Nombre}}</h4>
+							<md-button class="md-raised md-primary" style="margin:auto; background:rgb(62, 138, 187);">Postularse</md-button>
+						</div>
+				</div>				
+			</div>
+		</div>
+
+
+	</md-content>
+</md-container>

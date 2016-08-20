@@ -127,19 +127,19 @@ aside .p_info .t_info h5 { font-family: 'Lato', sans-serif; font-weight: 300; fo
 .menu_s ul a li:hover { color: #f0f0f0; background: rgba(100, 100, 100, 0.1); }
 
 main { padding: 5.5em 2em 1em 18%; }
-main h1 { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1.9em; color: #5a5a5f; margin-bottom: 1em; }
-main h3 { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1.4em; color: #5a5a5f; }
-main .ofer_tit { width: 60%; padding: 0.6em 0.5em; border: 1px solid #b4b4b4; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 1em; color: #323232; transition: all 0.3s ease; border-radius: 2px; margin: 1em 0 1em; }
+main h1 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.9em; color: #5a5a5f; margin-bottom: 1em; }
+main h3 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.4em; color: #5a5a5f; }
+main .ofer_tit { width: 60%; padding: 0.6em 0.5em; border: 1px solid #b4b4b4; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1em; color: #323232; transition: all 0.3s ease; border-radius: 2px; margin: 1em 0 1em; }
 main .ofer_tit:focus { outline: none; border-color: #69cbc8; }
 main .ofer_tit:hover { border-color: #3e8abb; }
 main .ofer_desc { width: 60%; }
-main select { padding: 0.5em; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 1.1em; color: #323232; }
-main select option { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1em; color: #323232; }
-main h2 { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1.2em; color: #5a5a5f; display: inline-block; }
+main select { padding: 0.5em; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1.1em; color: #323232; }
+main select option { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1em; color: #323232; }
+main h2 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.2em; color: #5a5a5f; display: inline-block; }
 
 .lrg { margin: 2em 0; }
 
-.rb { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1.1em; color: #5a5a5f; display: inline-block; margin: 0.8em 1em 0.8em 0; }
+.rb { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1em; color: #5a5a5f; display: inline-block; margin: 0.8em 1em 0.8em 0; }
 
 .lbl { color: #5a5a5f; }
 .lbl:hover { color: #323232; }
@@ -156,5 +156,38 @@ main h2 { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1.2em;
 .ic_p { width: 100% !important; margin: 0.5em 0 !important; }
 
 .ta { width: 100% !important; }
+
+.confirm { width: 60%; background: linear-gradient(#ebebeb, #f0f0f0); padding: 1.7em; border-radius: 2px; }
+.confirm h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 3em; color: #1e1e23; display: inline-block; margin-bottom: 0.5em; }
+.confirm h1 span { font-size: 1.2em; color: #3e8abb; display: inline-block; text-shadow: 2px 2px rgba(30, 32, 30, 0.2); }
+.confirm h3 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.3em; color: #1e1e23; display: inline-block; }
+
+.wfc { width: 80%; }
+
+.ofertas_p { background: whitesmoke; border-radius: 5px; padding: 1.5em; }
+.ofertas_p .emp_d img { width: 20%; border-radius: 100%; }
+.ofertas_p .emp_d .emp_desc_ofer h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 2.8em; color: #1e1e23; line-height: 2.5em; text-transform: uppercase; }
+.ofertas_p .emp_d .emp_desc_ofer h4 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.1em; color: #767a8d; }
+.ofertas_p .h_op { border: 1px solid #51caf5; border-top: none; margin: 2em 0; }
+
+.t_ofer_p h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 2.7em; color: #1e1e23; }
+.t_ofer_p h3 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.1em; color: #737373; margin: 4em 0; }
+.t_ofer_p .fechas { width: 100%; }
+.t_ofer_p .fechas h2 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.2em; color: #1e1e23; }
+
+.h_sop { border: 1px solid #c8c8c8; border-top: none; margin: 4em 0; }
+
+.ofer_obj h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 3em; color: #1e1e23; margin-bottom: 0.7em; }
+.ofer_obj h4 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.2em; color: #737373; }
+
+.puestos h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 3em; color: #1e1e23; margin-bottom: 0.7em; }
+
+.puestos_box { background: white; padding: 2em 1em; border: 1px solid #e6e6e6; }
+.puestos_box h2 { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 1.8em; color: #1e1e23; margin-bottom: 0.7em; }
+.puestos_box h3 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.2em; color: #1e1e23; margin-bottom: 2em; text-align: center; }
+.puestos_box .p_items { width: 100%; }
+.puestos_box .p_items h4 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.1em; color: #1e1e23; margin-bottom: 0.7em; }
+.puestos_box .p_items h4 span { font-weight: 700; font-size: 0.95em; color: #3c3c3c; }
+.puestos_box .p_items .va { background-color: #3e8abb; color: #f0f0f0; padding: 0.2em 0.4em 0.3em; border-radius: 10px; }
 
 /*# sourceMappingURL=styles.css.map */

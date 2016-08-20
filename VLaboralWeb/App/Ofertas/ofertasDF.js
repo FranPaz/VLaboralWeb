@@ -8,7 +8,7 @@
 
     var _postOferta = function (data) { //iafar: alta de una oferta en particular
         var deferred = $q.defer();
-        $http.post(urlApi + '/api/Ofertas/', data).then(
+        $http.post(urlApi + 'api/Ofertas', data).then(
             function (response) {
                 deferred.resolve(response);
             },
@@ -52,14 +52,11 @@
     //#endregion
 
     //#region kikexp: trae una oferta en particular
-    var _getOferta = function (prmId) {
+    var _getOferta = function (prmIdOferta) {
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/Ofertas/',
-            {
-                params: {
-                    prmId: prmId
-                }
-            }).then(
+        $http.get(urlApi + 'api/Ofertas/', {
+            params: { id: prmIdOferta }
+        }).then(
             function (response) {
                 deferred.resolve(response.data);
             },
