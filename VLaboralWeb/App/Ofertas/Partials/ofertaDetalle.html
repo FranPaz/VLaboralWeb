@@ -54,7 +54,27 @@ angular
 					<h4>{{ofertaDetalle.Empresa.Descripcion}}</h4>
 				</div>
 			</div>
-		
+
+            <hr class="h_op" flex="100"/>
+
+            <div latout="column" layout-align="space-around center" flex>
+                <h1><span style="font-weight:700;">Etapas</span></h1>
+                <br />
+                <timeline>
+                    <timeline-event ng-repeat="etapa in ofertaDetalle.EtapasOferta" side="alternate">
+                        <!--<timeline-badge >
+                <i class="glyphicon {{event.badgeIconClass}}"></i>
+            </timeline-badge>-->
+                        <timeline-panel class="{{event.badgeClass}}">
+                            <timeline-heading>
+                                <h4>{{etapa.TipoEtapa.Nombre}}</h4>
+                            </timeline-heading>
+                            <p>{{etapa.TipoEtapa.Descripcion}}</p>
+                            <p>Orden: {{etapa.Orden}}</p>
+                        </timeline-panel>
+                    </timeline-event>
+                </timeline>
+            </div>
 			<hr class="h_sop">
 
 			<div class="puestos">
