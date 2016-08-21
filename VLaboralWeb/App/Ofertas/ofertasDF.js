@@ -21,7 +21,12 @@
     //#region SLuna: Traer Ofertas Acticas con paginación
     var _getOfertas = function (prmPage,prmRows) {
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/Ofertas?page=' + prmPage + '&rows=' + prmRows).then(
+        $http.get(urlApi + 'api/Ofertas', {
+            params: {
+                page: prmPage,
+                rows: prmRows
+            }
+        }).then(
             function (response) {
                 deferred.resolve(response.data);
             },

@@ -244,9 +244,9 @@
                     controller: '',
                     resolve: {
                         
-                        loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['App/Oferta/ofertaCtrl.js']);
-                        }]
+                        //loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        //    return $ocLazyLoad.load(['App/Oferta/ofertaCtrl.js']);
+                        //}]
                     }
                 },
                 'contenido': {

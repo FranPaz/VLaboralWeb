@@ -54,7 +54,7 @@
             </div>
 
             <div class="lista">
-                <div dir-paginate="oferta in ofertas | itemsPerPage: ofertasPerPage" total-items="totalOfertas" current-page="pagination.current">
+                <div dir-paginate="oferta in ofertas.Results | itemsPerPage: ofertasPerPage" total-items="totalOfertas" current-page="pagination.current">
                     <article>
                         <div class="logo_ofer">
                             <img src="img/logo.png">
