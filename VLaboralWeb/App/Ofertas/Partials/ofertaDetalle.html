@@ -21,27 +21,42 @@
 					<h4>{{ofertaDetalle.Empresa.Descripcion}}</h4>
 				</div>
 			</div>
-		
+
+            <hr class="h_op" flex="100"/>
+
+            <div latout="column" layout-align="space-around center" flex>
+                <h1><span style="font-weight:700;">Etapas</span></h1>
+                <br />
+                <timeline>
+                    <timeline-event ng-repeat="etapa in ofertaDetalle.EtapasOferta" side="alternate">
+                        <!--<timeline-badge >
+                <i class="glyphicon {{event.badgeIconClass}}"></i>
+            </timeline-badge>-->
+                        <timeline-panel class="{{event.badgeClass}}">
+                            <timeline-heading>
+                                <h4>{{etapa.TipoEtapa.Nombre}}</h4>
+                            </timeline-heading>
+                            <p>{{etapa.TipoEtapa.Descripcion}}</p>
+                            <p>Orden: {{etapa.Orden}}</p>
+                        </timeline-panel>
+                    </timeline-event>
+                </timeline>
+            </div>
 			<hr class="h_sop">
 
-			<div class="ofer_obj">
-				<h1><span style="font-weight:700;">Obejetivos</span> a cumplir.</h1>
-				<h4> Ingresar objetivos que el nte deberia cumplir si ingresara al puesto de trabajo que esta ofreciendo.  Ingresar objetivos que el postulante umplir si ingresara al puesto de trabajo que esta ofreciendo.  Ingresar objetivos que el pnte deberia cumplir si ingresara al puesto de trabajo que esta ofreciendo.  Ingresar objetivos que el postulante deberia cumplir si ingresara al puesto de t esta ofreciendo. </h4>
-			</div>
-			<hr class="h_sop">
 			<div class="puestos">
 				<h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
-				<div ng-repeat="puestos in ofertaDetalle.Puestos" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
+				<div ng-repeat="puesto in ofertaDetalle.Puestos" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
 						<h2>{{puesto.Nombre}}</h2>
-						<h3>{{puesto.Descripcion.}}</h3>
+						<h3>{{puesto.Descripcion}}</h3>
 						<div class="p_items" layout="column" layout-align="space-around start">
 							<h4><span class="p_res">UBICACIÓN:</span> {{puesto.Ubicacion}}</h4>
 							<h4><span class="p_res">HABILIDADES:</span> {{puesto.Habilidades}}</h4>
 							<h4><span class="p_res">REMUNERACIÓN:</span> {{puesto.Remuneracion}}</h4>
 							<h4><span class="p_res">VACANTES:</span> <span class="va">{{puesto.Vacantes}}</span></h4>
 							<h4 ng-repeat="sr in puestos.Subrubros"><span class="p_res">SUB-RUBROS:</span> <span class="etiquetas">{{sr.Nombre}}</span></h4>
-							<h4><span class="p_res">TIPO DE CONTRATO:</span> <i>{{puesto.TipoDeContrato.Nombre}}</i></h4>
-							<h4><span class="p_res">DISPONIBILIDAD:</span> {{puesto.TipoDisponibilidad.Nombre}}</h4>
+							<h4><span class="p_res">TIPO DE CONTRATO:</span> <i>{{puesto.TipoContrato.Nombre}}</i></h4>
+							<h4><span class="p_res">DISPONIBILIDAD:</span> {{puesto.Disponibilidad.Nombre}}</h4>
 							<md-button class="md-raised md-primary" style="margin:auto; background:rgb(62, 138, 187);">Postularse</md-button>
 						</div>
 				</div>				
