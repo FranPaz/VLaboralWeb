@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('puestosCtrl', function ($scope, $mdDialog, $mdMedia //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('puestosCtrl', function ($scope, $mdDialog, $mdMedia//fpaz: definicion de inyectores de dependencias
     , ofertasDF, rubrosDF, habilidadesDF //fpaz: definicion de data factorys
     , listadoTiposDiponibilidad, listadoTiposContratos, listadoRubros, listadoTiposRequisitos //fpaz: definicion de parametros de entrada 
     ) {
@@ -25,6 +25,7 @@
     $scope.tiposRequisito = listadoTiposRequisitos;
 
     $scope.requisito = {};
+    
     //#endregion
 
     //#region SLuna: eventos relacionados con Rubros
@@ -63,6 +64,7 @@
 
     //#region fpaz: carga de puestos
     $scope.addPuesto = function (prmPuesto) {
+        prmPuesto.Habilidades = prmPuesto.Habilidades.toString();
         $mdDialog.hide(prmPuesto);
     }
 
@@ -83,6 +85,8 @@
         return chip.toUpperCase();
     }
     //#endregion
+
+
 
     //#region fpaz: funciones para agregar requisitos al puesto
     $scope.agregarRequisito = function (prmReq) {

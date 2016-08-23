@@ -29,7 +29,7 @@
                         <label>Remuneracion (opcional)</label>
                         <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" />
                     </md-input-container>
-                </div>                
+                </div>
             </div>
             <div layout="row">
                 <div flex="50">
@@ -51,18 +51,40 @@
                 <md-container>
                     <form name="frmPro">
                         <h2 class="md-title">Seleccione sus habilidades</h2>
-                        <md-chips ng-model="puesto.Habilidades" name="chipContainer" md-max-chips="5"
-                                  md-transform-chip="transformChip($chip)">
+                        <!--<md-chips ng-model="habArray"
+                                  name="chipContainer"
+                                  md-max-chips="5"
+                                  md-transform-chip="transformChip($chip)"
+                                  md-separator-keys="puestosCtrl.keys"
+                                  placeholder="Ingrese habilidad"
+                                  secondary-placeholder="ingrese otra habilidad">
                             <md-autocomplete md-selected-item="selectedItem"
                                              md-search-text="searchText"
                                              md-items="item in habilidades"
                                              md-item-text="item.Nombre">
                                 <span md-highlight-text="searchText">{{item.Nombre}}</span>
                             </md-autocomplete>
-                            <md-chip-template>
+
+                        </md-chips>
+                        <md-chip-template>
+                            <strong>{{$chip}}</strong>
+                        </md-chip-template>-->
+                        <md-chips ng-model="puesto.Habilidades"
+                                  name="chipContainer"
+                                  md-max-chips="5"
+                                  md-transform-chip="transformChip($chip)"
+                                  placeholder="Ingrese habilidad"
+                                  secondary-placeholder="ingrese otra habilidad">
+                            <md-autocomplete md-selected-item="selectedItem"
+                                             md-search-text="searchText"
+                                             md-items="item in habilidades"
+                                             md-item-text="item.Nombre">
+                                <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                            </md-autocomplete>
+                            <!--<md-chip-template>
                                 <strong>{{$chip}}</strong>
 
-                            </md-chip-template>
+                            </md-chip-template>-->
 
                         </md-chips>
                         <div class="errors" ng-messages="frmPro.chipContainer.$error">
@@ -108,15 +130,14 @@
                                 </button>
                             </md-chip-template>
                         </md-chip>
-                    </md-chips>   
-                </div>                
+                    </md-chips>
+                </div>
             </div>
         </div>
 
-        <!--#region fpaz Tabla de Requisitos-->        
-        
+        <!--#region fpaz Tabla de Requisitos-->
         <!--#endregion-->
-</md-dialog-content>
+    </md-dialog-content>
     <md-dialog-actions>
         <md-button ng-click="addPuesto(puesto)">
             Agregar Puesto
@@ -124,7 +145,7 @@
         <md-button ng-click="cancel()" class="md-primary">
             Cancelar
         </md-button>
-    </md-dialog-actions>    
+    </md-dialog-actions>
 
     <!--<md-table-container>
         <table md-table md-row-select multiple ng-model="selected" md-progress="promise">

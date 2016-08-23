@@ -53,8 +53,8 @@
                 </ul>
             </div>
 
-            <div class="lista">
-                <div dir-paginate="oferta in ofertas | itemsPerPage: ofertasPerPage" total-items="totalOfertas" current-page="pagination.current">
+            <div class="lista" >
+                <div dir-paginate="oferta in ofertas.Results | itemsPerPage: ofertasPerPage" total-items="totalOfertas" current-page="pagination.current">
                     <article>
                         <div class="logo_ofer">
                             <img src="img/logo.png">
@@ -74,9 +74,24 @@
                             <a ui-sref="oferta.detalle({idOferta: oferta.Id})">ver más</a>
                         </div>
                     </article>
+
+                    <!--iafar: divisor de prueba-->
+                    <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                    <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+                    <!-- iafar: mensaje si no se encuentran resultados -->
+                    
                 </div>
+                <div class="text-center text-accent animate-show" ng-show="(ofertas.Results.length == 0)">
+                    <h4>No se encontraron ofertas</h4>
+                </div>
+                <md-divider></md-divider>
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
             </div>
+
+            <div class="lista">
+
+            </div>
+
         </section>
 
 
