@@ -91,6 +91,12 @@
             }
         }
 
+        for (var x in prmOferta.EtapasOferta) {
+            //dejo solamente el Id del tipo de Etapa seleccionado
+            prmOferta.EtapasOferta[x].TipoEtapaId = prmOferta.EtapasOferta[x].TipoEtapa.Id;
+            delete prmOferta.EtapasOferta[x].TipoEtapa;
+        }
+
         ofertasDF.postOferta(prmOferta).then(function (response) {
             alert("Oferta Guardada");
         },
