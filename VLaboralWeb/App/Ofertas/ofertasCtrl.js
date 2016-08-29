@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog,$ocLazyLoad, //fpaz: definicion de inyectores de dependencias
     ofertasDF, rubrosDF, requisitosDF, habilidadesDF,authSvc, tiposEtapasDF, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
     listadoRubros, listadoTiposRequisitos, listadoHabilidades,ofertaDetalle, etapasObligatorias//    
@@ -23,10 +23,11 @@
 
     $scope.oferta.EtapasOferta = etapasObligatorias;
     $scope.ofertaDetalle = ofertaDetalle;
+
+    $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
     //#endregion
 
     //#region fpaz: carga de ofertas
-
     //#region fpaz: llamado al modal de carga de puestos
     //funcion que abre el modal para la carga de puestos en la oferta
     $scope.openPuestoAdd = function (ev) {
@@ -51,7 +52,10 @@
                 },
                 listadoTiposRequisitos: function () {
                     return $scope.tiposRequisito;
-                }
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Puestos/puestosCtrl.js']);
+                }]
             }
         })
         .then(function (nuevoPuesto) {
@@ -59,10 +63,8 @@
         });
     }
     //#endregion
-
-    
-
-    //funcion para dar de alta la oferta en la bd
+        
+    //#region funcion para dar de alta la oferta en la bd
     $scope.ofertaSave = function (prmOferta) {        
         prmOferta.EmpresaId = authSvc.authentication.empresaId; //id de la empresa logueada
         for (var i in prmOferta.Puestos) { //para cada puesto armo el objeto tal cual lo voy a enviar al post de ofertas
@@ -108,6 +110,7 @@
     });
     };
     //#endregion
+    //#endregion
 
     //#region fpaz: carga de Etapas de Oferta
 
@@ -129,7 +132,10 @@
                 },
                 etapasCargadas : function () {
                     return $scope.oferta.EtapasOferta;
-                }
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/EtapasOferta/etapasOfertaCtrl.js']);
+                }]
             }
         })
         .then(function (nuevaEtapa) {
@@ -140,7 +146,33 @@
 
     //#endregion
 
-
+    //#region postulacion del profesional
+    $scope.postularProfesional = function (prmPuesto) { //funcion que habre un modal con la info detallada del puesto al que quiere postularse el profesional
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'postulantesCtrl',
+            templateUrl: 'App/Puestos/Partials/puestoDetalle.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {
+                listadoPostulantes: function () {
+                    return { value: [] };
+                },
+                infoPuesto: function () {
+                    return prmPuesto;
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Postulantes/postulantesCtrl.js']);
+                }]
+            }
+        })
+        .then(function () {
+            $state.go("profesional.ofertas");            
+        });
+    }
+    //#endregion
 });
 
 

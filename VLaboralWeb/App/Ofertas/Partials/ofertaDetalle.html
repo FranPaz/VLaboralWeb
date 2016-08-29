@@ -58,7 +58,7 @@
                             <h4 ng-repeat="sr in puestos.Subrubros"><span class="p_res">SUB-RUBROS:</span> <span class="etiquetas">{{sr.Nombre}}</span></h4>
                             <h4><span class="p_res">TIPO DE CONTRATO:</span> <i>{{puesto.TipoContrato.Nombre}}</i></h4>
                             <h4><span class="p_res">DISPONIBILIDAD:</span> {{puesto.Disponibilidad.Nombre}}</h4>
-                            <md-button class="md-raised md-primary" style="margin:auto; background:rgb(62, 138, 187);">Postularse</md-button>
+                            <md-button class="md-raised md-primary" style="margin:auto; background:rgb(62, 138, 187);" ng-click="postularProfesional(puesto)" ng-show="usuarioLogueado.isProfesional">Postularse</md-button>
                         </div>
                     </div>
                 </div>

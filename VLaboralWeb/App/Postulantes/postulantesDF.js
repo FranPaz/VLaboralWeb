@@ -1,12 +1,18 @@
 ﻿vLaboralApp.factory('postulantesDF', function ($http, $q, configSvc, authSvc) {
-    //iafar: url del web api de cuentas de usuario, cambiar por el de produccion una vez implementado
-    var urlApi = configSvc.urlApi; //desarrollo
-    //var urlApi = ""; //iafar: url azure a definir
+    
+    var urlApi = configSvc.urlApi;
     var postulantesDF = {};
 
-    var _postPostulantes = function (data) { //iafar: alta de un postulante
+
+
+    var _postPostulacion = function (prmIdPuesto) { //fpaz: postulacion de un profesional en un puesto en particular
         var deferred = $q.defer();
-        $http.post(urlApi + '/api/Postulantes/', data).then(
+
+        var NuevaPostulacion = {};
+        NuevaPostulacion.ProfesionalId = authSvc.authentication.profesionalId;
+        NuevaPostulacion.PuestoId = prmIdPuesto;
+
+        $http.post(urlApi + 'api/Postulaciones', NuevaPostulacion).then(
             function (response) {
                 deferred.resolve(response);
             },
@@ -16,14 +22,9 @@
         return deferred.promise;
     };
 
-
-
-    //#region iafar: area de asignacion de funciones a objeto
-    postulantesDF.postPostulantes = _postPostulantes;
-    
+    //#region iafar: area de asignacion de funciones a objeto    
+    postulantesDF.postPostulacion = _postPostulacion;
     //#endregion
 
-
-
-
+    return postulantesDF;
 });
