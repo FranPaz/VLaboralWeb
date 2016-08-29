@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope //fpaz: definicion de inyectores de dependencias
-    , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF //fpaz: definicion de data factorys
+    , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF,authSvc //fpaz: definicion de data factorys
     , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas,infoProfesional//fpaz: definicion de parametros de entrada    
     ) {
 
@@ -25,6 +25,8 @@
     };
 
     $scope.editValue = false; // variable que voy a usar para activar y desactivar los modos de edicion para hacer el update de la info
+
+    $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
     //#endregion
 
     //#region iafar: transformar habilidades de chips en strings

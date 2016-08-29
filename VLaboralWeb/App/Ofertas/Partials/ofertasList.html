@@ -71,8 +71,8 @@
                                 </div>
                             </div>
                             <h3>{{ oferta.Descripcion }}</h3>
-                            <a ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})">ver más</a>
-                            <!--<a ui-sref="empresa.ofertas.detalleOferta">ver más</a>-->
+                            <a ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isEmpresa">ver más</a>
+                            <a ui-sref="profesional.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isProfesional">ver más</a>
                         </div>
                     </article>
 

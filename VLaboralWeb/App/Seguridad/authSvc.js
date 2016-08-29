@@ -8,7 +8,9 @@
         isAuth: false,
         userName: "",
         roles: [],
-        tipoUser:"",
+        isEmpresa: false,
+        isProfesional: false,
+        isVisitante: false,
         empresaId: "",
         profesionalId: ""
     };
@@ -64,10 +66,22 @@
             // que devuelve todo el objeto con la info del usuario logueado
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
-            _authentication.roles = tokenPayload.role;            
             _authentication.tipoUser = tokenPayload.app_usertype;
+            _authentication.roles = tokenPayload.role;                        
             _authentication.empresaId = tokenPayload.empresaId;
             _authentication.profesionalId = tokenPayload.profesionalId;
+
+            switch (tokenPayload.app_usertype) {
+                case "profesional":
+                    _authentication.isProfesional = true;
+                    break;
+                case "empresa":
+                    _authentication.isEmpresa = true;
+                    break;
+                default:
+                    _authentication.isVisitante = true;
+
+            }
 
             deferred.resolve(response);
 
@@ -85,11 +99,14 @@
         localStorageService.remove('authorizationData'); //para hacer el logout solamente remuevo del storage del cliente el token obtenido
 
         _authentication.isAuth = false;
-        _authentication.userName = "";        
-        _authentication.roles = [];
+        _authentication.userName = "";
         _authentication.tipoUser = "";
+        _authentication.roles = [];        
         _authentication.empresaId = "";
         _authentication.profesionalId = "";
+        _authentication.isEmpresa = false,
+        _authentication.isProfesional = false,
+        _authentication.isVisitante = false
     };
 
     //#endregion
@@ -104,6 +121,19 @@
             _authentication.tipoUser = authData.tipoUser;
             _authentication.empresaId = authData.empresaId;
             _authentication.profesionalId = authData.profesionalId;
+
+            switch (authData.tipoUser) {
+                case "profesional":
+                    _authentication.isProfesional = true;
+                    break;
+                case "empresa":
+                    _authentication.isEmpresa = true;
+                    break;
+                default:
+                    _authentication.isVisitante = true;
+
+            }
+
             
         }
 

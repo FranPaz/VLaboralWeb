@@ -1,6 +1,31 @@
-﻿vLaboralApp.controller('postulantesCtrl', function ($scope, $mdMedia, $mdDialog, //iafar: definicion de inyectores de dependencias
-    postulantesDF, authSvc, //iafar: definicion de data factorys
-     listadoPostulantes//iafar: definicion de parametros de entrada 
+﻿vLaboralApp.controller('postulantesCtrl', function ($scope,$state, $mdMedia, $mdDialog, //iafar: definicion de inyectores de dependencias
+     authSvc, postulantesDF,//iafar: definicion de data factorys
+     listadoPostulantes, infoPuesto//iafar: definicion de parametros de entrada 
     ) {
+
+    //#region  fpaz: Inicializacion de Variables de Scope
+    $scope.postulantes = listadoPostulantes; //variable con el listado de postulantes
+    $scope.puesto = infoPuesto; //variable con info del puesto al que el profesional se quiere postular
+    //#endregion
+
+    //#region fpaz: alta de postulacion
+    $scope.confirmarPostulacion = function () {
+        postulantesDF.postPostulacion($scope.puesto.Id).then(function (response) {
+            alert("Postulacion Exitosa");
+            $mdDialog.hide();
+        },
+    function (err) {
+        if (err) {
+            $scope.error = err;
+            alert("Error al Guardar la Postulacion: " + $scope.error.Message);
+        }
+    });
+    };
+
+
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+    //#endregion
 
 });
