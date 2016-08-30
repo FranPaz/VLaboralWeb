@@ -39,7 +39,7 @@
                 <div flex="50">
                     <md-input-container>
                         <label>Etapa Anterior</label>
-                        <md-select ng-model="etapaAnterior">
+                        <md-select ng-model="etapaAnterior" ng-change="">
                             <md-option ng-repeat="etapa in etapasCargadas" ng-value="etapa">
                                 {{etapa.TipoEtapa.Nombre}}
                             </md-option>
@@ -49,8 +49,8 @@
                 <div flex="50">
                     <md-input-container>
                         <label>Etapa Siguiente</label>
-                        <md-select ng-model="etapaSiguiente">
-                            <md-option ng-repeat="etapa in etapasCargadas" ng-value="etapa">
+                        <md-select ng-model="etapaSiguiente" ng-disabled="true">
+                            <md-option ng-repeat="etapa in etapasCargadas | afterWhere:{ Orden:1}" ng-value="etapa">
                                 {{etapa.TipoEtapa.Nombre}}
                             </md-option>
                         </md-select>

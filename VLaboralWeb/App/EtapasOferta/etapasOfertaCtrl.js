@@ -8,6 +8,13 @@
     $scope.tiposEtapas = listadoTiposEtapas;
     //#endregion
 
+    //#region reordenamiento de etapas al agregar una nueva etapa
+
+    $scope.obtencionPosibleEtapaSiguiente = function () {
+
+    }
+    //#endregion
+
     //#region fpaz: carga de etapas desde el modal
     $scope.addEtapa = function (prmEtapa) {
         $mdDialog.hide(prmEtapa);
