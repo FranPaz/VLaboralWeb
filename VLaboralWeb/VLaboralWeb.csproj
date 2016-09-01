@@ -68,6 +68,7 @@
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />
     <Content Include="App\EtapasOferta\etapasOfertaCtrl.js" />
     <Content Include="App\EtapasOferta\etapasOfertaDF.js" />
+    <Content Include="App\EtapasOferta\Partials\etapaOferta.html" />
     <Content Include="App\EtapasOferta\Partials\etapaOfertaAdd.html" />
     <Content Include="App\Habilidades\habilidadesCtrl.js" />
     <Content Include="App\Habilidades\habilidadesDF.js" />

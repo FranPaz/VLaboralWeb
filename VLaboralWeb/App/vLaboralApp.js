@@ -201,7 +201,36 @@
                         }
                     }
                 }
-            })            
+            })
+            .state('empresa.ofertas.etapaDetalle', {
+                url: '/detalleEtapa/:idEtapa',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/EtapasOferta/Partials/etapaOferta.html',
+                        controller: 'etapasOfertaCtrl',
+                        resolve: {
+                            etapasOfertaDF: 'etapasOfertaDF',
+                            listadoTiposEtapas: function () {
+                                return { value: [] };
+                            },
+                            etapasCargadas: function(){
+                                return { value: [] };
+                            },
+                            etapaDetalle: function (etapasOfertaDF, $stateParams) {
+                                prmIdEtapa = $stateParams.idEtapa;
+                                return etapasOfertaDF.getEtapaOferta(prmIdEtapa);
+                            },
+                            //ofertaDetalle: function (ofertasDF, $stateParams) {
+                            //    var prmIdOferta = $stateParams.idOferta;
+                            //    return ofertasDF.getOferta(prmIdOferta);
+                            //}
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/EtapasOferta/etapasOfertaCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+            })
         //#endregion
 
         //#region Profesional
