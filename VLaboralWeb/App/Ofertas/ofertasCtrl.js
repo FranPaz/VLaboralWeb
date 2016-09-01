@@ -138,8 +138,8 @@
                 }]
             }
         })
-        .then(function (nuevaEtapa) {
-            $scope.oferta.EtapasOferta.push(nuevaEtapa);
+        .then(function (nuevasEtapas) {
+            $scope.oferta.EtapasOferta = nuevasEtapas;
         });
     }
     //#endregion
