@@ -24,7 +24,8 @@
 
     $scope.tiposRequisito = listadoTiposRequisitos;
 
-    $scope.requisito = {};
+    $scope.tipoRequisito = [];
+    $scope.ValoresTipoRequisito = [];
     
     //#endregion
 
@@ -89,14 +90,82 @@
 
 
     //#region fpaz: funciones para agregar requisitos al puesto
-    $scope.agregarRequisito = function (prmReq) {
-        $scope.puesto.Requisitos.push(prmReq);
-        $scope.requisito = {};
-    }
+    $scope.tipoRequisitoChanged = function () {
 
-    $scope.cancelarRequisito = function () {
-        $scope.requisito = {};
-    }
+        $scope.tipoRequisito = $scope.tipoRequisitoSelected;
+
+        $scope.valorTipoRequisito = $scope.tipoRequisito[0];
+        // $scope.subRubroDisabled = $scope.Rubro.Subrubros.length === 0;//Si no tiene SubRubros, oculta el Select de SubRubros
+
+    };
+
+    $scope.valorTipoRequisitoChanged = function () {
+    };
+
+    $scope.valorTipoRequisitoAddClick = function () {
+        var valoresSeleccionados = [];
+        if ($scope.ValoresTipoRequisitoSelected != undefined) {
+            if ($scope.ValoresTipoRequisitoSelected.length != undefined) {
+                if ($scope.ValoresTipoRequisitoSelected.length !== 0) {
+                    valoresSeleccionados = $scope.ValoresTipoRequisitoSelected;
+                } else {
+                    return;//sluna: no hay nada seleccionado
+                }
+            } else {
+                valoresSeleccionados.push($scope.ValoresTipoRequisitoSelected);
+            }
+      
+            if (valoresSeleccionados!= null) {
+                for (var i = 0; i < $scope.puesto.Requisitos.length; i++) {
+                    if ($scope.puesto.Requisitos[i].TipoRequisitoId === $scope.tipoRequisito.Id) {
+                        //for (var j = 0; j < valoresSeleccionados.length; j++) {
+                        //    $scope.puesto.Requisitos[i].ValoresRequisito.push({
+                        //        Valor: valoresSeleccionados[j].Valor,
+                        //        Desde: valoresSeleccionados[j].Desde,
+                        //        Hasta: valoresSeleccionados[j].Hasta});
+                        //}
+                        return;//Sluna: no puedo agregar un tipoRequisito ya cargado
+                    }
+                }
+
+                var requisito = {
+                    TipoRequisitoId: $scope.tipoRequisito.Id,
+                    TipoRequisito: $scope.tipoRequisito,
+                    Excluyente: false,
+                    AutoVerificar: false,
+                    ValoresRequisito: []
+                };
+                for (var k = 0; k < valoresSeleccionados.length; k++) {
+                    requisito.ValoresRequisito.push({
+                        Valor: valoresSeleccionados[k].Valor,
+                        Desde: valoresSeleccionados[k].Desde,
+                        Hasta: valoresSeleccionados[k].Hasta
+                    });
+                }
+                $scope.puesto.Requisitos.push(requisito);
+                $scope.ValoresTipoRequisitoSelected = null;//sluna: limpio lo que esté seleccionado
+                valoresSeleccionados = null;//sluna: limpio lo que esté seleccionado
+            }
+        }
+    };
+
+    $scope.QuitarRequisito = function (TipoRequisitoId) {
+        for (var i = 0; i < $scope.puesto.Requisitos.length; i++) {
+            if ($scope.puesto.Requisitos[i].TipoRequisitoId === TipoRequisitoId) {
+                $scope.puesto.Requisitos.splice(i, 1);
+                return;
+            }
+        }
+    };
+
+    //$scope.agregarRequisito = function (prmReq) {
+    //    $scope.puesto.Requisitos.push(prmReq);
+    //    $scope.requisito = {};
+    //}
+
+    //$scope.cancelarRequisito = function () {
+    //    $scope.requisito = {};
+    //}
     //#endregion
 
 });
