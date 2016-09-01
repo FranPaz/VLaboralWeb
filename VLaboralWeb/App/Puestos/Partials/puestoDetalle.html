@@ -1,0 +1,71 @@
+﻿<md-dialog aria-label="Agregar puesto a la oferta" ng-cloak flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Detalle de la Postulacion</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:800px;max-height:1810px; ">
+        <div class="md-dialog-content">
+            <div layout="row">
+                <div flex="50">
+                    <md-input-container>
+                        <label>Nombre del Puesto</label>
+                        <input type="text" ng-model="puesto.Nombre" class="mdi-editor-border-color form-control md-input" readonly />
+                    </md-input-container>
+                </div>
+
+                <div flex="25">
+                    <md-input-container>
+                        <label>Cantidad de Vacantes</label>
+                        <input type="number" ng-model="puesto.Vacantes" class="form-control md-input" readonly />
+                    </md-input-container>
+                </div>
+                <div flex="25">
+                    <md-input-container>
+                        <label>Remuneracion</label>
+                        <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" readonly />
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row">
+                <div flex="50">
+                    <md-input-container>
+                        <label>Tipo de Contrato</label>
+                        <input type="text" class="form-control md-input" ng-model="puesto.TipoContrato.Nombre" readonly />
+                    </md-input-container>                    
+                </div>
+                <div flex="50">
+                    <md-input-container>
+                        <label>Disponibilidad</label>
+                        <input type="text" class="form-control md-input" ng-model="puesto.Disponibilidad.Nombre" readonly />
+                    </md-input-container>                    
+                </div>
+            </div>            
+            <div layout="row">
+                <div flex="50">
+                    <h2 class="md-title">Subrubros del Puesto</h2>
+                    <md-chips ng-model="puesto.Subrubros" readonly>
+                        <md-chip-template>
+                            <span>
+                                <strong>{{$chip.Nombre}}</strong>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                </div>                
+            </div>            
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="confirmarPostulacion()">
+            Confirmar Postulacion
+        </md-button>
+        <md-button ng-click="cancel()" class="md-primary">
+            Cancelar
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+

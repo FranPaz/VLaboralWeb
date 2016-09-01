@@ -1,5 +1,4 @@
-﻿<md-container>    
-        <h1>Agregar ofertas laborales.</h1>
+﻿    
 <main>
     <md-container>
         <h1>Nueva Oferta</h1>
@@ -7,36 +6,40 @@
             <div layout="column" flex="65">
                 <!--#region fpaz Seccion de datos Basicos de la Oferta-->
                 <div layout="column" class="md-inline-form" >
-                    <h1 class="md-title">Datos de la Oferta</h1>
-                    <md-content layout-gt-sm="row" layout-padding>
-                        <div flex="45">
-                            <md-input-container>
-                                <label>Nombre de la Oferta</label>
-                                <input ng-model="oferta.Nombre">
+                    <h2>Titulo de la oferta</h2>
+
+                    <div layout="row" layout-align="start center">
+                        <md-input-container flex="70">
+                            <label>Nombre de la Oferta</label>
+                            <input ng-model="oferta.Nombre">
+                        </md-input-container>
+                    </div>
+                    <h2>Tipo de Oferta</h2>
+                    <div layout="row" layout-align="start center">
+                        
+                        <md-radio-group ng-model="oferta.Publica">
+                            <md-radio-button value=true class="md-primary">Publica</md-radio-button>
+                            <md-radio-button value=false> Privada </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <h2>Seleccione la fecha de convocatoria</h2>
+                        <div layout="row" layout-align="start center" flex="100">
+                            <md-datepicker ng-model="oferta.FechaInicioConvocatoria" md-placeholder="Inicio de la Convocatoria" felx="50">
+                            </md-datepicker>
+                            <md-datepicker ng-model="oferta.FechaFinConvocatoria" md-placeholder="Fin de la Convocatoria" felx="50">
+                            </md-datepicker>
+                        </div>
+
+                        <h2>Ingrese una descripción</h2>
+
+                        <div layout="row" layout-align="start center">
+                            <md-input-container  layout-fill>
+                                <label>Descripcion</label>
+                                <textarea ng-model="oferta.Descripcion" md-maxlength="500" rows="20" md-select-on-focus></textarea>
                             </md-input-container>
                         </div>
-                        <div flex>
-                            <h2>Tipo de Oferta:</h2>
-                            <md-radio-group ng-model="oferta.Publica">
-                                <md-radio-button value=true class="md-primary">Publica</md-radio-button>
-                                <md-radio-button value=false> Privada </md-radio-button>
-                            </md-radio-group>
-                        </div>
-                    </md-content>
-                    <md-content layout="row">
-                        <md-datepicker ng-model="oferta.FechaInicioConvocatoria" md-placeholder="Inicio de la Convocatoria" flex="50" layout-fill>
-                        </md-datepicker>
-                        <md-datepicker ng-model="oferta.FechaFinConvocatoria" md-placeholder="Fin de la Convocatoria" flex="50">
-                        </md-datepicker>
-                    </md-content>
-                    <br />
-                    <md-content layout-gt-sm="row">
-                        <md-input-container class="md-block" layout-fill>
-                            <label>Descripcion</label>
-                            <textarea ng-model="oferta.Descripcion" md-maxlength="500" rows="20" md-select-on-focus></textarea>
-                        </md-input-container>
-                    </md-content>
-                </div>
+
+                    </div>
                 <!--#endregion-->
                 <!--#region fpaz: seccion de puestos de la oferta-->
         <md-whiteframe class="md-whiteframe-1dp wf" flex="100" layout layout-align="center center">

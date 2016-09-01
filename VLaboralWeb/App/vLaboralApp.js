@@ -256,69 +256,134 @@
             }
         })
             .state('profesional.perfil', {
-                url: '/perfil/:idPro',  
-                templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
-                controller: 'profesionalesCtrl',
-                resolve: {
-                    listadoOfertas: function () {
-                        return { value: [] };
-                    },
-                    rubrosDF: 'rubrosDF',
-                    habilidadesDF: 'habilidadesDF',
-                    tiposIdentificacionDF : 'tiposIdentificacionDF', 
-                    listadoRubros: function (rubrosDF) {
-                        return rubrosDF.getRubros();
-                    },
-                    listadoHabilidades: function (habilidadesDF) {
-                        return habilidadesDF.getHabilidades();
-                    },
-                    listadoIdentificacionPro: function (tiposIdentificacionDF) {
-                        return tiposIdentificacionDF.getIdentificacionesProfesional();
-                    },
-                    profesionalesDF: 'profesionalesDF',
-                    infoProfesional: function (profesionalesDF,$stateParams) {
-                        var idPro = $stateParams.idPro;
-                        return profesionalesDF.getProfesional(idPro);
-                    },
-                    listadoOfertas: function () {
-                        return { value: [] };
-                    },
-                    loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
-                    }]
+                url: '/perfil/:idPro',
+                views: {
+                    'contenido@profesional': {
+                        templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
+                        controller: 'profesionalesCtrl',
+                        resolve: {
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },
+                            rubrosDF: 'rubrosDF',
+                            habilidadesDF: 'habilidadesDF',
+                            tiposIdentificacionDF: 'tiposIdentificacionDF',
+                            listadoRubros: function (rubrosDF) {
+                                return rubrosDF.getRubros();
+                            },
+                            listadoHabilidades: function (habilidadesDF) {
+                                return habilidadesDF.getHabilidades();
+                            },
+                            listadoIdentificacionPro: function (tiposIdentificacionDF) {
+                                return tiposIdentificacionDF.getIdentificacionesProfesional();
+                            },
+                            profesionalesDF: 'profesionalesDF',
+                            infoProfesional: function (profesionalesDF, $stateParams) {
+                                var idPro = $stateParams.idPro;
+                                return profesionalesDF.getProfesional(idPro);
+                            },
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                            }]
+                        }
+                    }
                 }
+                
             })
             .state('profesional.ofertas', {
-                url: '/ofertas/:idPro',
-                templateUrl: '/App/Ofertas/Partials/ofertasList.html',
-                controller: 'profesionalesCtrl',
-                resolve: {
-                    ofertasDF: 'ofertasDF',
-                    listadoOfertas: function (ofertasDF) {
-                        return ofertasDF.getOfertasProfesional();
-                    },
-                    rubrosDF: 'rubrosDF',
-                    habilidadesDF: 'habilidadesDF',
-                    tiposIdentificacionDF: 'tiposIdentificacionDF',
-                    listadoRubros: function (rubrosDF) {
-                        return rubrosDF.getRubros();
-                    },
-                    listadoHabilidades: function (habilidadesDF) {
-                        return habilidadesDF.getHabilidades();
-                    },
-                    listadoIdentificacionPro: function (tiposIdentificacionDF) {
-                        return tiposIdentificacionDF.getIdentificacionesProfesional();
-                    },
-                    profesionalesDF: 'profesionalesDF',
-                    infoProfesional: function (profesionalesDF, $stateParams) {
-                        var idPro = $stateParams.idPro;
-                        return profesionalesDF.getProfesional(idPro);
-                    },
-                    loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
-                    }]
-                }
+                url: '/ofertas',
+                views: {
+                    'contenido@profesional': {
+                        templateUrl: '/App/Ofertas/Partials/ofertasList.html',
+                        controller: 'profesionalesCtrl',
+                        resolve: {
+                            ofertasDF: 'ofertasDF',
+                            listadoOfertas: function (ofertasDF) {
+                                //return ofertasDF.getOfertasProfesional();
+                                return ofertasDF.getOfertas(1, 5);
+                            },
+                            rubrosDF: 'rubrosDF',
+                            habilidadesDF: 'habilidadesDF',
+                            tiposIdentificacionDF: 'tiposIdentificacionDF',
+                            listadoRubros: function (rubrosDF) {
+                                return rubrosDF.getRubros();
+                            },
+                            listadoHabilidades: function (habilidadesDF) {
+                                return habilidadesDF.getHabilidades();
+                            },
+                            listadoIdentificacionPro: function (tiposIdentificacionDF) {
+                                return tiposIdentificacionDF.getIdentificacionesProfesional();
+                            },
+                            profesionalesDF: 'profesionalesDF',
+                            infoProfesional: function (profesionalesDF, authSvc) {
+                                var idPro = authSvc.authentication.profesionalId;
+                                return profesionalesDF.getProfesional(idPro);
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                            }]
+                        }
+                    }
+                }                
             })
+                .state('profesional.ofertas.detalleOferta', {
+                    url: '/detalleOferta/:idOferta',
+                    views: {
+                        'contenido@profesional': {
+                            templateUrl: '/App/Ofertas/Partials/ofertaDetalle.html',
+                            controller: 'ofertasCtrl',
+                            resolve: {
+                                ofertasDF: 'ofertasDF',
+                                listadoOfertas: function () {
+                                    return { value: [] };
+                                },
+                                tiposDisponibilidadDF: 'tiposDisponibilidadDF',
+                                listadoTiposDiponibilidad: function () {
+                                    return { value: [] };
+                                },
+                                rubrosDF: 'rubrosDF',
+                                habilidadesDF: 'habilidadesDF',
+                                tiposIdentificacionDF: 'tiposIdentificacionDF',
+                                listadoRubros: function () {
+                                    return { value: [] };
+                                },
+                                tiposContratoDF: 'tiposContratoDF',
+                                listadoTiposContratos: function () {
+                                    return { value: [] };
+                                },
+                                listadoHabilidades: function () {
+                                    return { value: [] };
+                                },
+                                listadoIdentificacionPro: function () {
+                                    return { value: [] };
+                                },
+                                requisitosDF: 'requisitosDF',
+                                listadoTiposRequisitos: function () {
+                                    return { value: [] };
+                                },
+                                profesionalesDF: 'profesionalesDF',
+                                infoProfesional: function () {
+                                    return { value: [] };
+                                },
+                                ofertaDetalle: function (ofertasDF, $stateParams) {
+                                    var prmIdOferta = $stateParams.idOferta;
+                                    return ofertasDF.getOferta(prmIdOferta);
+                                },
+                                etapasObligatorias: function () {
+                                    return { value: [] };
+                                },
+
+                                loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
+                                }]
+
+                            }
+                        }
+                    }
+                })
         //#endregion
     })
 
