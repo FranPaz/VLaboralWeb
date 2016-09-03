@@ -133,13 +133,16 @@
                 etapasCargadas : function () {
                     return $scope.oferta.EtapasOferta;
                 },
+                etapaDetalle: function () {
+                    return { value: [] };
+                },
                 loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/EtapasOferta/etapasOfertaCtrl.js']);
                 }]
             }
         })
-        .then(function (nuevaEtapa) {
-            $scope.oferta.EtapasOferta.push(nuevaEtapa);
+        .then(function (nuevasEtapas) {
+            $scope.oferta.EtapasOferta = nuevasEtapas;
         });
     }
     //#endregion

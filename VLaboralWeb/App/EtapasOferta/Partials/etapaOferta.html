@@ -1,15 +1,36 @@
 ﻿<main>
     <md-container flex>
-        <div layout="column" flex>
-            <h1>Postulantes en esta oferta: </h1>
-            <div ng-repeat="p in etapaDetalle.PuestosEtapaOferta">
-                <h1>Puesto:</h1><span>{{p.Puesto}}</span>
-                <div ng-repeat="postulante in p.Postulaciones">
-                    <h2>Nombre y Apellido: </h2><span>{{postulante.Nombre}}</span><span>{{postulante.Apellido}}</span>
+        <md-content layout="row" layout-align="center center">            
+            <div flex="70" layout="column" class="ofertas_p" style="margin:2em 0;">
+                <div class="t_ofer_p" layout="column" layout-align="start center">
+                    <h1>{{etapaDetalle.Oferta.Nombre}}</h1>                    
+                </div>               
+                <hr class="h_sop">
+                <div class="puestos">
+                    <h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
+                    <div ng-repeat="p in etapaDetalle.PuestosEtapaOferta" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
+                        
+                        <h2>{{p.Puesto.Nombre}}</h2>
+                        <h3>{{p.Puesto.Descripcion}}</h3>
+                        <div class="p_items" layout="column" layout-align="space-around start">
+                            <h4><span class="p_res">Cantidad de Postulaciones: {{p.Postulaciones.length}}</span></h4>
+                            <div layout="row">
+                                <v-accordion class="vAccordion--default" multiple control="accordion">
+                                    <v-pane id="accordionCategorias" ng-repeat="postulante in p.Postulaciones" expanded="true">
+                                        <v-pane-header>
+                                            <label>Postulantes</label>
+                                        </v-pane-header>
+                                        <v-pane-content>
+                                            <a ui-sref="empresa.profesional({idPro: postulante.ProfesionalId})">{{postulante.Profesional.Apellido}} {{postulante.Profesional.Nombre}}</a>                                            
+                                        </v-pane-content>
+                                    </v-pane>
+                                </v-accordion>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-        </div>
-    </md-container>   
+        </md-content>
+    </md-container>
 </main>
