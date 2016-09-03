@@ -133,6 +133,9 @@
                 etapasCargadas : function () {
                     return $scope.oferta.EtapasOferta;
                 },
+                etapaDetalle: function () {
+                    return { value: [] };
+                },
                 loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/EtapasOferta/etapasOfertaCtrl.js']);
                 }]
