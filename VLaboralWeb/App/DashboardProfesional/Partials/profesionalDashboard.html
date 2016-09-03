@@ -1,6 +1,20 @@
 ﻿<nav>
     <a href="index.html">UN<span>MUNDO</span></a>
     <ul>
+        <!-- desplegable: ezequiel-->
+        <li>
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" layout="row">
+                    <span class="icon-bullhorn ic_m"></span><h1 class="t_me_a">Ofertas</h1>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <a ui-sref="profesional.ofertas"><md-button> <span md-menu-align-target class="sm">Listado de ofertas</span></md-button>
+                    </md-menu-item></a>                    
+                </md-menu-content>
+            </md-menu>
+        </li>
+        <!--fin desplegable-->
         <a href="#">
             <li><span class="icon-earth icono_de"></span></li>
         </a>
@@ -15,6 +29,6 @@
         </a>
     </ul>
 </nav>
-<aside ui-view="menu@"></aside>
+<!--<aside ui-view="menu@"></aside>-->
 
 <div ui-view="contenido@"></div>

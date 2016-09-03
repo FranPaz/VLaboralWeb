@@ -313,16 +313,16 @@
             url: '/profesional',
             views: {
                 '': {
-                    templateUrl: '/App/DashboardProfesional/Partials/profesionalDashboard.html'
-                },
-                'menu': {
-                    templateUrl: '/App/DashboardProfesional/Partials/profesionalMenu.html',
+                    templateUrl: '/App/DashboardProfesional/Partials/profesionalDashboard.html',
                     controller: 'dashboardProfesionalCtrl',
                     resolve: {
                         loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/DashboardProfesional/dashboardProfesionalCtrl.js']);
                         }]
                     }
+                },
+                'menu': {
+                    templateUrl: ''                    
                 },
                 'contenido': {
                     templateUrl: '/App/DashboardProfesional/Partials/profesionalContenido.html'                    
