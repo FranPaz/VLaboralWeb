@@ -24,6 +24,13 @@
         current: 1
     };
 
+
+    $scope.selectItems = []; //iafar: array de elementos seleccionados para eliminacion
+    $scope.query = {       
+        limit: 3,
+        page: 1
+    }; //iafar: variables scope para paginacion de tabla de documentos
+
     $scope.editValue = false; // variable que voy a usar para activar y desactivar los modos de edicion para hacer el update de la info
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
@@ -90,6 +97,7 @@
     };
 
     $scope.profesionalPerfilUpdate = function (prmProfesional) {
+        prmProfesional.Habilidades = $scope.chipsHabilidad.toString();
         profesionalesDF.putProfesional(prmProfesional.Id, prmProfesional).then(function (response) {
             alert("Perfil del Profesional Actualizado");
             $scope.profesional = response; //si se actualizo bien el perfil del profesional, cargo el scope con los datos guardados
@@ -102,5 +110,31 @@
             }
         });
     };
+    //#endregion
+
+    //#region iafar:region mdTable
+    $scope.agregarDoc = function (obj) {
+       
+       
+        $scope.profesional.IdentificacionesProfesional.push(obj);
+        borraScopeAdd();
+    }
+
+    //iafar: borra el scope de los campos de alta de documento
+    function borraScopeAdd() {
+        $scope.opcionAgregar = false;
+        $scope.nuevoDoc = {};
+    }
+
+    $scope.eliminarTipoId = function (objList) {
+        var pos;
+        for (var o in objList) {
+            pos = $scope.profesional.IdentificacionesProfesional.indexOf(objList[o]);
+            $scope.profesional.IdentificacionesProfesional.splice(pos, 1);
+            //alert($scope.docList.indexOf(objList[o]));
+        }
+        $scope.selectItems = [];
+    }
+    $scope.opcionAgregar = false; //iafar: para mostrar el menu para agregar un nuevo tipo de Id
     //#endregion
 });
