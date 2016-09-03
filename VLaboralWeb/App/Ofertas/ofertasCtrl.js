@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog,$ocLazyLoad, //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog,$ocLazyLoad,$state, //fpaz: definicion de inyectores de dependencias
     ofertasDF, rubrosDF, requisitosDF, habilidadesDF,authSvc, tiposEtapasDF, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
     listadoRubros, listadoTiposRequisitos, listadoHabilidades,ofertaDetalle, etapasObligatorias//    
@@ -101,6 +101,7 @@
 
         ofertasDF.postOferta(prmOferta).then(function (response) {
             alert("Oferta Guardada");
+            $state.go('empresa.ofertas');
         },
     function (err) {
         if (err) {

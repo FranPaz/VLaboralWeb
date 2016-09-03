@@ -311,7 +311,6 @@
     <Content Include="libs\angular\angular-ui-grid\ui-grid.eot" />
     <Content Include="libs\angular\angular-ui-grid\ui-grid.ttf" />
     <Content Include="libs\angular\angular-ui-grid\ui-grid.woff" />
-    <Content Include="libs\angular\mdTable\md-data-table.min.js.map" />
     <Content Include="libs\angular\ng-file-upload\LICENSE" />
     <Content Include="libs\angular\ng-file-upload\README.md" />
     <Content Include="libs\angular\ng-grid\.DS_Store" />
@@ -407,6 +406,10 @@
     <Content Include="styles\app.min.css" />
     <Content Include="styles\font.css" />
     <Content Include="styles\material-design-icons.css" />
+    <Content Include="svg\add.svg" />
+    <Content Include="svg\exit.svg" />
+    <Content Include="svg\success.svg" />
+    <Content Include="svg\trash.svg" />
     <Content Include="views\aside.html" />
     <Content Include="views\content.html" />
     <Content Include="views\layout.html" />
