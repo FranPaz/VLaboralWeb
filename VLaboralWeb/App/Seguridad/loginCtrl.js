@@ -8,7 +8,7 @@
 
     $scope.login = function () {
         authSvc.login($scope.loginData).then(function (response) {
-            alert("Login Exitoso");
+            //alert("Login Exitoso");
             
             if (authSvc.authentication.tipoUser == "empresa") {
                 $state.go('empresa.ofertas');                

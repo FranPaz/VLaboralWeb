@@ -73,16 +73,16 @@
             url: '/empresa',
             views: {
                 '': {
-                    templateUrl: '/App/DashboardEmpresa/Partials/empresaDashboard.html'
-                },
-                'menu': {
-                    templateUrl: '/App/DashboardEmpresa/Partials/empresaMenu.html',
+                    templateUrl: '/App/DashboardEmpresa/Partials/empresaDashboard.html',
                     controller: 'dashboardEmpresaCtrl',
                     resolve: {
-                        loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['App/DashboardEmpresa/dashboardEmpresaCtrl.js']);
+                   loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(['App/DashboardEmpresa/dashboardEmpresaCtrl.js']);
                         }]
                     }
+                },
+                'menu': {
+                    templateUrl: '/App/DashboardEmpresa/Partials/empresaMenu.html'                    
                 },
                 'contenido': {
                     templateUrl: '/App/DashboardEmpresa/Partials/empresaContenido.html'
@@ -103,6 +103,9 @@
                                 var idEmpresa = $stateParams.idEmpresa;
                                 return empresasDF.getEmpresa(idEmpresa);
                             },
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
                             }]
@@ -120,7 +123,10 @@
                     'contenido@empresa' :{
                         templateUrl: '/App/Ofertas/Partials/ofertasList.html',                        
                         controller: 'empresasCtrl',
-                        resolve: {
+                        resolve: {                            
+                            infoEmpresa: function () {
+                                return { value: [] };
+                            },
                             ofertasDF: 'ofertasDF',
                             listadoOfertas: function (ofertasDF) {
                                 return ofertasDF.getOfertas(1, 5);

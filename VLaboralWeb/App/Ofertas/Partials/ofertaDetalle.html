@@ -28,20 +28,20 @@
                 <div latout="column" layout-align="space-around center" flex>
                     <h1><span style="font-weight:700;">Etapas</span></h1>
                     <br />
-                    <timeline>
-                        <timeline-event ng-repeat="etapa in ofertaDetalle.EtapasOferta" side="alternate">
-                            <!--<timeline-badge >
-                                <i class="glyphicon {{event.badgeIconClass}}"></i>
-                            </timeline-badge>-->
-                            <timeline-panel class="{{event.badgeClass}}">
-                                <timeline-heading>
-                                    <h4>{{etapa.TipoEtapa.Nombre}}</h4>
-                                </timeline-heading>
-                                <p>{{etapa.TipoEtapa.Descripcion}}</p>                                
-                                <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
-                            </timeline-panel>
-                        </timeline-event>
-                    </timeline>
+                    <ul class="timeline">
+                        <li ng-repeat="etapa in ofertaDetalle.EtapasOferta">
+                            <div class="direction-r">
+                                <div class="flag-wrapper">
+                                    <span class="flag">{{etapa.TipoEtapa.Nombre}}</span>
+                                    <span class="time-wrapper"><span class="time">2011 - 2013</span></span>
+                                </div>
+                                <div class="desc">                                    
+                                    <p>{{etapa.TipoEtapa.Descripcion}}</p>
+                                    <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <hr class="h_sop">
 
