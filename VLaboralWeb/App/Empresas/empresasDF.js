@@ -1,4 +1,25 @@
-﻿vLaboralApp.factory('empresasDF', function ($http, $q) {
+﻿vLaboralApp.factory('empresasDF', function ($http, $q, configSvc) {
+
+    var urlApi = configSvc.urlApi; 
+    var empresasDF = {};
+
+    var _getEmpresa = function (prmIdEmpresa) { //iafar: funcion para recuperar una empresa en particular segun Id
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Empresas/' + prmIdEmpresa).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
+    //#region fpaz: area de asignacion de funciones a objeto
+    empresasDF.getEmpresa = _getEmpresa;
+    //#endregion
+
+    return empresasDF;
     
 });
 

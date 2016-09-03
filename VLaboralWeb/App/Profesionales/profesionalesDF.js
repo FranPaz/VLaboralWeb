@@ -4,11 +4,8 @@
     var profesionalesDF = {};
 
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
-
-        var prmIdProfesional = authSvc.authentication.profesionalId; // fpaz: variable que va a tener el id del profesional logueado
-
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/Profesionals/' + prmIdProfesional).then(
+        $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
             function (response) {
                 deferred.resolve(response.data);
             },

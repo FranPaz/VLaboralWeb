@@ -67,6 +67,7 @@
         //#endregion
 
         //#region Empresa
+
         .state('empresa', {
             abstract: true,
             url: '/empresa',
@@ -88,6 +89,31 @@
                 }
             }
         })
+
+            //#region Perfil de la empresa
+            .state('empresa.perfil', {
+                url: '/perfil/:idEmpresa',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Empresas/Partials/empresaPerfilPublico.html',
+                        controller: 'empresasCtrl',
+                        resolve: {                            
+                            empresasDF: 'empresasDF',
+                            infoEmpresa: function (empresasDF, $stateParams) {
+                                var idEmpresa = $stateParams.idEmpresa;
+                                return empresasDF.getEmpresa(idEmpresa);
+                            },
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+
+            })
+            //#endregion
+
+            //#region Ofertas para Usuarios Empresa
             .state('empresa.ofertas', {
                 url: '/ofertas',
                 views: {
@@ -231,6 +257,48 @@
                     }
                 }
             })
+            //#endregion
+
+            //#region Profesionales para Usuarios Empresa
+            .state('empresa.profesional', {
+                url: '/profesional/:idPro',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Profesionales/Partials/profesionalPerfilPublico.html',
+                        controller: 'profesionalesCtrl',
+                        resolve: {
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },
+                            rubrosDF: 'rubrosDF',
+                            habilidadesDF: 'habilidadesDF',
+                            tiposIdentificacionDF: 'tiposIdentificacionDF',
+                            listadoRubros: function (rubrosDF) {
+                                return rubrosDF.getRubros();
+                            },
+                            listadoHabilidades: function (habilidadesDF) {
+                                return habilidadesDF.getHabilidades();
+                            },
+                            listadoIdentificacionPro: function (tiposIdentificacionDF) {
+                                return tiposIdentificacionDF.getIdentificacionesProfesional();
+                            },
+                            profesionalesDF: 'profesionalesDF',
+                            infoProfesional: function (profesionalesDF, $stateParams) {
+                                var idPro = $stateParams.idPro;
+                                return profesionalesDF.getProfesional(idPro);
+                            },
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+
+            })
+            //#endregion
         //#endregion
 
         //#region Profesional
@@ -255,6 +323,8 @@
                 }
             }
         })
+
+            //#region Perfil del Profesional
             .state('profesional.perfil', {
                 url: '/perfil/:idPro',
                 views: {
@@ -293,6 +363,9 @@
                 }
                 
             })
+            //#endregion
+
+            //#region Ofertas Para Profesionales
             .state('profesional.ofertas', {
                 url: '/ofertas',
                 views: {
@@ -384,6 +457,31 @@
                         }
                     }
                 })
+        //#endregion
+
+        //#region Perfil de la Empresa para profesionales
+
+        //#endregion
+        .state('profesional.empresa', {
+            url: '/empresa/:idEmpresa',
+            views: {
+                'contenido@profesional': {
+                    templateUrl: '/App/Empresas/Partials/empresaPerfilPublico.html',
+                    controller: 'empresasCtrl',
+                    resolve: {
+                        empresasDF: 'empresasDF',
+                        infoEmpresa: function (empresasDF, $stateParams) {
+                            var idEmpresa = $stateParams.idEmpresa;
+                            return empresasDF.getEmpresa(idEmpresa);
+                        },
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
+                        }]
+                    }
+                }
+            }
+
+        })
         //#endregion
     })
 

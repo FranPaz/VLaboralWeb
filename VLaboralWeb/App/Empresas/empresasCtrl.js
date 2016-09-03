@@ -1,6 +1,7 @@
-﻿vLaboralApp.controller('empresasCtrl', function ($scope, listadoOfertas, authSvc) {
+﻿vLaboralApp.controller('empresasCtrl', function ($scope, infoEmpresa) {
 
-    $scope.ofertas = listadoOfertas;
-    $scope.totalOfertas = listadoOfertas.TotalRows;
-    $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
+    //#region Inicializacion de Variables de Scope
+    $scope.empresa = infoEmpresa;
+    //#endregion
+    
 });

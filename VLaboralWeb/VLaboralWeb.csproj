@@ -66,6 +66,7 @@
     <Content Include="App\DashboardProfesional\Partials\profesionalDashboard.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalContenido.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />
+    <Content Include="App\Empresas\Partials\empresaPerfilPublico.html" />
     <Content Include="App\EtapasOferta\etapasOfertaCtrl.js" />
     <Content Include="App\EtapasOferta\etapasOfertaDF.js" />
     <Content Include="App\EtapasOferta\Partials\etapaOferta.html" />
@@ -80,6 +81,7 @@
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
+    <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
     <Content Include="App\Puestos\Partials\puestoDetalle.html" />
     <Content Include="App\Puestos\Partials\puestosAdd.html" />
@@ -472,7 +474,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Empresas\Partials\" />
     <Folder Include="App\Habilidades\Partials\" />
     <Folder Include="App\Postulantes\Partials\" />
     <Folder Include="App\Requisitos\Partials\" />

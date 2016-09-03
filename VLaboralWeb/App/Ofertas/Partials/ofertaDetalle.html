@@ -17,8 +17,8 @@
                 <div class="emp_d" layout="row" layout-align="space-around center">
                     <img src="img/logo.png">
 
-                    <div class="emp_desc_ofer" layout="column" flex="70">
-                        <h1>{{ofertaDetalle.Empresa.NombreFantasia}}</h1>
+                    <div class="emp_desc_ofer" layout="column" flex="70">                        
+                        <h1><a ui-sref="profesional.empresa({idEmpresa: ofertaDetalle.Empresa.Id})" ng-show="usuarioLogueado.isProfesional">{{ofertaDetalle.Empresa.NombreFantasia}}</a></h1>
                         <h4>{{ofertaDetalle.Empresa.Descripcion}}</h4>
                     </div>
                 </div>
@@ -37,9 +37,8 @@
                                 <timeline-heading>
                                     <h4>{{etapa.TipoEtapa.Nombre}}</h4>
                                 </timeline-heading>
-                                <p>{{etapa.TipoEtapa.Descripcion}}</p>
-                                <p>Orden: {{etapa.Orden}}</p>
-                                <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id})">Detalle</a>
+                                <p>{{etapa.TipoEtapa.Descripcion}}</p>                                
+                                <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
                             </timeline-panel>
                         </timeline-event>
                     </timeline>

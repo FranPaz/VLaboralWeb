@@ -21,7 +21,7 @@
                                             <label>Postulantes</label>
                                         </v-pane-header>
                                         <v-pane-content>
-                                            {{postulante.Profesional.Apellido}} {{postulante.Profesional.Nombre}}
+                                            <a ui-sref="empresa.profesional({idPro: postulante.ProfesionalId})">{{postulante.Profesional.Apellido}} {{postulante.Profesional.Nombre}}</a>                                            
                                         </v-pane-content>
                                     </v-pane>
                                 </v-accordion>
