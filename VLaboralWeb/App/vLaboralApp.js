@@ -25,7 +25,29 @@
                     },
                     'ofertasHome': {
                         templateUrl: '/App/Ofertas/Partials/ofertasList.html',
-                        controller: ''
+                        controller: 'profesionalesCtrl',
+                        resolve: {
+                            ofertasDF: 'ofertasDF',
+                            listadoOfertas: function (ofertasDF) {
+                                //return ofertasDF.getOfertasProfesional();
+                                return ofertasDF.getOfertas(1, 5);
+                            },                            
+                            listadoRubros: function () {
+                                return {value:[]};
+                            },
+                            listadoHabilidades: function () {
+                                return { value: [] };
+                            },
+                            listadoIdentificacionPro: function () {
+                                return { value: [] };
+                            },                            
+                            infoProfesional: function () {
+                                return { value: [] };
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                            }]
+                        }
                     }
                 }
             })

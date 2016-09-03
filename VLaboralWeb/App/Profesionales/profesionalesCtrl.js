@@ -7,11 +7,11 @@
     $scope.habilidades= listadoHabilidades;
     $scope.identificacionesPro = listadoIdentificacionPro;
     $scope.profesional = infoProfesional; //iafar: ya vienen definidos todos los atributos desde la API
-    if (infoProfesional.Habilidades !== null) {
-        $scope.chipsHabilidad = infoProfesional.Habilidades.split(",");
-    } else {
-        $scope.chipsHabilidad = [];
-    }
+    //if (infoProfesional.Habilidades !== null) {
+    //    $scope.chipsHabilidad = infoProfesional.Habilidades.split(",");
+    //} else {
+    //    $scope.chipsHabilidad = [];
+    //}
    
 
     $scope.Rubros = listadoRubros;

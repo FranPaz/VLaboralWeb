@@ -7,6 +7,14 @@
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
             function (response) {
+               
+                if (response.data.Habilidades !== null) {
+                    response.data.Habilidades = response.data.Habilidades.split(",");
+                } else {
+                    response.data.Habilidades = [];
+                }
+
+
                 deferred.resolve(response.data);
             },
             function (response) {
