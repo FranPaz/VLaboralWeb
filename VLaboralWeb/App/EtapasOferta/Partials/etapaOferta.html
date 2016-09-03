@@ -1,0 +1,15 @@
+﻿<main>
+    <md-container flex>
+        <div layout="column" flex>
+            <h1>Postulantes en esta oferta: </h1>
+            <div ng-repeat="p in etapaDetalle.PuestosEtapaOferta">
+                <h1>Puesto:</h1><span>{{p.Puesto}}</span>
+                <div ng-repeat="postulante in p.Postulaciones">
+                    <h2>Nombre y Apellido: </h2><span>{{postulante.Nombre}}</span><span>{{postulante.Apellido}}</span>
+                </div>
+            </div>
+
+
+        </div>
+    </md-container>   
+</main>

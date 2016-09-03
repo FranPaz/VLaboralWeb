@@ -14,7 +14,22 @@
         return deferred.promise;
     }
 
+    var _getEtapaOferta = function (prmIdEtapa) {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/EtapaOfertas/', {
+            params: { id: prmIdEtapa }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
     etapasOfertaDF.getEtapasObligatorias = _getEtapasObligatorias;
+    etapasOfertaDF.getEtapaOferta = _getEtapaOferta;
 
     return etapasOfertaDF;
 });

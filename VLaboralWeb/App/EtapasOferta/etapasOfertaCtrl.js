@@ -1,11 +1,12 @@
 ﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter //fpaz: definicion de inyectores de dependencias
-    , listadoTiposEtapas, etapasCargadas //fpaz: definicion de parametros de entrada 
+    , listadoTiposEtapas, etapasCargadas, etapaDetalle //fpaz: definicion de parametros de entrada 
     ) {
 
     //#region fpaz: Inicializacion de variables de scope
     $scope.etapasCargadas = etapasCargadas;
     $scope.etapaOferta = {};
     $scope.tiposEtapas = listadoTiposEtapas;
+    $scope.etapaDetalle = etapaDetalle;
     //#endregion
 
     //#region reordenamiento de etapas al agregar una nueva etapa

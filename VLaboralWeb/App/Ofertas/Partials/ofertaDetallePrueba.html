@@ -1,0 +1,19 @@
+﻿<md-card>
+    <div layout="column" latout-align="center center" flex>
+        <h1>{{ofertaDetalle.Nombre}}</h1>
+        <p>{{ofertaDetalle.Descripcion}}</p>
+    </div>
+    <div latout="row">
+        <div flex>{{ofertaDetalle.FechaInicioConvocatoria}}</div>
+        <div flex>{{ofertaDetalle.FechaFinConvocatoria}}</div>
+    </div>
+
+    <div layout="column">
+        <md-list>
+            <md-list-item ng-repeat="puesto in ofertaDetalle.Puestos">
+                {{puesto.Nombre}}
+            </md-list-item>
+        </md-list>
+    </div>
+
+</md-card>
