@@ -1,7 +1,7 @@
-﻿vLaboralApp.factory('experienciaLaboralDF', function ($http, $q, configSvc) {
+﻿vLaboralApp.factory('experienciasLaboralesDF', function ($http, $q, configSvc) {
 
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
-    var experienciaLaboralDF = {};
+    var experienciasLaboralesDF = {};
 
     var _postExperiencia = function (data) { //iafar: alta de una Experiencia Academica en particular
         var deferred = $q.defer();
@@ -34,9 +34,9 @@
 
 
     //#region iafar: area de asignacion de funciones a objeto
-    experienciaLaboralDF.postExperiencia = _postExperiencia;
-    experienciaLaboralDF.putExperiencia = _putExperiencia;
+    experienciasLaboralesDF.postExperiencia = _postExperiencia;
+    experienciasLaboralesDF.putExperiencia = _putExperiencia;
     //#endregion
 
-    return experienciaLaboralDF;
+    return experienciasLaboralesDF;
 });

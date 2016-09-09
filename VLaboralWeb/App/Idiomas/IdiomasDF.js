@@ -1,6 +1,6 @@
-﻿vLaboralApp.factory('idiomaDF', function ($http, $q, configSvc) {
+﻿vLaboralApp.factory('idiomasDF', function ($http, $q, configSvc) {
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
-    var IdiomaDF = {};
+    var IdiomasDF = {};
 
     var _getIdiomas = function () {
         var deferred = $q.defer();
@@ -16,8 +16,8 @@
 
 
     //#region iafar: area de asignacion de funciones a objeto
-    IdiomaDF.getIdiomas = _getIdiomas;
+    IdiomasDF.getIdiomas = _getIdiomas;
     //#endregion
 
-    return IdiomaDF;
+    return IdiomasDF;
 });

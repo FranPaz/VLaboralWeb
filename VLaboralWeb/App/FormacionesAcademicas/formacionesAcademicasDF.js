@@ -1,9 +1,9 @@
-﻿vLaboralApp.factory('formacionAcademicaDF', function ($http, $q, configSvc) {
+﻿vLaboralApp.factory('formacionesAcademicasDF', function ($http, $q, configSvc) {
     //iafar: Este datafactory contiene las funciones para el manejo de 
     //todo lo relacionado con formacion academica
     //educacion, idioma conocido
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
-    var formacionAcademicaDF = {};
+    var formacionesAcademicasDF = {};
     //#region iafar: Funciones para educacion
     var _postEducacion = function (data) { //iafar: alta de una formacion Academica en particular
         var deferred = $q.defer();
@@ -65,11 +65,11 @@
 
 
     //#region iafar: area de asignacion de funciones a objeto
-    formacionAcademicaDF.postEducacion = _postEducacion;
-    formacionAcademicaDF.putEducacion = _putEducacion;
-    formacionAcademicaDF.postIdiomaConocido = _postIdiomaConocido;
-    formacionAcademicaDF.putIdiomaConocido = _putIdiomaConocido;
+    formacionesAcademicasDF.postEducacion = _postEducacion;
+    formacionesAcademicasDF.putEducacion = _putEducacion;
+    formacionesAcademicasDF.postIdiomaConocido = _postIdiomaConocido;
+    formacionesAcademicasDF.putIdiomaConocido = _putIdiomaConocido;
     //#endregion
 
-    return formacionAcademicaDF;
+    return formacionesAcademicasDF;
 });
