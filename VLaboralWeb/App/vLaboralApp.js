@@ -502,6 +502,9 @@
                             var idEmpresa = $stateParams.idEmpresa;
                             return empresasDF.getEmpresa(idEmpresa);
                         },
+                        listadoOfertas: function () {
+                            return { value: [] };
+                        },
                         loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
                         }]

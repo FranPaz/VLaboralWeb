@@ -25,9 +25,9 @@
         <a href="#">
             <li><span class="icon-mail4 icono_de"></span></li>
         </a>
-        <a href="#">
-            <li><img src="img/oc.jpg" alt=""></li>
-        </a>
+        <li>
+            <span class="ic_m"></span><h6><a ui-sref="empresa.perfil({idEmpresa: authentication.empresaId})">{{authentication.userName}}</a></h6>
+        </li>
         <a ng-click="logOut()">
             <li><span class="icon-exit icono_de"></span></li>
         </a>                
