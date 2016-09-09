@@ -99,7 +99,7 @@
     };
 
     $scope.profesionalPerfilUpdate = function (prmProfesional) {
-        prmProfesional.Habilidades = $scope.chipsHabilidad.toString();
+        prmProfesional.Habilidades =  $scope.chipsHabilidad !== null ? $scope.chipsHabilidad.toString() : null;
         profesionalesDF.putProfesional(prmProfesional.Id, prmProfesional).then(function (response) {
             alert("Perfil del Profesional Actualizado");
             $scope.profesional = response; //si se actualizo bien el perfil del profesional, cargo el scope con los datos guardados
