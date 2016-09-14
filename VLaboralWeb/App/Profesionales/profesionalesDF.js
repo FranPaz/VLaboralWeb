@@ -6,7 +6,14 @@
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
-            function (response) {
+            function (response) {                
+                if (response.data.Habilidades !== null) {
+                    response.data.Habilidades = response.data.Habilidades.split(",");
+                } else {
+                    response.data.Habilidades = [];
+                }
+
+
                 deferred.resolve(response.data);
             },
             function (response) {

@@ -7,7 +7,9 @@
     $scope.habilidades= listadoHabilidades;
     $scope.identificacionesPro = listadoIdentificacionPro;
     $scope.profesional = infoProfesional; //iafar: ya vienen definidos todos los atributos desde la API
-    $scope.chipsHabilidad = infoProfesional.Habilidades.split(",");
+  
+    $scope.chipsHabilidad = infoProfesional.Habilidades;
+
 
     $scope.Rubros = listadoRubros;
     $scope.rubroSelected = {};
@@ -97,7 +99,7 @@
     };
 
     $scope.profesionalPerfilUpdate = function (prmProfesional) {
-        prmProfesional.Habilidades = $scope.chipsHabilidad.toString();
+        prmProfesional.Habilidades =  $scope.chipsHabilidad !== null ? $scope.chipsHabilidad.toString() : null;
         profesionalesDF.putProfesional(prmProfesional.Id, prmProfesional).then(function (response) {
             alert("Perfil del Profesional Actualizado");
             $scope.profesional = response; //si se actualizo bien el perfil del profesional, cargo el scope con los datos guardados

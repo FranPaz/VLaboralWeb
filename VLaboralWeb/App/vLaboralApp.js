@@ -25,7 +25,29 @@
                     },
                     'ofertasHome': {
                         templateUrl: '/App/Ofertas/Partials/ofertasList.html',
-                        controller: ''
+                        controller: 'profesionalesCtrl',
+                        resolve: {
+                            ofertasDF: 'ofertasDF',
+                            listadoOfertas: function (ofertasDF) {
+                                //return ofertasDF.getOfertasProfesional();
+                                return ofertasDF.getOfertas(1, 5);
+                            },                            
+                            listadoRubros: function () {
+                                return {value:[]};
+                            },
+                            listadoHabilidades: function () {
+                                return { value: [] };
+                            },
+                            listadoIdentificacionPro: function () {
+                                return { value: [] };
+                            },                            
+                            infoProfesional: function () {
+                                return { value: [] };
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                            }]
+                        }
                     }
                 }
             })
@@ -313,16 +335,16 @@
             url: '/profesional',
             views: {
                 '': {
-                    templateUrl: '/App/DashboardProfesional/Partials/profesionalDashboard.html'
-                },
-                'menu': {
-                    templateUrl: '/App/DashboardProfesional/Partials/profesionalMenu.html',
+                    templateUrl: '/App/DashboardProfesional/Partials/profesionalDashboard.html',
                     controller: 'dashboardProfesionalCtrl',
                     resolve: {
                         loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/DashboardProfesional/dashboardProfesionalCtrl.js']);
                         }]
                     }
+                },
+                'menu': {
+                    templateUrl: ''                    
                 },
                 'contenido': {
                     templateUrl: '/App/DashboardProfesional/Partials/profesionalContenido.html'                    
@@ -479,6 +501,9 @@
                         infoEmpresa: function (empresasDF, $stateParams) {
                             var idEmpresa = $stateParams.idEmpresa;
                             return empresasDF.getEmpresa(idEmpresa);
+                        },
+                        listadoOfertas: function () {
+                            return { value: [] };
                         },
                         loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
