@@ -139,4 +139,29 @@
     }
     $scope.opcionAgregar = false; //iafar: para mostrar el menu para agregar un nuevo tipo de Id
     //#endregion
+
+
+    //Region kikexp: dispara el modal de nueva experiencia
+    $scope.openExperienciaAdd = function (ev) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'experienciasLaboralesCtrl',
+            templateUrl: 'App/ExperienciasLaborales/Partials/nuevaExperiencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            //fullscreen: true,
+            fullscreen: useFullScreen,
+            resolve: {
+                experienciasLaboralesDF: 'experienciasLaboralesDF',
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+                }]
+            }
+        })
+        .then(function () {
+            //$scope.oferta.Puestos.push(nuevoPuesto);
+        });
+    }
+    //#endRegion
 });

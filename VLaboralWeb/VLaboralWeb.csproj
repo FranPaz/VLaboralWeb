@@ -73,6 +73,7 @@
     <Content Include="App\EtapasOferta\Partials\etapaOfertaAdd.html" />
     <Content Include="App\ExperienciasLaborales\experienciasLaboralesCtrl.js" />
     <Content Include="App\ExperienciasLaborales\experienciasLaboralesDF.js" />
+    <Content Include="App\ExperienciasLaborales\Partials\nuevaExperiencia.html" />
     <Content Include="App\FormacionesAcademicas\formacionesAcademicasCtrl.js" />
     <Content Include="App\FormacionesAcademicas\formacionesAcademicasDF.js" />
     <Content Include="App\Habilidades\habilidadesCtrl.js" />
@@ -84,6 +85,7 @@
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
+    <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
     <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
@@ -482,11 +484,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\ExperienciasLaborales\Partials\" />
     <Folder Include="App\FormacionesAcademicas\Partials\" />
     <Folder Include="App\Habilidades\Partials\" />
     <Folder Include="App\Idiomas\Partials\" />
-    <Folder Include="App\Postulantes\Partials\" />
     <Folder Include="App\Requisitos\Partials\" />
     <Folder Include="App\TiposContrato\Partials\" />
     <Folder Include="App\TiposDisponibilidad\Partials\" />
