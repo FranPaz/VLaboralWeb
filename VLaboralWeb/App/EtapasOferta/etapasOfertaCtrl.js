@@ -7,6 +7,13 @@
     $scope.etapaOferta = {};
     $scope.tiposEtapas = listadoTiposEtapas;
     $scope.etapaDetalle = etapaDetalle;
+
+    $scope.query = {
+        order: 'Valoracion',
+        limit: 10,
+        page: 1
+    };
+    $scope.selectPostulantes = [];
     //#endregion
 
     //#region reordenamiento de etapas al agregar una nueva etapa
@@ -50,6 +57,12 @@
 
     //#endregion
     
+    //#region detalle de profesional postulante
+    $scope.mostrarDetalle = function () {
+        alert("Detalle de profesional");
+    }
+    //#endregion
+
 });
 
 
