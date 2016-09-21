@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('profesionalesCtrl', function ($scope //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
     , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF,authSvc //fpaz: definicion de data factorys
     , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas,infoProfesional//fpaz: definicion de parametros de entrada    
     ) {
@@ -142,26 +142,85 @@
 
 
     //Region kikexp: dispara el modal de nueva experiencia
-    $scope.openExperienciaAdd = function (ev) {
+    $scope.nuevaExperiencia = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'experienciasLaboralesCtrl',
             templateUrl: 'App/ExperienciasLaborales/Partials/nuevaExperiencia.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            //fullscreen: true,
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,            
             fullscreen: useFullScreen,
             resolve: {
-                experienciasLaboralesDF: 'experienciasLaboralesDF',
-                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                experienciasLaboralesDF:'experienciasLaboralesDF',
+                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
                 }]
             }
         })
-        .then(function () {
-            //$scope.oferta.Puestos.push(nuevoPuesto);
-        });
     }
     //#endRegion
+
+    //Region kikexp: dispara el modal de nuevo curso o certificacion
+    $scope.nuevoCurso = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'formacionesAcademicasCtrl',
+            templateUrl: 'App/FormacionesAcademicas/Partials/nuevoCurso.html',
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {
+                formacionesAcademicasDF: 'formacionesAcademicasDF',
+                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/FormacionesAcademicas/formacionesAcademicasCtrl.js']);
+                }]
+            }
+        })
+    }
+    //#endRegion
+
+    //Region kikexp: dispara el modal de nuevo Idioma
+    $scope.nuevoIdioma = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'formacionesAcademicasCtrl',
+            templateUrl: 'App/FormacionesAcademicas/Partials/nuevoIdioma.html',
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {
+                formacionesAcademicasDF: 'formacionesAcademicasDF',
+                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/FormacionesAcademicas/formacionesAcademicasCtrl.js']);
+                }]
+            }
+        })
+    }
+    //#endRegion
+
+    //Region kikexp: dispara el modal de nueva educacion
+    $scope.nuevaEducacion = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'formacionesAcademicasCtrl',
+            templateUrl: 'App/FormacionesAcademicas/Partials/nuevaEducacion.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            //fullscreen: true,
+            fullscreen: useFullScreen,
+            resolve: {
+                formacionesAcademicasDF: 'formacionesAcademicasDF',
+                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/FormacionesAcademicas/formacionesAcademicasCtrl.js']);
+                }]
+            }
+        })
+        //.then(function () {
+        //    //$scope.oferta.EtapasOferta = nuevasEtapas;
+        //});
+    }
+    //#endRegion
+
+
 });

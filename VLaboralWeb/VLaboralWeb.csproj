@@ -76,6 +76,9 @@
     <Content Include="App\ExperienciasLaborales\Partials\nuevaExperiencia.html" />
     <Content Include="App\FormacionesAcademicas\formacionesAcademicasCtrl.js" />
     <Content Include="App\FormacionesAcademicas\formacionesAcademicasDF.js" />
+    <Content Include="App\FormacionesAcademicas\Partials\nuevaEducacion.html" />
+    <Content Include="App\FormacionesAcademicas\Partials\nuevoCurso.html" />
+    <Content Include="App\FormacionesAcademicas\Partials\nuevoIdioma.html" />
     <Content Include="App\Habilidades\habilidadesCtrl.js" />
     <Content Include="App\Habilidades\habilidadesDF.js" />
     <Content Include="App\Home\Partials\home.html" />
@@ -484,7 +487,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\FormacionesAcademicas\Partials\" />
     <Folder Include="App\Habilidades\Partials\" />
     <Folder Include="App\Idiomas\Partials\" />
     <Folder Include="App\Requisitos\Partials\" />

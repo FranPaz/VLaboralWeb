@@ -1,40 +1,41 @@
-﻿<md-dialog>
-    <md-toolbar>
-        <div class="md-toolbar-tools" style="background-color:#00C853"><h3 class="md-title">Nueva Experiencia</h3></div>
-    </md-toolbar>
+﻿<md-dialog aria-label="Agregar Experiencia" flex="70" layout-padding>
+    <md-toolbar style="background-color:#00C853">
+        <div class="md-toolbar-tools"><h3 class="md-title">Nueva Experiencia</h3></div>
+    </md-toolbar>     
     <md-dialog-content>
         <div layout="column">
             <div flex>
                 <md-input-container>
                     <label>Puesto</label>
-                    <input ng-model="exp.Puesto"/>
+                    <input ng-model="exp.Puesto" />
                 </md-input-container>
                 <md-input-container>
                     <label>Descripcion</label>
                     <textarea ng-model="exp.Descripcion"></textarea>
-                </md-input-container>                
+                </md-input-container>
             </div>
             <div flex>
                 <md-input-container>
                     <label>Empresa</label>
-                    <input ng-model="exp.EmpresaExterna"/>
+                    <input ng-model="exp.EmpresaExterna" />
                 </md-input-container>
             </div>
             <div flex>
                 <md-input-container>
                     <label>Ubicacion</label>
-                    <input ng-model="exp.Ubicacion"/>
+                    <input ng-model="exp.Ubicacion" />
                 </md-input-container>
             </div>
             <div flex>
                 <h3>Periodo:</h3>
-                <md-input-container>
-                    <md-datepicker ng-model="exp.PeriodoDesde" md-placeholder="Desde"></md-datepicker>
-                </md-input-container>
-                <md-input-container>
-                    <md-datepicker ng-model="exp.PeriodoHasta" md-placeholder="Hasta"></md-datepicker>
-                </md-input-container>
+                <md-datepicker ng-model="exp.PeriodoDesde" md-placeholder="Desde"></md-datepicker>
+                <md-datepicker ng-model="exp.PeriodoHasta" md-placeholder="Hasta"></md-datepicker>
             </div>
         </div>
+        <md-dialog-actions>
+            <md-button>Cancelar</md-button>
+            <md-button>Guardar</md-button>
+
+        </md-dialog-actions>
     </md-dialog-content>
 </md-dialog>

@@ -1,0 +1,31 @@
+﻿<md-dialog flex="40" layout-padding>
+    <md-toolbar style="background-color:#FFB300">
+        <div class="md-toolbar-tools"><h3 class="md-title">Nuevo Idioma</h3></div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div layout="row">
+            <md-input-container>
+                <label>Seleccione el idoma</label>
+                <md-select ng-model="idioma.Select">
+                    <md-option ng-repeat="i in idiomas" ng-value="i.Nombre">
+                        {{i.Nombre}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <br />
+            <md-input-container>
+                <label>Seleccione el nivel</label>
+                <md-select ng-model="idioma.competenciaSelect">
+                    <md-option ng-repeat="c in competenciasIdioma" ng-value="c.Nombre">
+                        {{c.Nombre}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button>Cancelar</md-button>
+        <md-button>Guardar</md-button>
+
+    </md-dialog-actions>
+</md-dialog>

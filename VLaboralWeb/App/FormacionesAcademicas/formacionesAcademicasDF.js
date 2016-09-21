@@ -62,6 +62,10 @@
 
     //#endregion
 
+    //#Region cursos y certificaciones
+    //falta
+
+    //#endRegion
 
 
     //#region iafar: area de asignacion de funciones a objeto
