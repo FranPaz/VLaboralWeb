@@ -98,7 +98,7 @@
                                                 {{postulante.Valoracion}}
                                             </td>
                                             <td md-cell>
-                                                <md-button ng-click="mostrarDetalle()">
+                                                <md-button ng-click="postulanteDetalle(postulante.Id)">
                                                     <md-icon style="color:forestgreen;" md-svg-src="svg/eye.svg"></md-icon>
                                                 </md-button>
                                             </td>
@@ -139,7 +139,7 @@
                                         <v-pane-content>
                                             <a ui-sref="empresa.profesional({idPro: postulante.ProfesionalId})">{{postulante.Profesional.Apellido}} {{postulante.Profesional.Nombre}}</a>
                                             <!--<a ui-sref="empresa.profesional({idPro: postulante.ProfesionalId})">{{postulante.Profesional.Apellido}} {{postulante.Profesional.Nombre}}</a>-->                                            
-                                        </v-pane-content>
+                                        <!--</v-pane-content>
                                     </v-pane>
                                 </v-accordion>
                             </div>

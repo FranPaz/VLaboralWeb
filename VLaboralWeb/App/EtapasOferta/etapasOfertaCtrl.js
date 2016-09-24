@@ -57,6 +57,15 @@
 
     //#endregion
     
+    //#region objeto con el array con los profesionales que pasan a la siguiente etapa
+    $scope.guardarPostulantes = function () {
+        resultadoPostulaciones.PuestosEtapaOfertaId = $scope.etapaDetalle.Oferta.PuestosEtapaOferta[1].Postulaciones[1].PuestosEtapaOfertaId;
+        resultadoPostulaciones.Postulaciones = $scope.selectPostulantes;
+
+    }
+
+    //#endregion
+
     //#region kikepx: modal con el detalle del perfil del postulante
     $scope.postulanteDetalle= function (profesionalId) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
