@@ -22,8 +22,26 @@
         return deferred.promise;
     };
 
+    var _putPostulacion = function (postulaciones, puestoEtapaOfertaId) {
+        var deferred = $q.defer();
+
+        var resultadoPostulacion = {};
+        resultadoPostulacion.Postulaciones = postulaciones;
+        resultadoPostulacion.puestoEtapaOfertaId = puestoEtapaOfertaId;
+
+        $http.put(urlApi + 'api/Postulaciones', resultadoPostulacion).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+
     //#region iafar: area de asignacion de funciones a objeto    
     postulantesDF.postPostulacion = _postPostulacion;
+    postulantesDF.putPostulacion = _putPostulacion;
     //#endregion
 
     return postulantesDF;
