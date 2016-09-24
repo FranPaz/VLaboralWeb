@@ -6,6 +6,7 @@
     
     var _authentication = { //clase para manejar si el usuario esta autenticado o no
         isAuth: false,
+        idUsuarioLogueado:"",
         userName: "",
         roles: [],
         isEmpresa: false,
@@ -57,14 +58,15 @@
         var deferred = $q.defer();        
 
         $http.post(urlApi  + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-
+                        
             var tokenPayload = jwtHelper.decodeToken(response.access_token); //fpaz: decodifico el token para obener los roles y los claims que se hayan definido            
 
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, roles: tokenPayload.role, tipoUser: tokenPayload.app_usertype, empresaId: tokenPayload.empresaId, profesionalId: tokenPayload.profesionalId });
+            localStorageService.set('authorizationData', { token: response.access_token, idUsuarioLogueado: tokenPayload.nameid, userName: loginData.userName, roles: tokenPayload.role, tipoUser: tokenPayload.app_usertype, empresaId: tokenPayload.empresaId, profesionalId: tokenPayload.profesionalId });
 
             //fpaz: seteo en el servicio las credenciales del usuario logueado, para que pueda acceder a esta info desde cualquier parte de la app usando la funcion authSvc.authentication
             // que devuelve todo el objeto con la info del usuario logueado
             _authentication.isAuth = true;
+            _authentication.idUsuarioLogueado = tokenPayload.nameid;
             _authentication.userName = loginData.userName;
             _authentication.tipoUser = tokenPayload.app_usertype;
             _authentication.roles = tokenPayload.role;                        
@@ -99,6 +101,7 @@
         localStorageService.remove('authorizationData'); //para hacer el logout solamente remuevo del storage del cliente el token obtenido
 
         _authentication.isAuth = false;
+        _authentication.idUsuarioLogueado = "";
         _authentication.userName = "";
         _authentication.tipoUser = "";
         _authentication.roles = [];        
@@ -116,6 +119,7 @@
         var authData = localStorageService.get('authorizationData');
         if (authData) {
             _authentication.isAuth = true;
+            _authentication.idUsuarioLogueado = authData.idUsuarioLogueado;
             _authentication.userName = authData.userName;
             _authentication.roles = authData.roles;
             _authentication.tipoUser = authData.tipoUser;

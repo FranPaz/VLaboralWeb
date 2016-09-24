@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
-    , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF,authSvc //fpaz: definicion de data factorys
+    , rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
     , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas,infoProfesional//fpaz: definicion de parametros de entrada    
     ) {
 
@@ -141,7 +141,7 @@
     //#endregion
 
 
-    //Region kikexp: dispara el modal de nueva experiencia
+    //#region kikexp: dispara el modal de nueva experiencia
     $scope.nuevaExperiencia = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
@@ -151,16 +151,22 @@
             clickOutsideToClose: true,            
             fullscreen: useFullScreen,
             resolve: {
-                experienciasLaboralesDF:'experienciasLaboralesDF',
+                experienciasLaboralesDF: 'experienciasLaboralesDF',
+                listEmpresas: function (empresasDF) {
+                    return empresasDF.getEmpresas();
+                },
                 loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
                 }]
             }
         })
+        .then(function (nuevaExperiencia) {
+            $scope.profesional.ExperienciasLaborales.push(nuevaExperiencia);
+        });
     }
-    //#endRegion
+    //#endregion
 
-    //Region kikexp: dispara el modal de nuevo curso o certificacion
+    //#region kikexp: dispara el modal de nuevo curso o certificacion
     $scope.nuevoCurso = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
@@ -177,9 +183,9 @@
             }
         })
     }
-    //#endRegion
+    //#endregion
 
-    //Region kikexp: dispara el modal de nuevo Idioma
+    //#region kikexp: dispara el modal de nuevo Idioma
     $scope.nuevoIdioma = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
@@ -196,9 +202,9 @@
             }
         })
     }
-    //#endRegion
+    //#endregion
 
-    //Region kikexp: dispara el modal de nueva educacion
+    //#region kikexp: dispara el modal de nueva educacion
     $scope.nuevaEducacion = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
@@ -220,7 +226,7 @@
         //    //$scope.oferta.EtapasOferta = nuevasEtapas;
         //});
     }
-    //#endRegion
+    //#endregion
 
 
 });
