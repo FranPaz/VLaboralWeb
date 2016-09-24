@@ -70,6 +70,22 @@
         return deferred.promise;
     }
     //endregion
+
+    //#region sluna: Pasa la oferta a la siguiente etapa
+    var _postOfertaPasarSiguienteEtapa = function (prmIdOferta) {
+        var deferred = $q.defer();
+        $http.post(urlApi + 'api/Ofertas/PostOfertaPasarSiguienteEtapa', {
+            params: { id: prmIdOferta }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+    //endregion
     
 
     //#region iafar: area de asignacion de funciones a objeto
@@ -77,6 +93,7 @@
     ofertasDF.getOfertasProfesional = _getOfertasProfesional;
     ofertasDF.postOferta = _postOferta;
     ofertasDF.getOferta = _getOferta;
+    ofertasDF.postOfertaPasarSiguienteEtapa = _postOfertaPasarSiguienteEtapa
     //#endregion
 
 
