@@ -1,0 +1,45 @@
+﻿<md-dialog layout="column" flex="70" layout-padding>
+    <md-toolbar style="background-color:#42A5F5">
+        <div class="md-toolbar-tools"><h3 class="md-title">Nuevo Curso/Certificación</h3></div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div layout="row">
+            <md-input-container>
+                <label>Lugar</label>
+                <input ng-model="curso.LugarEstudio" />
+            </md-input-container>
+            <md-input-container>
+                <label>Titulo obtenido</label>
+                <input ng-model="curso.Titulacion" />
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container>
+                <label>Entidad</label>
+                <input ng-model="curso.Entidad" />
+            </md-input-container>
+            <md-input-container>
+                <label>Nota</label>
+                <input type="number" ng-model="curso.Nota" />
+            </md-input-container>
+        </div>
+        <div layout="column">
+            <md-input-container>
+                <label>Descripcion</label>
+                <textarea ng-model="curso.Descripcion"></textarea>
+            </md-input-container>
+        </div>
+        <div layout="row">
+
+            <md-datepicker md-placeholder="Fecha de Inicio" ng-model="curso.FechaInicio"></md-datepicker>
+
+
+            <md-datepicker md-placeholder="Fecha de Fin" ng-model="curso.FechaFin"></md-datepicker>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button>Cancelar</md-button>
+        <md-button>Guardar</md-button>
+
+    </md-dialog-actions>
+</md-dialog>
