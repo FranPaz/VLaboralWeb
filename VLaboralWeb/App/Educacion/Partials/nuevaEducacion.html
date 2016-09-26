@@ -1,6 +1,12 @@
 ﻿<md-dialog layout="column" flex="70" layout-padding>
     <md-toolbar style="background-color:#4CAF50">
-        <div class="md-toolbar-tools"><h3 class="md-title">Educación</h3></div>
+        <div class="md-toolbar-tools">
+            <h3 class="md-title">Nueva Formacion Educativa</h3>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa fa-times"></md-icon>
+            </md-button>
+        </div>       
     </md-toolbar>
     <md-dialog-content>
         <div layout="row">
@@ -15,10 +21,10 @@
         </div>
         <div layout="row">
             <md-input-container>
-                <label>Nivel</label>
-                <md-select ng-model="estudio.TipoNivelEstudio">
-                    <md-option ng-repeat="n in niveles">
-                        {{n.Nombre}}
+                <label>Nivel Educativo</label>
+                <md-select ng-model="estudio.TipoNivelEstudioId">
+                    <md-option ng-repeat="nivel in tiposNivelesEstudio" ng-value="nivel.Id">
+                        {{nivel.Nombre}}
                     </md-option>
                 </md-select>
             </md-input-container>
@@ -41,9 +47,13 @@
             <md-datepicker md-placeholder="Fecha de Fin" ng-model="estudio.FechaFin"></md-datepicker>
         </div>
     </md-dialog-content>
+    
     <md-dialog-actions>
-        <md-button>Cancelar</md-button>
-        <md-button>Guardar</md-button>
-
+        <md-button ng-click="saveEducacion(estudio)">
+            Agregar Educacion
+        </md-button>
+        <md-button ng-click="cancel()" class="md-primary">
+            Cancelar
+        </md-button>
     </md-dialog-actions>
 </md-dialog>

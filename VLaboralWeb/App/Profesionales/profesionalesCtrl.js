@@ -170,18 +170,20 @@
     $scope.nuevoCurso = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
-            controller: 'formacionesAcademicasCtrl',
-            templateUrl: 'App/FormacionesAcademicas/Partials/nuevoCurso.html',
+            controller: 'cursosCtrl',
+            templateUrl: 'App/Cursos/Partials/nuevoCurso.html',
             parent: angular.element(document.body),            
             clickOutsideToClose: true,            
             fullscreen: useFullScreen,
-            resolve: {
-                formacionesAcademicasDF: 'formacionesAcademicasDF',
-                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(['App/FormacionesAcademicas/formacionesAcademicasCtrl.js']);
+            resolve: {                
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Cursos/cursosCtrl.js']);
                 }]
             }
         })
+        .then(function (nuevoCurso) {
+            $scope.profesional.Cursos.push(nuevoCurso);
+        });
     }
     //#endregion
 
@@ -189,18 +191,27 @@
     $scope.nuevoIdioma = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
-            controller: 'formacionesAcademicasCtrl',
-            templateUrl: 'App/FormacionesAcademicas/Partials/nuevoIdioma.html',
+            controller: 'idiomasCtrl',
+            templateUrl: 'App/Idiomas/Partials/nuevoIdiomaConocido.html',
             parent: angular.element(document.body),            
             clickOutsideToClose: true,            
             fullscreen: useFullScreen,
             resolve: {
-                formacionesAcademicasDF: 'formacionesAcademicasDF',
-                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(['App/FormacionesAcademicas/formacionesAcademicasCtrl.js']);
+                idiomasDF: 'idiomasDF',
+                listIdiomas: function (idiomasDF) {
+                    return idiomasDF.getIdiomas();
+                },                
+                listCompetenciasIdioma: function (idiomasDF) {
+                    return idiomasDF.getCompetencias();
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Idiomas/idiomasCtrl.js']);
                 }]
             }
         })
+        .then(function (nuevoIdioma) {
+            $scope.profesional.IdiomasConocidos.push(nuevoIdioma);
+        });
     }
     //#endregion
 
@@ -208,23 +219,25 @@
     $scope.nuevaEducacion = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
-            controller: 'formacionesAcademicasCtrl',
-            templateUrl: 'App/FormacionesAcademicas/Partials/nuevaEducacion.html',
+            controller: 'educacionCtrl',
+            templateUrl: 'App/Educacion/Partials/nuevaEducacion.html',
             parent: angular.element(document.body),
             //targetEvent: ev,
-            clickOutsideToClose: true,
-            //fullscreen: true,
+            clickOutsideToClose: true,           
             fullscreen: useFullScreen,
             resolve: {
-                formacionesAcademicasDF: 'formacionesAcademicasDF',
-                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(['App/FormacionesAcademicas/formacionesAcademicasCtrl.js']);
+                tiposNivEstudioDF: 'tiposNivEstudioDF',
+                listTiposNivelesEstudio: function (tiposNivEstudioDF) {
+                    return tiposNivEstudioDF.getTiposNivelEstudio();
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Educacion/educacionCtrl.js']);
                 }]
             }
         })
-        //.then(function () {
-        //    //$scope.oferta.EtapasOferta = nuevasEtapas;
-        //});
+        .then(function (nuevaEducacion) {
+            $scope.profesional.Educaciones.push(nuevaEducacion);
+        });
     }
     //#endregion
 

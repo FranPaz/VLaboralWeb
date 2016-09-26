@@ -176,7 +176,13 @@
                         <div class="md-toolbar-tools" style="background-color:#42A5F5"><h3 class="md-title">Cursos y Certificaciones</h3></div>
                     </md-toolbar>
                     <md-card-content>
-
+                        <ul>
+                            <li ng-repeat="curso in profesional.Cursos">
+                                Curso: {{curso.Titulacion}} -Entidad Certificante: {{curso.EntidadCertificante}}
+                                <br />
+                                Descripcion: {{curso.Descripcion}}
+                            </li>
+                        </ul>
                     </md-card-content>
                     <md-button ng-click="nuevoCurso()"> Agregar +</md-button>
                 </md-card>
@@ -186,7 +192,11 @@
                         <div class="md-toolbar-tools" style="background-color:#FFB300"><h3 class="md-title">Idiomas</h3></div>
                     </md-toolbar>
                     <md-card-content>
-
+                        <ul>
+                            <li ng-repeat="idiomaConocido in profesional.IdiomasConocidos">
+                                Idioma: {{idiomaConocido.Idioma.Nombre}} - Nivel de Competencia: {{idiomaConocido.CompetenciaIdioma.Nombre}}                                
+                            </li>
+                        </ul>
                     </md-card-content>
                     <md-button ng-click="nuevoIdioma()"> Agregar +</md-button>
                 </md-card>
@@ -196,7 +206,15 @@
                         <div class="md-toolbar-tools" style="background-color:#4CAF50"><h3 class="md-title">Educación</h3></div>
                     </md-toolbar>
                     <md-card-content>
-
+                        <ul>
+                            <li ng-repeat="educ in profesional.Educaciones">
+                                {{educ.LugarEstudio}}
+                                <br />
+                                Titulo: {{educ.Titulacion}} 
+                                <br />
+                                Nivel de Estudio: {{educ.TipoNivelEstudio.Nombre}}
+                            </li>
+                        </ul>
                     </md-card-content>
                     <md-button ng-click="nuevaEducacion()"> Agregar +</md-button>
                 </md-card>
