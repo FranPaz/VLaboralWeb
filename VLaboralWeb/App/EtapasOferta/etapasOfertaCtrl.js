@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter //fpaz: definicion de inyectores de dependencias
-    , listadoTiposEtapas, etapasCargadas, etapaDetalle //fpaz: definicion de parametros de entrada 
+    , listadoTiposEtapas, etapasCargadas, etapaDetalle,postulantesDF //fpaz: definicion de parametros de entrada 
     ) {
 
     //#region fpaz: Inicializacion de variables de scope
@@ -61,6 +61,8 @@
     $scope.guardarPostulantes = function () {
         resultadoPostulaciones.PuestosEtapaOfertaId = $scope.etapaDetalle.Oferta.PuestosEtapaOferta[1].Postulaciones[1].PuestosEtapaOfertaId;
         resultadoPostulaciones.Postulaciones = $scope.selectPostulantes;
+
+        postulantesDF.putPostulacion(resultadoPostulaciones.Postulaciones, resultadoPostulaciones.PuestosEtapaOfertaId);
 
     }
 
