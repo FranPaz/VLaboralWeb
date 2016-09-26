@@ -1,6 +1,12 @@
 ﻿<md-dialog aria-label="Agregar Experiencia" flex="70" layout-padding>
-    <md-toolbar style="background-color:#00C853">
-        <div class="md-toolbar-tools"><h3 class="md-title">Nueva Experiencia</h3></div>
+    <md-toolbar  style="background-color:#00C853">
+        <div class="md-toolbar-tools">
+            <h3 class="md-title">Nueva Experiencia</h3>   
+            <span flex></span>         
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa fa-times"></md-icon>
+            </md-button>
+        </div>        
     </md-toolbar>     
     <md-dialog-content>
         <div layout="column">
@@ -15,10 +21,12 @@
                 </md-input-container>
             </div>
             <div flex>
-                <md-input-container>
-                    <label>Empresa</label>
-                    <input ng-model="exp.EmpresaExterna" />
-                </md-input-container>
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" 
+                                 md-items="item in empresas" md-item-text="item.NombreFantasia" md-floating-label="Nombre de la Empresa">
+                    <md-item-template>
+                        <span md-highlight-text="searchText">{{item.NombreFantasia}}</span>
+                    </md-item-template>                    
+                </md-autocomplete>
             </div>
             <div flex>
                 <md-input-container>
@@ -31,11 +39,15 @@
                 <md-datepicker ng-model="exp.PeriodoDesde" md-placeholder="Desde"></md-datepicker>
                 <md-datepicker ng-model="exp.PeriodoHasta" md-placeholder="Hasta"></md-datepicker>
             </div>
-        </div>
-        <md-dialog-actions>
-            <md-button>Cancelar</md-button>
-            <md-button>Guardar</md-button>
-
-        </md-dialog-actions>
+        </div>        
     </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button ng-click="saveExp(exp)">
+            Agregar Experiencia
+        </md-button>
+        <md-button ng-click="cancel()" class="md-primary">
+            Cancelar
+        </md-button>
+    </md-dialog-actions>
 </md-dialog>

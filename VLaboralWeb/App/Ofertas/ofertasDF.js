@@ -93,7 +93,7 @@
     ofertasDF.getOfertasProfesional = _getOfertasProfesional;
     ofertasDF.postOferta = _postOferta;
     ofertasDF.getOferta = _getOferta;
-    ofertasDF.postOfertaPasarSiguienteEtapa = _postOfertaPasarSiguienteEtapa
+    ofertasDF.postOfertaPasarSiguienteEtapa = _postOfertaPasarSiguienteEtapa;
     //#endregion
 
 

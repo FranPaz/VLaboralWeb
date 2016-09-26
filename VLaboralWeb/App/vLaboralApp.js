@@ -356,6 +356,7 @@
             //#region Perfil del Profesional
             .state('profesional.perfil', {
                 url: '/perfil/:idPro',
+
                 views: {
                     'contenido@profesional': {
                         templateUrl: '/App/Profesionales/Partials/profesionalPerfil.html',
