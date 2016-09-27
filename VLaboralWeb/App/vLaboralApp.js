@@ -275,6 +275,7 @@
                                 return etapasOfertaDF.getEtapaOferta(prmIdEtapa);
                             },
                             postulantesDF: 'postulantesDF',
+                            ofertasDF: 'ofertasDF',
                             //ofertaDetalle: function (ofertasDF, $stateParams) {
                             //    var prmIdOferta = $stateParams.idOferta;
                             //    return ofertasDF.getOferta(prmIdOferta);
