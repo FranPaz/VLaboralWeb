@@ -58,6 +58,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Cursos\cursosCtrl.js" />
+    <Content Include="App\Cursos\cursosDF.js" />
+    <Content Include="App\Cursos\Partials\nuevoCurso.html" />
     <Content Include="App\DashboardEmpresa\dashboardEmpresaCtrl.js" />
     <Content Include="App\DashboardEmpresa\Partials\empresaDashboard.html" />
     <Content Include="App\DashboardEmpresa\Partials\empresaContenido.html" />
@@ -73,17 +76,22 @@
     <Content Include="App\EtapasOferta\Partials\etapaOfertaAdd.html" />
     <Content Include="App\ExperienciasLaborales\experienciasLaboralesCtrl.js" />
     <Content Include="App\ExperienciasLaborales\experienciasLaboralesDF.js" />
-    <Content Include="App\FormacionesAcademicas\formacionesAcademicasCtrl.js" />
-    <Content Include="App\FormacionesAcademicas\formacionesAcademicasDF.js" />
+    <Content Include="App\ExperienciasLaborales\Partials\nuevaExperiencia.html" />
+    <Content Include="App\Educacion\educacionCtrl.js" />
+    <Content Include="App\Educacion\educacionDF.js" />
+    <Content Include="App\Educacion\Partials\nuevaEducacion.html" />
+    <Content Include="App\Idiomas\Partials\nuevoIdiomaConocido.html" />
     <Content Include="App\Habilidades\habilidadesCtrl.js" />
     <Content Include="App\Habilidades\habilidadesDF.js" />
     <Content Include="App\Home\Partials\home.html" />
     <Content Include="App\Home\Partials\homeMenu.html" />
     <Content Include="App\Home\Partials\homeInfo.html" />
+    <Content Include="App\Idiomas\IdiomasCtrl.js" />
     <Content Include="App\Idiomas\IdiomasDF.js" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
+    <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
     <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
@@ -98,6 +106,8 @@
     <Content Include="App\Rubros\rubrosDF.js" />
     <Content Include="App\Seguridad\Partials\registroEmpresa.html" />
     <Content Include="App\Seguridad\Partials\registroProfesional.html" />
+    <Content Include="App\TiposNivelesEstudio\tiposNivEstudioCtrl.js" />
+    <Content Include="App\TiposNivelesEstudio\tiposNivEstudioDF.js" />
     <Content Include="App\TiposContrato\tiposContratoCtrl.js" />
     <Content Include="App\TiposContrato\tiposContratoDF.js" />
     <Content Include="App\TiposDisponibilidad\tiposDisponibilidadCtrl.js" />
@@ -483,15 +493,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\ExperienciasLaborales\Partials\" />
-    <Folder Include="App\FormacionesAcademicas\Partials\" />
     <Folder Include="App\Habilidades\Partials\" />
-    <Folder Include="App\Idiomas\Partials\" />
-    <Folder Include="App\Postulantes\Partials\" />
     <Folder Include="App\Requisitos\Partials\" />
     <Folder Include="App\TiposContrato\Partials\" />
     <Folder Include="App\TiposDisponibilidad\Partials\" />
     <Folder Include="App\TiposEtapasOferta\Partials\" />
+    <Folder Include="App\TiposNivelesEstudio\Partials\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

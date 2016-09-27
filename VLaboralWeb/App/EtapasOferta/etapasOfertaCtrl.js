@@ -57,11 +57,51 @@
 
     //#endregion
     
-    //#region detalle de profesional postulante
-    $scope.mostrarDetalle = function () {
-        alert("Detalle de profesional");
+    //#region kikepx: modal con el detalle del perfil del postulante
+    $scope.postulanteDetalle= function (profesionalId) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'profesionalesCtrl',
+            templateUrl: 'App/Postulantes/Partials/postulanteDetalle.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                rubrosDF: 'rubrosDF',
+                habilidadesDF: 'habilidadesDF',
+                tiposIdentificacionDF: 'tiposIdentificacionDF',
+                listadoRubros: function () {
+                    return { value: [] };
+                },
+                listadoHabilidades: function () {
+                    return { value: [] };
+                },
+                listadoIdentificacionPro: function () {
+                    return { value: [] };
+                },
+                profesionalesDF: 'profesionalesDF',
+                infoProfesional: function (profesionalesDF) {
+                    
+                    return profesionalesDF.getProfesional(profesionalId);
+                },
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                }]
+            }
+        })
+        .then(function (nuevasEtapas) {
+            $scope.oferta.EtapasOferta = nuevasEtapas;
+        });
     }
     //#endregion
+
 
 });
 

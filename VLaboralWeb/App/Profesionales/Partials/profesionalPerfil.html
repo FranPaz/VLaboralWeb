@@ -19,7 +19,7 @@
                     <input ng-model="profesional.Apellido" class="inp">
                 </md-input-container>
 
-                <h3>Seleccione Fecha de Nacimiento</h3><md-datepicker ng-model="profesional.FechaNac" md-placeholder="Ingrese la fecha"></md-datepicker>
+                <!--<h3>Seleccione Fecha de Nacimiento</h3><md-datepicker ng-model="profesional.FechaNac" md-placeholder="Ingrese la fecha"></md-datepicker>-->
                 <br />
                 <br />
 
@@ -149,7 +149,79 @@
                 <textarea ng-model="profesional.DescripcionCurricular" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Ingrese una descripcion de la oferta.."></textarea>
                 <br>
 
+                <!--#region de skills en perfil-->
 
+                <!--#region Experiencias Laborales-->
+                <md-card>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools" style="background-color:#00C853"><h3 class="md-title">Experiencias laborales</h3></div>
+                    </md-toolbar>                    
+                   
+                    <md-card-content>
+                        <ul>
+                            <li ng-repeat="exp in profesional.ExperienciasLaborales">
+                                Puesto: {{exp.Puesto}} - Empresa: {{exp.EmpresaId == null ?  exp.EmpresaExterna :  exp.Empresa.NombreFantasia}}
+                                <br />
+                                Descripcion del Puesto: {{exp.Descripcion}}
+                                <hr />
+                            </li>
+                        </ul>
+                    </md-card-content>
+                    <md-button ng-click="nuevaExperiencia()"> Agregar +</md-button>    
+                </md-card>
+                <!--#endregion-->
+                
+                <md-card>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools" style="background-color:#42A5F5"><h3 class="md-title">Cursos y Certificaciones</h3></div>
+                    </md-toolbar>
+                    <md-card-content>
+                        <ul>
+                            <li ng-repeat="curso in profesional.Cursos">
+                                Curso: {{curso.Titulacion}} -Entidad Certificante: {{curso.EntidadCertificante}}
+                                <br />
+                                Descripcion: {{curso.Descripcion}}
+                            </li>
+                        </ul>
+                    </md-card-content>
+                    <md-button ng-click="nuevoCurso()"> Agregar +</md-button>
+                </md-card>
+
+                <md-card>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools" style="background-color:#FFB300"><h3 class="md-title">Idiomas</h3></div>
+                    </md-toolbar>
+                    <md-card-content>
+                        <ul>
+                            <li ng-repeat="idiomaConocido in profesional.IdiomasConocidos">
+                                Idioma: {{idiomaConocido.Idioma.Nombre}} - Nivel de Competencia: {{idiomaConocido.CompetenciaIdioma.Nombre}}                                
+                            </li>
+                        </ul>
+                    </md-card-content>
+                    <md-button ng-click="nuevoIdioma()"> Agregar +</md-button>
+                </md-card>
+
+                <md-card>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools" style="background-color:#4CAF50"><h3 class="md-title">Educación</h3></div>
+                    </md-toolbar>
+                    <md-card-content>
+                        <ul>
+                            <li ng-repeat="educ in profesional.Educaciones">
+                                {{educ.LugarEstudio}}
+                                <br />
+                                Titulo: {{educ.Titulacion}} 
+                                <br />
+                                Nivel de Estudio: {{educ.TipoNivelEstudio.Nombre}}
+                            </li>
+                        </ul>
+                    </md-card-content>
+                    <md-button ng-click="nuevaEducacion()"> Agregar +</md-button>
+                </md-card>
+
+                <!--#endregion-->
+
+                <!--#region Seccion de Habilidades-->
                 <h3 class="md-title">Seleccione sus habilidades</h3>
                 <md-chips ng-model="chipsHabilidad" 
                           name="chipContainer" 
@@ -167,7 +239,7 @@
                     </md-chip-template>
 
                 </md-chips>
-
+                <!--#endregion-->
 
                 <br>
 

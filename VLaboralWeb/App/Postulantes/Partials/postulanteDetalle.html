@@ -1,0 +1,47 @@
+﻿<md-dialog>
+    <md-dialog-content>
+        <md-container>
+            <h1>Perfil del Profesional</h1>
+            <md-whiteframe class="md-whiteframe-1dp wf" flex="100" layout layout-align="center center">
+                <form>
+                    <md-input-container class="ic_p">
+                        <label class="lbl">Nombre</label>
+                        <input ng-model="profesional.Nombre" class="inp" readonly>
+                    </md-input-container>
+
+                    <md-input-container class="ic_p">
+                        <label class="lbl">Apellido</label>
+                        <input ng-model="profesional.Apellido" class="inp" readonly>
+                    </md-input-container>
+
+                    <!--<h3>Seleccione Fecha de Nacimiento</h3><md-datepicker ng-model="profesional.FechaNac" md-placeholder="Ingrese la fecha"></md-datepicker>-->
+                    <br />
+                    <br />
+
+                    <!--#region iafar: deberia ir la seleccion de tipo de identificacion-->
+                    <md-input-container class="ic_p">
+                        <label class="lbl">DNI</label>
+                        <input ng-model="profesional.dni" class="inp" readonly>
+                    </md-input-container>
+
+                    <md-input-container class="ic_p">
+                        <label class="lbl">CUIT</label>
+                        <input ng-model="cuit_pd" class="inp" readonly>
+                    </md-input-container>
+                    <!-- #endregion -->
+
+                    <md-input-container class="ic_p">
+                        <label class="lbl">Nacionalidad</label>
+                        <input ng-model="profesional.Nacionalidad" class="inp" readonly>
+                    </md-input-container>
+
+                    <textarea ng-model="profesional.ObjetivoProfesional" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Objetivo Profesional.."></textarea>
+                    <br>
+
+                    <textarea ng-model="profesional.DescripcionCurricular" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Descripcion Curricular.."></textarea>
+                    <br>
+                </form>
+            </md-whiteframe>
+        </md-container>
+    </md-dialog-content>
+</md-dialog>

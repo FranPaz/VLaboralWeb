@@ -1,5 +1,5 @@
-﻿vLaboralApp.controller('profesionalesCtrl', function ($scope //fpaz: definicion de inyectores de dependencias
-    , rubrosDF,  habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF,authSvc //fpaz: definicion de data factorys
+﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
+    , rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
     , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas,infoProfesional//fpaz: definicion de parametros de entrada    
     ) {
 
@@ -139,4 +139,107 @@
     }
     $scope.opcionAgregar = false; //iafar: para mostrar el menu para agregar un nuevo tipo de Id
     //#endregion
+
+
+    //#region kikexp: dispara el modal de nueva experiencia
+    $scope.nuevaExperiencia = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'experienciasLaboralesCtrl',
+            templateUrl: 'App/ExperienciasLaborales/Partials/nuevaExperiencia.html',
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {
+                experienciasLaboralesDF: 'experienciasLaboralesDF',
+                listEmpresas: function (empresasDF) {
+                    return empresasDF.getEmpresas();
+                },
+                loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+                }]
+            }
+        })
+        .then(function (nuevaExperiencia) {
+            $scope.profesional.ExperienciasLaborales.push(nuevaExperiencia);
+        });
+    }
+    //#endregion
+
+    //#region kikexp: dispara el modal de nuevo curso o certificacion
+    $scope.nuevoCurso = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'cursosCtrl',
+            templateUrl: 'App/Cursos/Partials/nuevoCurso.html',
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {                
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Cursos/cursosCtrl.js']);
+                }]
+            }
+        })
+        .then(function (nuevoCurso) {
+            $scope.profesional.Cursos.push(nuevoCurso);
+        });
+    }
+    //#endregion
+
+    //#region kikexp: dispara el modal de nuevo Idioma
+    $scope.nuevoIdioma = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'idiomasCtrl',
+            templateUrl: 'App/Idiomas/Partials/nuevoIdiomaConocido.html',
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,            
+            fullscreen: useFullScreen,
+            resolve: {
+                idiomasDF: 'idiomasDF',
+                listIdiomas: function (idiomasDF) {
+                    return idiomasDF.getIdiomas();
+                },                
+                listCompetenciasIdioma: function (idiomasDF) {
+                    return idiomasDF.getCompetencias();
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Idiomas/idiomasCtrl.js']);
+                }]
+            }
+        })
+        .then(function (nuevoIdioma) {
+            $scope.profesional.IdiomasConocidos.push(nuevoIdioma);
+        });
+    }
+    //#endregion
+
+    //#region kikexp: dispara el modal de nueva educacion
+    $scope.nuevaEducacion = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'educacionCtrl',
+            templateUrl: 'App/Educacion/Partials/nuevaEducacion.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,           
+            fullscreen: useFullScreen,
+            resolve: {
+                tiposNivEstudioDF: 'tiposNivEstudioDF',
+                listTiposNivelesEstudio: function (tiposNivEstudioDF) {
+                    return tiposNivEstudioDF.getTiposNivelEstudio();
+                },
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Educacion/educacionCtrl.js']);
+                }]
+            }
+        })
+        .then(function (nuevaEducacion) {
+            $scope.profesional.Educaciones.push(nuevaEducacion);
+        });
+    }
+    //#endregion
+
+
 });
