@@ -257,12 +257,20 @@
                 }
             })
             .state('empresa.ofertas.etapaDetalle', {
-                url: '/detalleEtapa/:idEtapa',
+                url: '/detalleEtapa/:idEtapa', 
+                params: {
+                    idEtapa: null,
+                    NombreOferta: null
+                },
                 views: {
                     'contenido@empresa': {
                         templateUrl: '/App/EtapasOferta/Partials/etapaOferta.html',
                         controller: 'etapasOfertaCtrl',
+                       
                         resolve: {
+                            //NombreOferta: function ($stateParams) {
+                            //    return $stateParams.NombreOferta.toString();
+                            //},
                             etapasOfertaDF: 'etapasOfertaDF',
                             listadoTiposEtapas: function () {
                                 return { value: [] };

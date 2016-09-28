@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="desc">                                    
                                     <p>{{etapa.TipoEtapa.Descripcion}}</p>
-                                    <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
+                                    <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id, NombreOferta: ofertaDetalle.Nombre})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
                                 </div>
                             </div>
                         </li>
