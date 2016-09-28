@@ -3,8 +3,8 @@
     var configSvc = {};
 
     //#region Configuracion del Url del Api para cambiar entre entornos de produccion y de desarrollo
-    var _urlApi = "http://localhost:32069/"; //fpaz: desarrollo
-    //var _urlApi = "http://vlaboralbe.azurewebsites.net/"; //fpaz: produccion
+    //var _urlApi = "http://localhost:32069/"; //fpaz: desarrollo
+    var _urlApi = "http://vlaboralbe.azurewebsites.net/"; //fpaz: produccion
 
     //#endregion
 
