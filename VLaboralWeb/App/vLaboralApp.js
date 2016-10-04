@@ -111,6 +111,31 @@
                 }
             }
         })
+            //#region notificaciones de la empresa
+            .state('empresa.notificaciones', {
+                url: '/notificaciones',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Notificaciones/Partials/centroNotifiaciones.html',
+                        controller: 'notificacionesCtrl',
+                        resolve: {
+                            notificacionesDF: 'notificacionesDF',
+                            //infoEmpresa: function (empresasDF, $stateParams) {
+                            //    var idEmpresa = $stateParams.idEmpresa;
+                            //    return empresasDF.getEmpresa(idEmpresa);
+                            //},
+                            //listadoOfertas: function () {
+                            //    return { value: [] };
+                            //},
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+
+            })
+            //#endregion
 
             //#region Perfil de la empresa
             .state('empresa.perfil', {
