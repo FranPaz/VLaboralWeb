@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('dashboardEmpresaCtrl', function ($scope, $location, authSvc) {
+﻿vLaboralApp.controller('dashboardEmpresaCtrl', function ($scope, $location, authSvc, notificacionesSvc) {
     $scope.logOut = function () {        
         authSvc.logOut();
         //alert("Deslogueado")
@@ -7,4 +7,5 @@
     }
 
     $scope.authentication = authSvc.authentication;
+    $scope.notificaciones = notificacionesSvc.obtenerNotificaciones;
 });

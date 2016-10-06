@@ -90,6 +90,7 @@
     <Content Include="App\Idiomas\IdiomasDF.js" />
     <Content Include="App\Notificaciones\notificacionesCtrl.js" />
     <Content Include="App\Notificaciones\notificacionesDF.js" />
+    <Content Include="App\Notificaciones\notificacionesSvc.js" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
@@ -321,6 +322,8 @@
     <Content Include="libs\jquery\waves\dist\waves.js" />
     <Content Include="libs\jquery\waves\dist\waves.min.css" />
     <Content Include="libs\jquery\waves\dist\waves.min.js" />
+    <Content Include="scripts\angular-signalr-hub.js" />
+    <Content Include="scripts\angular-signalr-hub.min.js" />
     <Content Include="scripts\controllers\largeLoad.json" />
     <Content Include="scripts\controllers\upload.php" />
     <Content Include="libs\angular\.DS_Store" />
@@ -354,6 +357,7 @@
     <Content Include="fonts\fonts\icomoon.woff" />
     <Content Include="fonts\selection.json" />
     <Content Include="css\styles.css.map" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\vlaboralweb.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -416,6 +420,11 @@
     <Content Include="scripts\directives\ui-scroll.js" />
     <Content Include="scripts\directives\ui-toggle.js" />
     <Content Include="scripts\filters\fromnow.js" />
+    <None Include="scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="scripts\jquery-1.6.4.js" />
+    <Content Include="scripts\jquery-1.6.4.min.js" />
+    <Content Include="scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="scripts\services\ngstore.js" />
     <Content Include="scripts\services\ui-load.js" />
     <Content Include="styles\angular-input-stars.css" />

@@ -32,8 +32,13 @@
             <li><span class="icon-exit icono_de"></span></li>
         </a>                
     </ul>
+    <h1>Seccion de Notificaciones</h1>
+    <ul id="discussion">
+        <li ng-repeat="n in notificaciones.all"><strong>{{n.Mensaje}} - {{n.TipoNotificacionId}}</li>
+    </ul>
 </nav>
 <!--<aside ui-view="menu@"></aside>-->
+
 
 <div ui-view="contenido@"></div>
 
