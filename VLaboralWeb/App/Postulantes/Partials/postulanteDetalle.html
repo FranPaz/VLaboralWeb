@@ -1,47 +1,220 @@
-﻿<md-dialog>
+﻿<md-dialog layout="column" flex="70" layout-padding>
     <md-dialog-content>
-        <md-container>
-            <h1>Perfil del Profesional</h1>
-            <md-whiteframe class="md-whiteframe-1dp wf" flex="100" layout layout-align="center center">
-                <form>
-                    <md-input-container class="ic_p">
-                        <label class="lbl">Nombre</label>
-                        <input ng-model="profesional.Nombre" class="inp" readonly>
-                    </md-input-container>
+        <h1>Perfil del Profesional</h1>
+        <md-container>            
+            <md-card flex="100" layout layout-align="center center">
+                <md-card-content flex>
+                    <!--#region Datos basicos-->
+                    <div flex class="ic_p">
+                        <h3>Apellido y Nombre</h3>
+                        <br />
+                        <p>{{profesional.Apellido}}, {{profesional.Nombre}}</p>                       
+                        <br />
+                        <hr />
+                        <br />
+                        <!--<input ng-model="profesional.Nombre" class="inp" readonly>-->
+                    </div>
 
-                    <md-input-container class="ic_p">
-                        <label class="lbl">Apellido</label>
-                        <input ng-model="profesional.Apellido" class="inp" readonly>
-                    </md-input-container>
+                    <div flex layout="row" class="ic_p">
+                        <div flex>
+                            <h4>Dni</h4>
+                            <br />
+                            <p>{{profesional.Dni}}</p>
+                            <br />
+                            <hr />
+                        </div>
+                        <div flex>
+                            <h4>Cuil</h4>
+                            <br />
+                            <p>{{profesional.Cuil}}</p>
+                            <br />
+                            <hr />
+                        </div>
+                    </div>
 
-                    <!--<h3>Seleccione Fecha de Nacimiento</h3><md-datepicker ng-model="profesional.FechaNac" md-placeholder="Ingrese la fecha"></md-datepicker>-->
+                    <div flex>
+                        <h4>Fecha de Nacimiento</h4>
+                        <br />
+                        <p>{{profesional.FechaNac | date:'dd/MM/yyyy'}}</p>
+                        <br />
+                        <hr />
+                        <br />
+                    </div>
+
+                    <div flex>
+                        <h4>Domicilio</h4>
+                        <br />
+                        <p>{{profesional.Domicilio}}</p>
+                        <br />
+                        <hr />
+                        <br />
+                    </div>
+
+                    <div flex layout="row">
+                        <div flex>
+                            <h4>Sexo</h4>
+                            <br />
+                            <p>{{profesional.Sexo}}</p>
+                            <br />
+                            <hr />
+                        </div>
+                        <div flex>
+                            <h4>Nacionalidad</h4>
+                            <br />
+                            <p>{{profesional.Nacionalidad}}</p>
+                            <br />
+                            <hr />
+                        </div>
+
+                        <br />
+                    </div>
+                    <!--#endregion-->                    
                     <br />
                     <br />
+                    <!--#region Habilidades-->
+                    <div flex>
+                        <md-tabs class="md-accent">
+                            <md-tab>
+                                <md-tab-label>Habilidades</md-tab-label>
+                                <md-tab-body>
+                                    <md-list flex>
+                                        <md-list-item ng-repeat="h in profesional.Habilidades"><i>{{h.Nombre}}</i></md-list-item>
+                                    </md-list>
+                                </md-tab-body>
+                            </md-tab>
+                        </md-tabs>
 
-                    <!--#region iafar: deberia ir la seleccion de tipo de identificacion-->
-                    <md-input-container class="ic_p">
-                        <label class="lbl">DNI</label>
-                        <input ng-model="profesional.dni" class="inp" readonly>
-                    </md-input-container>
+                    </div>
+                    <!--#endregion-->
+                    
+                    <!--#region Descripcion curricular y objetivo profesional-->
+                    <div flex>
+                        <h3>Descripción curricular</h3>
+                        <br />
+                        <p>{{profesional.DescripcionCurricular}}</p>
+                        <br />
+                        <hr />
+                        <br />
+                    </div>
 
-                    <md-input-container class="ic_p">
-                        <label class="lbl">CUIT</label>
-                        <input ng-model="cuit_pd" class="inp" readonly>
-                    </md-input-container>
-                    <!-- #endregion -->
+                    <div flex>
+                        <h3>Objetivo Profesional</h3>
+                        <br />
+                        <p>{{profesional.ObjetivoProfesional}}</p>
+                        <br />
+                        <hr />
+                        <br />
+                    </div>
+                    <!--#endregion-->
 
-                    <md-input-container class="ic_p">
-                        <label class="lbl">Nacionalidad</label>
-                        <input ng-model="profesional.Nacionalidad" class="inp" readonly>
-                    </md-input-container>
+                    <!--#region Subrubros-->
+                    <div flex>
+                        <md-tabs>
+                            <md-tab>
+                                <md-tab-label>Sub-rubros</md-tab-label>
+                                <md-tab-body>
+                                    <md-list flex>
+                                        <md-list flex>
+                                            <md-list-item ng-repeat="s in profesional.Subrubros">{{s.Nombre}}</md-list-item>
+                                        </md-list>
+                                    </md-list>
+                                </md-tab-body>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                    <!--#endregion-->
 
-                    <textarea ng-model="profesional.ObjetivoProfesional" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Objetivo Profesional.."></textarea>
-                    <br>
+                    <!--#region Experiencias laborales-->
+                    <div flex>
+                        <md-card>
+                            <md-toolbar style="background-color:#00C853">
+                                <div class="md-toolbar-tools">
+                                    <h3 class="md-title">Experiencias Laborales</h3>                                    
+                                </div>
+                            </md-toolbar>  
+                            <md-card-content>
+                                <md-list flex>
+                                    <md-list-item class="md-4-line"  ng-repeat="exp in profesional.ExperienciasLaborales">
+                                        <h3>Puesto:  {{exp.Puesto}}</h3>
+                                        <h4>Empresa: {{exp.EmpresaExterna}}</h4>
+                                        <p>Desde: {{exp.PeriodoDesde | date: 'dd/MM/yyyy'}}</p>
+                                        <p>Hasta: {{exp.PeriodoHasta | date: 'dd/MM/yyyy'}}</p>
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <!--#endregion-->
 
-                    <textarea ng-model="profesional.DescripcionCurricular" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Descripcion Curricular.."></textarea>
-                    <br>
-                </form>
-            </md-whiteframe>
+                    <!--#region Formacion Educativa-->
+                    <div flex>
+                        <md-card>
+                            <md-toolbar style="background-color:#4CAF50">
+                                <div class="md-toolbar-tools">
+                                    <h3 class="md-title">Formacion Educativa</h3>
+                                </div>
+                            </md-toolbar>
+                            <md-card-content>
+                                <md-list flex>
+                                    <md-list-item class="md-2-line" ng-repeat="ed in profesional.Educaciones">
+                                        <h3>Titulo:  {{ed.Titulacion}}</h3>
+                                        <h4>Empresa: {{ed.Lugar}}</h4>
+
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <!--#endregion-->
+
+                    <!--#region cursos e idiomas-->
+                    <div layout="row">
+                        <div flex>
+                            <md-card>
+                                <md-toolbar style="background-color:#42A5F5">
+                                    <div class="md-toolbar-tools">
+                                        <h3 class="md-title">Cursos y Certificaciones</h3>
+                                    </div>
+                                </md-toolbar>
+                                <md-card-content>
+                                    <md-list flex>
+                                        <md-list-item ng-repeat="cur in profesional.Cursos">
+                                            <h3>Titulo: {{cur.Titulacion}}</h3>
+                                            <h4>Institucion: {{cur.LugraEstudio}}</h4>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-card-content>
+                            </md-card>
+                            
+                            
+                        </div>
+                        <div flex>
+                            <md-card>
+                                <md-toolbar style="background-color:#FFB300">
+                                    <div class="md-toolbar-tools">
+                                        <h3 class="md-title">Idiomas</h3>                                        
+                                    </div>
+                                </md-toolbar>
+                                <md-card-content>
+                                    <md-list>
+                                        <md-list-item ng-repeat="i in profesional.IdiomasConocidos">
+                                            <h3>Idioma: {{i.Nombre}}</h3>
+                                            <h4>Nivel: {{i.Competencias.Nombre}}</h4>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-card-content>
+                            </md-card>
+                            
+                            
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                </md-card-content>
+                
+            </md-card>
         </md-container>
     </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="cancel()">Cerrar</md-button>
+    </md-dialog-actions>
 </md-dialog>

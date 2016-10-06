@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter, $stateParams //fpaz: definicion de inyectores de dependencias
-    , listadoTiposEtapas, etapasCargadas, etapaDetalle  //fpaz: definicion de parametros de entrada 
+    , listadoTiposEtapas, etapasCargadas, etapaDetalle,postulantesDF, ofertasDF //fpaz: definicion de parametros de entrada 
     ) {
 
     //#region fpaz: Inicializacion de variables de scope
@@ -57,6 +57,24 @@
 
     //#endregion
     
+    //#region objeto con el array con los profesionales que pasan a la siguiente etapa de manera parcial
+    $scope.guardarPostulantes = function () {
+        resultadoPostulaciones.PuestosEtapaOfertaId = $scope.etapaDetalle.Oferta.PuestosEtapaOferta[1].Postulaciones[1].PuestosEtapaOfertaId;
+        resultadoPostulaciones.Postulaciones = $scope.selectPostulantes;
+
+        postulantesDF.putPostulacion(resultadoPostulaciones.Postulaciones, resultadoPostulaciones.PuestosEtapaOfertaId);
+
+    }
+
+    //#endregion
+
+    //#region funcion que pasa la oferta a la siguiente etapa
+    $scope.pasarSiguienteEtapa = function (prmId) {
+        ofertasDF.postOfertaPasarSiguienteEtapa(prmId);
+
+    }
+    //#endRegion
+
     //#region kikepx: modal con el detalle del perfil del postulante
     $scope.postulanteDetalle= function (profesionalId) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;

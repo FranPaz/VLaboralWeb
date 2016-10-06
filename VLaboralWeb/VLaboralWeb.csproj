@@ -91,6 +91,7 @@
     <Content Include="App\Notificaciones\notificacionesCtrl.js" />
     <Content Include="App\Notificaciones\notificacionesDF.js" />
     <Content Include="App\Notificaciones\notificacionesSvc.js" />
+    <Content Include="App\Notificaciones\Partials\centroNotifiaciones.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
@@ -120,7 +121,6 @@
     <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="css\styles.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fonts\icomoon.svg" />
     <Content Include="fonts\style.css" />
     <Content Include="img\11.jpg" />
     <Content Include="img\13.jpg" />
