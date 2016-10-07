@@ -175,6 +175,8 @@
     <Content Include="libs\angular\angular-messages\1.5.0\angular-messages.min.js" />
     <Content Include="libs\angular\angular-messages\angular-messages.js" />
     <Content Include="libs\angular\angular-messages\angular-messages.min.js" />
+    <Content Include="libs\angular\angular-notification-icons\angular-notification-icons.css" />
+    <Content Include="libs\angular\angular-notification-icons\angular-notification-icons.js" />
     <Content Include="libs\angular\angular-resource\1.5.0\angular-resource.js" />
     <Content Include="libs\angular\angular-resource\1.5.0\angular-resource.min.js" />
     <Content Include="libs\angular\angular-resource\angular-resource.js" />
@@ -505,7 +507,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Habilidades\Partials\" />
-    <Folder Include="App\Notificaciones\Partials\" />
     <Folder Include="App\Requisitos\Partials\" />
     <Folder Include="App\TiposContrato\Partials\" />
     <Folder Include="App\TiposDisponibilidad\Partials\" />
