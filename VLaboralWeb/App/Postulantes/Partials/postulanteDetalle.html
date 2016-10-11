@@ -127,21 +127,28 @@
                     <!--#region Experiencias laborales-->
                     <div flex>
                         <md-card>
-                            <md-toolbar style="background-color:#00C853">
-                                <div class="md-toolbar-tools">
-                                    <h3 class="md-title">Experiencias Laborales</h3>                                    
-                                </div>
-                            </md-toolbar>  
+                            <md-toolbar>
+                                <div class="md-toolbar-tools" style="background-color:#00C853"><h3 class="md-title">Experiencias laborales</h3></div>
+                            </md-toolbar>
+
                             <md-card-content>
                                 <md-list flex>
-                                    <md-list-item class="md-4-line"  ng-repeat="exp in profesional.ExperienciasLaborales">
+                                    <md-list-item class="md-4-line" layout="column" ng-repeat="exp in profesional.ExperienciasLaborales">
+                                        <br />
                                         <h3>Puesto:  {{exp.Puesto}}</h3>
-                                        <h4>Empresa: {{exp.EmpresaExterna}}</h4>
+                                        <br />
+                                        <h4>Empresa: {{exp.EmpresaId == null ?  exp.EmpresaExterna :  exp.Empresa.NombreFantasia}}</h4>
+                                        <br />
                                         <p>Desde: {{exp.PeriodoDesde | date: 'dd/MM/yyyy'}}</p>
                                         <p>Hasta: {{exp.PeriodoHasta | date: 'dd/MM/yyyy'}}</p>
+                                        <br />
+                                        <p>Descripcion: {{exp.Descripcion}}</p>
+                                        <md-divider></md-divider>
+                                        <br />
                                     </md-list-item>
+
                                 </md-list>
-                            </md-card-content>
+                            </md-card-content>                                                        
                         </md-card>
                     </div>
                     <!--#endregion-->
@@ -149,60 +156,66 @@
                     <!--#region Formacion Educativa-->
                     <div flex>
                         <md-card>
-                            <md-toolbar style="background-color:#4CAF50">
-                                <div class="md-toolbar-tools">
-                                    <h3 class="md-title">Formacion Educativa</h3>
-                                </div>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools" style="background-color:#4CAF50"><h3 class="md-title">Educación</h3></div>
                             </md-toolbar>
                             <md-card-content>
                                 <md-list flex>
-                                    <md-list-item class="md-2-line" ng-repeat="ed in profesional.Educaciones">
+                                    <md-list-item class="md-2-line" layout="column" ng-repeat="ed in profesional.Educaciones">
+                                        <br />
                                         <h3>Titulo:  {{ed.Titulacion}}</h3>
-                                        <h4>Empresa: {{ed.Lugar}}</h4>
-
+                                        <br />
+                                        <h4>Lugar de Estudio: {{ed.LugarEstudio}}</h4>
+                                        <p>Nivel: {{ed.TipoNivelEstudio.Nombre}}</p>
+                                        <md-divider></md-divider>
+                                        <br />
                                     </md-list-item>
                                 </md-list>
-                            </md-card-content>
+                            </md-card-content>                            
                         </md-card>
                     </div>
                     <!--#endregion-->
 
-                    <!--#region cursos e idiomas-->
+                    <!--#region Cursos e Idiomas-->
                     <div layout="row">
                         <div flex>
                             <md-card>
-                                <md-toolbar style="background-color:#42A5F5">
-                                    <div class="md-toolbar-tools">
-                                        <h3 class="md-title">Cursos y Certificaciones</h3>
-                                    </div>
+                                <md-toolbar>
+                                    <div class="md-toolbar-tools" style="background-color:#42A5F5"><h3 class="md-title">Cursos y Certificaciones</h3></div>
                                 </md-toolbar>
                                 <md-card-content>
                                     <md-list flex>
-                                        <md-list-item ng-repeat="cur in profesional.Cursos">
-                                            <h3>Titulo: {{cur.Titulacion}}</h3>
-                                            <h4>Institucion: {{cur.LugraEstudio}}</h4>
+                                        <md-list-item layout="column" class="md-2-line" ng-repeat="cur in profesional.Cursos">
+                                            <br />
+                                            <h3>Curso:  {{cur.Titulacion}}</h3>
+                                            <br />
+                                            <h4>Lugar de Estudio: {{cur.EntidadCertificante}}</h4>
+                                            <p>Descripcion: {{cur.Descripcion}}</p>
+                                            <md-divider></md-divider>
+                                            <br />
                                         </md-list-item>
                                     </md-list>
-                                </md-card-content>
+                                </md-card-content>                                
                             </md-card>
                             
                             
                         </div>
                         <div flex>
                             <md-card>
-                                <md-toolbar style="background-color:#FFB300">
-                                    <div class="md-toolbar-tools">
-                                        <h3 class="md-title">Idiomas</h3>                                        
-                                    </div>
+                                <md-toolbar>
+                                    <div class="md-toolbar-tools" style="background-color:#FFB300"><h3 class="md-title">Idiomas</h3></div>
                                 </md-toolbar>
                                 <md-card-content>
                                     <md-list>
-                                        <md-list-item ng-repeat="i in profesional.IdiomasConocidos">
-                                            <h3>Idioma: {{i.Nombre}}</h3>
-                                            <h4>Nivel: {{i.Competencias.Nombre}}</h4>
+                                        <md-list-item layout="column" ng-repeat="i in profesional.IdiomasConocidos">
+                                            <h3>Idioma: {{i.Idioma.Nombre}}</h3>
+                                            <h4>Nivel: {{i.CompetenciaIdioma.Nombre}}</h4>
+                                            <md-divider></md-divider>
+                                            <br />
                                         </md-list-item>
                                     </md-list>
                                 </md-card-content>
+                                
                             </md-card>
                             
                             

@@ -97,8 +97,9 @@
     <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
-    <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
+    <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
+    <Content Include="App\Profesionales\Partials\profesionalPerfilOld.html" />
     <Content Include="App\Puestos\Partials\puestoDetalle.html" />
     <Content Include="App\Puestos\Partials\puestosAdd.html" />
     <Content Include="App\Puestos\puestosCtrl.js" />

@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter, $stateParams //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter, $stateParams,$state //fpaz: definicion de inyectores de dependencias
     , listadoTiposEtapas, etapasCargadas, etapaDetalle,postulantesDF, ofertasDF //fpaz: definicion de parametros de entrada 
     ) {
 
@@ -58,20 +58,30 @@
     //#endregion
     
     //#region objeto con el array con los profesionales que pasan a la siguiente etapa de manera parcial
-    $scope.guardarPostulantes = function () {
-        resultadoPostulaciones.PuestosEtapaOfertaId = $scope.etapaDetalle.Oferta.PuestosEtapaOferta[1].Postulaciones[1].PuestosEtapaOfertaId;
-        resultadoPostulaciones.Postulaciones = $scope.selectPostulantes;
+    $scope.guardarPostulantes = function (selectPostulantes) {
 
-        postulantesDF.putPostulacion(resultadoPostulaciones.Postulaciones, resultadoPostulaciones.PuestosEtapaOfertaId);
+        if (selectPostulantes == []) {
+            alert("Debe seleccionar postulantes");
+        }
+        else {
+            postulantesDF.putPostulacion(selectPostulantes, $scope.etapaDetalle.PuestosEtapaOferta[0].Postulaciones[0].PuestoEtapaOfertaId);
+            alert("Cambios guardados");
+            $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
+            //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
+               
+            
+        }
+        
 
     }
 
     //#endregion
 
     //#region funcion que pasa la oferta a la siguiente etapa
-    $scope.pasarSiguienteEtapa = function (prmId) {
-        ofertasDF.postOfertaPasarSiguienteEtapa(prmId);
-
+    $scope.pasarSiguienteEtapa = function () {
+        alert("Desea pasar a la siguiente etapa?")
+        ofertasDF.postOfertaPasarSiguienteEtapa($scope.etapaDetalle.OfertaId);
+        $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
     }
     //#endRegion
 
@@ -84,7 +94,7 @@
             parent: angular.element(document.body),
             //targetEvent: ev,
             clickOutsideToClose: true,            
-            fullscreen: useFullScreen,
+            fullscreen: true,
             resolve: {
                 listadoOfertas: function () {
                     return { value: [] };

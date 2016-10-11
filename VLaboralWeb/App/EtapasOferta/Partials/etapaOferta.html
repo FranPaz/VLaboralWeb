@@ -16,7 +16,7 @@
                 <hr class="h_sop">
                 <div class="puestos">
                     <h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
-                    <div ng-repeat="p in etapaDetalle.PuestosEtapaOferta" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
+                    <div ng-repeat="p in etapaDetalle.PuestosEtapaOferta" class="puestos_box" layout="column" layout-align="space-around center" flex="100">
 
                         <!--#region iafar:lista nueva de postulantes-->
                         <md-toolbar class="md-whiteframe-1dp" flex>
@@ -131,11 +131,15 @@
                                                  md-page="query.page"
                                                  md-total="{{p.Postulaciones.length}}">
                             </md-table-pagination>
-                            <md-button class="md-primary">Guardar Cambios</md-button>
+                            <md-button ng-click="guardarPostulantes(selectPostulantes)" class="md-primary">Guardar Cambios</md-button>
                         </md-card>
                         <!--#endregion-->
                      
                     </div>
+                    <div layout="row" ng-click="pasarSiguienteEtapa()" layout-align="end end">
+                        <md-button>Finalizar Etapa</md-button>
+                    </div>
+                    
                 </div>
             </div>
 
