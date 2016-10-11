@@ -1,7 +1,7 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
   'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
   'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion'
-  , 'angularUtils.directives.dirPagination', 'md.data.table', 'angular-timeline', 'angular.filter'])
+  , 'angularUtils.directives.dirPagination', 'md.data.table', 'angular-timeline', 'angular.filter', 'SignalR', 'angular-notification-icons'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
         cfpLoadingBarProvider.includeSpinner = true;
@@ -282,8 +282,6 @@
                                 prmIdEtapa = $stateParams.idEtapa;
                                 return etapasOfertaDF.getEtapaOferta(prmIdEtapa);
                             },
-                            postulantesDF: 'postulantesDF',
-                            ofertasDF: 'ofertasDF',
                             //ofertaDetalle: function (ofertasDF, $stateParams) {
                             //    var prmIdOferta = $stateParams.idOferta;
                             //    return ofertasDF.getOferta(prmIdOferta);
