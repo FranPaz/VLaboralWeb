@@ -28,10 +28,9 @@
                     </md-item-template>                    
                 </md-autocomplete>
             </div>
-            <div flex>
+            <div flex>                
                 <md-input-container>
-                    <label>Ubicacion</label>
-                    <input ng-model="exp.Ubicacion" />
+                    <input type="text" ng-autocomplete ng-model="exp.Ubicacion" options="options" details="details" />                    
                 </md-input-container>
             </div>
             <div flex>
