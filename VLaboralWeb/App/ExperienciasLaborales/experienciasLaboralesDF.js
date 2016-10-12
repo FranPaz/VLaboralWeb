@@ -29,6 +29,21 @@
         return deferred.promise;
     };
 
+
+    var _getExperienciasPendientes = function (prmIdEmpresa,prmIdProfesional) {
+        //authSvc.authentication.empresaId
+        return $http.get(urlApi + 'api/ExperienciaLaboral/Verificacion', {
+            params: {
+                idEmpresa: prmIdEmpresa,
+                idProfesional: prmIdProfesional
+            }
+        }).then(function (response) {
+            console.log(response.data);
+            return response.data;
+        });
+    }
+
+
     //#region iafar: area de asignacion de funciones a objeto
     experienciasLaboralesDF.postExperiencia = _postExperiencia;
     experienciasLaboralesDF.putExperiencia = _putExperiencia;
