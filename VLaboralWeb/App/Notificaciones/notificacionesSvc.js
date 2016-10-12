@@ -18,7 +18,7 @@
         },
 
         //server side methods
-        methods: ['enviarNotificacionPostulacion'],
+        methods: ['enviarNotificacionPostulacion', 'enviarNotificacionExperiencia'],
 
         //query params sent on initial connection
         queryParams: {
@@ -36,7 +36,7 @@
         },
 
         //specify a non default root
-        rootPath: 'http://localhost:32069/signalr/',
+        rootPath: urlHub+ 'signalr/',
 
         stateChanged: function (state) {            
         switch (state.newState) {
@@ -65,7 +65,12 @@
         hub.enviarNotificacionPostulacion(prmNotificacion);
     }
 
+    var _enviarNotificacionExperiencia = function (prmNotificacion) {//fpaz: llama al hub que manda las notificaciones de Nuevas Experiencias cargadas por un Profesional
+        hub.enviarNotificacionExperiencia(prmNotificacion);
+    }
+
     notificacionesSvc.enviarNotificacion = _enviarNotificacion;
+    notificacionesSvc.enviarNotificacionExperiencia = _enviarNotificacionExperiencia;
     notificacionesSvc.agregarNotificacion = _agregarNotificacion;
     notificacionesSvc.obtenerNotificaciones = notificaciones;
 
