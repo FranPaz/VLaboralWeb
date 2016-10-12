@@ -1,0 +1,116 @@
+﻿<!--#region iafar:lista nueva de postulantes-->
+<md-toolbar class="md-whiteframe-1dp" flex>
+    <div class="md-toolbar-tools">
+        <div class="md-title">
+            <h2>{{p.Puesto.Nombre}}</h2>
+            <h3>{{p.Puesto.Descripcion}}</h3>
+        </div>
+    </div>
+</md-toolbar>
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default md-whiteframe-2dp">
+        <div class="md-toolbar-tools"
+             layout="row"
+             ng-hide="opcionBuscar">
+            <span>Postulantes</span>
+            <div flex="55"></div>
+            <div layout-align="end center"
+                 layout="row"
+                 flex="20">
+                <md-button flex
+                           ng-click="opcionBuscar=true">
+                    <md-icon md-svg-src="svg/search.svg"></md-icon>
+                </md-button>
+
+            </div>
+        </div>
+
+        <div class="md-table-toolbar"
+             layout="row"
+             layout-align="end center"
+             ng-hide="!opcionBuscar">
+            <md-input-container flex="75">
+                <label>Buscar</label>
+                <input ng-model="posBuscado">
+            </md-input-container>
+
+            <div layout-align="start"
+                 layout="row"
+                 flex="20">
+
+                <md-button flex
+                           ng-click="opcionBuscar=false">
+                    <md-icon md-svg-src="svg/exit.svg"></md-icon>
+                </md-button>
+            </div>
+        </div>
+
+    </md-toolbar>
+
+
+    <md-table-container>
+        <table md-table
+               ng-hide="docList==0"
+               ng-model="selectPostulantes"
+               multiple
+               md-row-select="true"
+               flex>
+            <thead md-head
+                   md-order="query.order">
+                <tr md-row>
+                    <!--<th md-column></th>-->
+                    <th md-column>Nombre</th>
+                    <th md-column md-order-by="Profesional.Apellido">Apellido</th>
+                    <th md-column md-order-by="Valoracion">Valoracion</th>
+                    <th md-column></th>
+
+                    <!--<th md-column>Excluyente</th>-->
+                </tr>
+            </thead>
+            <tbody md-body>
+
+                <tr md-row
+                    md-select="postulante"
+                    ng-repeat=" postulante in p.Postulaciones | limitTo: query.limit : (query.page -1) * query.limit | filter:posBuscado | orderBy: query.order">
+                    <!--aqui va el repeat-->
+                    <!--<td md-cell>
+                        {{($index+1) + (query.page - 1)*query.limit}}
+                    </td>-->
+                    <td md-cell>
+                        {{postulante.Profesional.Nombre}}
+                    </td>
+                    <td md-cell>
+                        {{postulante.Profesional.Apellido}}
+                    </td>
+                    <td md-cell>
+                        {{postulante.Valoracion}}
+                    </td>
+                    <td md-cell>
+                        <md-button ng-click="postulanteDetalle(postulante.Id)">
+                            <md-icon style="color:forestgreen;" md-svg-src="svg/eye.svg"></md-icon>
+                        </md-button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+    </md-table-container>
+    <div ng-show="docList == 0" layout-align="center center" flex>
+        <br>
+        <span>No posee Identificaciones cargadas</span>
+        <br>
+    </div>
+    <md-table-pagination md-label="{page: 'Pag.:',
+        rowsPerPage: 'Filas:',
+        of: 'de'}"
+                         md-page-select="true"
+                         md-boundary-links="true"
+                         md-limit="query.limit"
+                         md-page="query.page"
+                         md-total="{{p.Postulaciones.length}}">
+    </md-table-pagination>
+    <md-button ng-click="guardarPostulantes(selectPostulantes)" class="md-primary">Guardar Cambios</md-button>
+</md-card>
+<!--#endregion-->

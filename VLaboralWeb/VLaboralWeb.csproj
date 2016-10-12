@@ -95,6 +95,7 @@
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
+    <Content Include="App\Postulantes\Partials\listadoPostulantes.html" />
     <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
