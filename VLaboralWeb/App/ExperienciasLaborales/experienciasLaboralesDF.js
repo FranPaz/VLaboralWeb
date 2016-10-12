@@ -47,6 +47,7 @@
     //#region iafar: area de asignacion de funciones a objeto
     experienciasLaboralesDF.postExperiencia = _postExperiencia;
     experienciasLaboralesDF.putExperiencia = _putExperiencia;
+    experienciasLaboralesDF.getExperienciasPendientes = _getExperienciasPendientes;
     //#endregion
 
     return experienciasLaboralesDF;
