@@ -2,8 +2,8 @@
 <md-toolbar class="md-whiteframe-1dp" flex>
     <div class="md-toolbar-tools">
         <div class="md-title">
-            <h2>{{p.Puesto.Nombre}}</h2>
-            <h3>{{p.Puesto.Descripcion}}</h3>
+            <h2>{{Puesto.Puesto.Nombre}}</h2>
+            <h3>{{Puesto.Puesto.Descripcion}}</h3>
         </div>
     </div>
 </md-toolbar>
@@ -71,7 +71,7 @@
 
                 <tr md-row
                     md-select="postulante"
-                    ng-repeat=" postulante in p.Postulaciones | limitTo: query.limit : (query.page -1) * query.limit | filter:posBuscado | orderBy: query.order">
+                    ng-repeat=" postulante in Puesto.Postulaciones | limitTo: query.limit : (query.page -1) * query.limit | filter:posBuscado | orderBy: query.order">
                     <!--aqui va el repeat-->
                     <!--<td md-cell>
                         {{($index+1) + (query.page - 1)*query.limit}}

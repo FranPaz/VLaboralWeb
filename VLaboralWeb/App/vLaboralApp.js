@@ -275,8 +275,52 @@
                             listadoTiposEtapas: function () {
                                 return { value: [] };
                             },
+                            puesto: function () {
+                                return { value: [] };
+                            },
                             etapasCargadas: function(){
                                 return { value: [] };
+                            },
+                            etapaDetalle: function (etapasOfertaDF, $stateParams) {
+                                prmIdEtapa = $stateParams.idEtapa;
+                                return etapasOfertaDF.getEtapaOferta(prmIdEtapa);
+                            },
+                            //ofertaDetalle: function (ofertasDF, $stateParams) {
+                            //    var prmIdOferta = $stateParams.idOferta;
+                            //    return ofertasDF.getOferta(prmIdOferta);
+                            //}
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/EtapasOferta/etapasOfertaCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+            })
+
+            .state('empresa.ofertas.etapaDetalle.listadoPostulantes', {
+                url: 'listadoPostulantes/:idEtapa',
+                params: {
+                    idEtapa: null,
+                    puesto: null,
+                },
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Postulantes/Partials/listadoPostulantes.html',
+                        controller: 'etapasOfertaCtrl',
+
+                        resolve: {
+                            //NombreOferta: function ($stateParams) {
+                            //    return $stateParams.NombreOferta.toString();
+                            //},
+                            etapasOfertaDF: 'etapasOfertaDF',
+                            listadoTiposEtapas: function () {
+                                return { value: [] };
+                            },
+                            etapasCargadas: function () {
+                                return { value: [] };
+                            },
+                            puesto: function($stateParams){                                
+                                return $stateParams.puesto;
                             },
                             etapaDetalle: function (etapasOfertaDF, $stateParams) {
                                 prmIdEtapa = $stateParams.idEtapa;

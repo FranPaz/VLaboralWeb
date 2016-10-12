@@ -22,7 +22,7 @@
                                 <md-list-item layout="column" class="secondary-button-padding" ng-repeat="p in etapaDetalle.PuestosEtapaOferta">
                                     <h3>{{p.Puesto.Nombre}}</h3>
                                     <h4>{{p.Puesto.Descripcion}}</h4>
-                                    <md-button class="md-secondary" ui-sref="oferta.listadoPostulantes">Detalle</md-button>
+                                    <md-button class="md-secondary" ui-sref="empresa.ofertas.etapaDetalle.listadoPostulantes({idEtapa: etapaDetalle.Id, puesto: p})">Detalle</md-button>
                                 </md-list-item>
                             </md-list>
                         </div>
