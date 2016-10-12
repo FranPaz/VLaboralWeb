@@ -379,6 +379,24 @@
 
             })
             //#endregion
+
+            //#region Centro de notificaciones para Usuarios Empresa
+            .state('empresa.centroNotificaciones', {
+                url: '/centroNotificaciones',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
+                        controller: 'notificacionesCtrl',
+                        resolve: {                            
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+
+            })
+            //#endregion
         //#endregion
 
         //#region Profesional
@@ -541,31 +559,49 @@
         //#endregion
 
         //#region Perfil de la Empresa para profesionales
-
-        //#endregion
-        .state('profesional.empresa', {
-            url: '/empresa/:idEmpresa',
-            views: {
-                'contenido@profesional': {
-                    templateUrl: '/App/Empresas/Partials/empresaPerfilPublico.html',
-                    controller: 'empresasCtrl',
-                    resolve: {
-                        empresasDF: 'empresasDF',
-                        infoEmpresa: function (empresasDF, $stateParams) {
-                            var idEmpresa = $stateParams.idEmpresa;
-                            return empresasDF.getEmpresa(idEmpresa);
-                        },
-                        listadoOfertas: function () {
-                            return { value: [] };
-                        },
-                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
-                        }]
+            .state('profesional.empresa', {
+                url: '/empresa/:idEmpresa',
+                views: {
+                    'contenido@profesional': {
+                        templateUrl: '/App/Empresas/Partials/empresaPerfilPublico.html',
+                        controller: 'empresasCtrl',
+                        resolve: {
+                            empresasDF: 'empresasDF',
+                            infoEmpresa: function (empresasDF, $stateParams) {
+                                var idEmpresa = $stateParams.idEmpresa;
+                                return empresasDF.getEmpresa(idEmpresa);
+                            },
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
+                            }]
+                        }
                     }
                 }
-            }
 
-        })
+            })
+        //#endregion
+        
+
+        //#region Centro de notificaciones para Usuarios Empresa
+            .state('empresa.centroNotificaciones', {
+                url: '/centroNotificaciones',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
+                        controller: 'notificacionesCtrl',
+                        resolve: {
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+
+            })
+        //#endregion
         //#endregion
     })
 
