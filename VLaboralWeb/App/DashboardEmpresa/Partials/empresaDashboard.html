@@ -1,5 +1,5 @@
 ﻿<nav>
-    <a href="index.html">UN<span>MUNDO</span></a>
+    <a>UN<span>MUNDO</span></a>
     <ul>
 
         <!-- desplegable: ezequiel-->
@@ -21,22 +21,60 @@
                 </md-menu-content>
             </md-menu>
         </li>
-        <!--fin desplegable-->
-        <a href="#">
-            <li><span class="icon-earth icono_de"></span></li>
-        </a>
-        <a href="#">
-            <li><span class="icon-mail4 icono_de"></span></li>
-        </a>
+        <!--fin desplegable-->    
+            
         <li>
-            <span class="ic_m"></span><h6><a ui-sref="empresa.perfil({idEmpresa: authentication.empresaId})">{{authentication.userName}}</a></h6>
+            <md-menu>                
+                <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+                    <notification-icon animation="grow" count="notificaciones.all.length">
+                        <i class="fa fa-globe fa-2x"></i>
+                    </notification-icon>
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item  ng-repeat="n in notificaciones.all">
+                        <h4>{{n.TipoNotificacion.Descripcion}}</h4>
+                        <md-button ng-click="doSomething()">Do Something</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
         </li>
-        <a ng-click="logOut()">
-            <li><span class="icon-exit icono_de"></span></li>
-        </a>                
-    </ul>
+        <li>
+            <md-menu>                
+                <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+                    <notification-icon animation="grow" count="1">
+                        <i class="fa fa-comment fa-2x"></i>
+                    </notification-icon>
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item>
+                        
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </li>
+        <li>
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+                    <i class="fa fa-user fa-2x"></i>
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button class="md-primary" ui-sref="empresa.perfil({idEmpresa: authentication.empresaId})" >{{authentication.userName}}</md-button>                        
+                    </md-menu-item>                    
+                    <md-menu-item>                        
+                        <md-button ng-click="logOut()">       
+                            <i class="fa fa-sign-out"></i>                     
+                            &nbsp;Cerrar Sesion
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+        </li>        
+    </ul>    
 </nav>
 <!--<aside ui-view="menu@"></aside>-->
+
 
 <div ui-view="contenido@"></div>
 

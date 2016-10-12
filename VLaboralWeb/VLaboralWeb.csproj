@@ -91,14 +91,18 @@
     <Content Include="App\Idiomas\IdiomasDF.js" />
     <Content Include="App\Notificaciones\notificacionesCtrl.js" />
     <Content Include="App\Notificaciones\notificacionesDF.js" />
+    <Content Include="App\Notificaciones\notificacionesSvc.js" />
+    <Content Include="App\Notificaciones\Partials\centroNotifiaciones.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
+    <Content Include="App\Postulantes\Partials\listadoPostulantes.html" />
     <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
-    <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
+    <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
+    <Content Include="App\Profesionales\Partials\profesionalPerfilOld.html" />
     <Content Include="App\Puestos\Partials\puestoDetalle.html" />
     <Content Include="App\Puestos\Partials\puestosAdd.html" />
     <Content Include="App\Puestos\puestosCtrl.js" />
@@ -121,7 +125,6 @@
     <Content Include="App\ExperienciasLaborales\Partials\VerificarExperienciasProfesional.html" />
     <Content Include="css\styles.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fonts\icomoon.svg" />
     <Content Include="fonts\style.css" />
     <Content Include="img\11.jpg" />
     <Content Include="img\13.jpg" />
@@ -176,6 +179,8 @@
     <Content Include="libs\angular\angular-messages\1.5.0\angular-messages.min.js" />
     <Content Include="libs\angular\angular-messages\angular-messages.js" />
     <Content Include="libs\angular\angular-messages\angular-messages.min.js" />
+    <Content Include="libs\angular\angular-notification-icons\angular-notification-icons.css" />
+    <Content Include="libs\angular\angular-notification-icons\angular-notification-icons.js" />
     <Content Include="libs\angular\angular-resource\1.5.0\angular-resource.js" />
     <Content Include="libs\angular\angular-resource\1.5.0\angular-resource.min.js" />
     <Content Include="libs\angular\angular-resource\angular-resource.js" />
@@ -325,6 +330,8 @@
     <Content Include="libs\jquery\waves\dist\waves.js" />
     <Content Include="libs\jquery\waves\dist\waves.min.css" />
     <Content Include="libs\jquery\waves\dist\waves.min.js" />
+    <Content Include="scripts\angular-signalr-hub.js" />
+    <Content Include="scripts\angular-signalr-hub.min.js" />
     <Content Include="scripts\controllers\largeLoad.json" />
     <Content Include="scripts\controllers\upload.php" />
     <Content Include="libs\angular\.DS_Store" />
@@ -358,6 +365,7 @@
     <Content Include="fonts\fonts\icomoon.woff" />
     <Content Include="fonts\selection.json" />
     <Content Include="css\styles.css.map" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\vlaboralweb.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -420,6 +428,11 @@
     <Content Include="scripts\directives\ui-scroll.js" />
     <Content Include="scripts\directives\ui-toggle.js" />
     <Content Include="scripts\filters\fromnow.js" />
+    <None Include="scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="scripts\jquery-1.6.4.js" />
+    <Content Include="scripts\jquery-1.6.4.min.js" />
+    <Content Include="scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="scripts\services\ngstore.js" />
     <Content Include="scripts\services\ui-load.js" />
     <Content Include="styles\angular-input-stars.css" />
@@ -500,7 +513,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Habilidades\Partials\" />
-    <Folder Include="App\Notificaciones\Partials\" />
     <Folder Include="App\Requisitos\Partials\" />
     <Folder Include="App\TiposContrato\Partials\" />
     <Folder Include="App\TiposDisponibilidad\Partials\" />

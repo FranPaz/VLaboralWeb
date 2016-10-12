@@ -52,7 +52,7 @@
     <!-- #endregion -->
     <!--#region ngAutocomplete/Google Places-->
     <script src="libs/angular/ngAutocomplete/ngAutocomplete.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrOYFqlKvTKRKc24RUVBiVYqpB-l2E86E&libraries=places"></script>    
     <!-- #endregion  -->
     <!--#region Angular Jwt-->
     <script src="libs/angular/angular-jwt/angular-jwt.js"></script>
@@ -103,9 +103,23 @@
     <!--#endregion-->
     <!--#region Calification Stars-->
     <script src="libs/angular/jkStars/jk-rating-stars.min.js"></script>
-
-    <link href="libs/angular/jkStars/jk-rating-stars.min.css" rel="stylesheet" />
+<link href="libs/angular/jkStars/jk-rating-stars.min.css" rel="stylesheet" />
     <!--#endregion-->
+    
+    
+    <!--#region Clientes SignalR-->
+    <script src="scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="scripts/angular-signalr-hub.js"></script>
+    <!--"endregion-->
+
+    <!--#region angular-notification-icons-->
+    <link href="libs/angular/angular-notification-icons/angular-notification-icons.css" rel="stylesheet" />
+    <script src="libs/angular/angular-notification-icons/angular-notification-icons.js"></script>
+    <!--#endregion-->
+
+    <!--#endregion-->
+
+    
     <!--#region JS de la Aplicacion-->
     <!--#region Modulo-->
     <script src="App/vLaboralApp.js"></script>
@@ -142,6 +156,7 @@
     <!--#endregion-->
     <!-- #region Services -->
     <script src="App/Configuraciones/configSvc.js"></script>
+    <script src="App/Notificaciones/notificacionesSvc.js"></script>
     <!-- #endregion -->
     <!--#region directivas Template-->
     <script src="scripts/directives/lazyload.js"></script>

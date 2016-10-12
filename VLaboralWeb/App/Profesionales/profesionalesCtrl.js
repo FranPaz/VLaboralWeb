@@ -241,5 +241,8 @@
     }
     //#endregion
 
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    }
 
 });

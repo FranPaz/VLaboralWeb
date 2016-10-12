@@ -1,5 +1,5 @@
-﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter, $stateParams //fpaz: definicion de inyectores de dependencias
-    , listadoTiposEtapas, etapasCargadas, etapaDetalle  //fpaz: definicion de parametros de entrada 
+﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter, $stateParams,$state //fpaz: definicion de inyectores de dependencias
+    , listadoTiposEtapas, etapasCargadas, puesto, etapaDetalle, postulantesDF, ofertasDF //fpaz: definicion de parametros de entrada 
     ) {
 
     //#region fpaz: Inicializacion de variables de scope
@@ -8,6 +8,7 @@
     $scope.tiposEtapas = listadoTiposEtapas;
     $scope.etapaDetalle = etapaDetalle;
     $scope.NombreOferta = $stateParams.NombreOferta;
+    $scope.Puesto = puesto;
     $scope.query = {
         order: 'Valoracion',
         limit: 10,
@@ -57,6 +58,34 @@
 
     //#endregion
     
+    //#region objeto con el array con los profesionales que pasan a la siguiente etapa de manera parcial
+    $scope.guardarPostulantes = function (selectPostulantes) {
+
+        if (selectPostulantes == []) {
+            alert("Debe seleccionar postulantes");
+        }
+        else {
+            postulantesDF.putPostulacion(selectPostulantes, $scope.etapaDetalle.PuestosEtapaOferta[0].Postulaciones[0].PuestoEtapaOfertaId);
+            alert("Cambios guardados");
+            $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
+            //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
+               
+            
+        }
+        
+
+    }
+
+    //#endregion
+
+    //#region funcion que pasa la oferta a la siguiente etapa
+    $scope.pasarSiguienteEtapa = function () {
+        alert("Desea pasar a la siguiente etapa?")
+        ofertasDF.postOfertaPasarSiguienteEtapa($scope.etapaDetalle.OfertaId);
+        $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
+    }
+    //#endRegion
+
     //#region kikepx: modal con el detalle del perfil del postulante
     $scope.postulanteDetalle= function (profesionalId) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -66,7 +95,7 @@
             parent: angular.element(document.body),
             //targetEvent: ev,
             clickOutsideToClose: true,            
-            fullscreen: useFullScreen,
+            fullscreen: true,
             resolve: {
                 listadoOfertas: function () {
                     return { value: [] };

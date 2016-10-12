@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('experienciasLaboralesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $filter, $stateParams //fpaz: definicion de inyectores de dependencias
-    ,experienciasLaboralesDF, authSvc //fpaz: definicion de data factorys
+    , experienciasLaboralesDF, authSvc, notificacionesSvc //fpaz: definicion de data factorys
     ,listEmpresas, listExperienciasPendientes//fpaz: definicion de parametros de entrada    
     ) {
 
@@ -7,6 +7,9 @@
     $scope.empresas = listEmpresas;
     $scope.exp;
 
+    options = { //fpaz: opciones de configuracion para el autocomplete de ciudades
+        types: '(cities)'     
+    }
 
     //#region iafar: datos de prueba
     $scope.profesional = {
@@ -79,8 +82,15 @@
             prmExp.EmpresaExterna = $scope.searchText;
         }
 
-
         experienciasLaboralesDF.postExperiencia(prmExp).then(function (response) {
+
+            if (angular.isUndefined(prmExp.EmpresaExterna)) { // si la nueva exp esta relacionada con una empresa cargada en el sistema envio la notificacion
+                console.log("Envia Notificacion");
+                notificacionesSvc.enviarNotificacionExperiencia(response.data);
+            } else {
+                console.log("No Envia Notificacion");
+            }            
+            
             alert("Experiencia Guardada");
             $mdDialog.hide(response.data);
         },
