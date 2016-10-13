@@ -92,7 +92,7 @@
     <Content Include="App\Notificaciones\notificacionesCtrl.js" />
     <Content Include="App\Notificaciones\notificacionesDF.js" />
     <Content Include="App\Notificaciones\notificacionesSvc.js" />
-    <Content Include="App\Notificaciones\Partials\centroNotifiaciones.html" />
+    <Content Include="App\Notificaciones\Partials\centroNotificaciones.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
