@@ -30,7 +30,7 @@
     };
 
 
-    var _getExperienciasPendientes = function (prmIdEmpresa,prmIdProfesional) {
+    var _getExperienciasPendientes = function (prmIdProfesional) {
         //authSvc.authentication.empresaId
         return $http.get(urlApi + 'api/ExperienciaLaboral/Verificacion', {
             params: {

@@ -396,7 +396,7 @@
                                  return { value: [] };
                              },
                              listExperienciasPendientes: function (experienciasLaboralesDF, $stateParams) {
-                                 return experienciasLaboralesDF.
+                                 return { value: [] }; // experienciasLaboralesDF.
                              },
                              loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
                                  return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
