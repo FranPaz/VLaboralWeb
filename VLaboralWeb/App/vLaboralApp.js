@@ -598,7 +598,7 @@
         
 
         //#region Centro de notificaciones para Usuarios Empresa
-            .state('empresa.centroNotificaciones', {
+            .state('profesional.centroNotificaciones', {
                 url: '/centroNotificaciones',
                 views: {
                     'contenido@empresa': {
