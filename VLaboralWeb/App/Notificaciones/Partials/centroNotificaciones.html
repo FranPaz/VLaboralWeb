@@ -1,91 +1,118 @@
-﻿    <section class="notif">
-        <div class="noti_box">
-            <div class="n_centro">
-                <h1>Notificaciones</h1>
-                <h2>Revice todas las notificaciones</h2>
+﻿<main>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Todo">
+                <div layout="row">
+                    <div flex>
+                        <div class="n_centro">
+                            <md-content style="height: 600px;" md-theme="altTheme">
+                                <md-subheader class="md-primary">Notificaciones</md-subheader>
+                                <md-list layout-padding>
+                                    <md-list-item class="md-3-line" ng-repeat="n in notificaciones">
+                                        <img src="img/perfil.jpg" class="md-avatar" alt="{{message.who}}">
+                                        <div class="md-list-item-text">
+                                            <div class="notis_info">
+                                                <div class="ni1">
+                                                    <h3>{{n.TipoNotificacion.Descripcion}}</h3>
+                                                    <h4>{{n.Mensaje}}</h4>
+                                                </div>
 
-
-                <div class="notis">
-
-                    <img src="img/perfil.jpg">
-
-                    <div class="notis_info">
-                        <div class="ni1">
-                            <h3>Ezequiel Brandan</h3>
-                            <h4>Resumen de notif..</h4>
-                        </div>
-
-                        <div class="ni2">
-                            <h5>14:09</h5>
-                            <a href="#"><span class="icon-cross"></span></a>
+                                                <div class="ni2">
+                                                    <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
+                                                    <a href="#"><span class="icon-cross"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </md-content>    
+                        </div>                                                
+                    </div>
+                    <div flex>
+                        <div class="n_detalle">
+                            <h1>Detalle de la notificación</h1>
+                            <div class="detalle_cont">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>
+                            </div>
                         </div>
                     </div>
+                </div>          
+            </md-tab>
+            <md-tab label="Experiencias para verificar">
+                <div layout="row">
+                    <div flex>
+                        <div class="n_centro">
+                            <md-content style="height: 600px;" md-theme="altTheme">
+                                <md-subheader class="md-primary">Nuevas Experiencias</md-subheader>
+                                <md-list layout-padding>
+                                    <md-list-item class="md-3-line" ng-repeat="n in notificaciones | filterBy: ['TipoNotificacion.Valor']: 'EXP'">
+                                        <img src="img/perfil.jpg" class="md-avatar" alt="{{message.who}}">
+                                        <div class="md-list-item-text">
+                                            <div class="notis_info">
+                                                <div class="ni1">
+                                                    <h3>{{n.TipoNotificacion.Descripcion}}</h3>
+                                                    <h4>{{n.Mensaje}}</h4>
+                                                </div>
 
-                </div>
-
-
-
-
-
-                <div class="notis">
-                    <img src="img/perfil.jpg">
-                    <div class="notis_info">
-                        <div class="ni1">
-                            <h3>Ezequiel Brandan</h3>
-                            <h4>Resumen de notif..</h4>
-                        </div>
-                        <div class="ni2">
-                            <h5>14:09</h5>
-                            <a href="#"><span class="icon-cross"></span></a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="notis">
-                    <img src="img/perfil.jpg">
-                    <div class="notis_info">
-                        <div class="ni1">
-                            <h3>Ezequiel Brandan</h3>
-                            <h4>Resumen de notif..</h4>
-                        </div>
-                        <div class="ni2">
-                            <h5>14:09</h5>
-                            <a href="#"><span class="icon-cross"></span></a>
+                                                <div class="ni2">
+                                                    <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
+                                                    <a href="#"><span class="icon-cross"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </md-content>
                         </div>
                     </div>
-                </div>
-
-
-
-
-
-                <div class="notis">
-                    <img src="img/perfil.jpg">
-                    <div class="notis_info">
-                        <div class="ni1">
-                            <h3>Ezequiel Brandan</h3>
-                            <h4>Resumen de notif..</h4>
-                        </div>
-                        <div class="ni2">
-                            <h5>14:09</h5>
-                            <a href="#"><span class="icon-cross"></span></a>
+                    <div flex>
+                        <div class="n_detalle">
+                            <h1>Detalle de la notificación</h1>
+                            <div class="detalle_cont">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div>          
+            </md-tab>
+            <md-tab label="Postulaciones">
+                <div layout="row">
+                    <div flex>
+                        <div class="n_centro">
+                            <md-content style="height: 600px;" md-theme="altTheme">
+                                <md-subheader class="md-primary">Nuevas Postulaciones</md-subheader>
+                                <md-list layout-padding>
+                                    <md-list-item class="md-3-line" ng-repeat="n in notificaciones | filterBy: ['TipoNotificacion.Valor']: 'POS'">
+                                        <img src="img/perfil.jpg" class="md-avatar" alt="{{message.who}}">
+                                        <div class="md-list-item-text">
+                                            <div class="notis_info">
+                                                <div class="ni1">
+                                                    <h3>{{n.TipoNotificacion.Descripcion}}</h3>
+                                                    <h4>{{n.Mensaje}}</h4>
+                                                </div>
 
-
-
-            </div>
-            <div class="n_detalle">
-                <h1>Detalle de la notificación</h1>
-                <div class="detalle_cont">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                                                <div class="ni2">
+                                                    <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
+                                                    <a href="#"><span class="icon-cross"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </md-content>
+                        </div>
+                    </div>
+                    <div flex>
+                        <div class="n_detalle">
+                            <h1>Detalle de la notificación</h1>
+                            <div class="detalle_cont">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</main>
 

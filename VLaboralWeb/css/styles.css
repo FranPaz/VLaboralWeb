@@ -145,7 +145,7 @@ aside .p_info .t_info h5 { font-family: 'Lato', sans-serif; font-weight: 300; fo
 .menu_s ul a li span { margin-right: 1em; color: #77da55; }
 .menu_s ul a li:hover { color: #f0f0f0; background: rgba(100, 100, 100, 0.1); }
 
-main { padding: 5.5em 2em 1em 18%; }
+main { padding: 5em 5% 2em 5%; }
 main h1 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.9em; color: #5a5a5f; margin-bottom: 1em; }
 main h3 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.4em; color: #5a5a5f; }
 main .ofer_tit { width: 60%; padding: 0.6em 0.5em; border: 1px solid #b4b4b4; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1em; color: #323232; transition: all 0.3s ease; border-radius: 2px; margin: 1em 0 1em; }

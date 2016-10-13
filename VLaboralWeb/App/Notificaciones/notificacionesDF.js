@@ -3,23 +3,22 @@
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
     var notificacionesDF = {};
 
-    //var _postExperiencia = function (data) { //iafar: alta de una Experiencia Academica en particular
-    //    var deferred = $q.defer();
-    //    $http.post(urlApi + 'api/ExperienciaLaborals', data).then(
-    //        function (response) {
-    //            deferred.resolve(response);
-    //        },
-    //        function (response) {
-    //            deferred.reject(response.data);
-    //        });
-    //    return deferred.promise;
-    //};
+    var _getNotificacionesRecibidas = function () {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Notificaciones').then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
 
  
 
     //#region iafar: area de asignacion de funciones a objeto
-    //experienciasLaboralesDF.postExperiencia = _postExperiencia;
-    //experienciasLaboralesDF.putExperiencia = _putExperiencia;
+    notificacionesDF.getNotificacionesRecibidas = _getNotificacionesRecibidas;
     //#endregion
 
     return notificacionesDF;

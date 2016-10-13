@@ -387,7 +387,11 @@
                     'contenido@empresa': {
                         templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
                         controller: 'notificacionesCtrl',
-                        resolve: {                            
+                        resolve: {
+                            notificacionesDF: 'notificacionesDF',
+                            listadoNotificaciones: function (notificacionesDF) {                                
+                                return notificacionesDF.getNotificacionesRecibidas();
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
                             }]

@@ -1,8 +1,9 @@
 ﻿vLaboralApp.controller('notificacionesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $filter, $stateParams //fpaz: definicion de inyectores de dependencias
     , notificacionesDF, authSvc, notificacionesSvc //fpaz: definicion de data factorys
-     //fpaz: definicion de parametros de entrada    
+    , listadoNotificaciones //fpaz: definicion de parametros de entrada    
     ) {
 
-    $scope.notificaciones = [];
+    $scope.notificaciones = listadoNotificaciones;
+    $scope.currentNavItem = 'page1';
     
 });
