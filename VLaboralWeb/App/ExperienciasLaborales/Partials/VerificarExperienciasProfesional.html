@@ -1,0 +1,63 @@
+﻿<div layout="column" flex>
+
+    <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+            <span>Solitud de Verificacion Laboral</span>
+        </h2>
+    </md-toolbar>
+
+    <md-content>
+        <md-card>
+            <md-card-title>
+                <md-card-title-media>
+                    <!--<div class="md-media-sm card-media" layout>
+                        <md-icon style="width: 80px; height: 80px" md-svg-src="svg/id-card.svg"></md-icon>
+                    </div>-->
+                </md-card-title-media>
+                <span></span>
+                <md-card-title-text>
+                    <span class="md-headline">{{profesional.Apellido+ ", "+profesional.Nombre}}</span>
+                    <span class="md-subhead description">Cuil: {{profesional.Cuil}}</span>
+                    <span class="md-subhead description">Fecha Nacimiento: {{profesional.FechaNac}}</span>
+                </md-card-title-text>
+            </md-card-title>
+        </md-card>
+    </md-content>
+
+    <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span>Listado Experiencias</span>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <md-list class="md-dense" flex>
+            <md-subheader class="md-no-sticky">{{puestos.length}} Puestos pendientes a confirmar</md-subheader>
+
+            <md-list-item layout="row" class="md-3-line" ng-repeat="puesto in puestos">
+                <!--ng-click="null"-->
+                <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+                <div class="md-list-item-text" layout="column" flex="80">
+                    <br>
+                    <h3>{{ puesto.Nombre }}</h3>
+                    <h4>{{ puesto.Lugar }} ({{puesto.FechaDesde}} - {{puesto.FechaHasta}})</h4>
+                    <p>{{ puesto.Descripcion }}</p>
+                    <br>
+                </div>
+                <md-button class="md-secondary" flex="10" click="verificarExperiencia()">Evaluar</md-button>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+
+
+        </md-list>
+    </md-content>
+
+    <!--iafar: evaluacion de experiencia-->
+    <md-content>
+        <h3>Basic</h3>
+        <jk-rating-stars rating="valoracion"></jk-rating-stars>
+        <div style="width: 100px">{{valoracion}} Stars</div>
+    </md-content>
+
+</div>
+
