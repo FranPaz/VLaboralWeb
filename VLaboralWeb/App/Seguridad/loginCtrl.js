@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('loginCtrl', function ($scope, $location, $timeout, authSvc, $state) {
+﻿vLaboralApp.controller('loginCtrl', function ($scope, $location, $timeout, authSvc, $state, notificacionesSvc) {
     $scope.loginData = {
         userName: "",
         password: ""
@@ -8,15 +8,14 @@
 
     $scope.login = function () {
         authSvc.login($scope.loginData).then(function (response) {
-            //alert("Login Exitoso");
             
             if (authSvc.authentication.tipoUser == "empresa") {
+                notificacionesSvc.agregarHistorialNotificaciones();                
                 $state.go('empresa.ofertas');                
             } else {
+                notificacionesSvc.agregarHistorialNotificaciones();
                 $state.go('profesional.perfil', { idPro: authSvc.authentication.profesionalId });
             }
-            
-
         },
          function (err) {
              if (err) {
