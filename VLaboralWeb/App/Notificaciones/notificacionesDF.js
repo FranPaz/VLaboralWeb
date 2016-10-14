@@ -3,9 +3,14 @@
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
     var notificacionesDF = {};
 
-    var _getNotificacionesRecibidas = function () {
+    var _getNotificacionesRecibidas = function (prmPage, prmRows) {
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/Notificaciones').then(
+        $http.get(urlApi + 'api/Notificaciones', {
+            params: {
+                page: prmPage,
+                rows: prmRows
+            }
+        }).then(
             function (response) {
                 deferred.resolve(response.data);
             },

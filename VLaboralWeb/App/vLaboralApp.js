@@ -390,7 +390,7 @@
                         resolve: {
                             notificacionesDF: 'notificacionesDF',
                             listadoNotificaciones: function (notificacionesDF) {                                
-                                return notificacionesDF.getNotificacionesRecibidas();
+                                return notificacionesDF.getNotificacionesRecibidas(1, 20);
                             },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
@@ -623,10 +623,14 @@
             .state('profesional.centroNotificaciones', {
                 url: '/centroNotificaciones',
                 views: {
-                    'contenido@empresa': {
+                    'contenido@profesional': {
                         templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
                         controller: 'notificacionesCtrl',
                         resolve: {
+                            notificacionesDF: 'notificacionesDF',
+                            listadoNotificaciones: function (notificacionesDF) {
+                                return notificacionesDF.getNotificacionesRecibidas(1, 5);
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
                             }]

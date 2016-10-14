@@ -63,9 +63,9 @@
 
     var _agregarHistorialNotificaciones = function () {//fpaz: agrega el historial de notificaciones luego de hacer el login
 
-        notificacionesDF.getNotificacionesRecibidas().then(function (response) {
-            console.log(response);            
-            notificaciones.all = response;
+        notificacionesDF.getNotificacionesRecibidas(1,5).then(function (response) {
+            console.log(response.Results);            
+            notificaciones.all = response.Results;
         },
                 function (err) {
                     if (err) {

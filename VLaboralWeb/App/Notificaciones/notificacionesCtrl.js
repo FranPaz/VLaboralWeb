@@ -3,7 +3,7 @@
     , listadoNotificaciones //fpaz: definicion de parametros de entrada    
     ) {
 
-    $scope.notificaciones = listadoNotificaciones;
+    $scope.notificaciones = listadoNotificaciones.Results;
     $scope.currentNavItem = 'page1';
     
 });
