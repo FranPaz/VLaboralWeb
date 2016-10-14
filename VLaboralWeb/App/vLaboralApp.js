@@ -380,23 +380,23 @@
             })
             //#endregion
 
-            //#region Centro de notificaciones para Usuarios Empresa
-            .state('empresa.centroNotificaciones', {
-                url: '/centroNotificaciones',
-                views: {
-                    'contenido@empresa': {
-                        templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
-                        controller: 'notificacionesCtrl',
-                        resolve: {                            
-                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
-                            }]
-                        }
-                    }
-                }
+            ////#region Centro de notificaciones para Usuarios Empresa
+            //.state('empresa.centroNotificaciones', {
+            //    url: '/centroNotificaciones',
+            //    views: {
+            //        'contenido@empresa': {
+            //            templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
+            //            controller: 'notificacionesCtrl',
+            //            resolve: {                            
+            //                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            //                    return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+            //                }]
+            //            }
+            //        }
+            //    }
 
-            })
-            //#endregion
+            //})
+            ////#endregion
         //#endregion
 
         //#region Profesional
