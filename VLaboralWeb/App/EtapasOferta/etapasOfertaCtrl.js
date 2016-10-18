@@ -59,28 +59,39 @@
     //#endregion
     
     //#region objeto con el array con los profesionales que pasan a la siguiente etapa de manera parcial
-    $scope.guardarPostulantes = function (selectPostulantes) {
+    //$scope.guardarPostulantes = function (selectPostulantes) {
 
-        if (selectPostulantes == []) {
-            alert("Debe seleccionar postulantes");
-        }
-        else {
-            postulantesDF.putPostulacion(selectPostulantes, $scope.etapaDetalle.PuestosEtapaOferta[0].Postulaciones[0].PuestoEtapaOfertaId);
-            alert("Cambios guardados");
-            $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
-            //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
+    //    if (selectPostulantes == []) {
+    //        alert("Debe seleccionar postulantes");
+    //    }
+    //    else {
+    //        postulantesDF.putPostulacion(selectPostulantes, $scope.etapaDetalle.PuestosEtapaOferta[0].Postulaciones[0].PuestoEtapaOfertaId);
+    //        alert("Cambios guardados");
+    //        $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
+    //        //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
                
             
-        }
+    //    }
         
 
+    //}
+    $scope.guardarPostulantes = function () {
+
+        var postulaciones = $scope.Puesto.Postulaciones;
+        for (var i = 0; i < postulaciones.length ; i++) {
+            var postulacion = postulaciones[i];
+            postulantesDF.putPostulacion(postulacion);
+        }
+        alert("Cambios guardados");
+        $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
+        //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
     }
 
     //#endregion
 
     //#region funcion que pasa la oferta a la siguiente etapa
     $scope.pasarSiguienteEtapa = function () {
-        alert("Desea pasar a la siguiente etapa?")
+        alert("Desea pasar a la siguiente etapa?");
         ofertasDF.postOfertaPasarSiguienteEtapa($scope.etapaDetalle.OfertaId);
         $state.go('empresa.ofertas.detalleOferta', { idOferta: $scope.etapaDetalle.OfertaId });
     }
