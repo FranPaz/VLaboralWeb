@@ -62,6 +62,7 @@
                     <th md-column>Nombre</th>
                     <th md-column md-order-by="Profesional.Apellido">Apellido</th>
                     <th md-column md-order-by="Valoracion">Valoracion</th>
+                    <th md-column>¿Aprueba?</th>
                     <th md-column></th>
 
                     <!--<th md-column>Excluyente</th>-->
@@ -70,7 +71,7 @@
             <tbody md-body>
 
                 <tr md-row
-                    md-select="postulante"
+                    
                     ng-repeat=" postulante in Puesto.Postulaciones | limitTo: query.limit : (query.page -1) * query.limit | filter:posBuscado | orderBy: query.order">
                     <!--aqui va el repeat-->
                     <!--<td md-cell>
@@ -84,6 +85,10 @@
                     </td>
                     <td md-cell>
                         {{postulante.Valoracion}}
+                    </td>
+                    <td md-cell>
+                        <md-checkbox ng-model="postulante.PasaEtapa">
+                        </md-checkbox>
                     </td>
                     <td md-cell>
                         <md-button ng-click="postulanteDetalle(postulante.Profesional.Id)">
@@ -112,5 +117,9 @@
                          md-total="{{p.Postulaciones.length}}">
     </md-table-pagination>
     <md-button ng-click="guardarPostulantes(selectPostulantes)" class="md-primary">Guardar Cambios</md-button>
+
+    <md-button ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapaDetalle.Id, NombreOferta: ofertaDetalle.Nombre})" class="md-accent">Cancelar</md-button>
+
+   
 </md-card>
 <!--#endregion-->
