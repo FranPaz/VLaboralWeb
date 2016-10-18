@@ -1,0 +1,29 @@
+﻿<h1>Nueva Postulacion</h1>
+
+<div>
+    <h1>Detalle de la Oferta</h1>
+    <h2>Oferta:{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Oferta.Nombre}}</h2>
+    <br />
+    <h2>Descripcion de la Oferta:{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Oferta.Nombre}}</h2>
+</div>
+
+<div>
+    <h1>Detalle del Puesto</h1>
+    <h2>Puesto: {{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Nombre}}</h2>
+</div>
+
+<div>
+    <h1>Datos del Postulante</h1>
+    <p>
+        Nombre del Profesional: {{postulacion.Postulacion.Profesional.Apellido}} - {{postulacion.Postulacion.Profesional.Nombre}}
+        <br />
+        <md-button ng-click="postulanteDetalle(postulacion.Postulacion.Profesional.Id)">
+            <md-icon style="color:forestgreen;" md-svg-src="svg/eye.svg"></md-icon>
+        </md-button>
+    </p>
+</div>
+
+<h2>Fecha de Postulacion: {{postulacion.Postulacion.Fecha | date: 'medium'}}</h2>
+
+
+

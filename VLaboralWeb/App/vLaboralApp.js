@@ -400,6 +400,56 @@
                 }
 
             })
+                .state('empresa.centroNotificaciones.postulacion', {
+                    url: '/postulacion',
+                    params: {
+                        prmIdNotificacion: null,
+                        prmTipoNotificacion:null
+                    },
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionPostulacion.html',
+                            controller: 'postulantesCtrl',
+                            resolve: {
+                                notificacionesDF: 'notificacionesDF',
+                                infoPostulacion: function (notificacionesDF, $stateParams) {                                    
+                                    var idNotif = $stateParams.prmIdNotificacion;
+                                    var tipoNotyif = $stateParams.prmTipoNotificacion
+                                    return notificacionesDF.getDetalleNotificacion(idNotif,tipoNotyif);
+                                },
+                                listadoPostulantes: function () {
+                                    return { value: [] };
+                                },
+                                infoPuesto: function () {
+                                    return { value: [] };
+                                },
+                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Postulantes/postulantesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
+
+                })
+                .state('empresa.centroNotificaciones.experiencia', {
+                    url: '/experiencia',
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
+                            controller: '',
+                            resolve: {
+                                //notificacionesDF: 'notificacionesDF',
+                                //listadoNotificaciones: function (notificacionesDF) {
+                                //    return notificacionesDF.getNotificacionesRecibidas(1, 20);
+                                //},
+                                //loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                //    return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+                                //}]
+                            }
+                        }
+                    }
+
+                })
             //#endregion
 
             //#region Verificacion de experiencia laboral de profesional con empresa
