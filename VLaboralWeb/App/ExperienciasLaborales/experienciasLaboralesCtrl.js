@@ -116,7 +116,9 @@
             templateUrl: '/App/ExperienciasLaborales/Partials/EvaluarExperienciaDialog.html',
             //onComplete: afterShowAnimation,
             locals: {
-                experienciaShow: experienciaSelect
+                experienciaDetalle: function (experienciasLaboralesDF) {
+                    return experienciasLaboralesDF.getExperienciasPendientes(experienciaSelect.Id)
+                }
             } //iafar:paso de scope
         }).then(function (response) {
             if (response == "ok") { //iafar: se guardo nuevo experiencia?
@@ -136,13 +138,13 @@
 });
 
 function DialogExperienciaController($scope, $mdDialog,
-    experienciaShow) {
+    experienciaDetalle) {
     //iafar: aqui se deberia pasar el profesional y el id y el comentario del puesto en el que estuvo de la experiencia
 
     //#region inicializacion de scope
 
-    $scope.experienciaShow = experienciaShow; //iafar: es la experiencia que se va a mostrar
-   
+    $scope.experienciaDetalle = experienciaDetalle; //iafar: es la experiencia que se va a mostrar
+    $scope.valoracionExperiencia = {};
     //#endregion
 
 

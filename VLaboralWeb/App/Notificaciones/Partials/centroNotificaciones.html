@@ -32,7 +32,8 @@
                         <div class="n_detalle">
                             <h1>Detalle de la notificación</h1>
                             <div class="detalle_cont">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>
+                                <!--iafar: contenido del detalle de la notifiacion-->
+                                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>-->
                             </div>
                         </div>
                     </div>
@@ -45,18 +46,19 @@
                             <md-content style="height: 600px;">
                                 <md-subheader class="md-primary">Nuevas Experiencias</md-subheader>
                                 <md-list layout-padding>
-                                    <md-list-item class="md-3-line" ng-repeat="n in notificaciones | filterBy: ['TipoNotificacion.Valor']: 'EXP'">
-                                        <img src="img/perfil.jpg" class="md-avatar" alt="{{message.who}}">
+                                    <!-- ng-repeat="n in notificaciones | filterBy: ['TipoNotificacion.Valor']: 'EXP'" -->
+                                    <md-list-item class="md-3-line" ng-repeat="nExp in experienciasPendientesList" > <!--iafar: deberiamos hacer que el filtro traiga todas las notificaciones que tienen coincidencia con el listado de experiencias por verificar-->
+                                        <!--<img src=" img />perfil.jpg" class="md-avatar" alt="{{message.who}}">--> <!--iafar: probar en el ng-click con el state.go-->
                                         <div class="md-list-item-text">
                                             <div class="notis_info">
                                                 <div class="ni1">
-                                                    <h3>{{n.TipoNotificacion.Descripcion}}</h3>
-                                                    <h4>{{n.Mensaje}}</h4>
+                                                    <h3>Solicitud de Verificacion</h3> <!--{{n.TipoNotificacion.Descripcion}}-->
+                                                    <h4>{{nExp.puesto}}</h4>   <!--{{n.Mensaje}}-->
                                                 </div>
 
                                                 <div class="ni2">
-                                                    <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
-                                                    <a href="#"><span class="icon-cross"></span></a>
+                                                    <h5>{{nExp.fechaCreacion | date:'dd/MM/yyyy'}}</h5> <!--{{n.FechaPublicacion | date:'medium'}}-->
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -68,8 +70,8 @@
                     <div flex>
                         <div class="n_detalle">
                             <h1>Detalle de la notificación</h1>
-                            <div class="detalle_cont">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>
+                            <div class="detalle_cont" ui-view="detalleNotificacionExperiencia">
+                                <!--iafar: Detalle de la notificacion-->
                             </div>
                         </div>
                     </div>

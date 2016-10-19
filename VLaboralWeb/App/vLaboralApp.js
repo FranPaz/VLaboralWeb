@@ -392,6 +392,9 @@
                             listadoNotificaciones: function (notificacionesDF) {                                
                                 return notificacionesDF.getNotificacionesRecibidas();
                             },
+                            listExperienciasPendientes: function (experienciasLaboralesDF) {
+                                return experienciasLaboralesDF.getExperienciasPendientes();
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
                             }]
@@ -400,34 +403,62 @@
                 }
 
             })
+
+            //#region notificaciones de experiencia
+            //.state('empresa.centroNotificaciones.notificacionExperiencias', {
+            //    url: '/centroNotificaciones',
+            //    views: {
+            //        'contenido@detalleNotificacionExperiencia': {
+            //            templateUrl: '/App/ExperienciasLaborales/Partials/VerificarExperienciasProfesional.html',
+            //            controller: 'experienciasLaboralesCtrl',
+            //            resolve: {                            
+            //                experienciasLaboralesDF: 'experienciasLaboralesDF',
+            //                listEmpresas: function () {
+            //                    return { value: [] };
+            //                },
+            //                listExperienciasPendientes: function (experienciasLaboralesDF) {                                
+            //                    return experienciasLaboralesDF.getExperienciasPendientes();
+            //                },
+            //                loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
+            //                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+            //                }]
+            //            }
+            //        }
+            //    }
+
+            //})
             //#endregion
 
-            //#region Verificacion de experiencia laboral de profesional con empresa
-             .state('empresa.verificacionExperiencia', {
-                 url: '/Verificacion/Experiencia',
-                 params: {
-                     idProfesional: null
-                 },
-                 views: {
-                     'contenido@empresa': {
-                         templateUrl: '/App/ExperienciasLaborales/Partials/VerificarExperienciasProfesional.html',
-                         controller: 'experienciasLaboralesCtrl',
-                         resolve: {
-                             experienciasLaboralesDF: 'experienciasLaboralesDF',
-                             listEmpresas: function () {
-                                 return { value: [] };
-                             },
-                             listExperienciasPendientes: function (experienciasLaboralesDF, $stateParams) {
-                                 return { value: [] }; // experienciasLaboralesDF.
-                             },
-                             loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                 return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
-                             }]
-                         }
-                     }
-                 }
+            //#endregion
 
-             })
+
+            //iafar: esto es para un estado de testing 13/10/2016
+            //#region Verificacion de experiencia laboral de profesional con empresa
+             //.state('empresa.verificacionExperiencia', {
+             //    url: '/Verificacion/Experiencia',
+             //    //params: {
+             //    //    idProfesional: null
+             //    //},
+             //    views: {
+             //        'contenido@empresa': {
+             //            templateUrl: '/App/ExperienciasLaborales/Partials/VerificarExperienciasProfesional.html',
+             //            controller: 'experienciasLaboralesCtrl',
+             //            resolve: {
+             //                experienciasLaboralesDF: 'experienciasLaboralesDF',
+             //                listEmpresas: function () {
+             //                    return { value: [] };
+             //                },
+             //                listExperienciasPendientes: function (experienciasLaboralesDF, $stateParams) {
+             //                    return experienciasLaboralesDF.getExperienciasPendientes();
+             //                },
+             //                loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
+             //                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+             //                }]
+             //            }
+             //        }
+             //    }
+
+             //})
 
             //#endregion
 
