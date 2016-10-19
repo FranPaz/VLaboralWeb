@@ -167,6 +167,9 @@
                 infoPuesto: function () {
                     return prmPuesto;
                 },
+                infoPostulacion: function () {
+                    return prmPuesto;
+                },
                 loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Postulantes/postulantesCtrl.js']);
                 }]

@@ -74,9 +74,7 @@
     //#region sluna: Pasa la oferta a la siguiente etapa
     var _postOfertaPasarSiguienteEtapa = function (prmIdOferta) {
         var deferred = $q.defer();
-        $http.post(urlApi + 'api/Ofertas/PostOfertaPasarSiguienteEtapa', {
-            params: { id: prmIdOferta }
-        }).then(
+        $http.post(urlApi + 'api/Ofertas/PasarSiguienteEtapa/' + prmIdOferta).then(
             function (response) {
                 deferred.resolve(response.data);
             },

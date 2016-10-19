@@ -390,7 +390,7 @@
                         resolve: {
                             notificacionesDF: 'notificacionesDF',
                             listadoNotificaciones: function (notificacionesDF) {                                
-                                return notificacionesDF.getNotificacionesRecibidas();
+                                return notificacionesDF.getNotificacionesRecibidas(1, 20);
                             },
                             listExperienciasPendientes: function (experienciasLaboralesDF) {
                                 return experienciasLaboralesDF.getExperienciasPendientes();
@@ -403,30 +403,56 @@
                 }
 
             })
+                .state('empresa.centroNotificaciones.postulacion', {
+                    url: '/postulacion',
+                    params: {
+                        prmIdNotificacion: null,
+                        prmTipoNotificacion:null
+                    },
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionPostulacion.html',
+                            controller: 'postulantesCtrl',
+                            resolve: {
+                                notificacionesDF: 'notificacionesDF',
+                                infoPostulacion: function (notificacionesDF, $stateParams) {                                    
+                                    var idNotif = $stateParams.prmIdNotificacion;
+                                    var tipoNotyif = $stateParams.prmTipoNotificacion
+                                    return notificacionesDF.getDetalleNotificacion(idNotif,tipoNotyif);
+                                },
+                                listadoPostulantes: function () {
+                                    return { value: [] };
+                                },
+                                infoPuesto: function () {
+                                    return { value: [] };
+                                },
+                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Postulantes/postulantesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
 
-            //#region notificaciones de experiencia
-            //.state('empresa.centroNotificaciones.notificacionExperiencias', {
-            //    url: '/centroNotificaciones',
-            //    views: {
-            //        'contenido@detalleNotificacionExperiencia': {
-            //            templateUrl: '/App/ExperienciasLaborales/Partials/VerificarExperienciasProfesional.html',
-            //            controller: 'experienciasLaboralesCtrl',
-            //            resolve: {                            
-            //                experienciasLaboralesDF: 'experienciasLaboralesDF',
-            //                listEmpresas: function () {
-            //                    return { value: [] };
-            //                },
-            //                listExperienciasPendientes: function (experienciasLaboralesDF) {                                
-            //                    return experienciasLaboralesDF.getExperienciasPendientes();
-            //                },
-            //                loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
-            //                }]
-            //            }
-            //        }
-            //    }
+                })
+                .state('empresa.centroNotificaciones.experiencia', {
+                    url: '/experiencia',
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
+                            controller: '',
+                            resolve: {
+                                //notificacionesDF: 'notificacionesDF',
+                                //listadoNotificaciones: function (notificacionesDF) {
+                                //    return notificacionesDF.getNotificacionesRecibidas(1, 20);
+                                //},
+                                //loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                //    return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+                                //}]
+                            }
+                        }
+                    }
 
-            //})
+                })
             //#endregion
 
             //#endregion
@@ -654,10 +680,14 @@
             .state('profesional.centroNotificaciones', {
                 url: '/centroNotificaciones',
                 views: {
-                    'contenido@empresa': {
+                    'contenido@profesional': {
                         templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
                         controller: 'notificacionesCtrl',
                         resolve: {
+                            notificacionesDF: 'notificacionesDF',
+                            listadoNotificaciones: function (notificacionesDF) {
+                                return notificacionesDF.getNotificacionesRecibidas(1, 5);
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
                             }]

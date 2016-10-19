@@ -26,15 +26,22 @@
         <li>
             <md-menu>                
                 <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
-                    <notification-icon animation="grow" count="notificaciones.all.length">
+                    <notification-icon animation="grow" count="countNotifNoLeidas()">
+                        {{countNotifNoLeidas()}}
                         <i class="fa fa-globe fa-2x"></i>
                     </notification-icon>
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item  ng-repeat="n in notificaciones.all">
-                        <h4>{{n.TipoNotificacion.Descripcion}}</h4>
-                        <md-button ng-click="doSomething()">Do Something</md-button>
-                    </md-menu-item>
+                    <md-menu-item ng-repeat="n in notificaciones.all" ng-style="n.FechaLectura == null ? {'background-color': 'aliceblue'} : {'background-color': 'white'}">
+                        <div class="notis_info" ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">
+                            <div class="ni1">
+                                <h3>{{n.TipoNotificacion.Descripcion}}</h3>
+                                <h4>{{n.Mensaje}}</h4>
+                                <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
+                                <!--<md-button ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">Ver Detalle</md-button>-->                                
+                            </div>
+                        </div>
+                    </md-menu-item>                                              
                     <md-menu-item>                        
                         <a ui-sref="empresa.centroNotificaciones">Ver Todas</a>
                     </md-menu-item>

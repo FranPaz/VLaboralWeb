@@ -1,9 +1,9 @@
-﻿vLaboralApp.factory('notificacionesSvc', function ($http, $rootScope, $location, Hub, $timeout, authSvc, configSvc, localStorageService) {
+﻿vLaboralApp.factory('notificacionesSvc', function ($http, $rootScope, $location, Hub, $timeout, authSvc, configSvc, localStorageService, notificacionesDF) {
     //#region viejo
     var urlHub = configSvc.urlApi; // fpaz: toma el url del api de configSvc
     var notificacionesSvc = {};
     var notificaciones = this;
-    var authData = localStorageService.get('authorizationData');
+    //var authData = localStorageService.get('authorizationData');
     
 
     //Hub setup
@@ -22,7 +22,7 @@
 
         //query params sent on initial connection
         queryParams: {
-            "userId": authData.idUsuarioLogueado
+            "userId": authSvc.authentication.idUsuarioLogueado
         },
 
         //handle connection error
@@ -61,6 +61,21 @@
         notificaciones.all.push(prmNotificacion);
     }
 
+    var _agregarHistorialNotificaciones = function () {//fpaz: agrega el historial de notificaciones luego de hacer el login
+
+        notificacionesDF.getNotificacionesRecibidas(1,5).then(function (response) {
+            console.log(response.Results);            
+            notificaciones.all = response.Results;
+        },
+                function (err) {
+                    if (err) {
+                        $scope.error = err;
+                        console.log("Error al Guardar los Cambios en el Perfil: " + $scope.error.Message);
+                    }
+                });
+        
+    }
+
     var _enviarNotificacion = function (prmNotificacion) {
         hub.enviarNotificacionPostulacion(prmNotificacion);
     }
@@ -72,6 +87,7 @@
     notificacionesSvc.enviarNotificacion = _enviarNotificacion;
     notificacionesSvc.enviarNotificacionExperiencia = _enviarNotificacionExperiencia;
     notificacionesSvc.agregarNotificacion = _agregarNotificacion;
+    notificacionesSvc.agregarHistorialNotificaciones = _agregarHistorialNotificaciones;
     notificacionesSvc.obtenerNotificaciones = notificaciones;
 
     return notificacionesSvc;

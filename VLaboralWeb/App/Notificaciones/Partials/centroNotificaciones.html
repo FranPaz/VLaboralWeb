@@ -19,6 +19,7 @@
 
                                                 <div class="ni2">
                                                     <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
+                                                    <a ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">Ver Mas</a>
                                                     <a href="#"><span class="icon-cross"></span></a>
                                                 </div>
                                             </div>
@@ -29,13 +30,7 @@
                         </div>                                                
                     </div>
                     <div flex>
-                        <div class="n_detalle">
-                            <h1>Detalle de la notificación</h1>
-                            <div class="detalle_cont">
-                                <!--iafar: contenido del detalle de la notifiacion-->
-                                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptate optio suscipit odio!</p>-->
-                            </div>
-                        </div>
+                        <div ui-view="detalleNotificacion"></div>                        
                     </div>
                 </div>          
             </md-tab>
