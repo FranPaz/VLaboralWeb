@@ -35,6 +35,56 @@
                 </md-input-container>
             </div>
             <!--#endregion-->
+            
+            <!--#region Rubros y Sub Rubros-->
+            <!--#region fpaz: subrubros del profesional-->
+            <div flex>
+                <md-tabs class="md-accent">
+                    <md-tab>
+                        <md-tab-label>Rubros y Sub-Rubros</md-tab-label>
+                        <md-tab-body>
+                            <div layout="row">
+                                <div flex="50">
+                                    <md-input-container>
+                                        <label>Rubro</label>
+                                        <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                                            <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                                                {{rubro.Nombre}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div flex="50">
+                                    <md-input-container>
+                                        <label>sub rubro</label>
+                                        <md-select ng-model="subrubroSelected" ng-change="subRubroChanged()" ng-disabled="subrubrodisabled">
+                                            <md-option ng-repeat="subrubro in Rubro.Subrubros" ng-value="subrubro">
+                                                {{subrubro.Nombre}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <md-button class="md-raised" ng-click="subRubroAddClick()">agregar</md-button>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <div flex="grow">
+                                    <h2 class="md-title">Rubros seleecionados</h2>
+                                    <md-chips ng-model="profesional.Subrubros" readonly="!editValue ? true : false">
+                                        <md-chip-template>
+                                            <span>
+                                                <strong>{{$chip}}</strong>
+                                            </span>
+                                        </md-chip-template>
+                                    </md-chips>
+                                </div>
+                            </div>
+                        </md-tab-body>
+                    </md-tab>
+                </md-tabs>
+            </div>
+
+            <!--#endregion-->
+            <!--#endregion-->
 
             <!--#region Sexo y Nacionalidad-->
             <div flex layout="row">
