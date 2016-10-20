@@ -22,14 +22,10 @@
         return deferred.promise;
     };
 
-    var _putPostulacion = function (postulaciones, puestoEtapaOfertaId) {
+    var _putPostulacion = function (postulacion) {
         var deferred = $q.defer();
 
-        var resultadoPostulacion = {};
-        resultadoPostulacion.Postulaciones = postulaciones;
-        resultadoPostulacion.puestoEtapaOfertaId = puestoEtapaOfertaId;
-
-        $http.put(urlApi + 'api/Postulaciones', resultadoPostulacion).then(
+        $http.put(urlApi + 'api/Postulaciones', postulacion).then(
             function (response) {
                 deferred.resolve(response);
             },

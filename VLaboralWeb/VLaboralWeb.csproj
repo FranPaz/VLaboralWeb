@@ -76,6 +76,7 @@
     <Content Include="App\EtapasOferta\Partials\etapaOfertaAdd.html" />
     <Content Include="App\ExperienciasLaborales\experienciasLaboralesCtrl.js" />
     <Content Include="App\ExperienciasLaborales\experienciasLaboralesDF.js" />
+    <Content Include="App\ExperienciasLaborales\Partials\EvaluarExperienciaDialog.html" />
     <Content Include="App\ExperienciasLaborales\Partials\nuevaExperiencia.html" />
     <Content Include="App\Educacion\educacionCtrl.js" />
     <Content Include="App\Educacion\educacionDF.js" />
@@ -92,6 +93,8 @@
     <Content Include="App\Notificaciones\notificacionesDF.js" />
     <Content Include="App\Notificaciones\notificacionesSvc.js" />
     <Content Include="App\Notificaciones\Partials\centroNotificaciones.html" />
+    <Content Include="App\Notificaciones\Partials\detalleNotificacionExperiencia.html" />
+    <Content Include="App\Notificaciones\Partials\detalleNotificacionPostulacion.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
@@ -121,6 +124,7 @@
     <Content Include="App\TiposEtapasOferta\tiposEtapasCtrl.js" />
     <Content Include="App\TiposEtapasOferta\tiposEtapasDF.js" />
     <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
+    <Content Include="App\ExperienciasLaborales\Partials\VerificarExperienciasProfesional.html" />
     <Content Include="css\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\style.css" />
@@ -233,6 +237,8 @@
     <Content Include="libs\angular\angular\1.5.0\angular.min.js" />
     <Content Include="libs\angular\angular\angular.js" />
     <Content Include="libs\angular\angular\angular.min.js" />
+    <Content Include="libs\angular\jkStars\jk-rating-stars.min.css" />
+    <Content Include="libs\angular\jkStars\jk-rating-stars.min.js" />
     <Content Include="libs\angular\jquery.easy-pie-chart\dist\angular.easypiechart.js" />
     <Content Include="libs\angular\mdDataTable\md-data-table-style.css" />
     <Content Include="libs\angular\mdDataTable\md-data-table-templates.js" />

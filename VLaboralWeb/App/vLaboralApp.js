@@ -1,7 +1,7 @@
 ﻿var vLaboralApp = angular.module('vLaboralApp', ['ngResource', 'ngMdIcons', 'ui.router', 'ngCookies', 'ngTable',
   'ngSanitize', 'ngAnimate', 'ngAria', 'ct.ui.router.extras', 'angular-loading-bar', 'LocalStorageModule', 'angular-jwt', 'ngMaterial',
   'oc.lazyLoad', 'ng-mfb', 'ngAutocomplete', 'angular-input-stars', 'ngFileUpload', 'ngMessages', 'vAccordion'
-  , 'angularUtils.directives.dirPagination', 'md.data.table', 'angular-timeline', 'angular.filter', 'SignalR', 'angular-notification-icons'])
+  , 'angularUtils.directives.dirPagination', 'md.data.table', 'angular-timeline', 'angular.filter', 'SignalR', 'angular-notification-icons', 'jkAngularRatingStars'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $stickyStateProvider, cfpLoadingBarProvider) {
 
         cfpLoadingBarProvider.includeSpinner = true;
@@ -31,16 +31,16 @@
                             listadoOfertas: function (ofertasDF) {
                                 //return ofertasDF.getOfertasProfesional();
                                 return ofertasDF.getOfertas(1, 5);
-                            },                            
+                            },
                             listadoRubros: function () {
-                                return {value:[]};
+                                return { value: [] };
                             },
                             listadoHabilidades: function () {
                                 return { value: [] };
                             },
                             listadoIdentificacionPro: function () {
                                 return { value: [] };
-                            },                            
+                            },
                             infoProfesional: function () {
                                 return { value: [] };
                             },
@@ -65,7 +65,7 @@
                     url: "/registro/empresa",
                     templateUrl: '/App/Seguridad/Partials/registroEmpresa.html',
                     controller: 'signupCtrl',
-                    resolve: {                       
+                    resolve: {
                         loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['App/Seguridad/signupCtrl.js']);
                         }]
@@ -98,13 +98,13 @@
                     templateUrl: '/App/DashboardEmpresa/Partials/empresaDashboard.html',
                     controller: 'dashboardEmpresaCtrl',
                     resolve: {
-                   loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load(['App/DashboardEmpresa/dashboardEmpresaCtrl.js']);
+                        loadDashboardCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['App/DashboardEmpresa/dashboardEmpresaCtrl.js']);
                         }]
                     }
                 },
                 'menu': {
-                    templateUrl: '/App/DashboardEmpresa/Partials/empresaMenu.html'                    
+                    templateUrl: '/App/DashboardEmpresa/Partials/empresaMenu.html'
                 },
                 'contenido': {
                     templateUrl: '/App/DashboardEmpresa/Partials/empresaContenido.html'
@@ -119,7 +119,7 @@
                     'contenido@empresa': {
                         templateUrl: '/App/Empresas/Partials/empresaPerfilPublico.html',
                         controller: 'empresasCtrl',
-                        resolve: {                            
+                        resolve: {
                             empresasDF: 'empresasDF',
                             infoEmpresa: function (empresasDF, $stateParams) {
                                 var idEmpresa = $stateParams.idEmpresa;
@@ -142,10 +142,10 @@
             .state('empresa.ofertas', {
                 url: '/ofertas',
                 views: {
-                    'contenido@empresa' :{
-                        templateUrl: '/App/Ofertas/Partials/ofertasList.html',                        
+                    'contenido@empresa': {
+                        templateUrl: '/App/Ofertas/Partials/ofertasList.html',
                         controller: 'empresasCtrl',
-                        resolve: {                            
+                        resolve: {
                             infoEmpresa: function () {
                                 return { value: [] };
                             },
@@ -163,8 +163,8 @@
             .state('empresa.ofertas.detalleOferta', {
                 url: '/detalleOferta/:idOferta',
                 views: {
-                    'contenido@empresa' :{
-                        templateUrl: '/App/Ofertas/Partials/ofertaDetalle.html',                        
+                    'contenido@empresa': {
+                        templateUrl: '/App/Ofertas/Partials/ofertaDetalle.html',
                         controller: 'ofertasCtrl',
                         resolve: {
                             ofertasDF: 'ofertasDF',
@@ -257,7 +257,7 @@
                 }
             })
             .state('empresa.ofertas.etapaDetalle', {
-                url: '/detalleEtapa/:idEtapa', 
+                url: '/detalleEtapa/:idEtapa',
                 params: {
                     idEtapa: null,
                     NombreOferta: null
@@ -266,7 +266,7 @@
                     'contenido@empresa': {
                         templateUrl: '/App/EtapasOferta/Partials/etapaOferta.html',
                         controller: 'etapasOfertaCtrl',
-                       
+
                         resolve: {
                             //NombreOferta: function ($stateParams) {
                             //    return $stateParams.NombreOferta.toString();
@@ -379,15 +379,19 @@
 
             })
             //#endregion
-
-            //#region Centro de notificaciones para Usuarios Empresa
+            
+             //#region Centro de notificaciones para Usuarios Empresa
             .state('empresa.centroNotificaciones', {
                 url: '/centroNotificaciones',
                 views: {
                     'contenido@empresa': {
                         templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
                         controller: 'notificacionesCtrl',
-                        resolve: {                            
+                        resolve: {
+                            notificacionesDF: 'notificacionesDF',
+                            listadoNotificaciones: function (notificacionesDF) {                                
+                                return notificacionesDF.getNotificacionesRecibidas(1, 20);
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
                             }]
@@ -396,7 +400,87 @@
                 }
 
             })
+                .state('empresa.centroNotificaciones.postulacion', {
+                    url: '/postulacion',
+                    params: {
+                        prmIdNotificacion: null,
+                        prmTipoNotificacion:null
+                    },
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionPostulacion.html',
+                            controller: 'postulantesCtrl',
+                            resolve: {
+                                notificacionesDF: 'notificacionesDF',
+                                infoPostulacion: function (notificacionesDF, $stateParams) {                                    
+                                    var idNotif = $stateParams.prmIdNotificacion;
+                                    var tipoNotyif = $stateParams.prmTipoNotificacion
+                                    return notificacionesDF.getDetalleNotificacion(idNotif,tipoNotyif);
+                                },
+                                listadoPostulantes: function () {
+                                    return { value: [] };
+                                },
+                                infoPuesto: function () {
+                                    return { value: [] };
+                                },
+                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Postulantes/postulantesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
+
+                })
+                .state('empresa.centroNotificaciones.experiencia', {
+                    url: '/experiencia',
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
+                            controller: '',
+                            resolve: {
+                                //notificacionesDF: 'notificacionesDF',
+                                //listadoNotificaciones: function (notificacionesDF) {
+                                //    return notificacionesDF.getNotificacionesRecibidas(1, 20);
+                                //},
+                                //loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                //    return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
+                                //}]
+                            }
+                        }
+                    }
+
+                })
             //#endregion
+
+            //#region Verificacion de experiencia laboral de profesional con empresa
+             .state('empresa.verificacionExperiencia', {
+                 url: '/Verificacion/Experiencia',
+                 params: {
+                     idProfesional: null
+                 },
+                 views: {
+                     'contenido@empresa': {
+                         templateUrl: '/App/ExperienciasLaborales/Partials/VerificarExperienciasProfesional.html',
+                         controller: 'experienciasLaboralesCtrl',
+                         resolve: {
+                             experienciasLaboralesDF: 'experienciasLaboralesDF',
+                             listEmpresas: function () {
+                                 return { value: [] };
+                             },
+                             listExperienciasPendientes: function (experienciasLaboralesDF, $stateParams) {
+                                 return { value: [] }; // experienciasLaboralesDF.
+                             },
+                             loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                 return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+                             }]
+                         }
+                     }
+                 }
+
+             })
+
+            //#endregion
+
         //#endregion
 
         //#region Profesional
@@ -414,10 +498,10 @@
                     }
                 },
                 'menu': {
-                    templateUrl: ''                    
+                    templateUrl: ''
                 },
                 'contenido': {
-                    templateUrl: '/App/DashboardProfesional/Partials/profesionalContenido.html'                    
+                    templateUrl: '/App/DashboardProfesional/Partials/profesionalContenido.html'
                 }
             }
         })
@@ -460,7 +544,7 @@
                         }
                     }
                 }
-                
+
             })
             //#endregion
 
@@ -499,7 +583,7 @@
                             }]
                         }
                     }
-                }                
+                }
             })
                 .state('profesional.ofertas.detalleOferta', {
                     url: '/detalleOferta/:idOferta',
@@ -589,10 +673,14 @@
             .state('profesional.centroNotificaciones', {
                 url: '/centroNotificaciones',
                 views: {
-                    'contenido@empresa': {
+                    'contenido@profesional': {
                         templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
                         controller: 'notificacionesCtrl',
                         resolve: {
+                            notificacionesDF: 'notificacionesDF',
+                            listadoNotificaciones: function (notificacionesDF) {
+                                return notificacionesDF.getNotificacionesRecibidas(1, 5);
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
                             }]

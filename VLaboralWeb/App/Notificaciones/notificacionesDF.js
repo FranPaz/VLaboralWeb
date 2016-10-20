@@ -3,23 +3,45 @@
     var urlApi = configSvc.urlApi; // fpaz: toma el url del api de configSvc
     var notificacionesDF = {};
 
-    //var _postExperiencia = function (data) { //iafar: alta de una Experiencia Academica en particular
-    //    var deferred = $q.defer();
-    //    $http.post(urlApi + 'api/ExperienciaLaborals', data).then(
-    //        function (response) {
-    //            deferred.resolve(response);
-    //        },
-    //        function (response) {
-    //            deferred.reject(response.data);
-    //        });
-    //    return deferred.promise;
-    //};
+    var _getNotificacionesRecibidas = function (prmPage, prmRows) { //fpaz: devuelve las notificaciones recibidas, se deben pasar cuantas quiero devolver
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Notificaciones', {
+            params: {
+                page: prmPage,
+                rows: prmRows
+            }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
+    var _getDetalleNotificacion = function (prmIdNotificacion, prmTipoNotificacion) {//fpaz: devuelve el detalle de una notificacion seleccionada, incluyendo sus objetos relacionados
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Notificaciones', {
+            params: {
+                id: prmIdNotificacion,
+                tipoNotificacion: prmTipoNotificacion
+            }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
 
  
 
     //#region iafar: area de asignacion de funciones a objeto
-    //experienciasLaboralesDF.postExperiencia = _postExperiencia;
-    //experienciasLaboralesDF.putExperiencia = _putExperiencia;
+    notificacionesDF.getNotificacionesRecibidas = _getNotificacionesRecibidas;
+    notificacionesDF.getDetalleNotificacion = _getDetalleNotificacion;
     //#endregion
 
     return notificacionesDF;
