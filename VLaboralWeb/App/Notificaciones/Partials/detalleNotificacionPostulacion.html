@@ -1,29 +1,48 @@
-﻿<h1>Nueva Postulacion</h1>
-
-<div>
-    <h1>Detalle de la Oferta</h1>
-    <h2>Oferta:{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Oferta.Nombre}}</h2>
-    <br />
-    <h2>Descripcion de la Oferta:{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Oferta.Nombre}}</h2>
-</div>
-
-<div>
-    <h1>Detalle del Puesto</h1>
-    <h2>Puesto: {{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Nombre}}</h2>
-</div>
-
-<div>
-    <h1>Datos del Postulante</h1>
-    <p>
-        Nombre del Profesional: {{postulacion.Postulacion.Profesional.Apellido}} - {{postulacion.Postulacion.Profesional.Nombre}}
+﻿<md-card>
+    <md-card-content>
+        <md-toolbar style="background-color: #0094ff">
+            <div class="md-toolbar-tools">
+                <h3>Nueva Postulación</h3>
+                <span flex></span>
+                <md-button ui-sref="empresa.centroNotificaciones">
+                    <span class="icon-cross"></span>
+                </md-button>
+            </div> 
+        </md-toolbar>
         <br />
-        <md-button ng-click="postulanteDetalle(postulacion.Postulacion.Profesional.Id)">
-            <md-icon style="color:forestgreen;" md-svg-src="svg/eye.svg"></md-icon>
-        </md-button>
-    </p>
-</div>
+        <div layout="column" layout-align="center center">            
+            <h2>{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Oferta.Nombre}}</h2>
+            <br />
+            <h2>{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Oferta.Descripcion}}</h2>
+        </div>
+        <br />
+        <hr />
+        <br />
 
-<h2>Fecha de Postulacion: {{postulacion.Postulacion.Fecha | date: 'medium'}}</h2>
+        <div layout="column">
+            <h1>Puesto</h1>
+            <h2>{{postulacion.Postulacion.PuestoEtapaOferta.Puesto.Nombre}}</h2>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <div layout="column">
+            <h1>Datos del Postulante</h1>
+            <div layout="row">
+                <h2>Nombre del Profesional: {{postulacion.Postulacion.Profesional.Apellido}} - {{postulacion.Postulacion.Profesional.Nombre}} </h2>
+                <br />
+                <md-button ng-click="postulanteDetalle(postulacion.Postulacion.Profesional.Id)">
+                    <md-icon style="color:forestgreen;" md-svg-src="svg/eye.svg"></md-icon>
+                </md-button>
+            </div>
+        </div>
+
+        <br />
+        <h2>Fecha de Postulacion: {{postulacion.Postulacion.Fecha | date: 'medium'}}</h2>
 
 
+
+
+    </md-card-content>
+</md-card>
 

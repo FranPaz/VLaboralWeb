@@ -10,6 +10,8 @@
   
     $scope.chipsHabilidad = infoProfesional.Habilidades;
 
+    //$scope.chipsRubros = infoProfesional.SubRubros;
+    
 
     $scope.Rubros = listadoRubros;
     $scope.rubroSelected = {};
