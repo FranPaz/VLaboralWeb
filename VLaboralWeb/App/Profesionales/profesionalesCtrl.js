@@ -155,6 +155,9 @@
                 listEmpresas: function (empresasDF) {
                     return empresasDF.getEmpresas();
                 },
+                listExperienciasPendientes: function () {
+                    return { value: [] };
+                },
                 loadExperienciasLaboralesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
                 }]

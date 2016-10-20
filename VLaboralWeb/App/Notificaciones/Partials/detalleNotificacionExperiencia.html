@@ -1,1 +1,45 @@
-﻿<h1>Detalle de Notificacion de Experiencia</h1>
+﻿
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Verificar Experiencia</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div>
+
+        <md-content>
+
+            <div>
+                <span class="md-headline">{{profesional.Apellido+ ", "+profesional.Nombre}}</span>
+                <span class="md-subhead description">Cuil: {{profesional.Cuil}}</span>
+                <span class="md-subhead description">Fecha Nacimiento: {{profesional.FechaNac}}</span>
+            </div>
+            <div flex-gt-sm="80">
+                <!--iafar: aqui debe ir el puesto en el que estuvo el profesional-->
+                <p>
+
+                </p>
+
+
+            </div>
+            iafar: agrega el comentario de
+            <md-input-container>
+                <label>Comentario</label>
+                <input md-maxlength="30" required md-no-asterisk ng-model="prosject.description">
+            </md-input-container>
+            <div>
+                <h3>Valoracion</h3>
+                <jk-rating-stars rating="valoracion"></jk-rating-stars>
+                <div style="width: 100px">{{valoracion}} Stars</div>
+            </div>
+
+        </md-content>
+    </div>
+
+  
+
+
