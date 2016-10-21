@@ -294,6 +294,36 @@
                             }]
                         }
                     }
+                    //,'postulantes@empresa.ofertas.etapaDetalle': {
+                    //    templateUrl: '/App/Postulantes/Partials/listadoPostulantes.html',
+                    //    controller: 'etapasOfertaCtrl',
+                    //    resolve: {
+                    //        //NombreOferta: function ($stateParams) {
+                    //        //    return $stateParams.NombreOferta.toString();
+                    //        //},
+                    //        etapasOfertaDF: 'etapasOfertaDF',
+                    //        listadoTiposEtapas: function () {
+                    //            return { value: [] };
+                    //        },
+                    //        etapasCargadas: function () {
+                    //            return { value: [] };
+                    //        },
+                    //        puesto: function($stateParams){                                
+                    //            return $stateParams.puesto;
+                    //        },
+                    //        etapaDetalle: function (etapasOfertaDF, $stateParams) {
+                    //            prmIdEtapa = $stateParams.idEtapa;
+                    //            return etapasOfertaDF.getEtapaOferta(prmIdEtapa);
+                    //        },
+                    //        //ofertaDetalle: function (ofertasDF, $stateParams) {
+                    //        //    var prmIdOferta = $stateParams.idOferta;
+                    //        //    return ofertasDF.getOferta(prmIdOferta);
+                    //        //}
+                    //        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    //            return $ocLazyLoad.load(['App/EtapasOferta/etapasOfertaCtrl.js']);
+                    //        }]
+                    //    }
+                    //}
                 }
             })
 
@@ -301,7 +331,7 @@
                 url: 'listadoPostulantes/:idEtapa',
                 params: {
                     idEtapa: null,
-                    puesto: null,
+                    puesto: null
                 },
                 views: {
                     'contenido@empresa': {
@@ -337,7 +367,7 @@
                     }
                 }
             })
-            //#endregion
+           // #endregion
 
             //#region Profesionales para Usuarios Empresa
             .state('empresa.profesional', {
