@@ -71,7 +71,6 @@
             <tbody md-body>
 
                 <tr md-row
-                    
                     ng-repeat=" postulante in Puesto.Postulaciones | limitTo: query.limit : (query.page -1) * query.limit | filter:posBuscado | orderBy: query.order">
                     <!--aqui va el repeat-->
                     <!--<td md-cell>
@@ -120,6 +119,6 @@
 
     <md-button ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapaDetalle.Id, NombreOferta: ofertaDetalle.Nombre})" class="md-accent">Cancelar</md-button>
 
-   
+
 </md-card>
 <!--#endregion-->

@@ -1,4 +1,4 @@
-﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope, $mdDialog, $mdMedia, $filter, $stateParams,$state //fpaz: definicion de inyectores de dependencias
+﻿vLaboralApp.controller('etapasOfertaCtrl', function ($scope,$window,  $mdDialog, $mdMedia, $filter, $stateParams, $state //fpaz: definicion de inyectores de dependencias
     , listadoTiposEtapas, etapasCargadas, puesto, etapaDetalle, postulantesDF, ofertasDF //fpaz: definicion de parametros de entrada 
     ) {
 
@@ -75,6 +75,21 @@
         
 
     //}
+
+    $scope.guardarPostulacion = guardarPostulacion;
+
+    function guardarPostulacion(postulacion) {
+
+        postulantesDF.putPostulacion(postulacion);
+     
+        //var prmIdEtapa = $stateParams.idEtapa;
+        //$scope.etapaDetalle =   etapasOfertaDF.getEtapaOferta(prmIdEtapa);
+
+       $window.location.reload();
+        //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
+        //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
+    }
+
     $scope.guardarPostulantes = function () {
 
         var postulaciones = $scope.Puesto.Postulaciones;
@@ -143,6 +158,45 @@
     //#endregion
 
 
+    $scope.postulanteSeleccionado = {};
+
+    //#region sluna: modal para modificar la postulacion, marcar si aprueba, etc.
+    $scope.postulanteModificar = function (postulante) {
+
+
+        $mdDialog.show({
+            templateUrl: 'App/EtapasOferta/Partials/postulacionDetalleDialog.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            controller: postulanteModificarDialogController,
+            locals: {
+                postulacionShow: angular.copy(postulante) //sluna: copio para no hacer referencia a la misma instancia.
+    }
+        })
+        .then(function (postulacion) {
+            if (postulacion != null) {
+                guardarPostulacion(postulacion);
+            }
+        });
+    }
+
+    function postulanteModificarDialogController($scope, $mdDialog, postulacionShow) {
+        $scope.postulacionShow = postulacionShow;
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.guardar = function (postulacion) {
+            $mdDialog.hide(postulacion);
+        };
+    }
+    //#endregion
 });
 
 
