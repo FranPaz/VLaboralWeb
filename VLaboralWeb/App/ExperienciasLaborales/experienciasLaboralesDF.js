@@ -32,12 +32,11 @@
 
     var _getExperienciaPendiente = function (prmIdExperiencia) { //iafar: trae el detalle de una sola experiencia pendiente a verificar junto a los datos basicos del profesional 
         //authSvc.authentication.empresaId
+        debugger;
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/ExperienciaLaboral/Verificacion',
-             {
+        $http.get(urlApi + 'api/ExperienciaLaboral/Verificacion',  {
                  params: { idExperiencia: prmIdExperiencia }
-             }
-            +prmIdExperiencia).then(
+             }).then(
             function (response) {
                 deferred.resolve(response.data);
             },
@@ -48,7 +47,7 @@
     }
 
     var _getExperienciasPendientes = function () { //iafar: trae todas las experiencias pendientes a verificar por la empresa
-        debugger;
+
         var prmIdEmpresa = authSvc.authentication.empresaId;
         var deferred = $q.defer();
         $http.get(urlApi + 'api/ExperienciaLaboral/PendientesValidar',  {
@@ -63,12 +62,25 @@
         return deferred.promise;
     }
 
+    var _postVerificarExperiencia = function (data) { //iafar: alta de Verificacion de experiencia laboral y modificacion de estado de experienciaLaboral.isVerificada
+        debugger;
+        var deferred = $q.defer();
+        $http.post(urlApi + 'api/VerificacionExperienciaLaborals', data).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
 
     //#region iafar: area de asignacion de funciones a objeto
     experienciasLaboralesDF.postExperiencia = _postExperiencia;
     experienciasLaboralesDF.putExperiencia = _putExperiencia;
     experienciasLaboralesDF.getExperienciasPendientes = _getExperienciasPendientes;
     experienciasLaboralesDF.getExperienciaPendiente = _getExperienciaPendiente;
+    experienciasLaboralesDF.postVerificarExperiencia = _postVerificarExperiencia
     //#endregion
 
     return experienciasLaboralesDF;

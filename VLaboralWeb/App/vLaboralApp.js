@@ -278,7 +278,7 @@
                             puesto: function () {
                                 return { value: [] };
                             },
-                            etapasCargadas: function(){
+                            etapasCargadas: function () {
                                 return { value: [] };
                             },
                             etapaDetalle: function (etapasOfertaDF, $stateParams) {
@@ -319,7 +319,7 @@
                             etapasCargadas: function () {
                                 return { value: [] };
                             },
-                            puesto: function($stateParams){                                
+                            puesto: function ($stateParams) {
                                 return $stateParams.puesto;
                             },
                             etapaDetalle: function (etapasOfertaDF, $stateParams) {
@@ -379,7 +379,7 @@
 
             })
             //#endregion
-            
+
              //#region Centro de notificaciones para Usuarios Empresa
             .state('empresa.centroNotificaciones', {
                 url: '/centroNotificaciones',
@@ -389,7 +389,7 @@
                         controller: 'notificacionesCtrl',
                         resolve: {
                             notificacionesDF: 'notificacionesDF',
-                            listadoNotificaciones: function (notificacionesDF) {                                
+                            listadoNotificaciones: function (notificacionesDF) {
                                 return notificacionesDF.getNotificacionesRecibidas(1, 20);
                             },
                             listExperienciasPendientes: function (experienciasLaboralesDF) {
@@ -407,18 +407,18 @@
                     url: '/postulacion',
                     params: {
                         prmIdNotificacion: null,
-                        prmTipoNotificacion:null
+                        prmTipoNotificacion: null
                     },
                     views: {
-                        'detalleNotificacion@empresa.centroNotificaciones': {
+                        'detalleNotificacionPostulante@empresa.centroNotificaciones': {
                             templateUrl: '/App/Notificaciones/Partials/detalleNotificacionPostulacion.html',
                             controller: 'postulantesCtrl',
                             resolve: {
                                 notificacionesDF: 'notificacionesDF',
-                                infoPostulacion: function (notificacionesDF, $stateParams) {                                    
+                                infoPostulacion: function (notificacionesDF, $stateParams) {
                                     var idNotif = $stateParams.prmIdNotificacion;
                                     var tipoNotyif = $stateParams.prmTipoNotificacion
-                                    return notificacionesDF.getDetalleNotificacion(idNotif,tipoNotyif);
+                                    return notificacionesDF.getDetalleNotificacion(idNotif, tipoNotyif);
                                 },
                                 listadoPostulantes: function () {
                                     return { value: [] };
@@ -434,24 +434,34 @@
                     }
 
                 })
+
                 .state('empresa.centroNotificaciones.experiencia', {
                     url: '/experiencia',
+                    params: {
+                        idExperienciaPendiente:null
+                    },
                     views: {
-                        'detalleNotificacion@empresa.centroNotificaciones': {
+                        'detalleNotificacionExp@empresa.centroNotificaciones': {
                             templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
-                            controller: '',
+                            controller: 'experienciasLaboralesCtrl',
                             resolve: {
-                                //notificacionesDF: 'notificacionesDF',
-                                //listadoNotificaciones: function (notificacionesDF) {
-                                //    return notificacionesDF.getNotificacionesRecibidas(1, 20);
-                                //},
-                                //loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                //    return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);
-                                //}]
+                                experienciasLaboralesDF: 'experienciasLaboralesDF',
+                                listEmpresas: function () {
+                                    return { value: [] };
+                                },
+                                experienciaPendiente: function (experienciasLaboralesDF, $stateParams) {
+                                    if ($stateParams.idExperienciaPendiente != null) {
+                                        return experienciasLaboralesDF.getExperienciaPendiente($stateParams.idExperienciaPendiente);
+                                    } else {
+                                        return { value: [] };
+                                    } 
+                                },
+                                loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+                                }]
                             }
                         }
                     }
-
                 })
             //#endregion
 
@@ -642,7 +652,7 @@
 
             })
         //#endregion
-        
+
 
         //#region Centro de notificaciones para Usuarios Empresa
             .state('profesional.centroNotificaciones', {
@@ -655,6 +665,9 @@
                             notificacionesDF: 'notificacionesDF',
                             listadoNotificaciones: function (notificacionesDF) {
                                 return notificacionesDF.getNotificacionesRecibidas(1, 5);
+                            },
+                            listExperienciasPendientes: function (experienciasLaboralesDF) {
+                                return { value: [] };
                             },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Notificaciones/notificacionesCtrl.js']);

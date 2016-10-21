@@ -131,6 +131,9 @@
                 listadoTiposEtapas: function (tiposEtapasDF) {
                     return tiposEtapasDF.getTiposEtapas();
                 },
+                puesto: function ($stateParams) {
+                    return { value: [] };
+                },
                 etapasCargadas : function () {
                     return $scope.oferta.EtapasOferta;
                 },

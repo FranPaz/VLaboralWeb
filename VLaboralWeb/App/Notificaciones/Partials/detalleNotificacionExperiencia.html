@@ -1,45 +1,60 @@
-﻿
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Verificar Experiencia</h2>
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-
-    <div>
-
-        <md-content>
-
-            <div>
-                <span class="md-headline">{{profesional.Apellido+ ", "+profesional.Nombre}}</span>
-                <span class="md-subhead description">Cuil: {{profesional.Cuil}}</span>
-                <span class="md-subhead description">Fecha Nacimiento: {{profesional.FechaNac}}</span>
+﻿<div layout="column" flex layout-padding>
+    <md-card>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:aliceblue">Verificar Experiencia</h2>
             </div>
-            <div flex-gt-sm="80">
-                <!--iafar: aqui debe ir el puesto en el que estuvo el profesional-->
-                <p>
+        </md-toolbar>
+        <md-card-title>
+            <md-card-title-text layout="row">
+                <md-card-title-media flex="10">
+                    <div class="md-media-sm card-media" layout>
+                        <md-icon style="width: 80px; height: 80px" md-svg-src="svg/id-card.svg"></md-icon>
+                    </div>
+                </md-card-title-media>
+                <span flex="5"></span>
+                <md-card-title-text class="md-dense" flex="50">
+                    <span class="md-headline">{{experienciaPendiente.profesional.apellido+ ", "+ experienciaPendiente.profesional.nombre}}</span>   
+                    <span class="md-subhead description">Fecha Nacimiento: {{experienciaPendiente.profesional.fechaNac | date:'dd/MM/yyyy'}} </span> 
+                    <span class="md-subhead description">{{experienciaPendiente.profesional.nacionalidad}}</span> 
+                </md-card-title-text>
+            </md-card-title-text>
+        </md-card-title>
 
-                </p>
+        <md-card-content>
+            <md-list>
+                <md-list-item>
+                    
+                    <div class="md-list-item-text" layout="column" flex="80">
+                        <br>
+                        <h3>{{ experienciaPendiente.puesto }}</h3>   
+                        <h4>{{ experienciaPendiente.ubicacion }} ({{experienciaPendiente.periodoDesde | date:'dd/MM/yyyy'}} - {{experienciaPendiente.periodoHasta | date:'dd/MM/yyyy' }})</h4>      
+                        <p>{{ experienciaPendiente.descripcion }}</p> 
+                        <br>
+                        
+                    </div>
+                </md-list-item>
+            </md-list>
+            <md-content layout="row" layout-align="center">
+                <md-input-container flex="60">
+                    <label>Comentario</label>
+                    <input md-maxlength="30"  md-no-asterisk ng-model="verificacionExperienciaLaboral.Comentario">
+                </md-input-container>
+                <span flex="5"></span>
+                <div flex="30">
+                    <h3>Valoracion</h3>
+                    <jk-rating-stars rating="verificacionExperienciaLaboral.Valoracion"></jk-rating-stars>
+                    <div style="width: 100px">{{verificacionExperienciaLaboral.Valoracion}} Estrellas</div>
+                </div>
+            </md-content>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="start center">
+            <md-button ng-click="verificarExperiencia()">Verificar</md-button>
+            <md-button ng-click="null">Rechazar</md-button>
+        </md-card-actions>
+    </md-card>
+</div>
 
 
-            </div>
-            iafar: agrega el comentario de
-            <md-input-container>
-                <label>Comentario</label>
-                <input md-maxlength="30" required md-no-asterisk ng-model="prosject.description">
-            </md-input-container>
-            <div>
-                <h3>Valoracion</h3>
-                <jk-rating-stars rating="valoracion"></jk-rating-stars>
-                <div style="width: 100px">{{valoracion}} Stars</div>
-            </div>
-
-        </md-content>
-    </div>
-
-  
 
 

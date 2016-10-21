@@ -10,7 +10,7 @@
 
     //#region fpaz: funciones para ver el detalle de cada notificacion
     $scope.verDetalleNotif = function (prmIdNotificacion, prmTipoNotificacion) {
-        debugger;
+        
         switch (prmTipoNotificacion)
         {
             case "EXP":
@@ -32,5 +32,9 @@
     }
     //#endregion
     
-    
+    $scope.detalleExperienciaPendiente = function (prmIdExperiencia) {
+        
+        $state.go('empresa.centroNotificaciones.experiencia', { idExperienciaPendiente: prmIdExperiencia });
+    }
+
 });

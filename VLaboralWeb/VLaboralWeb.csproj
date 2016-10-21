@@ -445,6 +445,7 @@
     <Content Include="svg\add.svg" />
     <Content Include="svg\exit.svg" />
     <Content Include="svg\eye.svg" />
+    <Content Include="svg\id-card.svg" />
     <Content Include="svg\success.svg" />
     <Content Include="svg\trash.svg" />
     <Content Include="views\aside.html" />

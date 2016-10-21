@@ -1,6 +1,7 @@
 ﻿<main>
     <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
+            <!-- #region Todas las notificaciones (ui-view="detalleNotificacion") -->
             <md-tab label="Todo">
                 <div layout="row">
                     <div flex>
@@ -20,45 +21,6 @@
                                                 <div class="ni2">
                                                     <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
                                                     <md-button ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">Ver Mas</md-button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </md-list-item>
-                                </md-list>
-                            </md-content>    
-                        </div>                                                
-                    </div>
-                    <div flex>
-                        <div ui-view="detalleNotificacion"></div>                        
-                    </div>
-                </div>          
-            </md-tab>
-            <md-tab label="Experiencias para verificar"
-                   >  <!--ui-sref=""-->  <!--md-on-select='verDetalleNotif(2,"EXP")'-->
-                <div layout="row">
-                    <div flex>
-                        <div class="n_centro">
-                            <md-content style="height: 600px;">
-                                <md-subheader class="md-primary">Nuevas Experiencias</md-subheader>
-                                <md-list layout-padding>
-                                    <!-- ng-repeat="n in notificaciones | filterBy: ['TipoNotificacion.Valor']: 'EXP'" -->
-                                    <md-list-item class="md-3-line" ng-repeat="nExp in experienciasPendientesList" ng-click="null">
-                                        <!--iafar: deberiamos hacer que el filtro traiga todas las notificaciones que tienen coincidencia con el listado de experiencias por verificar-->
-                                        <!--<img src=" img />perfil.jpg" class="md-avatar" alt="{{message.who}}">--> <!--iafar: probar en el ng-click con el state.go-->
-                                        <div class="md-list-item-text">
-                                            <div class="notis_info">
-                                                <div class="ni1">
-                                                    <h3>Solicitud de Verificacion</h3> <!--{{n.TipoNotificacion.Descripcion}}-->
-                                                    <h4>
-                                                    <h4>{{nExp.puesto}}</h4>   <!--{{n.Mensaje}}-->
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="ni2">
-                                                    <h5>{{nExp.fechaCreacion | date:'dd/MM/yyyy'}}</h5> <!--{{n.FechaPublicacion | date:'medium'}}-->
-                                                    </div>
 
                                                 </div>
                                             </div>
@@ -69,16 +31,48 @@
                         </div>
                     </div>
                     <div flex>
-                        <div ui-view="detalleNotificacion"></div>                        
-                        <!--<div class="n_detalle">
-                            <h1>Detalle de la notificación</h1>
-                            <div class="detalle_cont" ui-view="detalleNotificacionExperiencia">
-                                <!--iafar: Detalle de la notificacion-->
-                            </div>
-                        </div>-->
+                        <div ui-view="detalleNotificacion"></div>
                     </div>
                 </div>
             </md-tab>
+
+            <!-- #endregion -->
+
+            <!-- #region Solicitudes de verificacion de experiencia (ui-view="detalleNotificacionExp") -->
+            <md-tab label="Experiencias para verificar"
+                    > <!--md-on-select='verDetalleNotif(2,"EXP")'-->
+                <md-content flex layout="row" style="height: 600px;">
+                    <div flex="30">
+                        <md-subheader class="md-primary">Nuevas Experiencias</md-subheader>
+                        <md-list layout-padding>
+                            <md-list-item class="md-3-line" ng-repeat="nExp in experienciasPendientesList" ng-click="detalleExperienciaPendiente(nExp.id)">
+                                <!--<img src=" img />perfil.jpg" class="md-avatar" alt="{{message.who}}">--> <!--iafar: probar en el ng-click con el state.go-->
+                                <div class="md-list-item-text">
+                                    <div class="notis_info">
+                                        <div class="ni1">
+                                            <h3>Solicitud de Verificacion</h3> <!--{{n.TipoNotificacion.Descripcion}}-->
+                                            <h4>{{nExp.puesto}}</h4>   <!--{{n.Mensaje}}-->
+                                        </div>
+                                        <div class="ni2">
+                                            <h5>{{nExp.fechaCreacion | date:'dd/MM/yyyy'}}</h5> <!--{{n.FechaPublicacion | date:'medium'}}-->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                    <div flex="60" ui-view="detalleNotificacionExp">
+
+                    </div>
+                </md-content>
+
+            </md-tab>
+
+            <!-- #endregion -->
+
+            <!-- #region Notificaciones de postulaciones (ui-view="detalleNotificacionPostulante") -->
             <md-tab label="Postulaciones">
                 <div layout="row">
                     <div flex>
@@ -100,7 +94,7 @@
                                                     <md-button ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">Ver Mas</md-button>
 
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </md-list-item>
@@ -109,7 +103,7 @@
                         </div>
                     </div>
                     <div flex>
-                        <div ui-view="detalleNotificacion"></div>                        
+                        <div ui-view="detalleNotificacionPostulante"></div>
                         <!--<div class="n_detalle">
                             <h1>Detalle de la notificación</h1>
                             <div class="detalle_cont">
@@ -117,8 +111,9 @@
                             </div>
                         </div>-->
                     </div>
-                </div>          
+                </div>
             </md-tab>
+            <!-- #endregion -->
         </md-tabs>
     </md-content>
 </main>

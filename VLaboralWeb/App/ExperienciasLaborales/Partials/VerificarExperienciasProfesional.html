@@ -1,17 +1,17 @@
-﻿<div layout="column" flex layout-padding >
+﻿<div layout="column" flex layout-padding>
 
     <md-card>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <span>Solitud de Verificacion Laboral</span>
+                <h1 style="color:white">Solitud de Verificacion Laboral</h1>
             </div>
         </md-toolbar>
         <md-card-content>
             <md-card-title>
                 <md-card-title-media>
                     <!--<div class="md-media-sm card-media" layout>
-                <md-icon style="width: 80px; height: 80px" md-svg-src="svg/id-card.svg"></md-icon>
-            </div>-->
+                        <md-icon style="width: 80px; height: 80px" md-svg-src="svg/id-card.svg"></md-icon>
+                    </div>-->
                 </md-card-title-media>
                 <span></span>
                 <md-card-title-text>
@@ -22,10 +22,10 @@
             </md-card-title>
         </md-card-content>
 
-        
+
     </md-card>
 
-    
+
 
     <md-content>
         <md-toolbar layout="row" class="md-hue-3">
@@ -46,7 +46,7 @@
                     <p>{{ puesto.Descripcion }}</p>
                     <br>
                 </div>
-                <md-button class="md-secondary" flex="10" click="verificarExperiencia()">Evaluar</md-button>
+                <md-button class="md-secondary" flex="10" ng-click="verificarExperiencia()">Evaluar</md-button>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
 
