@@ -4,6 +4,7 @@
     ) {
 
     //#region fpaz: Inicializacion de variables
+    $scope.notificaciones = listadoNotificaciones.Results;
     $scope.experienciasPendientesList = listExperienciasPendientes;
     //#endregion
 
