@@ -138,7 +138,7 @@ aside .p_info img { width: 5em; border-radius: 100%; }
 aside .p_info .t_info h2 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.1em; color: #51caf5; }
 aside .p_info .t_info h5 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 0.8em; color: #b4b4b4; margin: 0.9em 0 0.3em; text-transform: uppercase; }
 
-.menu_s h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1em; color: #d2d2d2; margin: 2em 0 1em; text-align: left; width: 90%; }
+.menu_s h1 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #d2d2d2; margin: 2em 0 1em; text-align: left; width: 90%; }
 .menu_s ul { list-style: none; display: flex; flex-flow: wrap column; justify-content: center; align-items: center; width: 100%; }
 .menu_s ul a { text-decoration: none; font-size: 1.8em; width: 100%; }
 .menu_s ul a li { display: block; padding: 0.8em 0.5em; list-style: none; font-family: 'Lato', sans-serif; font-weight: 300; font-size: 0.63em; color: #d2d2d2; text-align: left; }
