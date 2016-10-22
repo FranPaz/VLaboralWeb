@@ -32,7 +32,7 @@
 
     var _getExperienciaPendiente = function (prmIdExperiencia) { //iafar: trae el detalle de una sola experiencia pendiente a verificar junto a los datos basicos del profesional 
         //authSvc.authentication.empresaId
-        debugger;
+  
         var deferred = $q.defer();
         $http.get(urlApi + 'api/ExperienciaLaboral/Verificacion',  {
                  params: { idExperiencia: prmIdExperiencia }
@@ -63,7 +63,7 @@
     }
 
     var _postVerificarExperiencia = function (data) { //iafar: alta de Verificacion de experiencia laboral y modificacion de estado de experienciaLaboral.isVerificada
-        debugger;
+    
         var deferred = $q.defer();
         $http.post(urlApi + 'api/VerificacionExperienciaLaborals', data).then(
             function (response) {

@@ -412,7 +412,7 @@
 
              //#region Centro de notificaciones para Usuarios Empresa
             .state('empresa.centroNotificaciones', {
-                url: '/centroNotificaciones',
+                url: '/centroNotificaciones',                
                 views: {
                     'contenido@empresa': {
                         templateUrl: '/App/Notificaciones/Partials/centroNotificaciones.html',
@@ -440,7 +440,7 @@
                         prmTipoNotificacion: null
                     },
                     views: {
-                        'detalleNotificacionPostulante@empresa.centroNotificaciones': {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
                             templateUrl: '/App/Notificaciones/Partials/detalleNotificacionPostulacion.html',
                             controller: 'postulantesCtrl',
                             resolve: {
@@ -468,10 +468,10 @@
                 .state('empresa.centroNotificaciones.experiencia', {
                     url: '/experiencia',
                     params: {
-                        idExperienciaPendiente:null
+                        idExperienciaPendiente: null
                     },
                     views: {
-                        'detalleNotificacionExp@empresa.centroNotificaciones': {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
                             templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
                             controller: 'experienciasLaboralesCtrl',
                             resolve: {

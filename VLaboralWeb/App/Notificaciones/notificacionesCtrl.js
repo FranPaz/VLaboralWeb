@@ -6,6 +6,7 @@
     //#region fpaz: Inicializacion de variables
     $scope.notificaciones = listadoNotificaciones.Results;
     $scope.experienciasPendientesList = listExperienciasPendientes;
+    $scope.mostrarDetalle = false;
     //#endregion
 
 
@@ -15,12 +16,16 @@
         switch (prmTipoNotificacion)
         {
             case "EXP":
-                $state.go('empresa.centroNotificaciones.experiencia');
+                debugger;
+                $scope.mostrarDetalle = true;
+                $state.go('empresa.centroNotificaciones.experiencia', { idExperienciaPendiente: prmIdNotificacion });
                 break;
             case "EXPVER":
+                $scope.mostrarDetalle = true;
                 '';
                 break;
             case "POS":
+                $scope.mostrarDetalle = true;
                 $state.go('empresa.centroNotificaciones.postulacion', { prmIdNotificacion: prmIdNotificacion, prmTipoNotificacion: prmTipoNotificacion });
                 break;
             case "ETAP":
@@ -33,9 +38,8 @@
     }
     //#endregion
     
-    $scope.detalleExperienciaPendiente = function (prmIdExperiencia) {
-        
-        $state.go('empresa.centroNotificaciones.experiencia', { idExperienciaPendiente: prmIdExperiencia });
+    $scope.ocultarDetalle = function () {
+        $scope.mostrarDetalle = false;
     }
 
 });

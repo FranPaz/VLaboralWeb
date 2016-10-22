@@ -59,11 +59,12 @@
 
     //#region Alta de Evaluacion de experiencia
     $scope.verificarExperiencia = function () {
-        debugger;
-        $scope.verificacionExperienciaLaboral.Id = $scope.experienciaPendiente.id;
-        $scope.verificacionExperienciaLaboral.FechaVerificacion = Date.now();
-        experienciasLaboralesDF.postVerificarExperiencia($scope.verificacionExperienciaLaboral);
 
+        $scope.verificacionExperienciaLaboral.Id = $scope.experienciaPendiente.id;
+        $scope.verificacionExperienciaLaboral.FechaVerificacion = new Date;
+        $scope.verificacionExperienciaLaboral.ExperienciaLaboral = null ;
+        experienciasLaboralesDF.postVerificarExperiencia($scope.verificacionExperienciaLaboral);
+        
 
     }
     //#endregion
