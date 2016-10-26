@@ -79,15 +79,24 @@
     $scope.guardarPostulacion = guardarPostulacion;
 
     function guardarPostulacion(postulacion) {
+        postulantesDF.putPostulacion(postulacion)
+            .then(function (response) {
+                postulacion = response.data;
 
-        postulantesDF.putPostulacion(postulacion);
-     
-        //var prmIdEtapa = $stateParams.idEtapa;
-        //$scope.etapaDetalle =   etapasOfertaDF.getEtapaOferta(prmIdEtapa);
-
-       $window.location.reload();
-        //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
-        //$state.go('empresa.ofertas.etapaDetalle', { idEtapa: $scope.etapaDetalle.Id });
+                //sluna: TODO: si alguien se anima a optimizar esto le agradeceria.
+                angular.forEach($scope.etapaDetalle.PuestosEtapaOferta, function (peo) {
+                    angular.forEach(peo.Postulaciones, function (p) {
+                        if (p.Id === postulacion.Id) {
+                            p.Comentario = postulacion.Comentario;
+                            p.PasaEtapa = postulacion.PasaEtapa;
+                            p.Valoracion = postulacion.Valoracion;
+                            return;
+                        }
+                    });
+                });
+            }, function (response) {
+                alert(response.Message);
+            });
     }
 
     $scope.guardarPostulantes = function () {
@@ -162,7 +171,7 @@
 
     //#region sluna: modal para modificar la postulacion, marcar si aprueba, etc.
     $scope.postulanteModificar = function (postulante) {
-
+        $scope.postulanteSeleccionado = postulante; //lo guardo para poder utilizarlo cuando vuelva.
 
         $mdDialog.show({
             templateUrl: 'App/EtapasOferta/Partials/postulacionDetalleDialog.html',
