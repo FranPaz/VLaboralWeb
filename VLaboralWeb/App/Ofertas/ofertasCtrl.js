@@ -1,7 +1,7 @@
-﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog,$ocLazyLoad,$state, //fpaz: definicion de inyectores de dependencias
-    ofertasDF, rubrosDF, requisitosDF, habilidadesDF,authSvc, tiposEtapasDF, //fpaz: definicion de data factorys
+﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $state, //fpaz: definicion de inyectores de dependencias
+    ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
-    listadoRubros, listadoTiposRequisitos, listadoHabilidades,ofertaDetalle, etapasObligatorias//    
+    listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias//    
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
@@ -46,7 +46,7 @@
                 },
                 listadoTiposContratos: function () {
                     return $scope.tiposContrato;
-                }, 
+                },
                 listadoRubros: function () {
                     return $scope.Rubros;
                 },
@@ -63,52 +63,62 @@
         });
     }
     //#endregion
-        
+
     //#region funcion para dar de alta la oferta en la bd
-    $scope.ofertaSave = function (prmOferta) {        
-        prmOferta.EmpresaId = authSvc.authentication.empresaId; //id de la empresa logueada
-        for (var i in prmOferta.Puestos) { //para cada puesto armo el objeto tal cual lo voy a enviar al post de ofertas
-            delete prmOferta.Puestos[i].Habilidades;
-            //dejo solamente el Id del tipo de contrato seleccionado
-            prmOferta.Puestos[i].TipoContratoId = prmOferta.Puestos[i].TipoContrato.Id;
-            delete prmOferta.Puestos[i].TipoContrato;
+    $scope.ofertaSave = function (prmOferta) {
+        
+        if ($scope.oferta.Puestos.length > 0) {
+            
+            prmOferta.EmpresaId = authSvc.authentication.empresaId; //id de la empresa logueada
+            for (var i in prmOferta.Puestos) { //para cada puesto armo el objeto tal cual lo voy a enviar al post de ofertas
+                //delete prmOferta.Puestos[i].Habilidades;
+                //dejo solamente el Id del tipo de contrato seleccionado
+                prmOferta.Puestos[i].TipoContratoId = prmOferta.Puestos[i].TipoContrato.Id;
+                delete prmOferta.Puestos[i].TipoContrato;
 
-            //dejo solamente el Id del tipo de disponibilidad seleccionada
-            prmOferta.Puestos[i].TipoDisponibilidadId = prmOferta.Puestos[i].Disponibilidad.Id;
-            delete prmOferta.Puestos[i].Disponibilidad;
+                //dejo solamente el Id del tipo de disponibilidad seleccionada
+                prmOferta.Puestos[i].TipoDisponibilidadId = prmOferta.Puestos[i].Disponibilidad.Id;
+                delete prmOferta.Puestos[i].Disponibilidad;
 
-            //para cada subrubro asociado al puesto solo dejo el Id del subrubro
-//            debugger;
-            for (var x in prmOferta.Puestos[i].Subrubros) {                                
-                delete prmOferta.Puestos[i].Subrubros[x].Nombre;
-                delete prmOferta.Puestos[i].Subrubros[x].Descripcion;
-                delete prmOferta.Puestos[i].Subrubros[x].Profesionales;
-                delete prmOferta.Puestos[i].Subrubros[x].Puestos;                
+                //para cada subrubro asociado al puesto solo dejo el Id del subrubro
+                //            debugger;
+                for (var x in prmOferta.Puestos[i].Subrubros) {
+                    delete prmOferta.Puestos[i].Subrubros[x].Nombre;
+                    delete prmOferta.Puestos[i].Subrubros[x].Descripcion;
+                    delete prmOferta.Puestos[i].Subrubros[x].Profesionales;
+                    delete prmOferta.Puestos[i].Subrubros[x].Puestos;
+                }
+
+                //para cada requisito asociado al puesto solo dejo el Id del tipo de requisito, el valor y si es exclueyente o no
+                for (var j in prmOferta.Puestos[i].Requisitos) {
+                    prmOferta.Puestos[i].Requisitos[j].TipoRequisitoId = prmOferta.Puestos[i].Requisitos[j].TipoRequisito.Id;
+                    delete prmOferta.Puestos[i].Requisitos[j].TipoRequisito;
+                }
             }
 
-            //para cada requisito asociado al puesto solo dejo el Id del tipo de requisito, el valor y si es exclueyente o no
-            for (var j in prmOferta.Puestos[i].Requisitos) {
-                prmOferta.Puestos[i].Requisitos[j].TipoRequisitoId = prmOferta.Puestos[i].Requisitos[j].TipoRequisito.Id;
-                delete prmOferta.Puestos[i].Requisitos[j].TipoRequisito;                
+            for (var x in prmOferta.EtapasOferta) {
+                //dejo solamente el Id del tipo de Etapa seleccionado
+                prmOferta.EtapasOferta[x].TipoEtapaId = prmOferta.EtapasOferta[x].TipoEtapa.Id;
+                delete prmOferta.EtapasOferta[x].TipoEtapa;
             }
+
+            ofertasDF.postOferta(prmOferta).then(function (response) {
+                alert("Oferta Guardada");
+                $state.go('empresa.ofertas');
+            },
+        function (err) {
+            if (err) {
+                $scope.error = err;
+                alert("Error al Guardar la Oferta: " + $scope.error.Message);
+            }
+        });
+
+
+        } else {
+            alert("Debe agregar al menos un puesto a la oferta")
         }
 
-        for (var x in prmOferta.EtapasOferta) {
-            //dejo solamente el Id del tipo de Etapa seleccionado
-            prmOferta.EtapasOferta[x].TipoEtapaId = prmOferta.EtapasOferta[x].TipoEtapa.Id;
-            delete prmOferta.EtapasOferta[x].TipoEtapa;
-        }
 
-        ofertasDF.postOferta(prmOferta).then(function (response) {
-            alert("Oferta Guardada");
-            $state.go('empresa.ofertas');
-        },
-    function (err) {
-        if (err) {
-            $scope.error = err;
-            alert("Error al Guardar la Oferta: " + $scope.error.Message);
-        }
-    });
     };
     //#endregion
     //#endregion
@@ -134,7 +144,7 @@
                 puesto: function ($stateParams) {
                     return { value: [] };
                 },
-                etapasCargadas : function () {
+                etapasCargadas: function () {
                     return $scope.oferta.EtapasOferta;
                 },
                 etapaDetalle: function () {
@@ -161,7 +171,7 @@
             templateUrl: 'App/Puestos/Partials/puestoDetalle.html',
             parent: angular.element(document.body),
             //targetEvent: ev,
-            clickOutsideToClose: true,            
+            clickOutsideToClose: true,
             fullscreen: useFullScreen,
             resolve: {
                 listadoPostulantes: function () {
@@ -179,7 +189,7 @@
             }
         })
         .then(function () {
-            $state.go("profesional.ofertas");            
+            $state.go("profesional.ofertas");
         });
     }
     //#endregion
