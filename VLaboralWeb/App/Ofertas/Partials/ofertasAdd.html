@@ -48,7 +48,25 @@
                 <div layout="column" flex="60">
                     <!--#region Seccion del Timeline de Etapas del Proceso de contratacion de la oferta-->
                     <h1 style="text-align:center;">Etapas de la Oferta</h1>
-                    <ul class="timeline">                        
+                    <timeline>
+                        <timeline-event ng-repeat="etapa in oferta.EtapasOferta" side="alternate">
+                            <!--<timeline-badge >
+                                <i class="glyphicon {{event.badgeIconClass}}"></i>
+                            </timeline-badge>-->
+                            <timeline-panel class="{{event.badgeClass}}">
+                                <timeline-heading>
+                                    <div class="flag-wrapper">
+                                        <span class="flag">{{etapa.TipoEtapa.Nombre}}</span>
+                                        <span class="time-wrapper"><span class="time">2011 - 2013</span></span>
+                                    </div>
+                                </timeline-heading>
+                                <div class="desc">
+                                    <p>{{etapa.TipoEtapa.Descripcion}}</p>                                    
+                                </div>
+                            </timeline-panel>
+                        </timeline-event>
+                    </timeline>
+                    <!--<ul class="timeline">                        
                         <li  ng-repeat="etapa in oferta.EtapasOferta">
 
                             <div class="direction-r">
@@ -66,7 +84,7 @@
                             </div>
 
                         </li>
-                    </ul>
+                    </ul>-->
 
                     <!-- FIN NUEVA TIMELINE-->
                     
