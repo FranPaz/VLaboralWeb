@@ -77,6 +77,7 @@
     };
 
     $scope.subRubroAddClick = function () {
+        debugger;
         for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
             if ($scope.profesional.Subrubros[i].Id === $scope.subRubroSelected.Id) {
                 alert("Advertencia: El SubRubro ya está seleccionado.");

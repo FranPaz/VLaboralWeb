@@ -57,7 +57,7 @@
                                 <div flex="50">
                                     <md-input-container>
                                         <label>sub rubro</label>
-                                        <md-select ng-model="subrubroSelected" ng-change="subRubroChanged()" ng-disabled="subrubrodisabled">
+                                        <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subrubrodisabled">
                                             <md-option ng-repeat="subrubro in Rubro.Subrubros" ng-value="subrubro">
                                                 {{subrubro.Nombre}}
                                             </md-option>
@@ -69,9 +69,11 @@
                             <div layout="row">
                                 <div flex="grow">
                                     <h2 class="md-title">Rubros seleecionados</h2>
-                                    <md-chips ng-model="profesional.Subrubros" readonly="!editValue ? true : false" name="chipContainer"
+                                    <md-chips ng-model="profesional.Subrubros" 
+                                              readonly="!editValue ? true : false" 
+                                              name="chipContainer"
                                               md-max-chips="5"
-                                              md-transform-chip="transformChip($chip)">
+                                              md-transform-chip="transformChip($chip)"> <!---->
                                         <md-chip-template>
                                             <span>
                                                 <strong>{{$chip.Nombre}}</strong>

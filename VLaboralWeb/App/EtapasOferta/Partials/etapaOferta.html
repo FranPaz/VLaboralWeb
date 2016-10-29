@@ -7,7 +7,8 @@
                     <div class="md-list-item-text" layout="column">
 
                         <h2>Etapa: {{ etapaDetalle.TipoEtapa.Nombre }}</h2>
-                        <h4>Fecha Fin:{{ etapaDetalle.TipoEtapa.FechaFinTentativa }}</h4>
+                        <h4 ng-show="etapaDetalle.FechaFinTentativa != null">Fecha Tentativa de Finalización:{{ etapaDetalle.FechaFinTentativa }}</h4>
+                        <h4 ng-show="etapaDetalle.FechaFin != null">Fecha de Cierre de la Etapa:{{ etapaDetalle.FechaFin }}</h4>
                         <p>{{ etapaDetalle.TipoEtapa.Descripcion }}</p>
                     </div>
 
@@ -81,11 +82,10 @@
                                                            md-order="query.order">
                                                         <tr md-row>
                                                             <!--<th md-column></th>-->
-                                                            <th md-column>Nombre</th>
-                                                            <th md-column md-order-by="Profesional.Apellido">Apellido</th>
+                                                            <th md-column md-order-by="Profesional.Apellido">Profesional</th>
                                                             <th md-column>Observaciones</th>
-                                                            <th md-column md-order-by="Valoracion">Valoración</th>
-                                                            <th md-column>¿Aprueba?</th>
+                                                            <th md-column md-order-by="Valoracion">Puntaje</th>
+                                                            <th md-column md-order-by="PasaEtapa">¿Aprueba?</th>
                                                             <th md-column></th>
                                                             <th md-column></th>
                                                             <!--<th md-column>Excluyente</th>-->
@@ -105,11 +105,7 @@
                                                                 {{($index+1) + (query.page - 1)*query.limit}}
                                                             </td>-->
                                                             <td md-cell>
-                                                                {{postulante.Profesional.Nombre}}
-                                                            </td>
-
-                                                            <td md-cell>
-                                                                {{postulante.Profesional.Apellido}}
+                                                                {{postulante.Profesional.Apellido}}, {{postulante.Profesional.Nombre}}
                                                             </td>
                                                             <td md-cell>
                                                                 {{postulante.Comentario}}
@@ -122,7 +118,7 @@
                                                                 </md-checkbox>
                                                             </td>
                                                             <td md-cell>
-                                                                <md-button ng-click="postulanteModificar(postulante)">
+                                                                <md-button ng-click="postulanteModificar(postulante)" ng-show="etapaDetalle.FechaFin == null">
                                                                     <md-icon style="color: forestgreen;" md-svg-src="svg/eye.svg"></md-icon>
                                                                 </md-button>
                                                             </td>
@@ -148,7 +144,8 @@
                                                                  md-boundary-links="true"
                                                                  md-limit="query.limit"
                                                                  md-page="query.page"
-                                                                 md-total="{{p.Postulaciones.length}}">
+                                                                 md-total="{{p.Postulaciones.length}}"
+                                                                 ng-show="{{p.Postulaciones.length > 5}}">
                                             </md-table-pagination>
                                             <!--<md-button ng-click="guardarPostulantes(selectPostulantes)" class="md-primary">Guardar Cambios</md-button>
 
@@ -166,9 +163,8 @@
 
 
                     </div>
-                    <div layout="row" ng-click="pasarSiguienteEtapa()" layout-align="end end">
-                        <md-button>Finalizar Etapa</md-button>
-                        <md-button ng-click="postulanteDetalle(postulante.ProfesionalId)"></md-button>
+                    <div layout="row"  layout-align="end end">
+                        <md-button ng-show="etapaDetalle.FechaFin == null" ng-click="pasarSiguienteEtapa()">Finalizar Etapa</md-button>
                     </div>
 
                 </div>
