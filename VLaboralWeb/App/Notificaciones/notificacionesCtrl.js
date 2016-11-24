@@ -31,6 +31,9 @@
             case "ETAP":
                 ''
                 break;
+            case "INV_OFER_PRIV":
+                ''
+                break;
             default:
                 alert('No Existe el Tipo de Notificacion');
                 break;

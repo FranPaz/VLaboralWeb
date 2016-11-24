@@ -99,6 +99,10 @@
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
     <Content Include="App\EtapasOferta\Partials\postulacionDetalleDialog.html" />
+    <Content Include="App\Postulaciones\Partials\postulacionesHistorial.html" />
+    <Content Include="App\Postulaciones\Partials\postulacionesOfertasPriv.html" />
+    <Content Include="App\Postulaciones\Partials\postulacionesPrincipal.html" />
+    <Content Include="App\Postulaciones\postulacionesCtrl.js" />
     <Content Include="App\Postulantes\Partials\listadoPostulantes.html" />
     <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
