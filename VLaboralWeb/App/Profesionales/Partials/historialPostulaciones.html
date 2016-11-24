@@ -1,0 +1,62 @@
+﻿<div layout="column">
+    <md-sidenav md-whiteframe="4" md-is-locked-open="$mdMedia('gt-md') md-component-id=" left" class="md-sidenav-left">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Filtrar</h1>
+        </md-toolbar>
+        <md-content layout-padding layout="column">
+            <md-list>
+                <md-list-item>
+                    <md-checkbox>Finalizada</md-checkbox>
+                </md-list-item>
+                <md-divider></md-divider>
+                <label>Tipos de Oferta</label>
+                <md-list-item>
+                    <md-checkbox>Publicas</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox>Privadas</md-checkbox>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-card>
+        <md-card-content>
+            <md-tabs md-boder-bottom md-autoselect>
+                <md-tab label="Historial de Postulaciones">
+                    <div layout="column" layout-padding>
+                        <md-list>
+                            <md-list-item ng-repeat="o in ofertas">
+                                <md-card flex="70">
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <!--Aqui va el nombre de la Empresa-->
+                                            <span>{{o.Nombre}}</span>
+                                        </md-card-title-text>
+                                        <md-card-title-media>
+                                            <!--Aqui va la foto de la empresa-->
+                                            <div class="md-media-lg card-media"></div>
+                                        </md-card-title-media>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <div layout="column">
+                                            <!--Aqui va el nombre de la Oferta-->
+                                            <h3>{{o.NombreEmpresa}}</h3>
+                                            <!--Aqui el nombre del puesto-->
+                                            <h4>{{}}</h4>
+                                            <!--Aqui va el estado-->
+                                            <p>{{}}</p>
+                                        </div>
+                                    </md-card-content>
+                                    <md-actions>
+                                        <md-button>Detalle</md-button>
+                                    </md-actions>
+                                </md-card>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </md-tab>
+            </md-tabs>
+        </md-card-content>
+    </md-card>
+    
+</div>
