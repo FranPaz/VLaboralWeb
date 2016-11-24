@@ -18,7 +18,7 @@
         },
 
         //server side methods
-        methods: ['enviarNotificacionPostulacion', 'enviarNotificacionExperiencia'],
+        methods: ['enviarNotificacionPostulacion', 'enviarNotificacionExperiencia', 'enviarNotificacionInvitacionOfertaPriv'],
 
         //query params sent on initial connection
         queryParams: {
@@ -84,12 +84,16 @@
         hub.enviarNotificacionExperiencia(prmNotificacion);
     }
 
+    var _enviarNotificacionesInvitacionesOfertasPriv = function (prmNotificaciones) {//fpaz: llama al hub que manda las notificaciones de Nuevas Experiencias cargadas por un Profesional
+        hub.enviarNotificacionInvitacionOfertaPriv(prmNotificaciones);
+    }
+
     notificacionesSvc.enviarNotificacion = _enviarNotificacion;
     notificacionesSvc.enviarNotificacionExperiencia = _enviarNotificacionExperiencia;
     notificacionesSvc.agregarNotificacion = _agregarNotificacion;
     notificacionesSvc.agregarHistorialNotificaciones = _agregarHistorialNotificaciones;
     notificacionesSvc.obtenerNotificaciones = notificaciones;
-
+    notificacionesSvc.enviarNotificacionesInvitacionesOfertasPriv = _enviarNotificacionesInvitacionesOfertasPriv;
     return notificacionesSvc;
     //#endregion
 
