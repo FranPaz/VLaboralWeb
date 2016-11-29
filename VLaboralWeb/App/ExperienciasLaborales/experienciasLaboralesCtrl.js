@@ -41,12 +41,13 @@
             if (angular.isUndefined(prmExp.EmpresaExterna)) { // si la nueva exp esta relacionada con una empresa cargada en el sistema envio la notificacion
                 console.log("Envia Notificacion");
                 notificacionesSvc.enviarNotificacionExperiencia(response.data);
+                $mdDialog.hide(response.data.ExperienciaLaboral);
             } else {
                 console.log("No Envia Notificacion");
-            }
-
+                $mdDialog.hide(response.data);
+            }            
             alert("Experiencia Guardada");
-            $mdDialog.hide(response.data);
+            
         },
     function (err) {
         if (err) {

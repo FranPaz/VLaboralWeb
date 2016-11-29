@@ -657,7 +657,7 @@
                 })
         //#endregion
 
-        //#region Perfil de la Empresa para profesionales
+            //#region Perfil de la Empresa para profesionales
             .state('profesional.empresa', {
                 url: '/empresa/:idEmpresa',
                 views: {
@@ -683,8 +683,7 @@
             })
         //#endregion
 
-
-        //#region Centro de notificaciones para Usuarios Empresa
+            //#region Centro de notificaciones para Usuarios Empresa
             .state('profesional.centroNotificaciones', {
                 url: '/centroNotificaciones',
                 views: {
@@ -707,6 +706,55 @@
                 }
 
             })
+        //#endregion
+
+            //#region Postulaciones del Profesional
+            .state('profesional.postulaciones', {
+                abstract: true,
+                url: '/postulaciones',
+                views: {
+                    'contenido@profesional': {
+                        templateUrl: '/App/Postulaciones/Partials/postulacionesPrincipal.html',
+                        controller: 'postulacionesCtrl',
+                        resolve: {                            
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Postulaciones/postulacionesCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+
+            })
+                .state('profesional.postulaciones.historial', {                    
+                    url: '/historial',
+                    views: {
+                        'contenido@profesional.postulaciones': {
+                            templateUrl: '/App/Postulaciones/Partials/historialPostulaciones.html',
+                            controller: 'postulacionesCtrl',
+                            resolve: {
+                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Postulaciones/postulacionesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
+
+                })
+                .state('profesional.postulaciones.ofertasPriv', {                    
+                    url: '/ofertaspriv',
+                    views: {
+                        'contenido@profesional.postulaciones': {
+                            templateUrl: '/App/Postulaciones/Partials/postulacionesOfertasPriv.html',
+                            controller: 'postulacionesCtrl',
+                            resolve: {
+                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Postulaciones/postulacionesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
+
+                })
         //#endregion
         //#endregion
     })
