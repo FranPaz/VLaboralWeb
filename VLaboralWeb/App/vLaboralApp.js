@@ -729,7 +729,7 @@
                     url: '/historial',
                     views: {
                         'contenido@profesional.postulaciones': {
-                            templateUrl: '/App/Postulaciones/Partials/postulacionesHistorial.html',
+                            templateUrl: '/App/Postulaciones/Partials/historialPostulaciones.html',
                             controller: 'postulacionesCtrl',
                             resolve: {
                                 loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
