@@ -193,6 +193,21 @@
         });
     }
     //#endregion
+
+    //#region iafar: funcion para llamar modal seleccion de profesionales
+    $scope.profesionalesAdd = function (selectList) {
+        $mdDialog.show({
+            controller: DialogProListController,
+            templateUrl: 'App/Profesionales/Partials/profesionalesList.html',
+            locals: {
+                selectedPro: [], //iafar: aqui se debe pasar el listado de invitados a oferta privada
+                
+            } //paso de scope
+        }).then(function (response) {
+           
+        })
+    }
+    //#endregion
 });
 
 
