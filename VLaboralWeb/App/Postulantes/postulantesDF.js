@@ -35,9 +35,36 @@
         return deferred.promise;
     };
 
+   
+
+    //iafar: devuelve listado de postulaciones del profesional
+    var _getPostulacionesProfesional = function (prmIdProfesional,
+        prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta) {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Postulaciones', {
+            params: {
+                idProfesional: prmIdProfesional,
+                fechaDesde: prmFechaDesde,
+                fechaHasta: prmFechaHasta,
+                estadoOferta: prmEstadoOferta,
+                nombreOferta: prmNombreOferta               
+            }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
+   
+
     //#region iafar: area de asignacion de funciones a objeto    
     postulantesDF.postPostulacion = _postPostulacion;
     postulantesDF.putPostulacion = _putPostulacion;
+    postulantesDF.getPostulacionesProfesional = _getPostulacionesProfesional;
     //#endregion
 
     return postulantesDF;

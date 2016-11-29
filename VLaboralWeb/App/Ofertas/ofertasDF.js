@@ -4,8 +4,8 @@
     var ofertasDF = {};
 
 
-
-    var _postOferta = function (data) { //iafar: alta de una oferta en particular
+    //iafar: alta de una oferta publica en particular
+    var _postOferta = function (data) { 
         var deferred = $q.defer();
         $http.post(urlApi + 'api/Ofertas', data).then(
             function (response) {
@@ -16,6 +16,20 @@
             });
         return deferred.promise;
     };
+
+    //iafar: alta de una oferta rpivada en particular
+    var _postOfertaPrivada = function (data) { 
+        var deferred = $q.defer();
+        $http.post(urlApi + 'api/OfertasPrivadas', data).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+
 
     //#region SLuna: Traer Ofertas Acticas con paginación
     var _getOfertas = function (prmPage,prmRows) {
@@ -36,7 +50,7 @@
     }
     //#endregion
 
-    //#region fpaz: Traer Ofertas relacionadas con el profesional
+    //#region fpaz: Traer Ofertas relacionadas con el subrubro del profesional
     var _getOfertasProfesional = function () {
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Ofertas/',
@@ -53,7 +67,11 @@
             });
         return deferred.promise;
     }
+
+
     //#endregion
+
+
 
     //#region kikexp: trae una oferta en particular
     var _getOferta = function (prmIdOferta) {
@@ -85,6 +103,29 @@
     }
     //endregion
     
+    //iafar: devuelve listado de ofertas privadas al profesional
+    var _getOfertasPrivadasProfesional = function (prmIdProfesional,
+        prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta, 
+        prmIsPostulado) {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/OfertasPrivadas/', {
+            params: {
+                idProfesional: prmIdProfesional,
+                fechaDesde: prmFechaDesde,
+                fechaHasta: prmFechaHasta,
+                estadoOferta: prmEstadoOferta,
+                nombreOferta: prmNombreOferta,
+                isPostulado: prmIsPostulado
+            }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
 
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;
@@ -92,6 +133,8 @@
     ofertasDF.postOferta = _postOferta;
     ofertasDF.getOferta = _getOferta;
     ofertasDF.postOfertaPasarSiguienteEtapa = _postOfertaPasarSiguienteEtapa;
+    ofertasDF.getOfertasPrivadasProfesional = _getOfertasPrivadasProfesional;
+    ofertasDF.postOfertaPrivada = _postOfertaPrivada;
     //#endregion
 
 
