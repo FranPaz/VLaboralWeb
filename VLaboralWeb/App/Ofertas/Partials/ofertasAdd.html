@@ -3,7 +3,7 @@
     <md-container>
         <h1>Nueva Oferta</h1>
         <div layout="column">
-            <div layout="row" layout-sm="column" layout-xs="column" class="of_ad">
+            <div layout="column" layout-sm="column" layout-xs="column" class="of_ad">
                 <div layout="column" flex="40" flex-sm="100" flex-xs="100">
                     <!--#region fpaz Seccion de datos Basicos de la Oferta-->
                     <div layout="column" class="md-inline-form">
@@ -43,8 +43,70 @@
                     </div>
                     <!--#endregion-->
                 </div>
+                <br />
+                <md-divider></md-divider>
+                <!--#region Listado profesionales-->
+                <div layout="column" flex="70" layout-padding layout-align="center center" ng-show="oferta.Publica =='false'">
+                    
+                     <md-button class="md-primary md-raised">Agregar profesionales</md-button>
+                    
+                </div>
+                <div div layout="column" ng-show="listadoProfesionales !=null">
 
-                <!-- NUEVA TIMELINE :EZEQUIEL-->                
+                    <md-card>
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">
+                                Profesionales elegidos
+                            </div>
+                        </md-toolbar>
+
+
+                        <md-card-content layout="row">
+
+                            <br />
+                            <div flex>
+                                <div flex layout="row">
+                                    <md-input-container flex="60">
+                                        <h3>Buscar</h3>
+                                        <input ng-model="nombrePostulante" />
+                                    </md-input-container>
+                                </div>
+
+                                <md-list>
+                                    <md-list-item ng-repeat="p in postulantes| filter: nombrePostulante">
+                                        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{p.NombreApellido}}</span>
+                                                    <span class="md-subhead">{{p.Rubro}}</span>
+                                                </md-card-title-text>
+                                                <md-card-title-media>
+                                                    <div class="md-media-lg card-media"></div>
+                                                </md-card-title-media>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <h3>Valoracion</h3>
+                                                <p>{{p.Valoracion}}</p>
+                                            </md-card-content>
+                                            <md-card-actions layout="row" layout-align="end center">
+                                                <md-button>Ver Perfil</md-button>
+
+                                            </md-card-actions>
+                                        </md-card>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+
+                        </md-card-content>
+                    </md-card>
+                    <md-divider></md-divider>
+                </div>
+                
+                <!--#endregion-->
+                <br />
+                <!-- NUEVA TIMELINE :EZEQUIEL-->    
+                
+                <br />            
                 <div layout="column" flex="60">
                     <!--#region Seccion del Timeline de Etapas del Proceso de contratacion de la oferta-->
                     <h1 style="text-align:center;">Etapas de la Oferta</h1>

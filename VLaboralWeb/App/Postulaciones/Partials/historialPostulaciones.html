@@ -1,7 +1,7 @@
 ﻿<div layout="row">
     <md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id=" left" class="md-sidenav-left">
         <!--<md-toolbar class="md-theme-indigo">
-
+            
         </md-toolbar>-->
         <h1 class="md-toolbar-tools">Filtrar</h1>
         <md-content layout-padding layout="column">
@@ -9,10 +9,10 @@
             <md-checkbox>Finalizada</md-checkbox>
             <md-checkbox>En contratacion</md-checkbox>
             <md-divider></md-divider>
-            <label>Postulado</label>
-            <md-checkbox>Si</md-checkbox>
-            <md-checkbox>No</md-checkbox>
-            <md-divider></md-divider>            
+            <label>Tipos de Oferta</label>
+            <md-checkbox>Publicas</md-checkbox>
+            <md-checkbox>Privadas</md-checkbox>
+            <md-divider></md-divider>
             <label>Fecha de Oferta</label>
             <md-checkbox>Ultima semana</md-checkbox>
             <md-checkbox>Ultimo mes</md-checkbox>
@@ -31,10 +31,10 @@
             <md-card-content>
                 <md-input-container>
                     <label>Buscar oferta</label>
-                    <input ng-model="buscarOferta" />
+                    <input ng-model="buscarOferta"/>
                 </md-input-container>
                 <md-tabs md-boder-bottom md-autoselect>
-                    <md-tab label="Historial de Ofertas Privadas">
+                    <md-tab label="Historial de Postulaciones">
                         <div layout="column" layout-padding>
                             <md-list>
                                 <md-list-item ng-repeat="o in ofertas">
@@ -71,6 +71,6 @@
             </md-card-content>
         </md-card>
     </div>
-
-
+    
+    
 </div>

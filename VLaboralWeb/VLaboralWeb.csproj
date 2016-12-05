@@ -107,6 +107,8 @@
     <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
+    <Content Include="App\Profesionales\Partials\profesionalesList.html" />
+    <Content Include="App\Postulaciones\Partials\historialPostulaciones.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfilOld.html" />

@@ -1,0 +1,93 @@
+﻿<md-dialog flex="90" aria-label="Lista de Profesionales">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 class="md-title">Lista Profesionales</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <i class="fa fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <!-- #region iafar: contenido de listado -->
+        <div layout="row" layout-fill flex>
+            <md-content layout="row" style="background-color:#eee" layout-fill>
+                <md-card flex>
+                    <md-card-title layout="column">
+                        <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+                            <div class="md-toolbar-tools">
+                                <!--<h2 class="md-title">Lista Profesionales</h2>-->
+                                <div flex></div>
+                            </div>
+                        </md-toolbar>
+                        <br>
+                        <md-toolbar class="md-table-toolbar md-default" ng-show="true">
+                            <div class="md-toolbar-tools">
+                                <br />
+                                <md-input-container flex name="filter.form">
+                                    <input type="text" ng-model="search" placeholder="Buscar" layout-align="end end">
+                                </md-input-container>
+                            </div>
+                        </md-toolbar>
+                    </md-card-title>
+                    <md-card-content>
+                        <md-table-container style="height:400px">
+                            <table md-table
+                                   ng-hide=""
+                                   ng-model="selectedPro"
+                                   md-row-select="true"
+                                   multiple>
+                                <thead md-head
+                                       md-order="query.order">
+                                    <tr md-row>
+                                        <th md-column
+                                            md-order-by="Apellido">Apellido</th>
+                                        <th md-column>Nombre</th>
+                                        <th md-column>Rubro</th>
+                                        <th md-column>Residencia</th>
+                                        <th md-column
+                                            md-numeric
+                                            md-order-by="ValoracionPromedio">Valoracion Promedio</th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row
+                                        md-select="profesional"
+                                        md-auto-select="true"
+                                        ng-repeat="profesional in profesionalesList | filter:search | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit">
+
+                                        <td md-cell>{{profesional.Apellido}}</td>
+                                        <td md-cell>{{profesional.Nombre}}</td>
+                                        <td md-cell>{{profesional.Rubro}}</td>
+                                        <td md-cell>{{profesional.Domicilio}}</td>
+                                        <td md-cell>{{profesional.ValoracionPromedio}}</td>
+                                        <td md-cell>
+                                            <md-button class="md-raised" ng-click="null">Detalle</md-button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+
+                        <md-table-pagination md-limit="query.limit"
+                                             md-page="query.page"
+                                             md-total="{{profesionalesList.length}}"
+                                             md-on-paginate="onPaginate"
+                                             md-page-select></md-table-pagination>
+                    </md-card-content>
+                </md-card>
+
+
+            </md-content>
+
+        </div>
+
+
+        <!-- #endregion -->
+        <md-dialog-actions layout="row" class="bg-primary">
+            <span flex></span>
+            <md-button class="md-raised" ng-hide="edit" ng-click="guardarLista(selectedPro)">Guardar</md-button>
+            <md-button class="md-raised md-shadow-animated" style="margin-right:20px;" ng-click="closeDialog()">Cancelar</md-button>
+        </md-dialog-actions>
+    </md-dialog-content>
+</md-dialog>

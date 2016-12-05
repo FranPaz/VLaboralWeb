@@ -3,6 +3,30 @@
     var urlApi = configSvc.urlApi; //desarrollo    
     var profesionalesDF = {};
 
+
+    //iafar: funcion para recuperar un listado de todos los profesionales
+    var _getProfesionales = function (prmIdProfesional, prmNombre, 
+        prmApellido, prmValoracion, prmRubro, prmLugarResidencia) { 
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Profesionals/', {
+            params: {
+                idProfesional: prmIdProfesional,
+                nombre: prmNombre,
+                apellido: prmApellido,
+                valoracion: prmValoracion,
+                rubro: prmRubro,
+                lugarResidencia: prmLugarResidencia
+            }
+        }).then(
+           function (response) {
+               deferred.resolve(response);
+           },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
@@ -39,6 +63,7 @@
 
     //#region iafar: area de asignacion de funciones a objeto
     profesionalesDF.getProfesional = _getProfesional;
+    profesionalesDF.getProfesionales = _getProfesionales;
     profesionalesDF.putProfesional = _putProfesional;
     //#endregion
 
