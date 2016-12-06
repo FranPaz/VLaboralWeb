@@ -104,18 +104,22 @@
     //#endregion
     
     //#region iafar: devuelve listado de ofertas privadas al profesional
-    var _getOfertasPrivadasProfesional = function (prmIdProfesional,
-        prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta, 
-        prmIsPostulado) {
+    var _getOfertasPrivadasProfesional = function (page, rows
+        //prmIdProfesional,
+        //prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta, 
+        //prmIsPostulado
+        ) {
         var deferred = $q.defer();
         $http.get(urlApi + 'api/OfertasPrivadas/', {
             params: {
-                idProfesional: prmIdProfesional,
-                fechaDesde: prmFechaDesde,
-                fechaHasta: prmFechaHasta,
-                estadoOferta: prmEstadoOferta,
-                nombreOferta: prmNombreOferta,
-                isPostulado: prmIsPostulado
+                //idProfesional: prmIdProfesional,
+                //fechaDesde: prmFechaDesde,
+                //fechaHasta: prmFechaHasta,
+                //estadoOferta: prmEstadoOferta,
+                //nombreOferta: prmNombreOferta,
+                //isPostulado: prmIsPostulado
+                page: page,
+                rows: rows
             }
         }).then(
             function (response) {
@@ -126,7 +130,6 @@
             });
         return deferred.promise;
     }
-    //#endregion
 
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;

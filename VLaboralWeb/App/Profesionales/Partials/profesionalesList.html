@@ -52,7 +52,7 @@
                                 </thead>
                                 <tbody md-body>
                                     <tr md-row
-                                        md-select="profesional"
+                                        md-select="selectedPro"
                                         md-auto-select="true"
                                         ng-repeat="profesional in profesionalesList | filter:search | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit">
 
