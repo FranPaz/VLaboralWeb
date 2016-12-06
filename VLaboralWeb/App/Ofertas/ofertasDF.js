@@ -4,7 +4,7 @@
     var ofertasDF = {};
 
 
-    //iafar: alta de una oferta publica en particular
+    //#region iafar: alta de una oferta publica en particular
     var _postOferta = function (data) { 
         var deferred = $q.defer();
         $http.post(urlApi + 'api/Ofertas', data).then(
@@ -16,8 +16,9 @@
             });
         return deferred.promise;
     };
+    //#endregion
 
-    //iafar: alta de una oferta privada 
+    //#region iafar: alta de una oferta privada 
     var _postOfertaPrivada = function (prmOfertaPrivada) { 
         var deferred = $q.defer();
         $http.post(urlApi + 'api/OfertasPrivadas', prmOfertaPrivada).then(
@@ -29,7 +30,7 @@
             });
         return deferred.promise;
     };
-
+    //#endregion
 
     //#region SLuna: Traer Ofertas Acticas con paginación
     var _getOfertas = function (prmPage,prmRows) {
@@ -70,8 +71,6 @@
 
 
     //#endregion
-
-
 
     //#region kikexp: trae una oferta en particular
     var _getOferta = function (prmIdOferta) {
@@ -130,6 +129,7 @@
             });
         return deferred.promise;
     }
+    //#endregion
 
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;
@@ -140,12 +140,7 @@
     ofertasDF.getOfertasPrivadasProfesional = _getOfertasPrivadasProfesional;
     ofertasDF.postOfertaPrivada = _postOfertaPrivada;
     //#endregion
-
-
-
-
-
-    
+        
     return ofertasDF;
 
     
