@@ -17,10 +17,10 @@
         return deferred.promise;
     };
 
-    //iafar: alta de una oferta rpivada en particular
-    var _postOfertaPrivada = function (data) { 
+    //iafar: alta de una oferta privada 
+    var _postOfertaPrivada = function (prmOfertaPrivada) { 
         var deferred = $q.defer();
-        $http.post(urlApi + 'api/OfertasPrivadas', data).then(
+        $http.post(urlApi + 'api/OfertasPrivadas', prmOfertaPrivada).then(
             function (response) {
                 deferred.resolve(response);
             },
@@ -87,7 +87,7 @@
             });
         return deferred.promise;
     }
-    //endregion
+    //#endregion
 
     //#region sluna: Pasa la oferta a la siguiente etapa
     var _postOfertaPasarSiguienteEtapa = function (prmIdOferta) {
@@ -101,9 +101,9 @@
             });
         return deferred.promise;
     }
-    //endregion
+    //#endregion
     
-    //iafar: devuelve listado de ofertas privadas al profesional
+    //#region iafar: devuelve listado de ofertas privadas al profesional
     var _getOfertasPrivadasProfesional = function (prmIdProfesional,
         prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta, 
         prmIsPostulado) {
@@ -126,6 +126,7 @@
             });
         return deferred.promise;
     }
+    //#endregion
 
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;

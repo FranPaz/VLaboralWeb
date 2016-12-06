@@ -73,11 +73,11 @@
                                 </div>
 
                                 <md-list>
-                                    <md-list-item ng-repeat="p in postulantes| filter: nombrePostulante">
+                                    <md-list-item ng-repeat="p in postulantes| filter: Nombre">
                                         <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                                             <md-card-title>
                                                 <md-card-title-text>
-                                                    <span class="md-headline">{{p.NombreApellido}}</span>
+                                                    <span class="md-headline">{{p.Nombre}}</span>
                                                     <span class="md-subhead">{{p.Rubro}}</span>
                                                 </md-card-title-text>
                                                 <md-card-title-media>
@@ -90,7 +90,6 @@
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-button>Ver Perfil</md-button>
-
                                             </md-card-actions>
                                         </md-card>
                                     </md-list-item>

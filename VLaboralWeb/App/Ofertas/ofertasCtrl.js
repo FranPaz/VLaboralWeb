@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $state, //fpaz: definicion de inyectores de dependencias
-    ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF, //fpaz: definicion de data factorys
+    ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF,notificacionesSvc, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
     listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias//    
     ) {
@@ -25,6 +25,11 @@
     $scope.ofertaDetalle = ofertaDetalle;
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
+
+    $scope.postulantes = [
+        { Id: 1, Nombre:"Nombre Prueba 1" },
+        { Id: 3, Nombre: "Nombre Prueba 2" }
+    ];
     //#endregion
 
     //#region fpaz: carga de ofertas
@@ -66,9 +71,9 @@
 
     //#region funcion para dar de alta la oferta en la bd
     $scope.ofertaSave = function (prmOferta) {
-        
+
         if ($scope.oferta.Puestos.length > 0) {
-            
+
             prmOferta.EmpresaId = authSvc.authentication.empresaId; //id de la empresa logueada
             for (var i in prmOferta.Puestos) { //para cada puesto armo el objeto tal cual lo voy a enviar al post de ofertas
                 //delete prmOferta.Puestos[i].Habilidades;
@@ -80,8 +85,7 @@
                 prmOferta.Puestos[i].TipoDisponibilidadId = prmOferta.Puestos[i].Disponibilidad.Id;
                 delete prmOferta.Puestos[i].Disponibilidad;
 
-                //para cada subrubro asociado al puesto solo dejo el Id del subrubro
-                //            debugger;
+                //para cada subrubro asociado al puesto solo dejo el Id del subrubro                
                 for (var x in prmOferta.Puestos[i].Subrubros) {
                     delete prmOferta.Puestos[i].Subrubros[x].Nombre;
                     delete prmOferta.Puestos[i].Subrubros[x].Descripcion;
@@ -102,18 +106,36 @@
                 delete prmOferta.EtapasOferta[x].TipoEtapa;
             }
 
-            ofertasDF.postOferta(prmOferta).then(function (response) {
-                alert("Oferta Guardada");
-                $state.go('empresa.ofertas');
-            },
-        function (err) {
-            if (err) {
-                $scope.error = err;
-                alert("Error al Guardar la Oferta: " + $scope.error.Message);
+            //debugger;
+            if (prmOferta.Publica == true) {
+                ofertasDF.postOferta(prmOferta).then(function (response) {
+                    alert("Oferta Publica Guardada");
+                    $state.go('empresa.ofertas');
+                },
+                function (err) {
+                    if (err) {
+                        $scope.error = err;
+                        alert("Error al Guardar la Oferta: " + $scope.error.Message);
+                    }
+                });
+            } else {                
+                var ofertaPrivada = {};
+                ofertaPrivada.oferta = prmOferta;
+                ofertaPrivada.profesionales = $scope.postulantes;
+                ofertasDF.postOfertaPrivada(ofertaPrivada).then(function (response) {
+                    debugger;
+                    console.log('termino ok post oferta privada');
+                    notificacionesSvc.enviarNotificacionesInvitacionesOfertasPriv(response.data);
+                    alert("Oferta Privada Guardada");
+                    $state.go('empresa.ofertas');
+                },
+                function (err) {
+                    if (err) {
+                        $scope.error = err;
+                        alert("Error al Guardar la Oferta: " + $scope.error.Message);
+                    }
+                });
             }
-        });
-
-
         } else {
             alert("Debe agregar al menos un puesto a la oferta")
         }
