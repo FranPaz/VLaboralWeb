@@ -5,17 +5,19 @@
 
 
     //iafar: funcion para recuperar un listado de todos los profesionales
-    var _getProfesionales = function (prmIdProfesional, prmNombre, 
-        prmApellido, prmValoracion, prmRubro, prmLugarResidencia) { 
+    var _getProfesionales = function (page, rows) { //prmIdProfesional, prmNombre, 
+        //prmApellido, prmValoracion, prmRubro, prmLugarResidencia
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/', {
             params: {
-                idProfesional: prmIdProfesional,
-                nombre: prmNombre,
-                apellido: prmApellido,
-                valoracion: prmValoracion,
-                rubro: prmRubro,
-                lugarResidencia: prmLugarResidencia
+                //idProfesional: prmIdProfesional,
+                //nombre: prmNombre,
+                //apellido: prmApellido,
+                //valoracion: prmValoracion,
+                //rubro: prmRubro,
+                //lugarResidencia: prmLugarResidencia,
+                page: page,
+                rows:rows
             }
         }).then(
            function (response) {

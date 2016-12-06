@@ -38,16 +38,21 @@
    
 
     //iafar: devuelve listado de postulaciones del profesional
-    var _getPostulacionesProfesional = function (prmIdProfesional,
-        prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta) {
+    var _getPostulacionesProfesional = function (page, rows
+        //prmIdProfesional,
+        //prmFechaDesde, prmFechaHasta, prmEstadoOferta, prmNombreOferta
+        ) {
+        
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Postulaciones', {
             params: {
-                idProfesional: prmIdProfesional,
-                fechaDesde: prmFechaDesde,
-                fechaHasta: prmFechaHasta,
-                estadoOferta: prmEstadoOferta,
-                nombreOferta: prmNombreOferta               
+                //idProfesional: prmIdProfesional,
+                //fechaDesde: prmFechaDesde,
+                //fechaHasta: prmFechaHasta,
+                //estadoOferta: prmEstadoOferta,
+                //nombreOferta: prmNombreOferta           
+                page: page,
+                rows:rows
             }
         }).then(
             function (response) {
