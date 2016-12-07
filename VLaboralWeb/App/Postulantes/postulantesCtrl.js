@@ -65,6 +65,9 @@
                 listadoOfertas: function () {
                     return { value: [] };
                 },
+                selectedPro: function () {
+                    return { value: [] };
+                },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                 }]

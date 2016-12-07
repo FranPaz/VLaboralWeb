@@ -1,6 +1,6 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
     , rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
-    , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas,infoProfesional//fpaz: definicion de parametros de entrada    
+    , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro//fpaz: definicion de parametros de entrada    
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope    

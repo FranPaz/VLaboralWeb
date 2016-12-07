@@ -44,6 +44,9 @@
                             infoProfesional: function () {
                                 return { value: [] };
                             },
+                            selectedPro: function () {
+                                return { value: [] };
+                            },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                             }]
@@ -370,6 +373,38 @@
            // #endregion
 
             //#region Profesionales para Usuarios Empresa
+            .state('empresa.profesionalesList', {
+                url: '/profesionales',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '',
+                        controller: 'profesionalesCtrl',
+                        resolve: {
+                            listadoOfertas: function () {
+                                return { value: [] };
+                            },                            
+                            listadoRubros: function () {
+                                return { value: [] };
+                            },
+                            listadoHabilidades: function () {
+                                return { value: [] };
+                            },
+                            listadoIdentificacionPro: function () {
+                                return { value: [] };
+                            },                            
+                            infoProfesional: function () {
+                                return { value: [] };
+                            },
+                            selectedPro: function () {
+                                return { value: [] };
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+            })
             .state('empresa.profesional', {
                 url: '/profesional/:idPro',
                 views: {
@@ -397,7 +432,7 @@
                                 var idPro = $stateParams.idPro;
                                 return profesionalesDF.getProfesional(idPro);
                             },
-                            listadoOfertas: function () {
+                            selectedPro: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -406,7 +441,6 @@
                         }
                     }
                 }
-
             })
             //#endregion
 
@@ -550,7 +584,7 @@
                                 var idPro = $stateParams.idPro;
                                 return profesionalesDF.getProfesional(idPro);
                             },
-                            listadoOfertas: function () {
+                            selectedPro: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -592,6 +626,9 @@
                             infoProfesional: function (profesionalesDF, authSvc) {
                                 var idPro = authSvc.authentication.profesionalId;
                                 return profesionalesDF.getProfesional(idPro);
+                            },
+                            selectedPro: function () {
+                                return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);

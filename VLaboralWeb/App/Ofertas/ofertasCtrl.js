@@ -217,37 +217,42 @@
     //#endregion
 
     //#region iafar: funcion para llamar modal seleccion de profesionales
-    $scope.profesionalesAdd = function (selectInvitados) {
+    $scope.profesionalesAdd = function () {
         $mdDialog.show({
-            controller: DialogProListController,
+            controller: profesionalesCtrl,
             templateUrl: 'App/Profesionales/Partials/profesionalesList.html',
-            locals: {
-                selectedPro: selectInvitados, //iafar: aqui se debe pasar el listado de invitados a oferta privada
-                profesionalesList: []
-            } //paso de scope
+            resolve: {
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                rubrosDF: 'rubrosDF',
+                habilidadesDF: 'habilidadesDF',
+                tiposIdentificacionDF: 'tiposIdentificacionDF',
+                listadoRubros: function () {
+                    return { value: [] };
+                },
+                listadoHabilidades: function () {
+                    return { value: [] };
+                },
+                listadoIdentificacionPro: function () {
+                    return { value: [] };
+                },
+                profesionalesDF: 'profesionalesDF',
+                infoProfesional: function (profesionalesDF) {
+                    
+                    return profesionalesDF.getProfesional(profesionalId);
+                },
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                selectedPro: $scope.postulantes, //iafar: aqui se debe pasar el listado de invitados a oferta privada                
+                loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                }]
+            }            
         }).then(function (response) {
-           
+            $scope.postulantes = response;
         })
     }
     //#endregion
 })
-
-//#region controller Dialog
-function DialogProListController($scope, selectedPro, profesionalesList) {
-
-    $scope.selectedPro = selectedPro;
-   
-
-   
-    
-   
-}
-//#endregion
-
-
-
-
-
-
-
-
