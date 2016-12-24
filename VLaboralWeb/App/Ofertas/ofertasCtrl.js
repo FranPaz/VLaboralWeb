@@ -220,7 +220,7 @@
     $scope.profesionalesAdd = function () {
         $mdDialog.show({
             controller: profesionalesCtrl,
-            templateUrl: 'App/Profesionales/Partials/profesionalesList.html',
+            templateUrl: 'App/Profesionales/Partials/profesionalesDialogList.html',
             resolve: {
                 listadoOfertas: function () {
                     return { value: [] };
@@ -245,7 +245,11 @@
                 listadoOfertas: function () {
                     return { value: [] };
                 },
+                profesionalesDF: 'profesionalesDF',
                 selectedPro: $scope.postulantes, //iafar: aqui se debe pasar el listado de invitados a oferta privada                
+                profesionalesList: function (profesionalesDF) {
+                    return profesionalesDF.getProfesionales(1, 5);
+                },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                 }]

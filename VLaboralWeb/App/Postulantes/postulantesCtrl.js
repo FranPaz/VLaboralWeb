@@ -66,7 +66,10 @@
                     return { value: [] };
                 },
                 selectedPro: function () {
-                    return { value: [] };
+                    return [];
+                },
+                profesionalesList: function (profesionalesDF) {
+                    return profesionalesDF.getProfesionales(1, 5);
                 },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
