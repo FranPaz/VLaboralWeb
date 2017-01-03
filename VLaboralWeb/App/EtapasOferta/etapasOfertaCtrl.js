@@ -156,6 +156,9 @@
                     return { value: [] };
                 },
                 selectedPro: function () {
+                    return [];
+                },
+                profesionalesList: function () {
                     return { value: [] };
                 },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

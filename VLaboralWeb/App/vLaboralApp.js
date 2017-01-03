@@ -45,6 +45,9 @@
                                 return { value: [] };
                             },
                             selectedPro: function () {
+                                return [];
+                            },
+                            profesionalesList: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -377,9 +380,10 @@
                 url: '/profesionales',
                 views: {
                     'contenido@empresa': {
-                        templateUrl: '',
+                        templateUrl: '/App/Profesionales/Partials/profesionalesList.html',
                         controller: 'profesionalesCtrl',
                         resolve: {
+                            profesionalesDF:'profesionalesDF',
                             listadoOfertas: function () {
                                 return { value: [] };
                             },                            
@@ -396,7 +400,10 @@
                                 return { value: [] };
                             },
                             selectedPro: function () {
-                                return { value: [] };
+                                return [] ;
+                            },
+                            profesionalesList: function (profesionalesDF) {
+                                return profesionalesDF.getProfesionales(1,5);
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
@@ -433,6 +440,9 @@
                                 return profesionalesDF.getProfesional(idPro);
                             },
                             selectedPro: function () {
+                                return [];
+                            },
+                            profesionalesList: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -585,6 +595,9 @@
                                 return profesionalesDF.getProfesional(idPro);
                             },
                             selectedPro: function () {
+                                return [];
+                            },
+                            profesionalesList: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -628,6 +641,9 @@
                                 return profesionalesDF.getProfesional(idPro);
                             },
                             selectedPro: function () {
+                                return [];
+                            },
+                            profesionalesList: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

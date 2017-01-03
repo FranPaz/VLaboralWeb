@@ -5,30 +5,47 @@
         <!-- desplegable: ezequiel-->
         <li>
             <md-menu>
-                <md-button  ng-click="$mdOpenMenu($event)" layout="row">
+                <md-button ng-click="$mdOpenMenu($event)" layout="row">
                     <span class="icon-bullhorn ic_m"></span><h1 class="t_me_a">Ofertas</h1>
                 </md-button>
                 <md-menu-content width="3">
                     <md-menu-item>
                         <a ui-sref="empresa.ofertas"><md-button> <span md-menu-align-target class="sm">Listado de ofertas</span></md-button>
-</md-menu-item></a>
+                    </md-menu-item></a>
                     <md-menu-item>
                         <a ui-sref="empresa.ofertas.nuevaOferta"><md-button> <span md-menu-align-target class="sm">Agregar ofertas</span></md-button>
-</md-menu-item></a>                    
+                    </md-menu-item></a>
                 </md-menu-content>
             </md-menu>
         </li>
-        <!--fin desplegable-->    
-            
+        <!--fin desplegable-->
+
+        <!-- #region iafar:desplegable de opciones de profesionales-->
         <li>
-            <md-menu>                
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" layout="row">
+                    <h1 class="t_me_a">Profesionales</h1>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <a ui-sref="empresa.profesionalesList"><md-button> <span md-menu-align-target class="sm">Listado de profesionales</span></md-button></a>
+                    </md-menu-item>
+                    
+                </md-menu-content>
+            </md-menu>
+        </li>
+        <!--#endregion-->
+
+
+        <li>
+            <md-menu>
                 <md-button flex ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
                     <notification-icon animation="grow" count="countNotifNoLeidas()">
                         {{countNotifNoLeidas()}}
                         <i class="fa fa-globe fa-2x"></i>
                     </notification-icon>
                 </md-button>
-                <md-menu-content >
+                <md-menu-content>
                     <md-menu-item ng-repeat="n in notificaciones.all" layout="column" ng-style="n.FechaLectura == null ? {'background-color': 'aliceblue'} : {'background-color': 'white'}" style="min-height:100px">
                         <div class="notis_info">
                             <div class="ni1" layout="column">
@@ -39,16 +56,16 @@
                                 <md-divider></md-divider>
 
                             </div>
-                            
+
                         </div>
-                        
+
                     </md-menu-item>
-                    <md-button ui-sref="empresa.centroNotificaciones">Ver Todas</md-button>                                              
+                    <md-button ui-sref="empresa.centroNotificaciones">Ver Todas</md-button>
                 </md-menu-content>
             </md-menu>
         </li>
         <li>
-            <md-menu>                
+            <md-menu>
                 <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
                     <notification-icon animation="grow" count="1">
                         <i class="fa fa-comment fa-2x"></i>
@@ -56,7 +73,7 @@
                 </md-button>
                 <md-menu-content>
                     <md-menu-item>
-                        
+
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
@@ -68,19 +85,19 @@
                 </md-button>
                 <md-menu-content>
                     <md-menu-item>
-                        <md-button class="md-primary" ui-sref="empresa.perfil({idEmpresa: authentication.empresaId})" >{{authentication.userName}}</md-button>                        
-                    </md-menu-item>                    
-                    <md-menu-item>                        
-                        <md-button ng-click="logOut()">       
-                            <i class="fa fa-sign-out"></i>                     
+                        <md-button class="md-primary" ui-sref="empresa.perfil({idEmpresa: authentication.empresaId})">{{authentication.userName}}</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="logOut()">
+                            <i class="fa fa-sign-out"></i>
                             &nbsp;Cerrar Sesion
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
 
-        </li>        
-    </ul>    
+        </li>
+    </ul>
 </nav>
 <!--<aside ui-view="menu@"></aside>-->
 
