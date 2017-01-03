@@ -741,8 +741,146 @@
                         }
                     }
                 }
+            })                
+                .state('profesional.centroNotificaciones.experienciaNueva', {
+                    url: '/experiencia',
+                    params: {
+                        idExperienciaPendiente: null
+                    },
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
+                            controller: 'experienciasLaboralesCtrl',
+                            resolve: {
+                                experienciasLaboralesDF: 'experienciasLaboralesDF',
+                                listEmpresas: function () {
+                                    return { value: [] };
+                                },
+                                experienciaPendiente: function (experienciasLaboralesDF, $stateParams) {
+                                    if ($stateParams.idExperienciaPendiente != null) {
+                                        return experienciasLaboralesDF.getExperienciaPendiente($stateParams.idExperienciaPendiente);
+                                    } else {
+                                        return { value: [] };
+                                    }
+                                },
+                                loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
+                })
+                .state('profesional.centroNotificaciones.experienciaVerificada', {
+                    url: '/postulacion',
+                    params: {
+                        prmIdNotificacion: null,
+                        prmTipoNotificacion: null
+                    },
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionPostulacion.html',
+                            controller: 'postulantesCtrl',
+                            resolve: {
+                                notificacionesDF: 'notificacionesDF',
+                                infoPostulacion: function (notificacionesDF, $stateParams) {
+                                    var idNotif = $stateParams.prmIdNotificacion;
+                                    var tipoNotyif = $stateParams.prmTipoNotificacion
+                                    return notificacionesDF.getDetalleNotificacion(idNotif, tipoNotyif);
+                                },
+                                listadoPostulantes: function () {
+                                    return { value: [] };
+                                },
+                                infoPuesto: function () {
+                                    return { value: [] };
+                                },
+                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Postulantes/postulantesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
 
-            })
+                })
+                .state('profesional.centroNotificaciones.etapaAprobada', {
+                    url: '/experiencia',
+                    params: {
+                        idExperienciaPendiente: null
+                    },
+                    views: {
+                        'detalleNotificacion@empresa.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionExperiencia.html',
+                            controller: 'experienciasLaboralesCtrl',
+                            resolve: {
+                                experienciasLaboralesDF: 'experienciasLaboralesDF',
+                                listEmpresas: function () {
+                                    return { value: [] };
+                                },
+                                experienciaPendiente: function (experienciasLaboralesDF, $stateParams) {
+                                    if ($stateParams.idExperienciaPendiente != null) {
+                                        return experienciasLaboralesDF.getExperienciaPendiente($stateParams.idExperienciaPendiente);
+                                    } else {
+                                        return { value: [] };
+                                    }
+                                },
+                                loadExperienciasLaborales: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/ExperienciasLaborales/experienciasLaboralesCtrl.js']);
+                                }]
+                            }
+                        }
+                    }
+                })
+                .state('profesional.centroNotificaciones.invitacionOfertaPrivada', {
+                    url: '/ofertaPrivada',
+                    params: {
+                        prmIdNotificacion: null,
+                        prmTipoNotificacion: null
+                    },
+                    views: {
+                        'detalleNotificacion@profesional.centroNotificaciones': {
+                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionInvOfertaPrivada.html',
+                            controller: 'ofertasCtrl',
+                            resolve: {
+                                notificacionesDF: 'notificacionesDF',
+                                ofertaDetalle: function (notificacionesDF, $stateParams) {
+                                    var idNotif = $stateParams.prmIdNotificacion;
+                                    var tipoNotyif = $stateParams.prmTipoNotificacion
+                                    return notificacionesDF.getDetalleNotificacion(idNotif, tipoNotyif);
+                                },
+                                listadoOfertas: function () {
+                                    return { value: [] };
+                                },                                
+                                listadoTiposDiponibilidad: function () {
+                                    return { value: [] };
+                                },                                
+                                listadoRubros: function () {
+                                    return { value: [] };
+                                },
+                                listadoTiposContratos: function () {
+                                    return { value: [] };
+                                },
+                                listadoHabilidades: function () {
+                                    return { value: [] };
+                                },
+                                listadoIdentificacionPro: function () {
+                                    return { value: [] };
+                                },                                
+                                listadoTiposRequisitos: function () {
+                                    return { value: [] };
+                                },
+                                infoProfesional: function () {
+                                    return { value: [] };
+                                },                                
+                                etapasObligatorias: function () {
+                                    return { value: [] };
+                                },
+                                loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
+                                }]
+                                
+                            }
+                        }
+                    }
+                })
         //#endregion
 
             //#region Postulaciones del Profesional
@@ -792,8 +930,7 @@
                     }
 
                 })
-        //#endregion
-        //#endregion
+        //#endregion        
     })
 
 

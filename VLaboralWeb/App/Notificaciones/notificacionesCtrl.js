@@ -15,24 +15,20 @@
         
         switch (prmTipoNotificacion)
         {
-            case "EXP":
-                debugger;
-                $scope.mostrarDetalle = true;
+            case "EXP":   
                 $state.go('empresa.centroNotificaciones.experiencia', { idExperienciaPendiente: prmIdNotificacion });
                 break;
-            case "EXPVER":
-                $scope.mostrarDetalle = true;
-                '';
+            case "EXPVER":                
+                $state.go('profesional.centroNotificaciones.experienciaVerificada', { prmIdNotificacion: prmIdNotificacion, prmTipoNotificacion: prmTipoNotificacion });
                 break;
             case "POS":
-                $scope.mostrarDetalle = true;
                 $state.go('empresa.centroNotificaciones.postulacion', { prmIdNotificacion: prmIdNotificacion, prmTipoNotificacion: prmTipoNotificacion });
                 break;
             case "ETAP":
-                ''
+                $state.go('profesional.centroNotificaciones.etapaAprobada', { prmIdNotificacion: prmIdNotificacion, prmTipoNotificacion: prmTipoNotificacion });
                 break;
             case "INV_OFER_PRIV":
-                ''
+                $state.go('profesional.centroNotificaciones.invitacionOfertaPrivada', { prmIdNotificacion: prmIdNotificacion, prmTipoNotificacion: prmTipoNotificacion });
                 break;
             default:
                 alert('No Existe el Tipo de Notificacion');
