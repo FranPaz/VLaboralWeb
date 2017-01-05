@@ -26,10 +26,7 @@
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
 
-    $scope.postulantes = [
-        { Id: 1, Nombre:"Nombre Prueba 1" },
-        { Id: 3, Nombre: "Nombre Prueba 2" }
-    ];
+    
     //#endregion
 
     //#region fpaz: carga de ofertas
@@ -217,17 +214,59 @@
     //#endregion
 
     //#region iafar: funcion para llamar modal seleccion de profesionales
+    //$scope.profesionalesAdd = function () {
+    //    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+    //    $mdDialog.show({
+    //        controller: 'profesionalesCtrl',
+    //        templateUrl: 'App/Profesionales/Partials/profesionalesDialogList.html',
+    //        parent: angular.element(document.body),            
+    //        clickOutsideToClose: true,            
+    //        fullscreen: useFullScreen,
+    //        resolve: {
+    //            listadoOfertas: function () {
+    //                return { value: [] };
+    //            },                
+    //            listadoRubros: function () {
+    //                return { value: [] };
+    //            },
+    //            listadoHabilidades: function () {
+    //                return { value: [] };
+    //            },
+    //            listadoIdentificacionPro: function () {
+    //                return { value: [] };
+    //            },                
+    //            infoProfesional: function () {
+    //                return { value: [] };
+    //            },                
+    //            listadoOfertas: function () {
+    //                return { value: [] };
+    //            },                
+    //            selectedPro: $scope.postulantes, //iafar: aqui se debe pasar el listado de invitados a oferta privada                
+    //            profesionalesDF: 'profesionalesDF',
+    //            profesionalesList: function (profesionalesDF) {
+    //                return profesionalesDF.getProfesionales(1, 5);
+    //            },
+    //            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+    //                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+    //            }]
+    //        }            
+    //    }).then(function (response) {
+    //        $scope.postulantes = response;
+    //    })
+    //}
+    
     $scope.profesionalesAdd = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
-            controller: profesionalesCtrl,
+            controller: 'profesionalesCtrl',
             templateUrl: 'App/Profesionales/Partials/profesionalesDialogList.html',
-            resolve: {
+            parent: angular.element(document.body),            
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen,
+            resolve: {                
                 listadoOfertas: function () {
                     return { value: [] };
                 },
-                rubrosDF: 'rubrosDF',
-                habilidadesDF: 'habilidadesDF',
-                tiposIdentificacionDF: 'tiposIdentificacionDF',
                 listadoRubros: function () {
                     return { value: [] };
                 },
@@ -237,26 +276,25 @@
                 listadoIdentificacionPro: function () {
                     return { value: [] };
                 },
-                profesionalesDF: 'profesionalesDF',
-                infoProfesional: function (profesionalesDF) {
-                    
-                    return profesionalesDF.getProfesional(profesionalId);
-                },
-                listadoOfertas: function () {
+                infoProfesional: function () {
                     return { value: [] };
                 },
+                selectedPro: function () {
+                    return [];
+                },
                 profesionalesDF: 'profesionalesDF',
-                selectedPro: $scope.postulantes, //iafar: aqui se debe pasar el listado de invitados a oferta privada                
                 profesionalesList: function (profesionalesDF) {
                     return profesionalesDF.getProfesionales(1, 5);
                 },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                 }]
-            }            
-        }).then(function (response) {
-            $scope.postulantes = response;
+            }
         })
+        .then(function (response) {
+            $scope.postulantes = response;
+        });
     }
+    
     //#endregion
 })

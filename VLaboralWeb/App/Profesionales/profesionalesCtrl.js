@@ -254,10 +254,9 @@
     $scope.search ="";
     $scope.selectedPro = selectedPro; //iafar: array con los profesionales ya listados para invitar en la ventana padre (en caso de usar dialog)
     $scope.selectedItems = []; //iafar: array de elementos seleccionados para eliminacion
-    $scope.profesionalesList = profesionalesList.data.Results; //iafar: cargo scope con primera pagina de profesionales
+    $scope.profesionalesList = profesionalesList; //iafar: cargo scope con primera pagina de profesionales
     $scope.guardarLista = function (response) {
         $mdDialog.hide(response);
-
     }
 
     $scope.filtrarLista = function (filtro) { //iafar: aqui puede ser usado para consultar a la api a traves de parametros

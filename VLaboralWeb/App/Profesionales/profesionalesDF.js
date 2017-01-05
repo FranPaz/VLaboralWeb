@@ -21,7 +21,7 @@
             }
         }).then(
            function (response) {
-               deferred.resolve(response);
+               deferred.resolve(response.data.Results);
            },
             function (response) {
                 deferred.reject(response.data);
