@@ -1,0 +1,194 @@
+﻿<main class="ad_ofer">
+    <md-container>
+        <h1>Nueva Oferta</h1>
+        <div layout="column">
+            <div layout="column" layout-sm="column" layout-xs="column" class="of_ad">
+                <div layout="column" flex="40" flex-sm="100" flex-xs="100">
+                    <!--#region fpaz Seccion de datos Basicos de la Oferta-->
+                    <div layout="column" class="md-inline-form">
+                        <h2>Titulo de la oferta</h2>
+
+                        <div layout="row" layout-align="start center">
+                            <md-input-container flex="100">
+                                <label>Nombre de la Oferta</label>
+                                <input ng-model="oferta.Nombre">
+                            </md-input-container>
+                        </div>
+                        <h2>Tipo de Oferta</h2>
+                        <div layout="row" layout-align="start center">
+
+                            <md-radio-group ng-model="oferta.Publica">
+                                <md-radio-button ng-disabled="!oferta.Publica" value=true class="md-primary">Publica</md-radio-button>
+                                <md-radio-button ng-value=false> Privada </md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <h2>Seleccione la fecha de convocatoria</h2>
+                        <div layout="row" layout-align="start center" flex="100">
+                            <md-datepicker ng-model="oferta.FechaInicioConvocatoria" md-placeholder="Inicio de la Convocatoria" felx="50">
+                            </md-datepicker>
+                            <md-datepicker ng-model="oferta.FechaFinConvocatoria" md-placeholder="Fin de la Convocatoria" felx="50">
+                            </md-datepicker>
+                        </div>
+
+                        <h2>Ingrese una descripción</h2>
+
+                        <div layout="row" layout-align="start center">
+                            <md-input-container layout-fill>
+                                <label>Descripcion</label>
+                                <textarea ng-model="oferta.Descripcion" md-maxlength="500" rows="20" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                    <!--#endregion-->
+                </div>
+                <br />
+                <md-divider></md-divider>
+                <!--#region Listado profesionales-->
+                <div layout="column" flex="70" layout-padding layout-align="center center" ng-show="oferta.Publica =='false'">
+
+                    <md-button class="md-primary md-raised" ng-click="profesionalesAdd()">Agregar profesionales</md-button>
+
+                </div>
+                <div div layout="column" ng-show="listadoProfesionales !=null">
+
+                    <md-card>
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">
+                                Profesionales elegidos
+                            </div>
+                        </md-toolbar>
+
+
+                        <md-card-content layout="row">
+
+                            <br />
+                            <div flex>
+                                <div flex layout="row">
+                                    <md-input-container flex="60">
+                                        <h3>Buscar</h3>
+                                        <input ng-model="nombrePostulante" />
+                                    </md-input-container>
+                                </div>
+
+                                <md-list>
+                                    <md-list-item ng-repeat="p in postulantes| filter: Nombre">
+                                        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{p.Nombre}}</span>
+                                                    <span class="md-subhead">{{p.Rubro}}</span>
+                                                </md-card-title-text>
+                                                <md-card-title-media>
+                                                    <div class="md-media-lg card-media"></div>
+                                                </md-card-title-media>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <h3>Valoracion</h3>
+                                                <p>{{p.Valoracion}}</p>
+                                            </md-card-content>
+                                            <md-card-actions layout="row" layout-align="end center">
+                                                <md-button>Ver Perfil</md-button>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+
+                        </md-card-content>
+                    </md-card>
+                    <md-divider></md-divider>
+                </div>
+
+                <!--#endregion-->
+                <br />
+                <!-- NUEVA TIMELINE :EZEQUIEL-->
+
+                <br />
+                <div layout="column" flex="60">
+                    <!--#region Seccion del Timeline de Etapas del Proceso de contratacion de la oferta-->
+                    <h1 style="text-align:center;">Etapas de la Oferta</h1>
+                    <timeline>
+                        <timeline-event ng-repeat="etapa in oferta.EtapasOferta" side="alternate">
+                            <!--<timeline-badge >
+                                <i class="glyphicon {{event.badgeIconClass}}"></i>
+                            </timeline-badge>-->
+                            <timeline-panel class="{{event.badgeClass}}">
+                                <timeline-heading>
+                                    <div class="flag-wrapper">
+                                        <span class="flag">{{etapa.TipoEtapa.Nombre}}</span>
+                                        <span class="time-wrapper"><span class="time">2011 - 2013</span></span>
+                                    </div>
+                                </timeline-heading>
+                                <div class="desc">
+                                    <p>{{etapa.TipoEtapa.Descripcion}}</p>
+                                </div>
+                            </timeline-panel>
+                        </timeline-event>
+                    </timeline>
+                    <!--<ul class="timeline">
+                        <li  ng-repeat="etapa in oferta.EtapasOferta">
+
+                            <div class="direction-r">
+
+                                <div class="flag-wrapper">
+
+                                    <span class="flag">{{etapa.TipoEtapa.Nombre}}</span>
+
+                                    <span class="time-wrapper"><span class="time">2011 - 2013</span></span>
+
+                                </div>
+
+                                <div class="desc">{{etapa.TipoEtapa.Descripcion}}</div>
+
+                            </div>
+
+                        </li>
+                    </ul>-->
+                    <!-- FIN NUEVA TIMELINE-->
+
+                    <md-content>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                            <md-button class="md-raised" ng-click="openEtapaOfertaAdd()">Agregar Etapa</md-button>
+                        </section>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+
+        <div layuot="row">
+            <md-whiteframe class="md-whiteframe-1dp wf" flex="100" layout layout-align="center center">
+                <div layout="column" class="md-inline-form">
+                    <h1 class="md-title">Seccion de puestos</h1>
+                    <h1 class="md-title">Cantidad de Puestos Cargados {{oferta.Puestos.length}}</h1>
+                    <div layout="row">
+                        <v-accordion class="vAccordion--default" multiple control="accordion">
+                            <v-pane id="accordionCategorias" ng-repeat="puesto in oferta.Puestos track by $index" expanded="true">
+                                <v-pane-header>
+                                    <label>{{puesto.Nombre}}</label>
+                                </v-pane-header>
+                                <v-pane-content>
+                                    <h1>Contenido del Puesto {{puesto.Nombre}}</h1>
+                                </v-pane-content>
+                            </v-pane>
+                        </v-accordion>
+                    </div>
+                </div>
+            </md-whiteframe>
+        </div>
+    </md-container>
+</main>
+
+
+
+<!--#region Menu De Herramientas Flotante-->
+<nav mfb-menu position="br" effect="zoomin" label="Herramientas"
+     active-icon="fa fa-times" resting-icon="fa fa-plus"
+     toggling-method="hover">
+    <button mfb-button icon="fa fa-floppy-o" label="Guardar Oferta" ng-click="ofertaSave(oferta)">
+        <md-icon> face </md-icon>
+    </button>
+    <button mfb-button icon="fa fa-user-plus" label="Agregar Puesto" ng-click="openPuestoAdd()"></button>
+    <button mfb-button icon="fa fa-trash-o" label="Cancelar" ng-click="ofertaCancel()"></button>
+</nav>
+<!--#endregion-->
