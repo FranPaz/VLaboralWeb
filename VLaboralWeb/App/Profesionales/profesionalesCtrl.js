@@ -1,6 +1,6 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
     , rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
-    , listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro, profesionalesList//fpaz: definicion de parametros de entrada    
+    ,profesionalesList ,listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro//fpaz: definicion de parametros de entrada    
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope    
@@ -12,6 +12,8 @@
 
     //$scope.chipsRubros = infoProfesional.SubRubros;
     
+    $scope.profesionalesList = profesionalesList.data.Results;
+
 
     $scope.Rubros = listadoRubros;
     $scope.rubroSelected = {};
@@ -25,20 +27,21 @@
     
     $scope.ofertasPerPage = 10;
     $scope.pagination = {
-        current: 1,
-        limit: 5,
-        order:"Apellido"
-    };//iafar: variables scope para paginacion de tabla de documentos
+        current: 1
+    };
 
-   
+
+    $scope.selectItems = []; //iafar: array de elementos seleccionados para eliminacion
+    $scope.query = {       
+        limit: 3,
+        page: 1
+    }; //iafar: variables scope para paginacion de tabla de documentos
 
     $scope.editValue = false; // variable que voy a usar para activar y desactivar los modos de edicion para hacer el update de la info
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
 
     $scope.profesional.FechaNac = new Date($scope.profesional.FechaNac);
-
-    
     //#endregion
 
     //#region iafar: transformar habilidades de chips en strings
@@ -248,27 +251,61 @@
     }
     //#endregion
 
-    //#region iafar: elementos usados en listado de profesionales
-   
-    //iafar: array de profesionales seleccionados
-    $scope.search ="";
-    $scope.selectedPro = selectedPro; //iafar: array con los profesionales ya listados para invitar en la ventana padre (en caso de usar dialog)
-    $scope.selectedItems = []; //iafar: array de elementos seleccionados para eliminacion
-    $scope.profesionalesList = profesionalesList; //iafar: cargo scope con primera pagina de profesionales
-    $scope.guardarLista = function (response) {
-        $mdDialog.hide(response);
-    }
-
-    $scope.filtrarLista = function (filtro) { //iafar: aqui puede ser usado para consultar a la api a traves de parametros
-        $scope.search = filtro.NomApellido;
-        
-    }
-
-    //#endregion
-
-
     $scope.cancel = function () {
         $mdDialog.cancel();
     }
+
+
+    //#region Detalle profesional
+    $scope.abrirDetalle = function (prmProfesional) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'profesionalesCtrl',
+            templateUrl: '/App/Postulantes/Partials/postulanteDetalle.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen,
+            profesionalesList: profesionalesList,
+            listadoOfertas: function () {
+                return { value: [] };
+            },
+            listadoRubros: function () {
+                return { value: [] };
+            },
+            listadoHabilidades: function () {
+                return { value: [] };
+            },
+            listadoIdentificacionPro: function () {
+                return { value: [] };
+            },
+            //infoProfesional: function (profesionalesDF, prmProfesional) {
+            //    return profesionalesDF.getProfesional(prmProfesional);
+            //},
+            infoProfesional: prmProfesional,
+
+            selectedPro: function () {
+                return { value: [] };
+            },
+            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+            }]
+
+        
+        })
+        .then(function () {
+
+        });
+    }
+    //#endRegion
+
+    //#region Convocar profesional
+    $scope.convocarProfesional = function (prmProfesional) {
+        var arrayProf;
+        arrayProf.push(prmProfesional);
+        $state.go()
+
+    }
+    //#endregion
 
 });
