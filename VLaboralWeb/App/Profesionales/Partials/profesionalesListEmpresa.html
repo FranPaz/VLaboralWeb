@@ -1,22 +1,23 @@
-﻿<md-dialog flex="90" aria-label="Lista de Profesionales">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2 class="md-title">Lista Profesionales</h2>
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="closeDialog()">
-                <i class="fa fa-times"></i>
-            </md-button>
-        </div>
-    </md-toolbar>
-    <md-dialog-content>
-        <!-- #region iafar: contenido de listado -->
+﻿<!--<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2 class="md-title">Lista Profesionales</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="closeDialog()">
+            <i class="fa fa-times"></i>
+        </md-button>
+    </div>
+</md-toolbar>-->
+
+    <!-- #region iafar: contenido de listado -->
+<main class="ad_ofer">
+    <md-content>
         <div layout="row" layout-fill flex>
             <md-content layout="row" style="background-color:#eee" layout-fill>
                 <md-card flex>
                     <md-card-title layout="column" style="max-height: 120px ">
-                        
+                        <!--<h2 class="md-title">Lista Profesionales</h2>-->
                         <md-toolbar class="md-table-toolbar md-default">
-                            <span class="md-subhead">Busqueda personalizada</span>
+                            <!--<span class="md-subhead">Busqueda personalizada</span>-->
                             <div layout="row">
 
                                 <md-input-container flex="30">
@@ -57,8 +58,8 @@
                         <md-table-container style="height:400px">
                             <table md-table
                                    ng-model="selectedItems"
-                                   md-row-select="true"
-                                   multiple>
+                                   md-row-select="false"
+                                   >
                                 <thead md-head
                                        md-order="pagination.order">
                                     <tr md-row>
@@ -100,7 +101,7 @@
                                         <td md-cell flex="nogrow">{{p.Domicilio}}</td>
                                         <td md-cell flex="nogrow">{{p.ValoracionPromedio + " estrellas"}}</td>
                                         <td md-cell flex="nogrow">
-                                            <md-button class="md-raised" ng-click="abrirDetalle(p)">Detalle</md-button>
+                                            <md-button class="md-raised" ng-click="abrirDetalle(p)" ng-click="null">Detalle</md-button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -119,13 +120,7 @@
             </md-content>
 
         </div>
-    </md-dialog-content>
+    </md-content>
+</main>
 
-        <!-- #endregion -->
-        <md-dialog-actions layout="row" class="bg-primary">
-            <span flex></span>
-            <md-button class="md-raised" ng-click="guardarLista(selectedItems)">Guardar</md-button>
-            <md-button class="md-raised md-shadow-animated" style="margin-right:20px;" ng-click="closeDialog()">Cancelar</md-button>
-        </md-dialog-actions>
     
-</md-dialog>

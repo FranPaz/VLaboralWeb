@@ -12,7 +12,7 @@
 
     //$scope.chipsRubros = infoProfesional.SubRubros;
     
-    $scope.profesionalesList = profesionalesList.data.Results;
+    $scope.profesionalesList = profesionalesList;
 
 
     $scope.Rubros = listadoRubros;
@@ -249,6 +249,24 @@
             $scope.profesional.Educaciones.push(nuevaEducacion);
         });
     }
+    //#endregion
+
+    //#region iafar: elementos usados en listado de profesionales
+
+    //iafar: array de profesionales seleccionados
+    $scope.search = "";
+    $scope.selectedPro = selectedPro; //iafar: array con los profesionales ya listados para invitar en la ventana padre (en caso de usar dialog)
+    $scope.selectedItems = []; //iafar: array de elementos seleccionados para eliminacion
+    $scope.profesionalesList = profesionalesList; //iafar: cargo scope con primera pagina de profesionales
+    $scope.guardarLista = function (response) {
+        $mdDialog.hide(response);
+    }
+
+    $scope.filtrarLista = function (filtro) { //iafar: aqui puede ser usado para consultar a la api a traves de parametros
+        $scope.search = filtro.NomApellido;
+
+    }
+
     //#endregion
 
     $scope.cancel = function () {

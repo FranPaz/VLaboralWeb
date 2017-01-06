@@ -96,6 +96,7 @@
     <Content Include="App\Notificaciones\Partials\detalleNotificacionExperiencia.html" />
     <Content Include="App\Notificaciones\Partials\detalleNotificacionInvOfertaPrivada.html" />
     <Content Include="App\Notificaciones\Partials\detalleNotificacionPostulacion.html" />
+    <Content Include="App\Ofertas\Partials\ofertaPrivada.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaDetalle.html" />
@@ -108,9 +109,11 @@
     <Content Include="App\Postulantes\Partials\postulanteDetalle.html" />
     <Content Include="App\Postulantes\postulantesCtrl.js" />
     <Content Include="App\Postulantes\postulantesDF.js" />
+    <Content Include="App\Profesionales\Partials\listadoProfesionalesProvisorio.html" />
     <Content Include="App\Profesionales\Partials\profesionalesDialogList.html" />
     <Content Include="App\Postulaciones\Partials\historialPostulaciones.html" />
     <Content Include="App\Profesionales\Partials\profesionalesList.html" />
+    <Content Include="App\Profesionales\Partials\profesionalesListEmpresa.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfil.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfilPublico.html" />
     <Content Include="App\Profesionales\Partials\profesionalPerfilOld.html" />

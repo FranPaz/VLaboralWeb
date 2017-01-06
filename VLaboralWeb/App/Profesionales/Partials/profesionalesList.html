@@ -34,9 +34,8 @@
                         <md-table-container style="height:400px">
                             <table md-table
                                    ng-hide=""
-                                   ng-model="selectedPro"
-                                   md-row-select="true"
-                                   multiple>
+                                   
+                                   >
                                 <thead md-head
                                        md-order="query.order">
                                     <tr md-row>
@@ -52,8 +51,7 @@
                                 </thead>
                                 <tbody md-body>
                                     <tr md-row
-                                        md-select="selectedPro"
-                                        md-auto-select="true"
+                                        
                                         ng-repeat="profesional in profesionalesList | filter:search | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit">
 
                                         <td md-cell>{{profesional.Apellido}}</td>
@@ -62,7 +60,7 @@
                                         <td md-cell>{{profesional.Domicilio}}</td>
                                         <td md-cell>{{profesional.ValoracionPromedio}}</td>
                                         <td md-cell>
-                                            <md-button class="md-raised" ng-click="abrirDetalle()">Detalle</md-button>
+                                            <md-button class="md-raised" ng-click="abrirDetalle(profesional)">Detalle</md-button>
                                         </td>
                                     </tr>
                                 </tbody>
