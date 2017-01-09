@@ -144,8 +144,7 @@
 
     //#region fpaz: carga de Etapas de Oferta
 
-    //#region fpaz: llamado al modal de carga de puestos
-    //funcion que abre el modal para la carga de puestos en la oferta
+    //fpaz: llamado al modal de carga de etapas    
     $scope.openEtapaOfertaAdd = function (ev) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
@@ -178,7 +177,6 @@
             $scope.oferta.EtapasOferta = nuevasEtapas;
         });
     }
-    //#endregion
 
     //#endregion
 
@@ -214,47 +212,7 @@
     //#endregion
 
     //#region iafar: funcion para llamar modal seleccion de profesionales
-    //$scope.profesionalesAdd = function () {
-    //    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-    //    $mdDialog.show({
-    //        controller: 'profesionalesCtrl',
-    //        templateUrl: 'App/Profesionales/Partials/profesionalesDialogList.html',
-    //        parent: angular.element(document.body),            
-    //        clickOutsideToClose: true,            
-    //        fullscreen: useFullScreen,
-    //        resolve: {
-    //            listadoOfertas: function () {
-    //                return { value: [] };
-    //            },                
-    //            listadoRubros: function () {
-    //                return { value: [] };
-    //            },
-    //            listadoHabilidades: function () {
-    //                return { value: [] };
-    //            },
-    //            listadoIdentificacionPro: function () {
-    //                return { value: [] };
-    //            },                
-    //            infoProfesional: function () {
-    //                return { value: [] };
-    //            },                
-    //            listadoOfertas: function () {
-    //                return { value: [] };
-    //            },                
-    //            selectedPro: $scope.postulantes, //iafar: aqui se debe pasar el listado de invitados a oferta privada                
-    //            profesionalesDF: 'profesionalesDF',
-    //            profesionalesList: function (profesionalesDF) {
-    //                return profesionalesDF.getProfesionales(1, 5);
-    //            },
-    //            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-    //                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
-    //            }]
-    //        }            
-    //    }).then(function (response) {
-    //        $scope.postulantes = response;
-    //    })
-    //}
-    
+        
     $scope.profesionalesAdd = function () {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({

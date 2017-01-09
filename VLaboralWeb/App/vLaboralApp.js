@@ -47,6 +47,9 @@
                             selectedPro: function () {
                                 return { value: [] };
                             },
+                            profesionalesList: function () {
+                                return { value: [] };
+                            },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                             }]
@@ -481,6 +484,9 @@
                                 return profesionalesDF.getProfesional(idPro);
                             },
                             selectedPro: function () {
+                                return { value: [] };
+                            },
+                            profesionalesList: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
