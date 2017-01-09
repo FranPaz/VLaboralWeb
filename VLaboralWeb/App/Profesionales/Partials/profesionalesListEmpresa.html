@@ -10,8 +10,35 @@
 
     <!-- #region iafar: contenido de listado -->
 <main class="ad_ofer">
+
     <md-content>
         <div layout="row" layout-fill flex>
+            <md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id=" left" class="md-sidenav-left">
+                <h1 class="md-toolbar-tools">Filtrar</h1>
+                <md-content layout-padding layout="column">
+                    <label>Valoracion</label>
+                    <md-checkbox>5 Estrellas</md-checkbox>
+                    <md-checkbox>+ 4 Estrellas</md-checkbox>
+                    <md-checkbox>+ 3 Estrellas</md-checkbox>
+                    <md-checkbox>+ 2 Estrellas</md-checkbox>
+                    <md-checkbox>+ 1 Estrellas</md-checkbox>
+                    <md-divider></md-divider>
+                    <label>Rubro</label>
+                    <md-checkbox>Informatica</md-checkbox>
+                    <md-checkbox>Construcción</md-checkbox>
+                    <md-divider></md-divider>
+                    <label>Lugar de residencia</label>
+                    <md-checkbox>Santiago del Estero</md-checkbox>
+                    <md-checkbox>Tucuman</md-checkbox>
+                    <md-checkbox>Salta</md-checkbox>
+                    <md-divider></md-divider>
+                    <label>Ordenar</label>
+                    <md-checkbox>Nombre A-Z</md-checkbox>
+                    <md-checkbox>Nombre Z-A</md-checkbox>
+                    <md-divider></md-divider>
+                    <md-button>Buscar</md-button>
+                </md-content>
+            </md-sidenav>
             <md-content layout="row" style="background-color:#eee" layout-fill>
                 <md-card flex>
                     <md-card-title layout="column" style="max-height: 120px ">
@@ -101,7 +128,7 @@
                                         <td md-cell flex="nogrow">{{p.Domicilio}}</td>
                                         <td md-cell flex="nogrow">{{p.ValoracionPromedio + " estrellas"}}</td>
                                         <td md-cell flex="nogrow">
-                                            <md-button class="md-raised" ng-click="abrirDetalle(p)" ng-click="null">Detalle</md-button>
+                                            <md-button class="md-raised" ng-click="abrirDetalle(p)">Detalle</md-button>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -1,6 +1,20 @@
 ﻿<md-dialog layout="column" flex="70" layout-padding>
     <md-dialog-content>
-        <h1>Perfil del Profesional</h1>
+        <div layout="row">
+            <div layout="column" flex="50">
+                <h1>Perfil del Profesional</h1>
+            </div>
+            
+            <div layout="column" layout-align="end end" flex="50">
+
+                <h3>Valoracion</h3>
+                <jk-rating-stars rating="valoracion" disabled></jk-rating-stars>
+                <!--<div style="width: 100px">{{valoracion}} Stars</div>-->
+            </div>
+           
+
+        </div>
+        
         <md-container>            
             <md-card flex="100" layout layout-align="center center">
                 <md-card-content flex>

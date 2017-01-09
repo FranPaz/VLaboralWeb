@@ -8,33 +8,56 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-dialog-content>
+    <md-dialog-content layout="row">
         <!-- #region iafar: contenido de listado -->
+        <md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id=" left" class="md-sidenav-left">
+            <h1 class="md-toolbar-tools">Filtrar</h1>
+            <md-content layout-padding layout="column">
+                <label>Valoracion</label>
+                <md-checkbox>5 Estrellas</md-checkbox>
+                <md-checkbox>+ 4 Estrellas</md-checkbox>
+                <md-checkbox>+ 3 Estrellas</md-checkbox>
+                <md-checkbox>+ 2 Estrellas</md-checkbox>
+                <md-checkbox>+ 1 Estrellas</md-checkbox>
+                <md-divider></md-divider>
+                <label>Rubro</label>
+                <md-checkbox>Informatica</md-checkbox>
+                <md-checkbox>Construcción</md-checkbox>
+                <md-divider></md-divider>
+                <label>Lugar de residencia</label>
+                <md-checkbox>Santiago del Estero</md-checkbox>
+                <md-checkbox>Tucuman</md-checkbox>
+                <md-checkbox>Salta</md-checkbox>
+                <md-divider></md-divider>
+                <label>Ordenar</label>
+                <md-checkbox>Nombre A-Z</md-checkbox>
+                <md-checkbox>Nombre Z-A</md-checkbox>
+                <md-divider></md-divider>
+                <md-button>Buscar</md-button>
+            </md-content>
+        </md-sidenav>
         <div layout="row" layout-fill flex>
             <md-content layout="row" style="background-color:#eee" layout-fill>
                 <md-card flex>
                     <md-card-title layout="column" style="max-height: 120px ">
                         
-                        <md-toolbar class="md-table-toolbar md-default">
-                            <span class="md-subhead">Busqueda personalizada</span>
+                        <md-toolbar class="md-table-toolbar md-default">                            
                             <div layout="row">
 
                                 <md-input-container flex="30">
-                                    <input type="text" ng-model="filtro.NomApellido" placeholder="Nombre y Apellido">
+                                    <input type="text" ng-model="filtro.NomApellido" placeholder="Buscar">
                                 </md-input-container>
-                                <md-input-container flex>
-                                    <input type="text" ng-model="filtro.Domicilio" placeholder="Lugar de residencia" layout-align="end end">
-                                </md-input-container>
-                                <md-input-container>
+                                
+                                <!--<md-input-container>
                                     <label>Rubro</label>
                                     <md-select ng-model="filtro.Rubro">
                                         <md-option ng-value="''"><em>Todos</em></md-option>
-                                        <!--<md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev"-->
-                                        <!--ng-disabled="$index === 1">-->
-                                        <!--{{state.abbrev}}-->
-                                        <!--</md-option>-->
+                                        <md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev"
+                                        ng-disabled="$index === 1">
+                                        {{state.abbrev}}
+                                        </md-option>
                                     </md-select>
-                                </md-input-container>
+                                </md-input-container>-->
                                 <md-input-container>
                                     <label>Estrellas</label>
                                     <md-select ng-model="filtro.ValoracionPromedio">
