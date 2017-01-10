@@ -47,34 +47,11 @@
                             <!--<span class="md-subhead">Busqueda personalizada</span>-->
                             <div layout="row">
 
-                                <md-input-container flex="30">
-                                    <input type="text" ng-model="filtro.NomApellido" placeholder="Nombre y Apellido">
+                                <md-input-container flex="70">
+                                    <input type="text" ng-model="filtro" placeholder="Buscar">
                                 </md-input-container>
-                                <md-input-container flex>
-                                    <input type="text" ng-model="filtro.Domicilio" placeholder="Lugar de residencia" layout-align="end end">
-                                </md-input-container>
-                                <md-input-container>
-                                    <label>Rubro</label>
-                                    <md-select ng-model="filtro.Rubro">
-                                        <md-option ng-value="''"><em>Todos</em></md-option>
-                                        <!--<md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev"-->
-                                        <!--ng-disabled="$index === 1">-->
-                                        <!--{{state.abbrev}}-->
-                                        <!--</md-option>-->
-                                    </md-select>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label>Estrellas</label>
-                                    <md-select ng-model="filtro.ValoracionPromedio">
-                                        <md-option ng-value="''"><em>Todas</em></md-option>
-                                        <md-option ng-value="1"><em>1</em></md-option>
-                                        <md-option ng-value="2"><em>2</em></md-option>
-                                        <md-option ng-value="3"><em>3</em></md-option>
-                                        <md-option ng-value="4"><em>4</em></md-option>
-                                        <md-option ng-value="5"><em>5</em></md-option>
 
-                                    </md-select>
-                                </md-input-container>
+
                                 <md-button layout-align="end end" ng-click="filtrarLista(filtro)">Buscar</md-button>
                             </div>
 
