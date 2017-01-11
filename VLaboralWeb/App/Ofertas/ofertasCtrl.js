@@ -1,7 +1,7 @@
 ﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $state, //fpaz: definicion de inyectores de dependencias
     ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF,notificacionesSvc, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
-    listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias//    
+    listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
@@ -26,7 +26,58 @@
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
 
+   
+
+    //$scope.postulantes = postulantes;
     
+    $scope.eliminarPostulante = function (p) {
+        var index = $scope.postulantes.indexOf(p);
+        $scope.postulantes.splice(index, 1);
+    }
+
+    $scope.abrirDetallePostulante = function (prmProfesional) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'profesionalesCtrl',
+            templateUrl: '/App/Postulantes/Partials/postulanteDetalle.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen,
+            profesionalesList: function () {
+                return { value: [] };
+            },
+            listadoOfertas: function () {
+                return { value: [] };
+            },
+            listadoRubros: function () {
+                return { value: [] };
+            },
+            listadoHabilidades: function () {
+                return { value: [] };
+            },
+            listadoIdentificacionPro: function () {
+                return { value: [] };
+            },
+            //infoProfesional: function (profesionalesDF, prmProfesional) {
+            //    return profesionalesDF.getProfesional(prmProfesional);
+            //},
+            infoProfesional: prmProfesional,
+
+            selectedPro: function () {
+                return { value: [] };
+            },
+            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+            }]
+
+
+        })
+        .then(function () {
+
+        });
+    }
+
     //#endregion
 
     //#region fpaz: carga de ofertas

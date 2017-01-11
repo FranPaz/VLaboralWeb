@@ -255,6 +255,9 @@
                             ofertaDetalle: function () {
                                 return { value: [] };
                             },
+                            //postulantes: function () {
+                            //    return { value: [] };
+                            //},
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                             }]
@@ -264,6 +267,7 @@
             })
             .state('empresa.ofertas.convocarPro', {
                 url: '/nuevaOferta',
+                
                 views: {
                     'contenido@empresa': {
                         templateUrl: '/App/Ofertas/Partials/ofertaPrivada.html',
@@ -296,6 +300,9 @@
                             ofertaDetalle: function () {
                                 return { value: [] };
                             },
+                            //postulantes: function ($stateParams) {
+                            //    return $stateParams.postulantesOferta;
+                            //},
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                             }]

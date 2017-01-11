@@ -321,7 +321,7 @@
     $scope.convocarProfesional = function (prmProfesional) {
         var arrayProf;
         arrayProf.push(prmProfesional);
-        $state.go()
+        $state.go('empresa.ofertas.convocarPro', {postulantesOferta: arrayProf})
 
     }
     //#endregion
