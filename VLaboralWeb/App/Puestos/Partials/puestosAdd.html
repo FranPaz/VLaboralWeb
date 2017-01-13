@@ -10,190 +10,230 @@
     </md-toolbar>
     <md-dialog-content style="min-width:800px;max-height:1810px;">
         <div class="md-dialog-content">
-            <div layout="row" layout-align="center center">
-                <md-input-container flex="100">
-                    <label class="">Nombre del Puesto</label>
-                    <input type="text" ng-model="puesto.Nombre" class="mdi-editor-border-color form-control md-input" />
-                </md-input-container>
-            </div>
-            <div layout="row" layout-align="center center">
-                <md-input-container flex="50">
-                    <label>Cantidad de Vacantes</label>
-                    <input type="number" ng-model="puesto.Vacantes" class="form-control md-input" />
-                </md-input-container>
-                <md-input-container flex="50">
-                    <label>Remuneracion (opcional)</label>
-                    <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" />
-                </md-input-container>
-            </div>
-            <div layout="row" layout-align="center center">
-                <md-input-container flex="50">
-                    <md-select placeholder="Seleccionar Tipo de Contratacion" ng-model="puesto.TipoContrato">
-                        <md-option ng-value="tipoCont" ng-repeat="tipoCont in tiposContrato">{{ tipoCont.Nombre }}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex="50">
-                    <md-select placeholder="Seleccionar Disponibilidad" ng-model="puesto.Disponibilidad">
-                        <md-option ng-value="tipoDisp" ng-repeat="tipoDisp in tiposDisponibilidad">{{ tipoDisp.Nombre }}</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-container flex="100">
-                    <form name="frmPro">
-                        <h2 class="md-title">Seleccione sus habilidades</h2>
-                        <!--<md-chips ng-model="habArray"
-                                  name="chipContainer"
-                                  md-max-chips="5"
-                                  md-transform-chip="transformChip($chip)"
-                                  md-separator-keys="puestosCtrl.keys"
-                                  placeholder="Ingrese habilidad"
-                                  secondary-placeholder="ingrese otra habilidad">
-                            <md-autocomplete md-selected-item="selectedItem"
-                                             md-search-text="searchText"
-                                             md-items="item in habilidades"
-                                             md-item-text="item.Nombre">
-                                <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                            </md-autocomplete>
-
-                        </md-chips>
-                        <md-chip-template>
-                            <strong>{{$chip}}</strong>
-                        </md-chip-template>-->
-                        <md-chips ng-model="puesto.Habilidades"
-                                  name="chipContainer"
-                                  md-max-chips="5"
-                                  md-transform-chip="transformChip($chip)"
-                                  placeholder="Ingrese habilidad"
-                                  secondary-placeholder="ingrese otra habilidad"
-                                  flex="100">
-                            <md-autocomplete md-selected-item="selectedItem"
-                                             md-search-text="searchText"
-                                             md-items="item in habilidades"
-                                             md-item-text="item.Nombre">
-                                <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                            </md-autocomplete>
-                            <!--<md-chip-template>
-                                <strong>{{$chip}}</strong>
-
-                            </md-chip-template>-->
-                        </md-chips>
-                        <div class="errors" ng-messages="frmPro.chipContainer.$error">
-                            <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
+            <div layout="column" flex>
+                <md-card>
+                    <md-card-title><h3>Seleccion de rubros</h3></md-card-title>
+                    <md-card-content>
+                        
+                        <div layout="row">
+                            <div flex="50">
+                                <md-input-container>
+                                    <label>Rubro</label>
+                                    <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                                        <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                                            {{rubro.Nombre}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div flex="50">
+                                <md-input-container>
+                                    <label>Sub Rubro</label>
+                                    <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
+                                        <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
+                                            {{subRubro.Nombre}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
+                            </div>
                         </div>
-                    </form>
-                </md-container>
+
+                        <div layout="row">
+                            <div flex="grow">
+                                <h4>Rubros seleecionados</h4>
+                                <md-chips>
+                                    <md-chip ng-repeat="subRubro in puesto.Subrubros">
+                                        <md-chip-template>
+                                            <strong>{{subRubro.Nombre}}</strong>
+                                            <em>(SubRubro)</em>
+                                            <button class="md-secondary md-icon-button md-button md-ink-ripple" type="button" ng-click="QuitarSubRubro(subRubro.Id)">
+                                                X
+                                            </button>
+                                        </md-chip-template>
+                                    </md-chip>
+                                </md-chips>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+
+                
             </div>
-            <div layout="row">
-                <div flex="50">
-                    <md-input-container>
-                        <label>Rubro</label>
-                        <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
-                            <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
-                                {{rubro.Nombre}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div flex="50">
-                    <md-input-container>
-                        <label>Sub Rubro</label>
-                        <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subRubroDisabled">
-                            <md-option ng-repeat="subRubro in Rubro.Subrubros" ng-value="subRubro">
-                                {{subRubro.Nombre}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-button class="md-raised" ng-click="subRubroAddClick()">Agregar</md-button>
-                </div>
+            
+            <div layout="column" flex>
+                <md-card>
+                    <md-card-title><h3>Datos del puesto</h3></md-card-title>
+                    <md-card-content>
+                        <div flex>
+                            <div layout="row" layout-align="center center">
+                                <md-input-container flex="100">
+                                    <label class="">Nombre del Puesto</label>
+                                    <input type="text" ng-model="puesto.Nombre" class="mdi-editor-border-color form-control md-input" />
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-align="center center">
+                                <md-input-container flex="50">
+                                    <label>Cantidad de Vacantes</label>
+                                    <input type="number" ng-model="puesto.Vacantes" class="form-control md-input" />
+                                </md-input-container>
+                                <md-input-container flex="50">
+                                    <label>Remuneracion (opcional)</label>
+                                    <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" />
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-align="center center">
+                                <md-input-container flex="50">
+                                    <md-select placeholder="Seleccionar Tipo de Contratacion" ng-model="puesto.TipoContrato">
+                                        <md-option ng-value="tipoCont" ng-repeat="tipoCont in tiposContrato">{{ tipoCont.Nombre }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container flex="50">
+                                    <md-select placeholder="Seleccionar Disponibilidad" ng-model="puesto.Disponibilidad">
+                                        <md-option ng-value="tipoDisp" ng-repeat="tipoDisp in tiposDisponibilidad">{{ tipoDisp.Nombre }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
             </div>
-            <div layout="row">
-                <div flex="grow">
-                    <h2 class="md-title">Rubros seleecionados</h2>
-                    <md-chips>
-                        <md-chip ng-repeat="subRubro in puesto.Subrubros">
-                            <md-chip-template>
-                                <strong>{{subRubro.Nombre}}</strong>
-                                <em>(SubRubro)</em>
-                                <button class="md-secondary md-icon-button md-button md-ink-ripple" type="button" ng-click="QuitarSubRubro(subRubro.Id)">
-                                    X
-                                </button>
-                            </md-chip-template>
-                        </md-chip>
-                    </md-chips>
-                </div>
+            
+
+            
+
+            <div layout="row">  
+                <md-card flex="100">
+                    <md-card-title><h3>Selección de habilidades</h3></md-card-title>
+                    <md-card-content>
+                        <form name="frmPro">
+                            <h4>
+                                Escriba las habilidades requeridas
+                            </h4>
+                            <!--<md-chips ng-model="habArray"
+                  name="chipContainer"
+                  md-max-chips="5"
+                  md-transform-chip="transformChip($chip)"
+                  md-separator-keys="puestosCtrl.keys"
+                  placeholder="Ingrese habilidad"
+                  secondary-placeholder="ingrese otra habilidad">
+            <md-autocomplete md-selected-item="selectedItem"
+                             md-search-text="searchText"
+                             md-items="item in habilidades"
+                             md-item-text="item.Nombre">
+                <span md-highlight-text="searchText">{{item.Nombre}}</span>
+            </md-autocomplete>
+
+        </md-chips>
+        <md-chip-template>
+            <strong>{{$chip}}</strong>
+        </md-chip-template>-->
+                            <md-chips ng-model="puesto.Habilidades"
+                                      name="chipContainer"
+                                      md-max-chips="5"
+                                      md-transform-chip="transformChip($chip)"
+                                      placeholder="Ingrese habilidad"
+                                      secondary-placeholder="ingrese otra habilidad"
+                                      flex="100">
+                                <md-autocomplete md-selected-item="selectedItem"
+                                                 md-search-text="searchText"
+                                                 md-items="item in habilidades"
+                                                 md-item-text="item.Nombre">
+                                    <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                                </md-autocomplete>
+                                <!--<md-chip-template>
+                <strong>{{$chip}}</strong>
+
+            </md-chip-template>-->
+                            </md-chips>
+                            <div class="errors" ng-messages="frmPro.chipContainer.$error">
+                                <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
+                            </div>
+                        </form>
+                    </md-card-content>
+                </md-card>              
+                
             </div>
-            <div layout="row">
-                <div flex="30">
-                    <md-input-container>
-                        <label>Requisto</label>
-                        <md-select ng-model="tipoRequisitoSelected" ng-change="tipoRequisitoChanged()">
-                            <md-option ng-repeat="tipoRequisito in tiposRequisito" ng-value="{{tipoRequisito}}">
-                                {{tipoRequisito.Nombre}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div flex="30">
-                    <md-input-container>
-                        <label>Valores</label>
-                        <md-select ng-model="ValoresTipoRequisitoSelected"
-                                   ng-multiple="tipoRequisitoSelected.Multiple">
-                            <md-optgroup>
-                                <md-option ng-value="valorTipoRequisito"
-                                           ng-repeat="valorTipoRequisito in tipoRequisito.ValoresTipoRequisito" ng-selected="">
-                                    {{valorTipoRequisito.Valor}}
-                                </md-option>
-                            </md-optgroup>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div flex="10">
-                    <md-button class="md-raised" ng-click="valorTipoRequisitoAddClick()">Agregar</md-button>
-                </div>
+
+            <div layout="column">
+                <md-card>
+                    <md-card-title><h3>Selección de requisitos</h3></md-card-title>
+                    <md-card-content>
+                        <div layout="row">
+                            <div flex="30">
+                                <md-input-container>
+                                    <label>Requisto</label>
+                                    <md-select ng-model="tipoRequisitoSelected" ng-change="tipoRequisitoChanged()">
+                                        <md-option ng-repeat="tipoRequisito in tiposRequisito" ng-value="{{tipoRequisito}}">
+                                            {{tipoRequisito.Nombre}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div flex="30">
+                                <md-input-container>
+                                    <label>Valores</label>
+                                    <md-select ng-model="ValoresTipoRequisitoSelected"
+                                               ng-multiple="tipoRequisitoSelected.Multiple">
+                                        <md-optgroup>
+                                            <md-option ng-value="valorTipoRequisito"
+                                                       ng-repeat="valorTipoRequisito in tipoRequisito.ValoresTipoRequisito" ng-selected="">
+                                                {{valorTipoRequisito.Valor}}
+                                            </md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div flex="10">
+                                <md-button class="md-raised" ng-click="valorTipoRequisitoAddClick()">Agregar</md-button>
+                            </div>
+                        </div>
+                        <div layout="row">
+                            <div flex="100">
+                                <md-subheader class="md-no-sticky">Requisitos seleccionados</md-subheader>
+                                <md-table-container>
+                                    <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th md-column><span>Requisitos</span></th>
+                                                <th md-column><span>Valores</span></th>
+                                                <th md-column><span>Excluyente</span></th>
+                                                <th md-column><span>Verificar automáticamente</span></th>
+                                                <th md-column></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row md-select="" md-select-id="TipoRequisitoId" md-auto-select ng-repeat="requisito in puesto.Requisitos">
+                                                <td md-cell>{{requisito.TipoRequisito.Nombre}}</td>
+                                                <td md-cell>
+                                                    <div ng-repeat="valor in requisito.ValoresRequisito">
+                                                        <strong>{{ valor.Valor }}</strong>
+                                                    </div>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-checkbox ng-model="requisito.Excluyente" aria-label="Checkbox 1">
+                                                    </md-checkbox>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-checkbox ng-model="requisito.AutoVerificar" aria-label="Checkbox 2" ng-disabled="!requisito.TipoRequisito.Verificable">
+                                                    </md-checkbox>
+                                                    <!--Se activa la función de autoverificación solo si el tipoRequisito lo permite-->
+                                                </td>
+                                                <td md-cell>
+                                                    <md-button class="md-fab md-mini md-primary" aria-label="Quitar Requisito" title="Quitar Requisito" ng-click="QuitarRequisito(requisito.TipoRequisitoId)">
+                                                        X
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
             </div>
-            <div layout="row">
-                <div flex="100">
-                    <md-subheader class="md-no-sticky">Requisitos seleccionados</md-subheader>
-                    <md-table-container>
-                        <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-                            <thead md-head>
-                            <tr md-row>
-                                <th md-column><span>Requisitos</span></th>
-                                <th md-column><span>Valores</span></th>
-                                <th md-column><span>Excluyente</span></th>
-                                <th md-column><span>Verificar automáticamente</span></th>
-                                <th md-column></th>
-                            </tr>
-                            </thead>
-                            <tbody md-body>
-                            <tr md-row md-select="" md-select-id="TipoRequisitoId" md-auto-select ng-repeat="requisito in puesto.Requisitos">
-                                <td md-cell>{{requisito.TipoRequisito.Nombre}}</td>
-                                <td md-cell>
-                                    <div ng-repeat="valor in requisito.ValoresRequisito">
-                                        <strong>{{ valor.Valor }}</strong>
-                                    </div>
-                                </td>
-                                <td md-cell>
-                                    <md-checkbox ng-model="requisito.Excluyente" aria-label="Checkbox 1">
-                                    </md-checkbox>
-                                </td>
-                                <td md-cell>
-                                    <md-checkbox ng-model="requisito.AutoVerificar" aria-label="Checkbox 2" ng-disabled="!requisito.TipoRequisito.Verificable">
-                                    </md-checkbox>
-                                    <!--Se activa la función de autoverificación solo si el tipoRequisito lo permite-->
-                                </td>
-                                <td md-cell>
-                                    <md-button class="md-fab md-mini md-primary" aria-label="Quitar Requisito" title="Quitar Requisito" ng-click="QuitarRequisito(requisito.TipoRequisitoId)">
-                                        X
-                                    </md-button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </md-table-container>
-                </div>
-            </div>
+            
         </div>
      
     </md-dialog-content>

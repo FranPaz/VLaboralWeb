@@ -112,6 +112,9 @@
                 listadoTiposRequisitos: function () {
                     return $scope.tiposRequisito;
                 },
+                puesto: function () {
+                    return { value: [] };
+                },
                 loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Puestos/puestosCtrl.js']);
                 }]
@@ -120,6 +123,50 @@
         .then(function (nuevoPuesto) {
             $scope.oferta.Puestos.push(nuevoPuesto);
         });
+    }
+
+    $scope.openPuestoDetalle = function (prmPuesto) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'puestosCtrl',
+            templateUrl: 'App/Puestos/Partials/puestosAdd.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            //fullscreen: true,
+            fullscreen: useFullScreen,
+            resolve: {
+                listadoTiposDiponibilidad: function () {
+                    return $scope.tiposDisponibilidad;
+                },
+                listadoTiposContratos: function () {
+                    return $scope.tiposContrato;
+                },
+                listadoRubros: function () {
+                    return $scope.Rubros;
+                },
+                listadoTiposRequisitos: function () {
+                    return $scope.tiposRequisito;
+                },
+                
+                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Puestos/puestosCtrl.js']);
+                }]
+            },
+            puesto: prmPuesto,
+        })
+        .then(function (nuevoPuesto) {
+            $scope.oferta.Puestos.push(nuevoPuesto);
+        });
+    }
+
+    $scope.eliminarPuesto = function (prmPuesto) {
+        r = confirm("Desea eliminar el puesto?");
+        if (r == true) {
+            var index = $scope.oferta.Puestos.indexOf(prmPuesto);
+            $scope.oferta.Puestos.splice(index, 1);
+        }
+        
     }
     //#endregion
 

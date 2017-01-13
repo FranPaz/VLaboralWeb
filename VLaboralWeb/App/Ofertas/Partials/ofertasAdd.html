@@ -86,19 +86,17 @@
                                 <md-table-container style="height:240px">
                                     <table md-table
                                            ng-hide="">
-                                        <!--<thead md-head
-                                               md-order="query.order">
+                                        <thead md-head
+                                               >
                                             <tr md-row>
                                                 <th md-column
                                                     md-order-by="Apellido">Apellido</th>
                                                 <th md-column>Nombre</th>
+                                                <th md-column md-order-by="ValoracionPromedio">Valoracion promedio</th>
                                                 <th md-column>Rubro</th>
-                                                <th md-column>Residencia</th>
-                                                <th md-column
-                                                    md-numeric
-                                                    md-order-by="ValoracionPromedio">Valoracion Promedio</th>
+                                                
                                             </tr>
-                                        </thead>-->
+                                        </thead>
                                         <tbody md-body>
                                             <tr md-row
                                                 ng-repeat="p in postulantes | filter:search | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit">
@@ -139,6 +137,9 @@
                                                 </td>
                                                 <td md-cell>
                                                     <p>{{ p.Nombre }}</p>
+                                                </td>
+                                                <td md-cell>
+                                                    <p>{{p.Apellido}}</p>
                                                 </td>
                                                 <td md-cell>
                                                     <p>Valoracion</p>
@@ -201,29 +202,38 @@
                         <!--<h1 style="text-align:center;">Puestos de la Oferta</h1>-->
                         <h1 class="md-title">Cantidad de Puestos Cargados {{oferta.Puestos.length}}</h1>
                         <div layout="row">
+                            <p ng-show="oferta.Puestos == null">No hay puestos cargados</p>
                             <md-table-container style="height:240px">
                                 <table md-table
-                                       ng-hide="">
-                                    <thead md-head
-                                           >
+                                       ng-hide=" oferta.Puestos == null">
+                                    <thead md-head>
                                         <tr md-row>
                                            
                                             <th md-column>Nombre del puesto</th>
-                                            <th md-column>Cantidad de Vacantes</th>                                           
+                                            <th md-column>Cantidad de Vacantes</th> 
+                                            
                                         </tr>
                                     </thead>
                                     <tbody md-body>
                                         <tr md-row
                                             ng-repeat="puesto in oferta.Puestos track by $index">
 
-                                            <td md-cell>
+                                            <td md-cell style="max-width:10px">
                                                 <p>{{puesto.Nombre}}</p>
                                             </td>
                                             <td md-cell>
-                                                <p>{{puesto.Nombre}}</p>
+                                                <p>{{puesto.Vacantes}}</p>
+                                            </td>
+
+                                            <td md-cell style="width:40px">
+                                                <div layout="row">
+                                                    <md-button ng-click="openPuestoDetalle(puesto)">Ver</md-button>   
+                                                    <md-button ng-click="eliminarPuesto(puesto)" class="md-warn">Eliminar</md-button>
+                                                </div>
+                                                                                             
+
                                             </td>
                                             
-
                                         </tr>
                                     </tbody>
                                 </table>
