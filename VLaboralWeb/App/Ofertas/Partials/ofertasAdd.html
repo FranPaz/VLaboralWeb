@@ -67,7 +67,7 @@
                 <h1 style="text-align:center;">Profesionales Invitados</h1>
                 <h1 class="md-title">Cantidad de Profesionales Invitados {{postulantes.length}}</h1>
                 <!--#region Listado profesionales-->
-                <div div layout="column" ng-show="postulantes !=null">
+                <div div layout="column" ng-hide="postulantes == null" ng-show="postulantes !=null">
                     <md-card>
                         <div class="md-toolbar-tools" style="background-color:rgb(62, 138, 187);">
                             Profesionales elegidos
@@ -82,34 +82,95 @@
                                         <input ng-model="nombrePostulante" />
                                     </md-input-container>
                                 </div>
-                                <md-list>
-                                    <md-list-item ng-repeat="p in postulantes| filter: Nombre">
-                                        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-                                            <md-card-title>
-                                                <md-card-title-text>
-                                                    <span class="md-headline">{{p.Nombre}}</span>
-                                                    <span class="md-subhead">{{p.Rubro}}</span>
-                                                </md-card-title-text>
-                                                <md-card-title-media>
-                                                    <div class="md-media-lg card-media"></div>
-                                                </md-card-title-media>
-                                            </md-card-title>
-                                            <md-card-content>
-                                                <!--<h3>Valoración</h3>-->
-                                                <div layout="column" layout-align="start start" flex="50">
 
-                                                    <h3>Valoracion</h3>
+                                <md-table-container style="height:240px">
+                                    <table md-table
+                                           ng-hide="">
+                                        <!--<thead md-head
+                                               md-order="query.order">
+                                            <tr md-row>
+                                                <th md-column
+                                                    md-order-by="Apellido">Apellido</th>
+                                                <th md-column>Nombre</th>
+                                                <th md-column>Rubro</th>
+                                                <th md-column>Residencia</th>
+                                                <th md-column
+                                                    md-numeric
+                                                    md-order-by="ValoracionPromedio">Valoracion Promedio</th>
+                                            </tr>
+                                        </thead>-->
+                                        <tbody md-body>
+                                            <tr md-row
+                                                ng-repeat="p in postulantes | filter:search | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit">
+
+                                                <!--<md-list-item class="noright">
+
+
+            <div layout="column" layout-align="start start" flex="50">
+
+
+            </div>
+
+
+            <!--<md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>-->
+                                                <!--<md-icon md-svg-icon="communication:email" ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3"></md-icon>-->
+                                                <!--<md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon>-->
+                                                <!--</md-list-item>-->
+                                                <!--<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{p.Nombre}}</span>
+                <span class="md-subhead">{{p.Rubro}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-lg card-media"></div>
+            </md-card-title-media>
+        </md-card-title>
+        <md-card-content>
+            <!--<h3>Valoración</h3>-->
+                                                <!--</md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+
+        </md-card-actions>
+    </md-card>-->
+
+                                                <td md-cell>
+                                                    <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+                                                </td>
+                                                <td md-cell>
+                                                    <p>{{ p.Nombre }}</p>
+                                                </td>
+                                                <td md-cell>
+                                                    <p>Valoracion</p>
                                                     <jk-rating-stars read-only="true" rating="valoracion" disabled></jk-rating-stars>
                                                     <!--<div style="width: 100px">{{valoracion}} Stars</div>-->
-                                                </div>
-                                            </md-card-content>
-                                            <md-card-actions layout="row" layout-align="end center">                                                
-                                                <md-button ng-click="abrirDetallePostulante(p)" class="md-primary">Ver Perfil</md-button>
-                                                <md-button ng-click="eliminarPostulante(p)" class="md-warn">Eliminar</md-button>
-                                            </md-card-actions>
-                                        </md-card>
-                                    </md-list-item>
-                                </md-list>
+                                                </td>
+                                                <td md-cell>
+                                                    <p>Rubro prueba</p>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-button ng-click="postulanteDetalle(p.Id)" class="md-primary">Ver Perfil</md-button>
+                                                    <md-button ng-click="eliminarPostulante(p)" class="md-warn">Eliminar</md-button>
+                                                </td>
+                                                <!--<td md-cell>{{profesional.Apellido}}</td>
+                                                <td md-cell>{{profesional.Nombre}}</td>
+                                                <td md-cell>{{profesional.Rubro}}</td>
+                                                <td md-cell>{{profesional.Domicilio}}</td>
+                                                <td md-cell>{{profesional.ValoracionPromedio}}</td>
+                                                <td md-cell>
+                                                    <md-button class="md-raised" ng-click="abrirDetalle(profesional)">Detalle</md-button>
+                                                </td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+
+                                <md-table-pagination md-limit="query.limit"
+                                                     md-page="query.page"
+                                                     md-total="{{profesionalesList.length}}"
+                                                     md-on-paginate="onPaginate"
+                                                     md-page-select></md-table-pagination>
+
                             </div>
                         </md-card-content>
                     </md-card>
@@ -140,16 +201,43 @@
                         <!--<h1 style="text-align:center;">Puestos de la Oferta</h1>-->
                         <h1 class="md-title">Cantidad de Puestos Cargados {{oferta.Puestos.length}}</h1>
                         <div layout="row">
-                            <v-accordion class="vAccordion--default" multiple control="accordion">
-                                <v-pane id="accordionCategorias" ng-repeat="puesto in oferta.Puestos track by $index" expanded="true">
+                            <md-table-container style="height:240px">
+                                <table md-table
+                                       ng-hide="">
+                                    <thead md-head
+                                           >
+                                        <tr md-row>
+                                           
+                                            <th md-column>Nombre del puesto</th>
+                                            <th md-column>Cantidad de Vacantes</th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row
+                                            ng-repeat="puesto in oferta.Puestos track by $index">
+
+                                            <td md-cell>
+                                                <p>{{puesto.Nombre}}</p>
+                                            </td>
+                                            <td md-cell>
+                                                <p>{{puesto.Nombre}}</p>
+                                            </td>
+                                            
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                            <!--<v-accordion class="vAccordion--default" multiple control="accordion">
+                                <v-pane id="accordionCategorias" ng-repeat="" expanded="true">
                                     <v-pane-header>
                                         <label>{{puesto.Nombre}}</label>
                                     </v-pane-header>
                                     <v-pane-content>
-                                        <h1>Contenido del Puesto {{puesto.Nombre}}</h1>
+                                        <h1>Contenido del Puesto </h1>
                                     </v-pane-content>
                                 </v-pane>
-                            </v-accordion>
+                            </v-accordion>-->
                         </div>
 
                         <md-content>

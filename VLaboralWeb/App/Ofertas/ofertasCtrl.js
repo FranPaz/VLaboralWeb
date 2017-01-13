@@ -1,5 +1,5 @@
 ﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $state, //fpaz: definicion de inyectores de dependencias
-    ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF,notificacionesSvc, //fpaz: definicion de data factorys
+    profesionalesDF,ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF,notificacionesSvc, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
     listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias
     ) {
@@ -36,43 +36,49 @@
         $scope.postulantes.splice(index, 1);
     }
 
-    $scope.abrirDetallePostulante = function (prmProfesional) {
+    $scope.postulanteDetalle = function (profesionalId) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'profesionalesCtrl',
-            templateUrl: '/App/Postulantes/Partials/postulanteDetalle.html',
+            templateUrl: 'App/Postulantes/Partials/postulanteDetalle.html',
             parent: angular.element(document.body),
             //targetEvent: ev,
             clickOutsideToClose: true,
-            fullscreen: useFullScreen,
-            profesionalesList: function () {
-                return { value: [] };
-            },
-            listadoOfertas: function () {
-                return { value: [] };
-            },
-            listadoRubros: function () {
-                return { value: [] };
-            },
-            listadoHabilidades: function () {
-                return { value: [] };
-            },
-            listadoIdentificacionPro: function () {
-                return { value: [] };
-            },
-            //infoProfesional: function (profesionalesDF, prmProfesional) {
-            //    return profesionalesDF.getProfesional(prmProfesional);
-            //},
-            infoProfesional: prmProfesional,
+            fullscreen: true,
+            resolve: {
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                rubrosDF: 'rubrosDF',
+                habilidadesDF: 'habilidadesDF',
+                tiposIdentificacionDF: 'tiposIdentificacionDF',
+                listadoRubros: function () {
+                    return { value: [] };
+                },
+                listadoHabilidades: function () {
+                    return { value: [] };
+                },
+                listadoIdentificacionPro: function () {
+                    return { value: [] };
+                },
+                profesionalesDF: 'profesionalesDF',
+                infoProfesional: function (profesionalesDF) {
 
-            selectedPro: function () {
-                return { value: [] };
-            },
-            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
-            }]
-
-
+                    return profesionalesDF.getProfesional(profesionalId);
+                },
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                selectedPro: function () {
+                    return [];
+                },
+                profesionalesList: function () {
+                    return { value: [] };
+                },
+                loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                }]
+            }
         })
         .then(function () {
 
