@@ -3,6 +3,7 @@
     ,profesionalesList ,listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro//fpaz: definicion de parametros de entrada    
     ) {
 
+    
     //#region fpaz: Inicializacion de variables de Scope    
     $scope.habilidades= listadoHabilidades;
     $scope.identificacionesPro = listadoIdentificacionPro;
@@ -27,7 +28,8 @@
     
     $scope.ofertasPerPage = 10;
     $scope.pagination = {
-        current: 1
+        current: 1,
+        limit: 5
     };
 
 
@@ -79,7 +81,7 @@
     };
 
     $scope.subRubroAddClick = function () {
-        debugger;
+        
         for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
             if ($scope.profesional.Subrubros[i].Id === $scope.subRubroSelected.Id) {
                 alert("Advertencia: El SubRubro ya está seleccionado.");
@@ -259,6 +261,8 @@
     $scope.selectedItems = []; //iafar: array de elementos seleccionados para eliminacion
     $scope.profesionalesList = profesionalesList; //iafar: cargo scope con primera pagina de profesionales
     $scope.guardarLista = function (response) {
+        
+        response = response.concat(selectedPro);
         $mdDialog.hide(response);
     }
 

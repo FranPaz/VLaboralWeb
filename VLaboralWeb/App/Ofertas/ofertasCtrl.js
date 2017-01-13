@@ -20,6 +20,7 @@
 
     $scope.oferta = {};
     $scope.oferta.Puestos = [];
+    $scope.oferta.Publica = 'true'; //fpaz seteo por defecto el radio button de tipo de oferta publica
 
     $scope.oferta.EtapasOferta = etapasObligatorias;
     $scope.ofertaDetalle = ofertaDetalle;
@@ -28,7 +29,12 @@
 
    
 
-    //$scope.postulantes = postulantes;
+    $scope.postulantes = [];
+
+    $scope.pagination = {
+        current: 1,
+        limit: 5
+    };
     
     $scope.eliminarPostulante = function (p) {
         var index = $scope.postulantes.indexOf(p);
@@ -317,7 +323,8 @@
 
     //#region iafar: funcion para llamar modal seleccion de profesionales
         
-    $scope.profesionalesAdd = function () {
+    $scope.profesionalesAdd = function (postulantes) {
+        debugger;
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'profesionalesCtrl',
@@ -341,9 +348,9 @@
                 infoProfesional: function () {
                     return { value: [] };
                 },
-                selectedPro: function () {
-                    return [];
-                },
+                selectedPro:function () {
+                    return postulantes;
+                },                  
                 profesionalesDF: 'profesionalesDF',
                 profesionalesList: function (profesionalesDF) {
                     return profesionalesDF.getProfesionales(1, 5);

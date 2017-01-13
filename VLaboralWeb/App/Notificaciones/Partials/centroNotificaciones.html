@@ -1,7 +1,7 @@
 ﻿<main ng-cloak>
     <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
-            <!-- #region Todas las notificaciones (ui-view="detalleNotificacion") -->
+            <!-- #region Todas las notificaciones -->
             <md-tab label="Todo" md-on-select="ocultarDetalle()">
                 <md-content layout="row" style="height: 600px;">
                     <div flex="30">
@@ -30,58 +30,24 @@
                     <div flex ng-hide="mostrarDetalle">
                         Seleccione un mensaje
                     </div>
-                    <div flex ui-view="detalleNotificacion"></div>
+                    <div flex ui-view="detalleNotificacion"></div>                    
                 </md-content>
             </md-tab>
-
             <!-- #endregion -->
-            <!-- #region Solicitudes de verificacion de experiencia (ui-view="detalleNotificacionExp") -->
-            <md-tab label="Experiencias para verificar" md-on-select="ocultarDetalle()">
-                <!--md-on-select='verDetalleNotif(2,"EXP")'-->
-                <md-content flex layout="row" style="height: 600px;">
-                    <div flex="30">
-                        <md-subheader class="md-primary">Nuevas Experiencias</md-subheader>
-                        <md-list layout-padding>
-                            <md-list-item class="md-3-line" ng-repeat="nExp in experienciasPendientesList" ng-click='verDetalleNotif(nExp.id, "EXP")'>
-                                <!--<img src=" img />perfil.jpg" class="md-avatar" alt="{{message.who}}">--> <!--iafar: probar en el ng-click con el state.go-->
-                                <div class="md-list-item-text">
-                                    <div class="notis_info">
-                                        <div class="ni1">
-                                            <h3>Solicitud de Verificacion</h3>
-                                            <p>{{nExp.puesto}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="ni2">
-                                        <h5>{{nExp.fechaCreacion | date:'medium'}}</h5>
-                                    </div>
-                                </div>
 
-                                <md-divider></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                    <div flex ng-hide="mostrarDetalle">
-                        Seleccione un mensaje
-                    </div>
-                    <div flex ui-view="detalleNotificacion" ng-hide="!mostrarDetalle"></div>
-                </md-content>
-
-            </md-tab>
-
-            <!-- #endregion -->
-            <!-- #region Notificaciones de postulaciones (ui-view="detalleNotificacionPostulante") -->
-            <md-tab label="Postulaciones" md-on-select="ocultarDetalle()">
+            <md-tab ng-repeat="t in tiposNotificaciones"
+                    label="{{t.Descripcion}}" ng-click="cargarListadoNotificacionesPorTipo(t.Id)">
                 <md-content layout="row" style="height: 600px;">
                     <div flex="30">
-                        <md-subheader class="md-primary">Nuevas Postulaciones</md-subheader>
+                        <!--<md-subheader class="md-primary">Invitaciones</md-subheader-->
                         <md-list layout-padding>
-                            <md-list-item class="md-3-line" ng-repeat="n in notificaciones | filterBy: ['TipoNotificacion.Valor']: 'POS'" ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">
+                            <md-list-item class="md-3-line" ng-repeat="n in notificaciones" ng-click="verDetalleNotif(n.Id, n.TipoNotificacion.Valor)">
                                 <!--<img src="img/perfil.jpg" class="md-avatar" alt="{{message.who}}">-->
                                 <div class="md-list-item-text">
                                     <div class="notis_info">
                                         <div class="ni1">
                                             <h3>{{n.TipoNotificacion.Descripcion}}</h3>
-                                            <p>{{n.Mensaje}}</p>
+                                            <p>{{n.Mensaje}}<p />
                                         </div>
                                         <div class="ni2">
                                             <h5>{{n.FechaPublicacion | date:'medium'}}</h5>
@@ -96,11 +62,11 @@
                     <div flex ng-hide="mostrarDetalle">
                         Seleccione un mensaje
                     </div>
-                    <div flex ui-view="detalleNotificacion" ng-hide="!mostrarDetalle"></div>
+                    <div flex ui-view="detalleNotificacion"></div>
                 </md-content>
-              
             </md-tab>
-            <!-- #endregion -->
+
+         
         </md-tabs>
     </md-content>
 </main>
