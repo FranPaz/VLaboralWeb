@@ -20,6 +20,7 @@
 
     $scope.oferta = {};
     $scope.oferta.Puestos = [];
+    $scope.oferta.Publica = 'true'; //fpaz seteo por defecto el radio button de tipo de oferta publica
 
     $scope.oferta.EtapasOferta = etapasObligatorias;
     $scope.ofertaDetalle = ofertaDetalle;

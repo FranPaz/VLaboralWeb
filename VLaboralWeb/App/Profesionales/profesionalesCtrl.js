@@ -27,7 +27,8 @@
     
     $scope.ofertasPerPage = 10;
     $scope.pagination = {
-        current: 1
+        current: 1,
+        limit: 5
     };
 
 

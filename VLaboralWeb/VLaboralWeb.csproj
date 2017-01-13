@@ -137,6 +137,7 @@
     <Content Include="App\TiposEtapasOferta\tiposEtapasDF.js" />
     <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="App\ExperienciasLaborales\Partials\VerificarExperienciasProfesional.html" />
+    <Content Include="App\TiposNotificaciones\tiposNotificacionesDF.js" />
     <Content Include="css\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\style.css" />
