@@ -5,15 +5,16 @@
 
     //#region fpaz: Inicializacion de variables
     $scope.notificaciones = listadoNotificaciones.Results;    
-    $scope.tiposNotificaciones = listTiposNotificacion;
+    $scope.tiposNotificaciones = listTiposNotificacion;    
+    $scope.mostrarDetalleTodos = false;
     $scope.mostrarDetalle = false;
     //#endregion
 
 
     //#region fpaz: funciones para ver el detalle de cada notificacion
-    $scope.verDetalleNotif = function (prmIdNotificacion, prmTipoNotificacion) {
-        $scope.mostrarDetalle = true;
-
+    $scope.verDetalleNotif = function (prmIdNotificacion, prmTipoNotificacion) {        
+        $scope.mostrarDetalle = false;
+        $scope.mostrarDetalleTodos = false;
         switch (prmTipoNotificacion)
         {
             case "EXP":   
@@ -39,14 +40,28 @@
     //#endregion
 
     //#region fpaz: funciones para cargar las notificaciones segun el tab seleccionado
-    $scope.cargarListadoNotificacionesPorTipo = function (prmIdTipoNotificacion) { //fpaz: carga el listado solo con notificaciones del tipo elegido
+    $scope.cargarListadoNotificacionesPorTipo = function (prmIdTipoNotificacion) { //fpaz: carga el listado solo con notificaciones del tipo elegido                
         notificacionesDF.getNotificacionesRecibidasTipo(prmIdTipoNotificacion,1,2).then(function (response) {
-            $scope.notificaciones = response.Results; 
+            $scope.notificaciones = response.Results;
+            $scope.mostrarDetalle = true;            
         },
         function (err) {
             if (err) {
                 $scope.error = err;
                 alert("Error al Obtener las notificaciones: " + $scope.error.Message);                
+            }
+        });
+    }
+
+    $scope.cargarTodas = function () { //fpaz: carga el listado solo con notificaciones del tipo elegido
+        notificacionesDF.getNotificacionesRecibidas(1, 5).then(function (response) {
+            $scope.notificaciones = response.Results;
+            $scope.mostrarDetalleTodos = true;            
+        },
+        function (err) {
+            if (err) {
+                $scope.error = err;
+                alert("Error al Obtener las notificaciones: " + $scope.error.Message);
             }
         });
     }

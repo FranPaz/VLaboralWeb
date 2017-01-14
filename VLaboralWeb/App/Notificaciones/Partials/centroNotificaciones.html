@@ -2,7 +2,7 @@
     <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
             <!-- #region Todas las notificaciones -->
-            <md-tab label="Todo" md-on-select="ocultarDetalle()">
+            <md-tab label="Todo" ng-click="cargarTodas()">
                 <md-content layout="row" style="height: 600px;">
                     <div flex="30">
                         <md-subheader class="md-primary">Notificaciones</md-subheader>
@@ -24,13 +24,8 @@
                                 <md-divider></md-divider>
                             </md-list-item>
                         </md-list>
-
-
-                    </div>
-                    <div flex ng-hide="mostrarDetalle">
-                        Seleccione un mensaje
-                    </div>
-                    <div flex ui-view="detalleNotificacion"></div>                    
+                    </div>                    
+                    <div flex ng-hide="mostrarDetalleTodos"  ui-view="detalleNotificacion"></div>                    
                 </md-content>
             </md-tab>
             <!-- #endregion -->
@@ -58,11 +53,8 @@
                                 <md-divider></md-divider>
                             </md-list-item>
                         </md-list>
-                    </div>
-                    <div flex ng-hide="mostrarDetalle">
-                        Seleccione un mensaje
-                    </div>
-                    <div flex ui-view="detalleNotificacion"></div>
+                    </div>                    
+                    <div flex ng-hide="mostrarDetalle" ui-view="detalleNotificacion"></div>                    
                 </md-content>
             </md-tab>
 

@@ -906,7 +906,8 @@
                     },
                     views: {
                         'detalleNotificacion@profesional.centroNotificaciones': {
-                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionInvOfertaPrivada.html',
+                            //templateUrl: '/App/Notificaciones/Partials/detalleNotificacionInvOfertaPrivada.html',
+                            templateUrl: '/App/Ofertas/Partials/ofertaDetalle.html',
                             controller: 'ofertasCtrl',
                             resolve: {
                                 notificacionesDF: 'notificacionesDF',
