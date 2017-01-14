@@ -1,6 +1,6 @@
 ﻿vLaboralApp.controller('puestosCtrl', function ($scope, $mdDialog, $mdMedia//fpaz: definicion de inyectores de dependencias
     , ofertasDF, rubrosDF, habilidadesDF //fpaz: definicion de data factorys
-    , listadoTiposDiponibilidad, listadoTiposContratos, listadoRubros, listadoTiposRequisitos //fpaz: definicion de parametros de entrada 
+    , listadoTiposDiponibilidad, listadoTiposContratos, listadoRubros, listadoTiposRequisitos, puesto //fpaz: definicion de parametros de entrada 
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
@@ -15,7 +15,7 @@
 
     $scope.subRubroDisabled = true;
 
-    $scope.puesto = {};
+    $scope.puesto = puesto;
     $scope.puesto.Subrubros = [];
     $scope.puesto.Requisitos = [];
 

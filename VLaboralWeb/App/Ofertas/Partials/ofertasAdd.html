@@ -1,12 +1,11 @@
-﻿    
+﻿
 <main class="ad_ofer">
-    
-    <md-container>        
+
+    <md-container>
         <!--<div class="md-toolbar-tools" style="background-color:rgb(62, 138, 187);">
             <h1>Nueva Oferta</h1>
-        </div>    
+        </div>
         <br />-->
-
         <!--#region fpaz Seccion de datos Basicos de la Oferta-->
         <md-content layout-padding>
             <div layout="column">
@@ -57,12 +56,11 @@
         </md-content>
 
 
-        <!--#endregion-->    
-        
+        <!--#endregion-->
         <!--#region fpaz Seccion del LISTADO DE PROFESIONALES INVITADOS PARA OFERTAS PRIVADAS-->
 
         <md-content layout-padding ng-show="oferta.Publica =='false'">
-            
+
             <div layout="column">
                 <h1 style="text-align:center;">Profesionales Invitados</h1>
                 <h1 class="md-title">Cantidad de Profesionales Invitados {{postulantes.length}}</h1>
@@ -86,19 +84,20 @@
                                 <md-table-container style="height:240px">
                                     <table md-table
                                            ng-hide="">
-                                        <!--<thead md-head
-                                               md-order="query.order">
+                                        <thead md-head
+                                               >
                                             <tr md-row>
+                                                <th md-column>Nombre</th>
                                                 <th md-column
                                                     md-order-by="Apellido">Apellido</th>
-                                                <th md-column>Nombre</th>
+                                                <th md-column md-order-by="ValoracionPromedio">Valoracion promedio</th>
+                                                
                                                 <th md-column>Rubro</th>
-                                                <th md-column>Residencia</th>
-                                                <th md-column
-                                                    md-numeric
-                                                    md-order-by="ValoracionPromedio">Valoracion Promedio</th>
+                                                <th></th>
+
+
                                             </tr>
-                                        </thead>-->
+                                        </thead>
                                         <tbody md-body>
                                             <tr md-row
                                                 ng-repeat="p in postulantes | filter:search | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit">
@@ -106,47 +105,53 @@
                                                 <!--<md-list-item class="noright">
 
 
-            <div layout="column" layout-align="start start" flex="50">
+                                                <div layout="column" layout-align="start start" flex="50">
 
 
-            </div>
+                                                </div>
 
 
-            <!--<md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>-->
+                                                <!--<md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>-->
                                                 <!--<md-icon md-svg-icon="communication:email" ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3"></md-icon>-->
                                                 <!--<md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon>-->
                                                 <!--</md-list-item>-->
-                                                <!--<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{p.Nombre}}</span>
-                <span class="md-subhead">{{p.Rubro}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-                <div class="md-media-lg card-media"></div>
-            </md-card-title-media>
-        </md-card-title>
-        <md-card-content>
-            <!--<h3>Valoración</h3>-->
-                                                <!--</md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
+                                                <!--
+                                                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">{{p.Nombre}}</span>
+                                                        <span class="md-subhead">{{p.Rubro}}</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-lg card-media"></div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-content>
+                                                    <!--<h3>Valoración</h3>-->
+                                                <!--
+                                                </md-card-content>
+                                                    <md-card-actions layout="row" layout-align="end center">
 
         </md-card-actions>
     </md-card>-->
 
                                                 <td md-cell>
                                                     <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
-                                                </td>
+                                                </td>-->
+                                                <td
                                                 <td md-cell>
                                                     <p>{{ p.Nombre }}</p>
                                                 </td>
                                                 <td md-cell>
-                                                    <p>Valoracion</p>
+                                                    <p>{{p.Apellido}}</p>
+                                                </td>
+                                                <td md-cell>
+                                                    <!--<p>Valoracion</p>-->
                                                     <jk-rating-stars read-only="true" rating="valoracion" disabled></jk-rating-stars>
                                                     <!--<div style="width: 100px">{{valoracion}} Stars</div>-->
                                                 </td>
                                                 <td md-cell>
-                                                    <p>Rubro prueba</p>
+                                                    <span ng-repeat="sr in p.Subrubros">{{'"' + sr.Rubro.Nombre + '" '}}</span>
                                                 </td>
                                                 <td md-cell>
                                                     <md-button ng-click="postulanteDetalle(p.Id)" class="md-primary">Ver Perfil</md-button>
@@ -165,11 +170,14 @@
                                     </table>
                                 </md-table-container>
 
-                                <md-table-pagination md-limit="query.limit"
-                                                     md-page="query.page"
-                                                     md-total="{{profesionalesList.length}}"
-                                                     md-on-paginate="onPaginate"
+                                <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                                     md-limit="pagination.limit"
+                                                     md-limit-options="[5, 10, 15]"
+                                                     md-page="pagination.current"
+                                                     md-total="{{postulantes.length}}"
                                                      md-page-select></md-table-pagination>
+
+                               
 
                             </div>
                         </md-card-content>
@@ -181,17 +189,16 @@
 
                 <md-content>
                     <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                        <md-button class="md-raised" ng-click="profesionalesAdd()">Agregar profesionales</md-button>
+                        <md-button class="md-raised" ng-click="profesionalesAdd(postulantes)">Agregar profesionales</md-button>
                     </section>
                 </md-content>
             </div>
         </md-content>
         <!--#endregion-->
-
         <!--#region fpaz Seccion del LISTADO DE PUESTOS y ETAPAS de la oferta-->
         <md-content layout-padding>
             <div layout="row">
-                
+
                 <!--#region Seccion del LISTADO DE PUESTOS de la oferta-->
                 <md-card flex="50">
                     <md-toolbar>
@@ -201,29 +208,38 @@
                         <!--<h1 style="text-align:center;">Puestos de la Oferta</h1>-->
                         <h1 class="md-title">Cantidad de Puestos Cargados {{oferta.Puestos.length}}</h1>
                         <div layout="row">
+                            <p ng-show="oferta.Puestos == null">No hay puestos cargados</p>
                             <md-table-container style="height:240px">
                                 <table md-table
-                                       ng-hide="">
-                                    <thead md-head
-                                           >
+                                       ng-hide=" oferta.Puestos == null">
+                                    <thead md-head>
                                         <tr md-row>
-                                           
+
                                             <th md-column>Nombre del puesto</th>
-                                            <th md-column>Cantidad de Vacantes</th>                                           
+                                            <th md-column>Cantidad de Vacantes</th> 
+                                            
                                         </tr>
                                     </thead>
                                     <tbody md-body>
                                         <tr md-row
                                             ng-repeat="puesto in oferta.Puestos track by $index">
 
-                                            <td md-cell>
+                                            <td md-cell style="max-width:10px">
                                                 <p>{{puesto.Nombre}}</p>
                                             </td>
                                             <td md-cell>
-                                                <p>{{puesto.Nombre}}</p>
+                                                <p>{{puesto.Vacantes}}</p>
+                                            </td>
+
+                                            <td md-cell style="width:40px">
+                                                <div layout="row">
+                                                    <md-button ng-click="openPuestoDetalle(puesto)">Ver</md-button>   
+                                                    <md-button ng-click="eliminarPuesto(puesto)" class="md-warn">Eliminar</md-button>
+                                                </div>
+                                                                                             
+
                                             </td>
                                             
-
                                         </tr>
                                     </tbody>
                                 </table>
@@ -247,8 +263,7 @@
                         </md-content>
                     </md-card-content>
                 </md-card>
-                <!--#endregion-->    
-
+                <!--#endregion-->
                 <!--#region Seccion del Timeline de Etapas del Proceso de contratacion de la oferta-->
                 <md-card flex="50">
                     <md-toolbar>
@@ -258,8 +273,8 @@
                         <timeline>
                             <timeline-event ng-repeat="etapa in oferta.EtapasOferta" side="alternate">
                                 <!--<timeline-badge >
-                <i class="glyphicon {{event.badgeIconClass}}"></i>
-            </timeline-badge>-->
+                                    <i class="glyphicon {{event.badgeIconClass}}"></i>
+                                </timeline-badge>-->
                                 <timeline-panel class="{{event.badgeClass}}">
                                     <timeline-heading>
                                         <div class="flag-wrapper">
@@ -281,20 +296,20 @@
                         </md-content>
                     </md-card-content>
                 </md-card>
-                <!--<div layout="column" flex="60">                    
+                <!--<div layout="column" flex="60">
                     <h1 style="text-align:center;">Etapas de la Oferta</h1>
 
                 </div>-->
-                <!--#endregion-->    
+                <!--#endregion-->
             </div>
         </md-content>
         <!--#endregion-->
 
 
-        
 
-            
-</md-container>
+
+
+    </md-container>
 </main>
 
 
