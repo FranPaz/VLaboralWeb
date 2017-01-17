@@ -906,7 +906,8 @@
                     },
                     views: {
                         'detalleNotificacion@profesional.centroNotificaciones': {
-                            templateUrl: '/App/Notificaciones/Partials/detalleNotificacionInvOfertaPrivada.html',
+                            //templateUrl: '/App/Notificaciones/Partials/detalleNotificacionInvOfertaPrivada.html',
+                            templateUrl: '/App/Ofertas/Partials/ofertaDetalle.html',
                             controller: 'ofertasCtrl',
                             resolve: {
                                 notificacionesDF: 'notificacionesDF',
@@ -983,22 +984,7 @@
                         }
                     }
 
-                })
-                .state('profesional.postulaciones.ofertasPriv', {                    
-                    url: '/ofertaspriv',
-                    views: {
-                        'contenido@profesional.postulaciones': {
-                            templateUrl: '/App/Postulaciones/Partials/postulacionesOfertasPriv.html',
-                            controller: 'postulacionesCtrl',
-                            resolve: {
-                                loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                    return $ocLazyLoad.load(['App/Postulaciones/postulacionesCtrl.js']);
-                                }]
-                            }
-                        }
-                    }
-
-                })
+                })                
         //#endregion
         //#endregion
     })

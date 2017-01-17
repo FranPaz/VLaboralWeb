@@ -14,6 +14,15 @@
                         <div class="md-toolbar-tools" style="background-color:#09b517"><h3 class="md-title">Datos basicos de la oferta</h3></div>
                     </md-toolbar>
                     <md-card-content>
+                        <md-input-container>
+                            <h4>Tipo de Oferta:</h4>
+                            <br />
+                            <md-radio-group ng-model="oferta.Publica" layout="row">
+                                <md-radio-button value=true class="md-primary">Oferta Publica</md-radio-button>
+                                <md-radio-button value=false>Oferta Privada </md-radio-button>
+                            </md-radio-group>
+                        </md-input-container>
+
                         <div layout="row">
                             <md-input-container flex="60">
                                 <label>Nombre de la oferta</label>
@@ -41,15 +50,6 @@
                                 </md-datepicker>
                             </div>
                         </div>
-
-                        <md-input-container>
-                            <h4>Tipo de Oferta:</h4>
-                            <br />
-                            <md-radio-group ng-model="oferta.Publica" layout="row">
-                                <md-radio-button value=true class="md-primary">Oferta Publica</md-radio-button>
-                                <md-radio-button value=false>Oferta Privada </md-radio-button>
-                            </md-radio-group>
-                        </md-input-container>
                     </md-card-content>
                 </md-card>
             </div>
@@ -137,8 +137,7 @@
 
                                                 <td md-cell>
                                                     <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
-                                                </td>-->
-                                                <td
+                                                </td>                                                
                                                 <td md-cell>
                                                     <p>{{ p.Nombre }}</p>
                                                 </td>
