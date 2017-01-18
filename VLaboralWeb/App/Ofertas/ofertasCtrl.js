@@ -135,7 +135,7 @@
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'puestosCtrl',
-            templateUrl: 'App/Puestos/Partials/puestosAdd.html',
+            templateUrl: 'App/Puestos/Partials/puestoDetalleOferta.html',
             parent: angular.element(document.body),
             //targetEvent: ev,
             clickOutsideToClose: true,

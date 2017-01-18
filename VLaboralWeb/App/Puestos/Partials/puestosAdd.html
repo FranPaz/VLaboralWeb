@@ -10,6 +10,46 @@
     </md-toolbar>
     <md-dialog-content style="min-width:800px;max-height:1810px;">
         <div class="md-dialog-content">
+            
+            <div layout="column" flex>
+                <md-card>
+                    <md-card-title><h3>Datos del puesto</h3></md-card-title>
+                    <md-card-content>
+                        <div flex>
+                            <div layout="row" layout-align="center center">
+                                <md-input-container flex="100">
+                                    <label class="">Nombre del Puesto</label>
+                                    <input type="text" ng-model="puesto.Nombre" class="mdi-editor-border-color form-control md-input" />
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-align="center center">
+                                <md-input-container flex="50">
+                                    <label>Cantidad de Vacantes</label>
+                                    <input type="number" ng-model="puesto.Vacantes" class="form-control md-input" />
+                                </md-input-container>
+                                <md-input-container flex="50">
+                                    <label>Remuneracion (opcional)</label>
+                                    <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" />
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-align="center center">
+                                <md-input-container flex="50">
+                                    <md-select placeholder="Seleccionar Tipo de Contratacion" ng-model="puesto.TipoContrato">
+                                        <md-option ng-value="tipoCont" ng-repeat="tipoCont in tiposContrato">{{ tipoCont.Nombre }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container flex="50">
+                                    <md-select placeholder="Seleccionar Disponibilidad" ng-model="puesto.Disponibilidad">
+                                        <md-option ng-value="tipoDisp" ng-repeat="tipoDisp in tiposDisponibilidad">{{ tipoDisp.Nombre }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+
+
             <div layout="column" flex>
                 <md-card>
                     <md-card-title><h3>Seleccion de rubros</h3></md-card-title>
@@ -61,43 +101,7 @@
                 
             </div>
             
-            <div layout="column" flex>
-                <md-card>
-                    <md-card-title><h3>Datos del puesto</h3></md-card-title>
-                    <md-card-content>
-                        <div flex>
-                            <div layout="row" layout-align="center center">
-                                <md-input-container flex="100">
-                                    <label class="">Nombre del Puesto</label>
-                                    <input type="text" ng-model="puesto.Nombre" class="mdi-editor-border-color form-control md-input" />
-                                </md-input-container>
-                            </div>
-                            <div layout="row" layout-align="center center">
-                                <md-input-container flex="50">
-                                    <label>Cantidad de Vacantes</label>
-                                    <input type="number" ng-model="puesto.Vacantes" class="form-control md-input" />
-                                </md-input-container>
-                                <md-input-container flex="50">
-                                    <label>Remuneracion (opcional)</label>
-                                    <input type="text" class="form-control md-input" ng-model="puesto.Remuneracion" />
-                                </md-input-container>
-                            </div>
-                            <div layout="row" layout-align="center center">
-                                <md-input-container flex="50">
-                                    <md-select placeholder="Seleccionar Tipo de Contratacion" ng-model="puesto.TipoContrato">
-                                        <md-option ng-value="tipoCont" ng-repeat="tipoCont in tiposContrato">{{ tipoCont.Nombre }}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                                <md-input-container flex="50">
-                                    <md-select placeholder="Seleccionar Disponibilidad" ng-model="puesto.Disponibilidad">
-                                        <md-option ng-value="tipoDisp" ng-repeat="tipoDisp in tiposDisponibilidad">{{ tipoDisp.Nombre }}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
-                        </div>
-                    </md-card-content>
-                </md-card>
-            </div>
+            
             
 
             

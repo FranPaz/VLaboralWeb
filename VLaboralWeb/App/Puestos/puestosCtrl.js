@@ -15,7 +15,8 @@
 
     $scope.subRubroDisabled = true;
 
-    $scope.puesto = puesto;
+    $scope.puestoEdit = puesto;
+    $scope.puesto = {};
     $scope.puesto.Subrubros = [];
     $scope.puesto.Requisitos = [];
 
@@ -26,6 +27,7 @@
 
     $scope.tipoRequisito = [];
     $scope.ValoresTipoRequisito = [];
+    
     
     //#endregion
 
