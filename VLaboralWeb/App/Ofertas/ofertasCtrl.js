@@ -214,7 +214,8 @@
             }
 
             //debugger;
-            if (prmOferta.Publica == true) {
+            if (prmOferta.Publica == 'true') {
+                    
                 ofertasDF.postOferta(prmOferta).then(function (response) {
                     alert("Oferta Publica Guardada");
                     $state.go('empresa.ofertas');
@@ -225,12 +226,13 @@
                         alert("Error al Guardar la Oferta: " + $scope.error.Message);
                     }
                 });
-            } else {                
+            }
+            else {
                 var ofertaPrivada = {};
                 ofertaPrivada.oferta = prmOferta;
                 ofertaPrivada.profesionales = $scope.postulantes;
                 ofertasDF.postOfertaPrivada(ofertaPrivada).then(function (response) {
-                    debugger;
+                    
                     console.log('termino ok post oferta privada');
                     notificacionesSvc.enviarNotificacionesInvitacionesOfertasPriv(response.data);
                     alert("Oferta Privada Guardada");

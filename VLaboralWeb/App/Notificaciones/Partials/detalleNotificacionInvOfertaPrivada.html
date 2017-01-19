@@ -1,71 +1,96 @@
-﻿<md-content layout="row" layout-align="center center">
+﻿<!--<md-content layout="row" layout-align="center center">
 
-    <div flex="70" layout="column" class="ofertas_p" style="margin:2em 0;">
 
-        <div class="t_ofer_p" layout="column" layout-align="start center">
-            <h1>{{ofertaDetalle.Oferta.Nombre}}</h1>
-            <h3>{{ofertaDetalle.Oferta.Detalle}}</h3>
-            <div class="fechas" layout="row" layout-align="space-around center">
-                <h2>FECHA DE INICIO: <span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.Oferta.FechaInicioConvocatoria |  date:'dd/MM/yyyy'}}</h2>
-                <h2>FECHA DE FIN: <span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.Oferta.FechaFinConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+
+
+</md-content>-->
+
+<md-content>
+    <div flex="100" layout="column" class="ofertas_p">
+
+        <div layout="row">
+            <div class="emp_d" layout="row" flex="40" layout-align="space-around center">
+                <img src="img/logo.png">
+
+                <div layout="column" flex="70">
+                    <h1><p ui-sref="profesional.empresa({idEmpresa: ofertaDetalle.Empresa.Id})" ng-show="usuarioLogueado.isProfesional">{{ofertaDetalle.Empresa.NombreFantasia}}</p></h1>
+                    <h4>{{ofertaDetalle.Empresa.Nombre}}</h4>
+                </div>
             </div>
-        </div>
 
-        <hr class="h_op" flex="100">
-        <div class="emp_d" layout="row" layout-align="space-around center">
-            <img src="img/logo.png">
+            <div layout="column" flex="60">
+                <div layout="column" layout-align="center center">
+                    <h1>{{ofertaDetalle.Nombre}}</h1>
+                    <h3>{{ofertaDetalle.Descripcion}}</h3>
+                    <br />
+                </div>
 
-            <div class="emp_desc_ofer" layout="column" flex="70">
-                <h1><a ui-sref="profesional.empresa({idEmpresa: ofertaDetalle.Empresa.Id})" ng-show="usuarioLogueado.isProfesional">{{ofertaDetalle.Empresa.NombreFantasia}}</a></h1>
-                <h4>{{ofertaDetalle.Oferta.Empresa.Descripcion}}</h4>
+                <div class="fechas" layout="row" layout-align="space-around">
+                    <div flex>
+                        <h2>FECHA DE INICIO:</h2>
+                        <h2><span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaInicioConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+
+                    </div>
+
+                    <div flex>
+                        <h2>FECHA DE FIN:</h2>
+                        <h2><span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaFinConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+                    </div>
+
+                </div>
             </div>
+            <!--<hr class="h_op" flex="100">-->
+
         </div>
+        <br />
+        <hr />
+        <br />
 
-        <hr class="h_op" flex="100" />
-
-        <div latout="column" layout-align="space-around center" flex>
-            <h1><span style="font-weight:700;">Etapas</span></h1>
-            <br />
-            <timeline>
-                <timeline-event ng-repeat="etapa in ofertaDetalle.Oferta.EtapasOferta" side="alternate">
-                    <!--<timeline-badge >
-                        <i class="glyphicon {{event.badgeIconClass}}"></i>
-                    </timeline-badge>-->
-                    <timeline-panel class="{{event.badgeClass}}">
-                        <timeline-heading>
-                            <div class="flag-wrapper">
-                                <span class="flag">{{etapa.TipoEtapa.Nombre}}</span>
-                                <span class="time-wrapper"><span class="time">2011 - 2013</span></span>
+        <div layout="row">
+            <div latout="column" layout-align="space-around center" flex>
+                <h1><span style="font-weight:700;">Etapas</span></h1>
+                <br />
+                <timeline>
+                    <timeline-event ng-repeat="etapa in ofertaDetalle.EtapasOferta" side="alternate">
+                        <!--<timeline-badge >
+                    <i class="glyphicon {{event.badgeIconClass}}"></i>
+                </timeline-badge>-->
+                        <timeline-panel class="{{event.badgeClass}}">
+                            <timeline-heading>
+                                <div class="flag-wrapper">
+                                    <span class="flag">{{etapa.TipoEtapa.Nombre}}</span>
+                                    <span class="time-wrapper"><span class="time"></span></span>
+                                </div>
+                            </timeline-heading>
+                            <div class="desc">
+                                <p>{{etapa.TipoEtapa.Descripcion}}</p>
+                                <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id, NombreOferta: ofertaDetalle.Nombre})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
                             </div>
-                        </timeline-heading>
-                        <div class="desc">
-                            <p>{{etapa.TipoEtapa.Descripcion}}</p>
-                            <a ui-sref="empresa.ofertas.etapaDetalle({idEtapa: etapa.Id, NombreOferta: ofertaDetalle.Nombre})" ng-show="usuarioLogueado.isEmpresa">Detalle</a>
-                        </div>
-                    </timeline-panel>
-                </timeline-event>
-            </timeline>
-        </div>
-        <hr class="h_sop">
-
-        <div class="puestos">
-            <h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
-            <div ng-repeat="puesto in ofertaDetalle.Oferta.Puestos" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
-                <h2>{{puesto.Nombre}}</h2>
-                <h3>{{puesto.Descripcion}}</h3>
-                <div class="p_items" layout="column" layout-align="space-around start">
-                    <h4><span class="p_res">UBICACIÓN:</span> {{puesto.Ubicacion}}</h4>
-                    <h4><span class="p_res">HABILIDADES:</span> {{puesto.Habilidades}}</h4>
-                    <h4><span class="p_res">REMUNERACIÓN:</span> {{puesto.Remuneracion}}</h4>
-                    <h4><span class="p_res">VACANTES:</span> <span class="va">{{puesto.Vacantes}}</span></h4>
-                    <h4 ng-repeat="sr in puestos.Subrubros"><span class="p_res">SUB-RUBROS:</span> <span class="etiquetas">{{sr.Nombre}}</span></h4>
-                    <h4><span class="p_res">TIPO DE CONTRATO:</span> <i>{{puesto.TipoContrato.Nombre}}</i></h4>
-                    <h4><span class="p_res">DISPONIBILIDAD:</span> {{puesto.Disponibilidad.Nombre}}</h4>
-                    <md-button class="md-raised md-primary" style="margin:auto; background:rgb(62, 138, 187);" ng-click="postularProfesional(puesto)" ng-show="usuarioLogueado.isProfesional">Postularse</md-button>
+                        </timeline-panel>
+                    </timeline-event>
+                </timeline>
+            </div>
+            <div flex layout-align="space-around">
+                <h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
+                <div ng-repeat="puesto in ofertaDetalle.Puestos" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
+                    <h2>{{puesto.Nombre}}</h2>
+                    <h3>{{puesto.Descripcion}}</h3>
+                    <div class="p_items" layout="column" layout-align="space-around start">
+                        <h4><span class="p_res">UBICACIÓN:</span> {{puesto.Ubicacion}}</h4>
+                        <h4><span class="p_res">HABILIDADES:</span> {{puesto.Habilidades}}</h4>
+                        <h4><span class="p_res">REMUNERACIÓN:</span> {{puesto.Remuneracion}}</h4>
+                        <h4><span class="p_res">VACANTES:</span> <span class="va">{{puesto.Vacantes}}</span></h4>
+                        <h4 ng-repeat="sr in puestos.Subrubros"><span class="p_res">SUB-RUBROS:</span> <span class="etiquetas">{{sr.Nombre}}</span></h4>
+                        <h4><span class="p_res">TIPO DE CONTRATO:</span> <i>{{puesto.TipoContrato.Nombre}}</i></h4>
+                        <h4><span class="p_res">DISPONIBILIDAD:</span> {{puesto.Disponibilidad.Nombre}}</h4>
+                        <md-button class="md-raised md-primary" style="margin:auto; background:rgb(62, 138, 187);" ng-click="postularProfesional(puesto)" ng-show="authentication.isProfesional">Postularse</md-button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        
+        <hr />
+        
     </div>
-
-
 </md-content>
