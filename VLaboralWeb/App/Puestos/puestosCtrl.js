@@ -71,10 +71,14 @@
         $mdDialog.hide(prmPuesto);
     }
 
-    $scope.cancel = function () {
+    $scope.cancel = function () {        
         $mdDialog.cancel();
     };
 
+    $scope.guardarPuesto = function (puestoEdit) {
+        puestoEdit.Habilidades = puestoEdit.Habilidades.toString();
+        $mdDialog.hide(puestoEdit);
+    }
     //#endregion
 
     //#region iafar: transformar habilidades de chips en strings

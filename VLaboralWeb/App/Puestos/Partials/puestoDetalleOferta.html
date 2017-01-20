@@ -119,29 +119,7 @@
                             <h4>
                                 Escriba las habilidades requeridas
                             </h4>
-                            <!--<md-chips ng-model="habArray"
-                                      name="chipContainer"
-                                      md-max-chips="5"
-                                      md-transform-chip="transformChip($chip)"
-                                      md-separator-keys="puestosCtrl.keys"
-                                      placeholder="Ingrese habilidad"
-                                      secondary-placeholder="ingrese otra habilidad">
-                                <md-autocomplete md-selected-item="selectedItem"
-                                                 md-search-text="searchText"
-                                                 md-items="item in habilidades"
-                                                 md-item-text="item.Nombre">
-                                    <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                                </md-autocomplete>
-
-                            </md-chips>
-                            <md-chip-template>
-                                <strong>{{$chip}}</strong>
-                            </md-chip-template>-->
-                            <md-list>
-                                <md-list-item ng-repeat="habilidad in puestoEdit.Habilidades">
-                                    <p>{{habilidad.Nombre}}</p>
-                                </md-list-item>
-                            </md-list>
+                            
                             <md-chips ng-model="puestoEdit.Habilidades"
                                       name="chipContainer"
                                       md-max-chips="5"
@@ -160,6 +138,8 @@
 
                                 </md-chip-template>-->
                             </md-chips>
+
+                            
                             <div class="errors" ng-messages="frmPro.chipContainer.$error">
                                 <div ng-message="md-max-chips">The maxmium of chips is reached.</div>
                             </div>
@@ -254,10 +234,10 @@
 
     </md-dialog-content>
     <md-dialog-actions>
-        <md-button ng-click="addPuesto(puestoEdit)">
-            Agregar Puesto
+        <md-button ng-click="guardarPuesto(puestoEdit)">
+            Guardar cambios
         </md-button>
-        <md-button ng-click="cancel()" class="md-primary">
+        <md-button ng-click="cancel(puestoEdit)" class="md-primary">
             Cancelar
         </md-button>
     </md-dialog-actions>

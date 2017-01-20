@@ -132,6 +132,7 @@
     }
 
     $scope.openPuestoDetalle = function (prmPuesto) {
+        prmPuesto.Habilidades = prmPuesto.Habilidades.split(',');
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'puestosCtrl',
@@ -161,8 +162,8 @@
             },
             puesto: prmPuesto,
         })
-        .then(function (nuevoPuesto) {
-            $scope.oferta.Puestos.push(nuevoPuesto);
+        .then(function (puestoEdit) {            
+            $scope.oferta.Puestos[$scope.oferta.Puestos.indexOf(puestoEdit)] = puestoEdit;           
         });
     }
 
