@@ -53,15 +53,43 @@
         $scope.puesto.Subrubros.push($scope.subRubroSelected);
     };
 
+    //$scope.QuitarSubRubro = function (IdSubRubro) {
+    //    for (var i = 0; i < $scope.puesto.Subrubros.length; i++) {
+    //        if ($scope.puesto.Subrubros[i].Id === IdSubRubro) {
+    //            $scope.puesto.Subrubros.splice(i, 1);
+    //            return;
+    //        }
+    //    }
+    //};
+
     $scope.QuitarSubRubro = function (IdSubRubro) {
-        for (var i = 0; i < $scope.puesto.Subrubros.length; i++) {
-            if ($scope.puesto.Subrubros[i].Id === IdSubRubro) {
-                $scope.puesto.Subrubros.splice(i, 1);
+        //for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
+        //    if ($scope.profesional.Subrubros[i].Id === IdSubRubro) {
+        //        $scope.profesional.Subrubros.splice(i, 1);
+        //        return;
+        //    }
+        //}
+        var index = $scope.puesto.Subrubros.indexOf(IdSubRubro);
+        $scope.puesto.Subrubros.splice(index, 1);
+    };
+
+
+    //#region Edicion de Puestos
+    $scope.subRubroAddClickEdit = function () {
+        for (var i = 0; i < $scope.puestoEdit.Subrubros.length; i++) {
+            if ($scope.puestoEdit.Subrubros[i].Id === $scope.subRubroSelected.Id) {
+                alert("Advertencia: El SubRubro ya está seleccionado.");
                 return;
             }
         }
+        $scope.puestoEdit.Subrubros.push($scope.subRubroSelected);
     };
 
+    $scope.QuitarSubRubroEdit = function (IdSubRubro) {
+        var index = $scope.puestoEdit.Subrubros.indexOf(IdSubRubro);
+        $scope.puestoEdit.Subrubros.splice(index, 1);
+    };
+    
     //#endregion
 
 
@@ -76,7 +104,7 @@
     };
 
     $scope.guardarPuesto = function (puestoEdit) {
-        puestoEdit.Habilidades = puestoEdit.Habilidades.toString();
+        //puestoEdit.Habilidades = puestoEdit.Habilidades.toString();
         $mdDialog.hide(puestoEdit);
     }
     //#endregion

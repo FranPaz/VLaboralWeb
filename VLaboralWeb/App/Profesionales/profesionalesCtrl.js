@@ -92,12 +92,14 @@
     };
 
     $scope.QuitarSubRubro = function (IdSubRubro) {
-        for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
-            if ($scope.profesional.Subrubros[i].Id === IdSubRubro) {
-                $scope.profesional.Subrubros.splice(i, 1);
-                return;
-            }
-        }
+        //for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
+        //    if ($scope.profesional.Subrubros[i].Id === IdSubRubro) {
+        //        $scope.profesional.Subrubros.splice(i, 1);
+        //        return;
+        //    }
+        //}
+        var index = $scope.profesional.Subrubros.indexOf(IdSubRubro);
+        $scope.profesional.Subrubros.splice(index, 1);
     };
 
     //#endregion

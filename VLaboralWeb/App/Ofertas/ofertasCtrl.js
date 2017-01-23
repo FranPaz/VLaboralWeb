@@ -163,7 +163,10 @@
             puesto: prmPuesto,
         })
         .then(function (puestoEdit) {            
-            $scope.oferta.Puestos[$scope.oferta.Puestos.indexOf(puestoEdit)] = puestoEdit;           
+            $scope.oferta.Puestos[$scope.oferta.Puestos.indexOf(puestoEdit)] = puestoEdit;
+            angular.forEach($scope.oferta.Puestos, function (p) {
+                p.Habilidades = p.Habilidades.toString();
+            })
         });
     }
 
