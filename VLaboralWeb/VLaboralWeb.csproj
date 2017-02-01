@@ -96,6 +96,7 @@
     <Content Include="App\Notificaciones\Partials\detalleNotificacionExperiencia.html" />
     <Content Include="App\Notificaciones\Partials\detalleNotificacionInvOfertaPrivada.html" />
     <Content Include="App\Notificaciones\Partials\detalleNotificacionPostulacion.html" />
+    <Content Include="App\Ofertas\Partials\ofertasPrivadasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaPrivada.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />

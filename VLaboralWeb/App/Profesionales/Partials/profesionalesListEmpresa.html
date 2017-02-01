@@ -105,7 +105,7 @@
                                         <td md-cell flex="nogrow">{{p.Domicilio}}</td>
                                         <td md-cell flex="nogrow">{{p.ValoracionPromedio + " estrellas"}}</td>
                                         <td md-cell flex="nogrow">
-                                            <md-button class="md-raised" ng-click="abrirDetalle(p)">Detalle</md-button>
+                                            <md-button class="md-raised" ui-sref="empresa.profesional({idPro: p.Id})">Detalle</md-button>
                                         </td>
                                     </tr>
                                 </tbody>
