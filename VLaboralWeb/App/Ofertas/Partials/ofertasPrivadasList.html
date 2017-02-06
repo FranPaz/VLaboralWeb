@@ -10,9 +10,10 @@
     </md-toolbar>
     <md-dialog-content>
         <div class="md-dialog-content" layout="column">
-            <md-list>
-                <md-list-item>
-                    <md-card flex="100">
+            <h3 layout="column" layout-align="center center" ng-show="ofertasPrivadas.length == null">¡No hay ofertas cargadas!</h3>
+            <md-card flex="100" ng-show="ofertasPrivadas.length != null">
+                <md-list>
+                    <md-list-item ng-repeat="o in ofertasPrivadas">
                         <md-card-title>
                             <md-card-title-media>
                                 <div class="md-media-lg card-media" layout-padding>
@@ -22,9 +23,15 @@
                             <md-card-title-text>
                                 <div layout="row" layout-padding flex>
                                     <div flex class="ic_p">
-                                        <h3>Nombre de la oferta</h3>
+                                        <h3>{{o.nombre}}</h3>
                                         <br />
-                                        <p>Descripcion de la oferta</p>
+                                        <p>{{o.descripcion}}</p>
+                                        <br />
+                                        <div layout="row">
+                                            <p>Fecha de inicio: {{o.fechaInicioConvocatoria | date: dd/MM/YYYY}}</p>
+                                            <p>Fecha de fin: {{o.fechaFinConvocatoria | date: dd/MM/YYYY}}</p>
+                                        </div>
+                                        
                                     </div>
                                     <div layout="column" layout-align="start end">
                                         <md-button style="background-color:#00C853; color:#ffffff">Seleccionar oferta</md-button>
@@ -32,10 +39,17 @@
 
                                 </div>
                             </md-card-title-text>
-                        </md-card-title>
-                    </md-card>
-                </md-list-item>
-            </md-list>
+
+                        </md-card-title>                      
+                        
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    
+                </md-list>
+                
+
+            </md-card>
+            
         </div>
     </md-dialog-content>
     <md-dialog-actions layout="column" layout-align="center center">

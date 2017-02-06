@@ -380,7 +380,9 @@
                 etapasObligatorias: function () {
                     return { value: [] };
                 },
-
+                ofertasPrivadas: function () {
+                    return ofertasDF.getOfertasPrivadasProfesional(1,50);
+                },
                 loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                 }]

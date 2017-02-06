@@ -212,6 +212,9 @@
                             etapasObligatorias: function () {
                                 return { value: [] };
                             },
+                            ofertasPrivadas: function () {
+                                return { value: [] };
+                            },
 
                             loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
@@ -258,6 +261,9 @@
                             //postulantes: function () {
                             //    return { value: [] };
                             //},
+                            ofertasPrivadas: function () {
+                                return { value: [] };
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                             }]
@@ -303,6 +309,9 @@
                             //postulantes: function ($stateParams) {
                             //    return $stateParams.postulantesOferta;
                             //},
+                            ofertasPrivadas: function () {
+                                return { value: [] };
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
                             }]
@@ -503,6 +512,25 @@
                     }
                 }
             })
+
+            .state('empresa.empleadosList', {
+                url: '/Empleados',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Empleados/Partials/empleadosList.html',
+                        controller: 'empleadosCtrl',
+                        resolve: {
+                            empleados: function () {
+                                return { value: [] };
+                            },
+                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Empleados/empleadosCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+            })
+
             //#endregion
 
              //#region Centro de notificaciones para Usuarios Empresa
@@ -751,6 +779,9 @@
                                 etapasObligatorias: function () {
                                     return { value: [] };
                                 },
+                                ofertasPrivadas: function () {
+                                    return { value: [] };
+                                },
 
                                 loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                     return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
@@ -941,6 +972,9 @@
                                     return { value: [] };
                                 },
                                 etapasObligatorias: function () {
+                                    return { value: [] };
+                                },
+                                ofertasPrivadas: function () {
                                     return { value: [] };
                                 },
                                 loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

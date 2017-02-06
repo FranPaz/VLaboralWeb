@@ -1,0 +1,130 @@
+﻿<md-dialog flex="70" layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools" style="background-color:rgb(62, 138, 187);">
+            <h2>Nuevo empleado</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:800px;max-height:1810px;">
+        <md-card flex="100" layout="column">
+            <md-card-content flex="50">
+                
+                <!--#region nombre y apellido-->
+                <div flex layout="row" class="ic_p">
+
+                    <md-input-container flex="30">
+                        <h3>Nombre</h3>
+                        <input md-placeholder="Ingrese" ng-model="profesional.Nombre" class="inp" />
+                    </md-input-container>
+
+                    <md-input-container flex="30">
+                        <h3>Apellido</h3>
+                        <input md-placeholder="Ingrese" ng-model="profesional.Apellido" class="inp" />
+                    </md-input-container>
+
+                </div>
+
+                <!--#endregion-->
+
+                <!--#region datos de legajo-->
+                <div flex layout="row" class="ic_p">
+                    <div flex="30">
+                        <md-input-container>
+                            <h3>Legajo</h3>
+                            <input ng-model="profesional.Nombre" class="inp" />
+                        </md-input-container>
+                    </div>  
+                    <div layout="column" flex layout-align="start start">
+                        <br />
+                        <h3>Fecha de ingreso</h3>
+                        <md-datepicker ng-model="profesional.FechaNac"></md-datepicker>
+
+                        
+                    </div>                  
+                    
+                </div>
+                
+                <!--#endregion-->
+                <!--#region Tipo de identificacion-->
+                <br />
+                <div flex layout="column" class="ic_p">
+                    <h3>Identificacion</h3>
+                    <div flex="20" layout="row">
+                        <md-input-container flex="10">
+                            <label>Tipo</label>
+                            <md-select ng-model="nuevoDoc.TipoIdentificacionProfesional">
+                                <!--<md-option><em>None</em></md-option>-->
+                                <md-option>
+                                    Dni
+                                </md-option>
+                                <md-option>
+                                    Pasaporte
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex="35">
+                            <label>Numero</label>
+                            <input required ng-model="nuevoDoc.Valor">
+                        </md-input-container>
+                    </div>
+
+                    <div flex="40">
+                        
+                    </div>
+
+
+                </div>
+                <!--#endregion-->
+                <!--#region Fecha de nacimiento-->
+                <div flex>
+                    <h4>Fecha de Nacimiento</h4>
+                    <br />
+                    <md-datepicker md-placeholder="Seleccione" ng-model="profesional.FechaNac"></md-datepicker>
+                </div>
+
+                <!--#endregion-->
+                <!--#region Domicilio-->
+                <div flex layout="row" class="ic_p">
+                    <md-input-container flex="100">
+                        <h4>Domicilio</h4>
+                        <input ng-model="profesional.Domicilio" class="inp">
+                    </md-input-container>
+                </div>
+                <!--#endregion-->
+                <!--#region Sexo y Nacionalidad-->
+                <div flex layout="row">
+                    <div flex>
+                        <md-input-container>
+                            <h4>Sexo</h4>
+                            <md-select ng-model="profesional.Sexo">
+                                <md-option>Masculino</md-option>
+                                <md-option>Femenino</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                    </div>
+
+                    <div flex>
+                        <md-input-container>
+                            <h4>Nacionalidad</h4>
+                            <md-select ng-model="profesional.Nacionalidad">
+                                <md-option>Argentino</md-option>
+                                <md-option>Otro</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+
+            </md-card-content>
+
+        </md-card>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button>Guardar</md-button>
+        <md-button>Cancelar</md-button>
+    </md-dialog-actions>
+</md-dialog>
+

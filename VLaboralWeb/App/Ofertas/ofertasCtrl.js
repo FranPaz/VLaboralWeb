@@ -1,7 +1,7 @@
 ﻿vLaboralApp.controller('ofertasCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $state, //fpaz: definicion de inyectores de dependencias
     profesionalesDF,ofertasDF, rubrosDF, requisitosDF, habilidadesDF, authSvc, tiposEtapasDF,notificacionesSvc, //fpaz: definicion de data factorys
      listadoTiposDiponibilidad, listadoTiposContratos,//fpaz: definicion de parametros de entrada 
-    listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias
+    listadoRubros, listadoTiposRequisitos, listadoHabilidades, ofertaDetalle, etapasObligatorias, ofertasPrivadas
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
@@ -27,7 +27,7 @@
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
 
-   
+    $scope.ofertasPrivadas = ofertasPrivadas.results;
 
     $scope.postulantes = [];
 
