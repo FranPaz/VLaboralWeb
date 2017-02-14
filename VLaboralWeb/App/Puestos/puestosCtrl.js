@@ -53,15 +53,97 @@
         $scope.puesto.Subrubros.push($scope.subRubroSelected);
     };
 
+    //$scope.QuitarSubRubro = function (IdSubRubro) {
+    //    for (var i = 0; i < $scope.puesto.Subrubros.length; i++) {
+    //        if ($scope.puesto.Subrubros[i].Id === IdSubRubro) {
+    //            $scope.puesto.Subrubros.splice(i, 1);
+    //            return;
+    //        }
+    //    }
+    //};
+
     $scope.QuitarSubRubro = function (IdSubRubro) {
-        for (var i = 0; i < $scope.puesto.Subrubros.length; i++) {
-            if ($scope.puesto.Subrubros[i].Id === IdSubRubro) {
-                $scope.puesto.Subrubros.splice(i, 1);
+        //for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
+        //    if ($scope.profesional.Subrubros[i].Id === IdSubRubro) {
+        //        $scope.profesional.Subrubros.splice(i, 1);
+        //        return;
+        //    }
+        //}
+        var index = $scope.puesto.Subrubros.indexOf(IdSubRubro);
+        $scope.puesto.Subrubros.splice(index, 1);
+    };
+
+
+    //#region Edicion de Puestos
+    $scope.subRubroAddClickEdit = function () {
+        for (var i = 0; i < $scope.puestoEdit.Subrubros.length; i++) {
+            if ($scope.puestoEdit.Subrubros[i].Id === $scope.subRubroSelected.Id) {
+                alert("Advertencia: El SubRubro ya está seleccionado.");
+                return;
+            }
+        }
+        $scope.puestoEdit.Subrubros.push($scope.subRubroSelected);
+    };
+
+    $scope.QuitarSubRubroEdit = function (IdSubRubro) {
+        var index = $scope.puestoEdit.Subrubros.indexOf(IdSubRubro);
+        $scope.puestoEdit.Subrubros.splice(index, 1);
+    };
+    
+    $scope.valorTipoRequisitoAddClickEdit = function () {
+        var valoresSeleccionados = [];
+        if ($scope.ValoresTipoRequisitoSelected != undefined) {
+            if ($scope.ValoresTipoRequisitoSelected.length != undefined) {
+                if ($scope.ValoresTipoRequisitoSelected.length !== 0) {
+                    valoresSeleccionados = $scope.ValoresTipoRequisitoSelected;
+                } else {
+                    return;//sluna: no hay nada seleccionado
+                }
+            } else {
+                valoresSeleccionados.push($scope.ValoresTipoRequisitoSelected);
+            }
+
+            if (valoresSeleccionados != null) {
+                for (var i = 0; i < $scope.puestoEdit.Requisitos.length; i++) {
+                    if ($scope.puestoEdit.Requisitos[i].TipoRequisitoId === $scope.tipoRequisito.Id) {
+                        //for (var j = 0; j < valoresSeleccionados.length; j++) {
+                        //    $scope.puestoEdit.Requisitos[i].ValoresRequisito.push({
+                        //        Valor: valoresSeleccionados[j].Valor,
+                        //        Desde: valoresSeleccionados[j].Desde,
+                        //        Hasta: valoresSeleccionados[j].Hasta});
+                        //}
+                        return;//Sluna: no puedo agregar un tipoRequisito ya cargado
+                    }
+                }
+
+                var requisito = {
+                    TipoRequisitoId: $scope.tipoRequisito.Id,
+                    TipoRequisito: $scope.tipoRequisito,
+                    Excluyente: false,
+                    AutoVerificar: false,
+                    ValoresRequisito: []
+                };
+                for (var k = 0; k < valoresSeleccionados.length; k++) {
+                    requisito.ValoresRequisito.push({
+                        Valor: valoresSeleccionados[k].Valor,
+                        Desde: valoresSeleccionados[k].Desde,
+                        Hasta: valoresSeleccionados[k].Hasta
+                    });
+                }
+                $scope.puestoEdit.Requisitos.push(requisito);
+                $scope.ValoresTipoRequisitoSelected = null;//sluna: limpio lo que esté seleccionado
+                valoresSeleccionados = null;//sluna: limpio lo que esté seleccionado
+            }
+        }
+    };
+    $scope.QuitarRequisitoEdit = function (TipoRequisitoId) {
+        for (var i = 0; i < $scope.puestoEdit.Requisitos.length; i++) {
+            if ($scope.puestoEdit.Requisitos[i].TipoRequisitoId === TipoRequisitoId) {
+                $scope.puestoEdit.Requisitos.splice(i, 1);
                 return;
             }
         }
     };
-
     //#endregion
 
 
@@ -71,10 +153,14 @@
         $mdDialog.hide(prmPuesto);
     }
 
-    $scope.cancel = function () {
+    $scope.cancel = function () {        
         $mdDialog.cancel();
     };
 
+    $scope.guardarPuesto = function (puestoEdit) {
+        //puestoEdit.Habilidades = puestoEdit.Habilidades.toString();
+        $mdDialog.hide(puestoEdit);
+    }
     //#endregion
 
     //#region iafar: transformar habilidades de chips en strings

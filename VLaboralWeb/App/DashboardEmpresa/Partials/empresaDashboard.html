@@ -20,6 +20,22 @@
         </li>
         <!--fin desplegable-->
 
+        <!--#region Empleados de la empresa-->
+        <li>
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" layout="row">
+                    <span class="icon-bullhorn ic_m"></span><h1 class="t_me_a">Empleados</h1>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <a ui-sref="empresa.empleadosList"><md-button> <span md-menu-align-target class="sm">Listado de empleados</span></md-button>
+                    </md-menu-item></a>
+
+                </md-menu-content>
+            </md-menu>
+        </li>
+        <!--#endregion-->
+
         <!-- #region iafar:desplegable de opciones de profesionales-->
         <li>
             <md-menu>

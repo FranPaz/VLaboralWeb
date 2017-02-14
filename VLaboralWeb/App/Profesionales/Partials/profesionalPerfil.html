@@ -36,76 +36,27 @@
             </div>
             <!--#endregion-->
             
-            <!--#region Rubros y Sub Rubros-->
-            <!--#region fpaz: subrubros del profesional-->
-            <div flex>
-                <md-tabs class="md-accent">
-                    <md-tab>
-                        <md-tab-label>Rubros y Sub-Rubros</md-tab-label>
-                        <md-tab-body>
-                            <div layout="row">
-                                <div flex="50">
-                                    <md-input-container>
-                                        <label>Rubro</label>
-                                        <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
-                                            <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
-                                                {{rubro.Nombre}}
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
-                                </div>
-                                <div flex="50">
-                                    <md-input-container>
-                                        <label>sub rubro</label>
-                                        <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subrubrodisabled">
-                                            <md-option ng-repeat="subrubro in Rubro.Subrubros" ng-value="subrubro">
-                                                {{subrubro.Nombre}}
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
-                                    <md-button class="md-raised" ng-click="subRubroAddClick()">agregar</md-button>
-                                </div>
-                            </div>
-                            <div layout="row">
-                                <div flex="grow">
-                                    <h2 class="md-title">Rubros seleecionados</h2>
-                                    <md-chips ng-model="profesional.Subrubros" 
-                                              readonly="!editValue ? true : false" 
-                                              name="chipContainer"
-                                              md-max-chips="5"
-                                              md-transform-chip="transformChip($chip)"> <!---->
-                                        <md-chip-template>
-                                            <span>
-                                                <strong>{{$chip.Nombre}}</strong>
-                                            </span>
-                                        </md-chip-template>
-                                    </md-chips>
-                                </div>
-                            </div>
-                        </md-tab-body>
-                    </md-tab>
-                </md-tabs>
-            </div>
-
-            <!--#endregion-->
-            <!--#endregion-->
-
             <!--#region Sexo y Nacionalidad-->
             <div flex layout="row">
-                <div flex layout-padding>
-                    <h4>Sexo</h4>
-                    <md-select ng-model="profesional.Sexo">
-                        <md-option>Masculino</md-option>
-                        <md-option>Femenino</md-option>
-                    </md-select>
+                <div flex >
+                    <md-input-container>
+                        <h4>Sexo</h4>
+                        <md-select ng-model="profesional.Sexo">
+                            <md-option>Masculino</md-option>
+                            <md-option>Femenino</md-option>
+                        </md-select>
+                    </md-input-container>
+                    
                 </div>
-                
-                <div flex layout-padding>
-                    <h4>Nacionalidad</h4>
-                    <md-select ng-model="profesional.Nacionalidad">
-                        <md-option>Argentino</md-option>
-                        <md-option>Otro</md-option>
-                    </md-select>
+
+                <div flex>
+                    <md-input-container>
+                        <h4>Nacionalidad</h4>
+                        <md-select ng-model="profesional.Nacionalidad">
+                            <md-option>Argentino</md-option>
+                            <md-option>Otro</md-option>
+                        </md-select>
+                    </md-input-container>
                 </div>
             </div>
             <br />
@@ -222,30 +173,89 @@
             <br />
             <!--#endregion-->
 
+            <!--#region Rubros y Sub Rubros-->
+            <!--#region fpaz: subrubros del profesional-->
+            <div flex layout="row">
+                <div flex>
+                    <md-tabs class="md-accent">
+                        <md-tab>
+                            <md-tab-label>Rubros y Sub-Rubros</md-tab-label>
+                            <md-tab-body>
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container>
+                                            <label>Rubro</label>
+                                            <md-select ng-model="rubroSelected" ng-change="rubroChanged()">
+                                                <md-option ng-repeat="rubro in Rubros" value="{{rubro.Id}}">
+                                                    {{rubro.Nombre}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="50">
+                                        <md-input-container>
+                                            <label>Sub Rubro</label>
+                                            <md-select ng-model="subRubroSelected" ng-change="subRubroChanged()" ng-disabled="subrubrodisabled">
+                                                <md-option ng-repeat="subrubro in Rubro.Subrubros" ng-value="subrubro">
+                                                    {{subrubro.Nombre}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-button class="md-raised" ng-click="subRubroAddClick()">agregar</md-button>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="grow">
+                                        <h2 class="md-title">Rubros seleecionados</h2>
+                                        <md-chips ng-model="profesional.Subrubros"
+                                                  readonly="!editValue ? true : false"
+                                                  name="chipContainer"
+                                                  md-max-chips="5"
+                                                  md-transform-chip="transformChip($chip)">
+                                            <!---->
+                                            <md-chip-template>
+                                                <strong>{{$chip.Nombre}}</strong>
+                                                <button class="md-secondary md-icon-button md-button md-ink-ripple" type="button" ng-click="QuitarSubRubro($chip)">x</button>
+                                            </md-chip-template>
+                                        </md-chips>
+                                    </div>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+                
+            </div>
+
+            <!--#endregion-->
+            <!--#endregion-->
+           
             <!--#region Habilidades-->
             <div flex>
                 <md-tabs class="md-accent">
                     <md-tab>
                         <md-tab-label>Seleccion de Habilidades</md-tab-label>
                         <md-tab-body>
+                            <div layout="column">
+                                <md-chips ng-model="chipsHabilidad"
+                                          name="chipContainer"
+                                          md-max-chips="5"
+                                          md-transform-chip="transformChip($chip)">
+                                    <md-autocomplete md-selected-item="selectedItem"
+                                                     md-search-text="searchText"
+                                                     md-items="item in habilidades"
+                                                     md-item-text="item.Nombre"
+                                                     placeholder="Escriba sus habilidades">
+                                        <span md-highlight-text="searchText">{{item.Nombre}}</span>
+                                    </md-autocomplete>
+                                    <md-chip-template>
+                                        <strong>{{$chip}}</strong>
+
+                                    </md-chip-template>
+
+                                </md-chips>
+                            </div>
                             
-                            <md-chips ng-model="chipsHabilidad"
-                                      name="chipContainer"
-                                      md-max-chips="5"
-                                      md-transform-chip="transformChip($chip)">
-                                <md-autocomplete md-selected-item="selectedItem"
-                                                 md-search-text="searchText"
-                                                 md-items="item in habilidades"
-                                                 md-item-text="item.Nombre"
-                                                 placeholder="Escriba sus habilidades">
-                                    <span md-highlight-text="searchText">{{item.Nombre}}</span>
-                                </md-autocomplete>
-                                <md-chip-template>
-                                    <strong>{{$chip}}</strong>
-
-                                </md-chip-template>
-
-                            </md-chips>
                         </md-tab-body>
                     </md-tab>
                 </md-tabs>

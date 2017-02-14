@@ -109,7 +109,7 @@
         //prmIsPostulado
         ) {
         var deferred = $q.defer();
-        $http.get(urlApi + 'api/OfertasPrivadas/', {
+        $http.get(urlApi + 'api/Ofertas/OfertasPrivadas/', {
             params: {
                 //idProfesional: prmIdProfesional,
                 //fechaDesde: prmFechaDesde,

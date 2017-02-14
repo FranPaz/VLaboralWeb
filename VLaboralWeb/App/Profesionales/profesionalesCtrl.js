@@ -92,12 +92,14 @@
     };
 
     $scope.QuitarSubRubro = function (IdSubRubro) {
-        for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
-            if ($scope.profesional.Subrubros[i].Id === IdSubRubro) {
-                $scope.profesional.Subrubros.splice(i, 1);
-                return;
-            }
-        }
+        //for (var i = 0; i < $scope.profesional.Subrubros.length; i++) {
+        //    if ($scope.profesional.Subrubros[i].Id === IdSubRubro) {
+        //        $scope.profesional.Subrubros.splice(i, 1);
+        //        return;
+        //    }
+        //}
+        var index = $scope.profesional.Subrubros.indexOf(IdSubRubro);
+        $scope.profesional.Subrubros.splice(index, 1);
     };
 
     //#endregion
@@ -328,6 +330,73 @@
         $state.go('empresa.ofertas.convocarPro', {postulantesOferta: arrayProf})
 
     }
+
+    $scope.invitarOferta = function () {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+        $mdDialog.show({
+            controller: 'ofertasCtrl',
+            templateUrl: '/App/Ofertas/Partials/ofertasPrivadasList.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: true,
+            resolve: {
+                ofertasDF: 'ofertasDF',
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                tiposDisponibilidadDF: 'tiposDisponibilidadDF',
+                listadoTiposDiponibilidad: function () {
+                    return { value: [] };
+                },
+                rubrosDF: 'rubrosDF',
+                habilidadesDF: 'habilidadesDF',
+                tiposIdentificacionDF: 'tiposIdentificacionDF',
+                listadoRubros: function () {
+                    return { value: [] };
+                },
+                tiposContratoDF: 'tiposContratoDF',
+                listadoTiposContratos: function () {
+                    return { value: [] };
+                },
+                listadoHabilidades: function () {
+                    return { value: [] };
+                },
+                listadoIdentificacionPro: function () {
+                    return { value: [] };
+                },
+                requisitosDF: 'requisitosDF',
+                listadoTiposRequisitos: function () {
+                    return { value: [] };
+                },
+                profesionalesDF: 'profesionalesDF',
+                infoProfesional: function () {
+                    return { value: [] };
+                },
+                ofertaDetalle: function () {
+                    //var prmIdOferta = $stateParams.idOferta;
+                    //return ofertasDF.getOferta(prmIdOferta);
+                },
+                etapasObligatorias: function () {
+                    return { value: [] };
+                },
+                ofertasPrivadas: function () {
+                    return ofertasDF.getOfertasPrivadasProfesional(1,50);
+                },
+                loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Ofertas/ofertasCtrl.js']);
+                }]
+            }
+
+
+        })
+        .then(function () {
+
+        });
+    }
     //#endregion
+
+
+
 
 });

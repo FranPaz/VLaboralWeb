@@ -13,28 +13,31 @@
                 <img src="img/logo.png">
 
                 <div layout="column" flex="70">
-                    <h1><p ui-sref="profesional.empresa({idEmpresa: ofertaDetalle.Empresa.Id})" ng-show="usuarioLogueado.isProfesional">{{ofertaDetalle.Empresa.NombreFantasia}}</p></h1>
-                    <h4>{{ofertaDetalle.Empresa.Nombre}}</h4>
+                    <h2><p ui-sref="profesional.empresa({idEmpresa: ofertaDetalle.Empresa.Id})" ng-show="usuarioLogueado.isProfesional">{{ofertaDetalle.Empresa.NombreFantasia}}</p></h2>
+                    <!--<h4>{{ofertaDetalle.Empresa.Nombre}}</h4>-->
                 </div>
             </div>
 
             <div layout="column" flex="60">
                 <div layout="column" layout-align="center center">
                     <h1>{{ofertaDetalle.Nombre}}</h1>
-                    <h3>{{ofertaDetalle.Descripcion}}</h3>
+                    <p>{{ofertaDetalle.Descripcion}}</p>
                     <br />
                 </div>
 
                 <div class="fechas" layout="row" layout-align="space-around">
-                    <div flex>
-                        <h2>FECHA DE INICIO:</h2>
-                        <h2><span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaInicioConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+                    <div flex layout-align="center center">
+                        <div flex>
+                            <p>FECHA DE INICIO:</p>
+                            <p><span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaInicioConvocatoria |  date:'dd/MM/yyyy'}}</p>
+                        </div>
+                        
 
                     </div>
 
-                    <div flex>
-                        <h2>FECHA DE FIN:</h2>
-                        <h2><span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaFinConvocatoria |  date:'dd/MM/yyyy'}}</h2>
+                    <div flex layout-align="center center">
+                        <p>FECHA DE FIN:</p>
+                        <p><span class="icon-calendar icon-fecha"></span> {{ofertaDetalle.FechaFinConvocatoria |  date:'dd/MM/yyyy'}}</p>
                     </div>
 
                 </div>
@@ -47,7 +50,7 @@
         <br />
 
         <div layout="row">
-            <div latout="column" layout-align="space-around center" flex>
+            <div latout="column" layout-align="space-around center" layout-padding flex>
                 <h1><span style="font-weight:700;">Etapas</span></h1>
                 <br />
                 <timeline>
@@ -70,7 +73,7 @@
                     </timeline-event>
                 </timeline>
             </div>
-            <div flex layout-align="space-around">
+            <div flex layout-align="space-around" layout-padding>
                 <h1><span style="font-weight:700;">Puestos</span> disponibles.</h1>
                 <div ng-repeat="puesto in ofertaDetalle.Puestos" class="puestos_box" layout="column" layout-align="space-around center" flex="70">
                     <h2>{{puesto.Nombre}}</h2>

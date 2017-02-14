@@ -69,6 +69,10 @@
     <Content Include="App\DashboardProfesional\Partials\profesionalDashboard.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalContenido.html" />
     <Content Include="App\DashboardProfesional\Partials\profesionalMenu.html" />
+    <Content Include="App\Empleados\empleadosCtrl.js" />
+    <Content Include="App\Empleados\empleadosDF.js" />
+    <Content Include="App\Empleados\Partials\empleadoAdd.html" />
+    <Content Include="App\Empleados\Partials\empleadosList.html" />
     <Content Include="App\Empresas\Partials\empresaPerfilPublico.html" />
     <Content Include="App\EtapasOferta\etapasOfertaCtrl.js" />
     <Content Include="App\EtapasOferta\etapasOfertaDF.js" />
@@ -96,6 +100,7 @@
     <Content Include="App\Notificaciones\Partials\detalleNotificacionExperiencia.html" />
     <Content Include="App\Notificaciones\Partials\detalleNotificacionInvOfertaPrivada.html" />
     <Content Include="App\Notificaciones\Partials\detalleNotificacionPostulacion.html" />
+    <Content Include="App\Ofertas\Partials\ofertasPrivadasList.html" />
     <Content Include="App\Ofertas\Partials\ofertaPrivada.html" />
     <Content Include="App\Ofertas\Partials\ofertasAdd.html" />
     <Content Include="App\Ofertas\Partials\ofertasList.html" />

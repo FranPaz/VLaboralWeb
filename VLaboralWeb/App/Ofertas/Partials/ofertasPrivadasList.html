@@ -1,0 +1,58 @@
+﻿<md-dialog flex="60">
+    <md-toolbar>
+        <div class="md-toolbar-tools" style="background-color:rgb(62, 138, 187);">
+            <h2>Selecciona una oferta privada</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <a class="fa fa-times"></a>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content" layout="column">
+            <h3 layout="column" layout-align="center center" ng-show="ofertasPrivadas.length == null">¡No hay ofertas cargadas!</h3>
+            <md-card flex="100" ng-show="ofertasPrivadas.length != null">
+                <md-list>
+                    <md-list-item ng-repeat="o in ofertasPrivadas">
+                        <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media" layout-padding>
+                                    <img src="../../img/logo.png" />
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <div layout="row" layout-padding flex>
+                                    <div flex class="ic_p">
+                                        <h3>{{o.nombre}}</h3>
+                                        <br />
+                                        <p>{{o.descripcion}}</p>
+                                        <br />
+                                        <div layout="row">
+                                            <p>Fecha de inicio: {{o.fechaInicioConvocatoria | date: dd/MM/YYYY}}</p>
+                                            <p>Fecha de fin: {{o.fechaFinConvocatoria | date: dd/MM/YYYY}}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div layout="column" layout-align="start end">
+                                        <md-button style="background-color:#00C853; color:#ffffff">Seleccionar oferta</md-button>
+                                    </div>
+
+                                </div>
+                            </md-card-title-text>
+
+                        </md-card-title>                      
+                        
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    
+                </md-list>
+                
+
+            </md-card>
+            
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="column" layout-align="center center">
+        <md-button style="background-color:#ff0000; color:#ffffff" ui-sref="empresa.ofertas.nuevaOferta" ng-click="cancel()">Crear oferta nueva +</md-button>
+    </md-dialog-actions>
+</md-dialog>
