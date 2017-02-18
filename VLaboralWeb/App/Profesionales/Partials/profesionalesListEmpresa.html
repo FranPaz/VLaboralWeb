@@ -1,130 +1,90 @@
-﻿<!--<md-toolbar>
-    <div class="md-toolbar-tools">
-        <h2 class="md-title">Lista Profesionales</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="closeDialog()">
-            <i class="fa fa-times"></i>
-        </md-button>
-    </div>
-</md-toolbar>-->
-
-    <!-- #region iafar: contenido de listado -->
-<main class="ad_ofer">
-
-    <md-content>
-        <div layout="row" layout-fill flex>
-            <md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id=" left" class="md-sidenav-left">
-                <h1 class="md-toolbar-tools">Filtrar</h1>
-                <md-content layout-padding layout="column">
-                    <label>Valoracion</label>
-                    <md-checkbox>5 Estrellas</md-checkbox>
-                    <md-checkbox>+ 4 Estrellas</md-checkbox>
-                    <md-checkbox>+ 3 Estrellas</md-checkbox>
-                    <md-checkbox>+ 2 Estrellas</md-checkbox>
-                    <md-checkbox>+ 1 Estrellas</md-checkbox>
-                    <md-divider></md-divider>
-                    <label>Rubro</label>
-                    <md-checkbox>Informatica</md-checkbox>
-                    <md-checkbox>Construcción</md-checkbox>
-                    <md-divider></md-divider>
-                    <label>Lugar de residencia</label>
-                    <md-checkbox>Santiago del Estero</md-checkbox>
-                    <md-checkbox>Tucuman</md-checkbox>
-                    <md-checkbox>Salta</md-checkbox>
-                    <md-divider></md-divider>
-                    <label>Ordenar</label>
-                    <md-checkbox>Nombre A-Z</md-checkbox>
-                    <md-checkbox>Nombre Z-A</md-checkbox>
-                    <md-divider></md-divider>
-                    <md-button>Buscar</md-button>
-                </md-content>
-            </md-sidenav>
-            <md-content layout="row" style="background-color:#eee" layout-fill>
-                <md-card flex>
-                    <md-card-title layout="column" style="max-height: 120px ">
-                        <!--<h2 class="md-title">Lista Profesionales</h2>-->
-                        <md-toolbar class="md-table-toolbar md-default">
-                            <!--<span class="md-subhead">Busqueda personalizada</span>-->
-                            <div layout="row">
-
-                                <md-input-container flex="70">
-                                    <input type="text" ng-model="filtro" placeholder="Buscar">
-                                </md-input-container>
-
-
-                                <md-button layout-align="end end" ng-click="filtrarLista(filtro)">Buscar</md-button>
-                            </div>
-
-                        </md-toolbar>
-                    </md-card-title>
-                    <br>
-                    <md-card-content>
-                        <md-table-container style="height:400px">
-                            <table md-table
-                                   ng-model="selectedItems"
-                                   md-row-select="false"
-                                   >
-                                <thead md-head
-                                       md-order="pagination.order">
-                                    <tr md-row>
-                                        <th md-column
-                                            md-order-by="Apellido" flex="15">
-                                            Apellido
-                                        </th>
-                                        <th md-column flex="15">Nombre</th>
-                                        <th md-column flex="30">Rubro</th>
-                                        <th md-column flex="25">Residencia</th>
-                                        <th md-column
-                                            md-numeric
-                                            md-order-by="ValoracionPromedio"
-                                            flex="10">
-                                            Valoracion Promedio
-                                        </th>
-                                        <th flex="5"></th>
-                                    </tr>
-                                </thead>
-                                <tbody md-body>
-                                    <tr md-row
-                                        md-select="p"
-                                        md-auto-select="true"
-                                        ng-repeat="p in profesionalesList| orderBy:pagination.order | xor: selectedPro: 'Id'| limitTo: pagination.limit : (pagination.current -1) * pagination.limit | searchField: 'Nombre': 'Apellido': 'Domicilio' | filter: search">
-                                        <!--orderBy:pagination.order-->
-                                        <td md-cell flex="nogrow">{{p.Apellido}}</td>
-                                        <td md-cell flex="nogrow">{{p.Nombre}}</td>
-                                        <td md-cell flex="nogrow">
-                                            <!--<span ng-repeat="sr in p.Subrubros">{{sr.Rubro.Nombre}}</span>-->
-                                            <md-chips ng-model="p.Subrubros"
-                                                      readonly="true"
-                                                      md-max-chips="5">
-                                                <md-chip-template>
-                                                    <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
-
-                                                </md-chip-template>
-                                            </md-chips>
-                                        </td>
-                                        <td md-cell flex="nogrow">{{p.Domicilio}}</td>
-                                        <td md-cell flex="nogrow">{{p.ValoracionPromedio + " estrellas"}}</td>
-                                        <td md-cell flex="nogrow">
-                                            <md-button class="md-raised" ui-sref="empresa.profesional({idPro: p.Id})">Detalle</md-button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </md-table-container>
-
-
-                        <md-table-pagination md-limit="pagination.limit"
-                                             md-page="pagination.current"
-                                             md-total="{{profesionalesList.length - selectedPro.length}}"
-                                             md-page-select></md-table-pagination><!--md-on-paginate="onPaginate"-->
-                    </md-card-content>
-                </md-card>
-
-
-            </md-content>
-
+﻿ <!-- #region iafar: contenido de listado -->
+<main>
+    <md-container>
+        <!-- COMIENZO SECCION LISTA DE PROFESIONALES -->
+        <div class="t_list">
+            <h1>Listado de Profesionales</h1>
         </div>
-    </md-content>
+        <section class="ofertas">
+            <div class="sidebar">
+                <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosProfesionales.options.selectableFilters">
+                    <h3>{{tipoFiltro}}  </h3>
+                    <ul ng-repeat="valorFiltro in valoresFiltro">
+                        <li>
+                            <md-checkbox ng-click="setSelectedProfesionales(tipoFiltro, valorFiltro)"
+                                         ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.id.toString()) >= 0">
+                                {{valorFiltro.descripcion}} ({{valorFiltro.cantidad}})
+                            </md-checkbox>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lista">
+                <md-table-container>
+                    <table md-table ng-model="selectedItems" md-row-select="false">
+                        <thead md-head></thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="p in profesionalesList">
+                                <td md-cell>
+                                    <article>
+                                        <div class="logo_ofer">
+                                            <img src="../../../img/perfil.jpg" />                                            
+                                        </div>
+                                        <div class="info_ofer">
+                                            <h3>{{p.Apellido + ", " + p.Nombre }}</h3>
+                                            <hr>
+                                            <div class="d_ofer">
+                                                <md-chips ng-model="p.Subrubros"
+                                                          readonly="true"
+                                                          md-max-chips="5">
+                                                    <md-chip-template>
+                                                        <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
+                                                    </md-chip-template>
+                                                </md-chips>
+
+                                                <div flex class="ic_p">
+                                                    <p>Domicilio: {{p.Domicilio}}</p>
+                                                    <br />
+                                                    <p>Valoracion: {{p.ValoracionPromedio + " estrellas"}}</p>                                                    
+                                                </div>
+
+                                            </div>
+
+
+                                            <div layout="column" layout-align="start end">
+                                                <md-button style="background-color:#00C853; color:#ffffff" ng-click="abrirDetalle(p.Id)">Ver Perfil</md-button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                     md-limit="pagination.limit"
+                                     md-limit-options="[5, 10, 15]"
+                                     md-page="pagination.current"
+                                     md-total="{{profesionalesList.length - selectedPro.length}}"
+                                     md-page-select></md-table-pagination>
+
+                <!--iafar: divisor de prueba-->
+                <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+                <!-- iafar: mensaje si no se encuentran resultados -->
+
+
+                <div class="text-center text-accent animate-show" ng-show="(profesionalesList.length == 0)">
+                    <h4>No se encontraron Profesionales</h4>
+                </div>
+                <md-divider></md-divider>
+
+            </div>
+        </section>
+    </md-container>
+
+    
 </main>
 
     

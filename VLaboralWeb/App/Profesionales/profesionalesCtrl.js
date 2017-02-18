@@ -1,6 +1,7 @@
 ﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
     , rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
-    ,profesionalesList ,listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro//fpaz: definicion de parametros de entrada    
+    , profesionalesList, listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro
+    , listOpcionesFiltrosOfertas, listOpcionesFiltrosProfesionales//fpaz: definicion de parametros de entrada    
     ) {
 
     
@@ -26,7 +27,7 @@
     $scope.ofertas = listadoOfertas;
     $scope.totalOfertas = listadoOfertas.TotalRows;
     
-    $scope.ofertasPerPage = 10;
+    
     $scope.pagination = {
         current: 1,
         limit: 5
@@ -34,16 +35,17 @@
 
 
     $scope.selectItems = []; //iafar: array de elementos seleccionados para eliminacion
-    $scope.query = {       
-        limit: 3,
-        page: 1
-    }; //iafar: variables scope para paginacion de tabla de documentos
+    
 
     $scope.editValue = false; // variable que voy a usar para activar y desactivar los modos de edicion para hacer el update de la info
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
 
     $scope.profesional.FechaNac = new Date($scope.profesional.FechaNac);
+
+    $scope.opcionesFiltrosOfertas = listOpcionesFiltrosOfertas;
+    $scope.opcionesFiltrosProfesionales = listOpcionesFiltrosProfesionales;
+    $scope.queryFiltros = {};
     //#endregion
 
     //#region iafar: transformar habilidades de chips en strings
@@ -281,47 +283,59 @@
 
 
     //#region Detalle profesional
-    $scope.abrirDetalle = function (prmProfesional) {
+    $scope.abrirDetalle = function (profesionalId) {
+        console.log(profesionalId)
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'profesionalesCtrl',
-            templateUrl: '/App/Postulantes/Partials/postulanteDetalle.html',
+            templateUrl: 'App/Postulantes/Partials/postulanteDetalle.html',
             parent: angular.element(document.body),
             //targetEvent: ev,
             clickOutsideToClose: true,
-            fullscreen: useFullScreen,
-            profesionalesList: profesionalesList,
-            listadoOfertas: function () {
-                return { value: [] };
-            },
-            listadoRubros: function () {
-                return { value: [] };
-            },
-            listadoHabilidades: function () {
-                return { value: [] };
-            },
-            listadoIdentificacionPro: function () {
-                return { value: [] };
-            },
-            //infoProfesional: function (profesionalesDF, prmProfesional) {
-            //    return profesionalesDF.getProfesional(prmProfesional);
-            //},
-            infoProfesional: prmProfesional,
+            fullscreen: true,
+            resolve: {
+                listadoOfertas: function () {
+                    return { value: [] };
+                },                
+                listadoRubros: function () {
+                    return { value: [] };
+                },
+                listadoHabilidades: function () {
+                    return { value: [] };
+                },
+                listadoIdentificacionPro: function () {
+                    return { value: [] };
+                },
+                profesionalesDF: 'profesionalesDF',
+                infoProfesional: function (profesionalesDF) {
 
-            selectedPro: function () {
-                return { value: [] };
-            },
-            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
-            }]
-
-        
+                    return profesionalesDF.getProfesional(profesionalId);
+                },
+                listadoOfertas: function () {
+                    return { value: [] };
+                },
+                selectedPro: function () {
+                    return [];
+                },
+                profesionalesList: function () {
+                    return { value: [] };
+                },
+                listOpcionesFiltrosOfertas: function () {
+                    return { value: [] };
+                },
+                listOpcionesFiltrosProfesionales: function () {
+                    return { value: [] };
+                },
+                loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
+                }]
+            }
         })
         .then(function () {
 
         });
     }
-    //#endRegion
+    //#endregion
 
     //#region Convocar profesional
     $scope.convocarProfesional = function (prmProfesional) {
@@ -396,7 +410,94 @@
     }
     //#endregion
 
+    //#region fpaz: funciones para el manejo de filtros y ordenamiento en el listado de ofertas
 
+    $scope.setSelectedOfertas = function (filterType, filterValue) { //funcion para armar el objeto con los filtros para las ofertas
+        //si el valor pasado como parametro existe lo elimino, sino lo agrego
 
+        //convierto el id en string
+        var id = filterValue.id.toString();
+
+        if ($scope.queryFiltros[filterType] && $scope.queryFiltros[filterType].indexOf(id) >= 0) {
+            if (Array.isArray($scope.queryFiltros[filterType])) {
+                $scope.queryFiltros[filterType].splice($scope.queryFiltros[filterType].indexOf(id), 1);
+            } else {
+                $scope.queryFiltros[filterType] = [];
+            }
+        } else {
+            if (!$scope.queryFiltros[filterType]) {
+                $scope.queryFiltros[filterType] = [];
+            }
+
+            $scope.queryFiltros[filterType].push(id);
+        }
+
+        //llamo al webapi para obtener los valores filtrados
+        $scope.obtenerListadoFiltradoOfertas();
+
+    }
+    
+    $scope.obtenerListadoFiltradoOfertas = function () {
+        console.log('entra a $scope.obtenerListadoFiltradoOfertas');
+
+        var query = angular.copy($scope.queryFiltros);
+
+        ofertasDF.obtenerOfertasFiltradas(query).then(function (response) {
+            console.log('entra a obtener ofertas filtradas');            
+            $scope.ofertas = response;            
+        },
+    function (err) {
+        if (err) {
+            $scope.error = err;
+            alert("Error al Filtrar las Ofertas: " + $scope.error.Message);
+        }
+    });
+    }
+
+    //#endregion
+
+    //#region fpaz: funciones para el manejo de filtros y ordenamiento en el listado de profesionales
+    $scope.setSelectedProfesionales = function (filterType, filterValue) { //funcion para armar el objeto con los filtros para los profesionales
+        //si el valor pasado como parametro existe lo elimino, sino lo agrego
+
+        //convierto el id en string
+        var id = filterValue.id.toString();
+
+        if ($scope.queryFiltros[filterType] && $scope.queryFiltros[filterType].indexOf(id) >= 0) {
+            if (Array.isArray($scope.queryFiltros[filterType])) {
+                $scope.queryFiltros[filterType].splice($scope.queryFiltros[filterType].indexOf(id), 1);
+            } else {
+                $scope.queryFiltros[filterType] = [];
+            }
+        } else {
+            if (!$scope.queryFiltros[filterType]) {
+                $scope.queryFiltros[filterType] = [];
+            }
+
+            $scope.queryFiltros[filterType].push(id);
+        }
+
+        //llamo al webapi para obtener los valores filtrados
+        $scope.obtenerListadoFiltradoProfesionales();
+
+    }
+
+    $scope.obtenerListadoFiltradoProfesionales = function () {
+        console.log('entra a $scope.obtenerListadoFiltradoProfesionales');
+
+        var query = angular.copy($scope.queryFiltros);
+
+        profesionalesDF.obtenerProfesionalesFiltrados(query).then(function (response) {
+            console.log('entra a obtener profesionales filtrados');
+            $scope.ofertas = response;
+        },
+    function (err) {
+        if (err) {
+            $scope.error = err;
+            alert("Error al Filtrar los profesionales: " + $scope.error.Message);
+        }
+    });
+    }
+    //#endregion
 
 });

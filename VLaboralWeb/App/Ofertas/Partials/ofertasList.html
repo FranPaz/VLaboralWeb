@@ -1,6 +1,5 @@
 ﻿<main>
-    <md-container>
-        <!-- COMIENZO SECCION LISTA DE OFERTAS -->
+    <md-container>      
         <!-- COMIENZO SECCION LISTA DE OFERTAS -->
 
         <div class="t_list">
@@ -9,90 +8,74 @@
         </div>
 
         <section class="ofertas">
-
             <div class="sidebar">
-                <h3><span class="icon-bullhorn icono"></span> Rubro</h3>
-                <ul>
-                    <li><a href="#">Informatica</a></li>
-                    <li><a href="#">Construcción</a></li>
-                    <li><a href="#">Ejecutivo</a></li>
-                    <li><a href="#">Economia</a></li>
-                    <li><a href="#">Contable</a></li>
-                    <li><a href="#">Transporte</a></li>
-                    <li><a href="#">Atencion al publico</a></li>
-                    <li><a href="#">Pre-ventista</a></li>
-                    <li><a href="#">Electricidad</a></li>
-                    <li><a href="#">Seguridad</a></li>
-                </ul>
-                <h3><span class="icon-location icono"></span> Ubicación</h3>
-                <ul>
-                    <li><a href="#">Buenos aires</a></li>
-                    <li><a href="#">Santa fe</a></li>
-                    <li><a href="#">Cordoba</a></li>
-                    <li><a href="#">Tucuman</a></li>
-                    <li><a href="#">Santiago del estero</a></li>
-                    <li><a href="#">San juan</a></li>
-                    <li><a href="#">Tierra del fuego</a></li>
-                    <li><a href="#">Mendoza</a></li>
-                    <li><a href="#">Salta</a></li>
-                    <li><a href="#">Otros (11)</a></li>
-                </ul>
-                <h3><span class="icon-calendar icono"></span> Fecha de oferta</h3>
-                <ul>
-                    <li><a href="#">Hace 3 dias</a></li>
-                    <li><a href="#">Hace una semana</a></li>
-                    <li><a href="#">Hace 15 dias</a></li>
-                    <li><a href="#">Ultimo mes</a></li>
-                </ul>
-                <h3><span class="icon-clock icono"></span> Disponibilidad horaria</h3>
-                <ul>
-                    <li><a href="#">Por la mañana</a></li>
-                    <li><a href="#">Por la tarde</a></li>
-                    <li><a href="#">Horario corrido</a></li>
-                    <li><a href="#">Full time</a></li>
-                </ul>
+                <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosOfertas.options.selectableFilters">                    
+                    <h3>{{tipoFiltro}}  </h3>
+                    <ul ng-repeat="valorFiltro in valoresFiltro">
+                        <li>
+                            <md-checkbox ng-click="setSelectedOfertas(tipoFiltro, valorFiltro)" 
+                                         ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.id.toString()) >= 0">
+                                {{valorFiltro.descripcion}} ({{valorFiltro.cantidad}})
+                            </md-checkbox>
+                        </li>                        
+                    </ul>
+                </div>                
             </div>
 
             <div class="lista">
-                <div dir-paginate="oferta in ofertas.Results | itemsPerPage: ofertasPerPage" total-items="totalOfertas" current-page="pagination.current">
-                    <article>
-                        <div class="logo_ofer">
-                            <img src="img/logo.png">
-                            <h2>{{ oferta.Empresa.Nombre }}</h2>
-                        </div>
-                        <div class="info_ofer">
-                            <h1>{{ oferta.Nombre }}</h1>
-                            <hr>
-                            <div class="d_ofer">
-                                <h4>fecha de convocatoria: {{ oferta.FechaInicioConvocatoria  |  date:'dd/MM/yyyy' }} a {{ oferta.FechaFinConvocatoria  |  date:'dd/MM/yyyy' }}</h4>
-                                <div ng-switch on="oferta.Publica">
-                                    <h5 ng-switch-when="true">Pública</h5>
-                                    <h5 ng-switch-when="false">Privada</h5>
-                                </div>
-                            </div>
-                            <h3>{{ oferta.Descripcion }}</h3>
-                            <a ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isEmpresa">ver más</a>
-                            <a ui-sref="profesional.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isProfesional">ver más</a>
-                        </div>
-                    </article>
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head>
+                            
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="oferta in ofertas">
+                                <td md-cell>
+                                    <article>
+                                        <div class="logo_ofer">
+                                            <img src="img/logo.png">
+                                            <h2>{{ oferta.Empresa.Nombre }}</h2>
+                                        </div>
+                                        <div class="info_ofer">
+                                            <h1>{{ oferta.Nombre }}</h1>
+                                            <hr>
+                                            <div class="d_ofer">
+                                                <h4>fecha de convocatoria: {{ oferta.FechaInicioConvocatoria  |  date:'dd/MM/yyyy' }} a {{ oferta.FechaFinConvocatoria  |  date:'dd/MM/yyyy' }}</h4>
+                                                <div ng-switch on="oferta.Publica">
+                                                    <h5 ng-switch-when="true">Pública</h5>
+                                                    <h5 ng-switch-when="false">Privada</h5>
+                                                </div>
+                                            </div>
+                                            <h3>{{ oferta.Descripcion }}</h3>
+                                            <a ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isEmpresa">ver más</a>
+                                            <a ui-sref="profesional.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isProfesional">ver más</a>
+                                        </div>
+                                    </article>
+                                </td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                     md-limit="pagination.limit"
+                                     md-limit-options="[5, 10, 15]"
+                                     md-page="pagination.current"
+                                     md-total="{{ofertas.length}}"
+                                     md-page-select></md-table-pagination>
+                    
 
                     <!--iafar: divisor de prueba-->
                     <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
                     <md-divider hide-gt-sm ng-if="!$last"></md-divider>
                     <!-- iafar: mensaje si no se encuentran resultados -->
                     
-                </div>
-                <div class="text-center text-accent animate-show" ng-show="(ofertas.Results.length == 0)">
+                
+                <div class="text-center text-accent animate-show" ng-show="(ofertas.length == 0)">
                     <h4>No se encontraron ofertas</h4>
                 </div>
                 <md-divider></md-divider>
-                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+                
             </div>
         </section>
-
-
-
-
-
 </md-container>
 </main>	

@@ -68,8 +68,14 @@
                 selectedPro: function () {
                     return [];
                 },
-                profesionalesList: function (profesionalesDF) {
-                    return profesionalesDF.getProfesionales(1, 5);
+                profesionalesList: function () {
+                    return { value: [] };
+                },
+                listOpcionesFiltrosOfertas: function () {
+                    return { value: [] };
+                },
+                listOpcionesFiltrosProfesionales: function () {
+                    return { value: [] };
                 },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);

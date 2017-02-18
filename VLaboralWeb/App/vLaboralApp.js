@@ -50,6 +50,12 @@
                             profesionalesList: function () {
                                 return { value: [] };
                             },
+                            listOpcionesFiltrosOfertas: function (ofertasDF) {
+                                return ofertasDF.obtenerOpcionesFiltrosOfertas();
+                            },
+                            listOpcionesFiltrosProfesionales: function () {
+                                return { value: [] };
+                            },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                             }]
@@ -134,6 +140,9 @@
                             listadoOfertas: function () {
                                 return { value: [] };
                             },
+                            listOpcionesFiltrosOfertas: function () {
+                                return { value: [] };
+                            },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
                             }]
@@ -158,6 +167,9 @@
                             ofertasDF: 'ofertasDF',
                             listadoOfertas: function (ofertasDF) {
                                 return ofertasDF.getOfertas(1, 5);
+                            },
+                            listOpcionesFiltrosOfertas: function (ofertasDF) {
+                                return ofertasDF.obtenerOpcionesFiltrosOfertas();
                             },
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
@@ -465,6 +477,12 @@
                             selectedPro: function () {
                                 return { value: [] };
                             },
+                            listOpcionesFiltrosOfertas: function () {
+                                return { value: [] };
+                            },
+                            listOpcionesFiltrosProfesionales: function (profesionalesDF) {
+                                return profesionalesDF.obtenerOpcionesFiltrosProfesionales();
+                            },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                             }]
@@ -505,6 +523,12 @@
                             profesionalesList: function () {
                                 return { value: [] };
                             },
+                            listOpcionesFiltrosOfertas: function () {
+                                return { value: [] };
+                            },
+                            listOpcionesFiltrosProfesionales: function () {
+                                return { value: [] };
+                            },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                             }]
@@ -523,7 +547,7 @@
                             empleados: function () {
                                 return { value: [] };
                             },
-                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            loadEmpleadosCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empleados/empleadosCtrl.js']);
                             }]
                         }
@@ -680,6 +704,12 @@
                             profesionalesList: function () {
                                 return { value: [] };
                             },
+                            listOpcionesFiltrosOfertas: function () {
+                                return { value: [] };
+                            },
+                            listOpcionesFiltrosProfesionales: function () {
+                                return { value: [] };
+                            },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                             }]
@@ -724,6 +754,12 @@
                                 return { value: [] };
                             },
                             profesionalesList: function () {
+                                return { value: [] };
+                            },
+                            listOpcionesFiltrosOfertas: function (ofertasDF) {                                
+                                return ofertasDF.obtenerOpcionesFiltrosOfertas();
+                            },
+                            listOpcionesFiltrosProfesionales: function () {
                                 return { value: [] };
                             },
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -809,6 +845,9 @@
                             listadoOfertas: function () {
                                 return { value: [] };
                             },
+                            listOpcionesFiltrosOfertas: function () {
+                                return { value: [] };
+                            },                            
                             loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empresas/empresasCtrl.js']);
                             }]
