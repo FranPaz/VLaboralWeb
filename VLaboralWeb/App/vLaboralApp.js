@@ -512,7 +512,7 @@
                     }
                 }
             })
-
+            //#region listado de empleados de la empresa
             .state('empresa.empleadosList', {
                 url: '/Empleados',
                 views: {
@@ -523,12 +523,15 @@
                             empleados: function () {
                                 return { value: [] };
                             },
+                            profesionalesDF: 'profesionalesDF',
+                            empleadosDF: 'empleadosDF',
                             loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empleados/empleadosCtrl.js']);
                             }]
                         }
                     }
                 }
+                //#endregion
             })
 
             //#endregion

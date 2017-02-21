@@ -29,6 +29,23 @@
         return deferred.promise;
     }
 
+    var _getProfesionalId = function (tipoIdentificacion, valor) { //iafar: funcion para recuperar un profesional en particular segun Id
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Profesionals/', {
+            params: {
+                TipoIdentificacionProfesionalId: tipoIdentificacion,
+                valor: valor
+            }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
