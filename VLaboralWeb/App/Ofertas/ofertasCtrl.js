@@ -329,8 +329,7 @@
 
     //#region iafar: funcion para llamar modal seleccion de profesionales
         
-    $scope.profesionalesAdd = function (postulantes) {
-        debugger;
+    $scope.profesionalesAdd = function (postulantes) {        
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             controller: 'profesionalesCtrl',

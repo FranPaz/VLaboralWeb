@@ -79,11 +79,48 @@
         return deferred.promise;
     };
 
+    //#region fpaz: obtiene el listado de filtros disponibles y posibles valores de esos filtros
+    var _obtenerOpcionesFiltrosProfesionales = function () {
+        var deferred = $q.defer();
+        var options = {
+            Filters: [
+                "Rubros",
+                "Valoraciones"
+            ]
+        };
+
+        $http.post(urlApi + 'api/Profesionals/QueryOptions', options).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+    //#endregion
+
+    //#region fpaz: devuelve el listado de profesionales filtrados
+    var _obtenerProfesionalesFiltrados = function (prmQueryBusquedaFiltrada) {
+        var deferred = $q.defer();
+
+        $http.post(urlApi + 'api/Profesionals/Search', prmQueryBusquedaFiltrada).then(
+            function (response) {
+                deferred.resolve(response.data.results);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+    //#endregion
 
     //#region iafar: area de asignacion de funciones a objeto
     profesionalesDF.getProfesional = _getProfesional;
     profesionalesDF.getProfesionales = _getProfesionales;
     profesionalesDF.putProfesional = _putProfesional;
+    profesionalesDF.obtenerOpcionesFiltrosProfesionales = _obtenerOpcionesFiltrosProfesionales;
+    profesionalesDF.obtenerProfesionalesFiltrados = _obtenerProfesionalesFiltrados;
     //#endregion
 
 

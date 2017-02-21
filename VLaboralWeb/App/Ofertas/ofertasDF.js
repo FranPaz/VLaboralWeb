@@ -42,7 +42,7 @@
             }
         }).then(
             function (response) {
-                deferred.resolve(response.data);
+                deferred.resolve(response.data.Results);
             },
             function (response) {
                 deferred.reject(response.data);
@@ -131,6 +131,44 @@
     }
     //#endregion
 
+    //#region fpaz: obtiene el listado de filtros disponibles y posibles valores de esos filtros
+    var _obtenerOpcionesFiltrosOfertas = function () {
+        var deferred = $q.defer();
+        var options = {
+            Filters: [
+              "Rubros",
+              "DisponibilidadHoraria",
+              "TipoContratacion"
+              //,"Ubicaciones"
+            ]
+        };
+
+        $http.post(urlApi + 'api/Ofertas/QueryOptions', options).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+    //#endregion
+
+    //#region fpaz: devuelve el listado de ofertas filtrado
+    var _obtenerOfertasFiltradas = function (prmQueryBusquedaFiltrada) {
+        var deferred = $q.defer();
+        
+        $http.post(urlApi + 'api/Ofertas/Search', prmQueryBusquedaFiltrada).then(
+            function (response) {
+                deferred.resolve(response.data.results);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+    //#endregion
+
     //#region iafar: area de asignacion de funciones a objeto
     ofertasDF.getOfertas = _getOfertas;
     ofertasDF.getOfertasProfesional = _getOfertasProfesional;
@@ -139,6 +177,8 @@
     ofertasDF.postOfertaPasarSiguienteEtapa = _postOfertaPasarSiguienteEtapa;
     ofertasDF.getOfertasPrivadasProfesional = _getOfertasPrivadasProfesional;
     ofertasDF.postOfertaPrivada = _postOfertaPrivada;
+    ofertasDF.obtenerOpcionesFiltrosOfertas = _obtenerOpcionesFiltrosOfertas;
+    ofertasDF.obtenerOfertasFiltradas = _obtenerOfertasFiltradas;
     //#endregion
         
     return ofertasDF;
