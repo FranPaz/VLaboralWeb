@@ -549,7 +549,7 @@
                             },
                             profesionalesDF: 'profesionalesDF',
                             empleadosDF: 'empleadosDF',
-                            loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            loadEmpleadoslesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empleados/empleadosCtrl.js']);
                             }]
                         }

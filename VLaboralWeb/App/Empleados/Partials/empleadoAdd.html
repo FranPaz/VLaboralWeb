@@ -21,23 +21,23 @@
                             <label>Tipo</label>
                             <md-select ng-model="empleado.IdTipo">
                                 <!--<md-option><em>None</em></md-option>-->
-                                <md-option value="1">
+                                <md-option value=1>
                                     Dni
                                 </md-option>
-                                <md-option value="2">
+                                <md-option value=2>
                                     Cuil
                                 </md-option>
-                                <md-option value="3">
+                                <md-option value=3>
                                     Pasaporte
                                 </md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container flex="35">
                             <label>Numero</label>
-                            <input required ng-model="empleado.Valor" ng-blur="buscarEmpleado()">
-                            <div ng-messages="empleado.Valor.$error">
+                            <input required ng-model="empleado.Valor" ng-blur="buscarEmpleado(empleado.IdTipo,empleado.Valor)">
+                            <!--<div ng-messages="empleado.Valor.$error">
                                 <div ng-message="err">{{err}}</div>
-                            </div>
+                            </div>-->
                         </md-input-container>
                     </div>
 
@@ -66,13 +66,13 @@
                     <div flex="30">
                         <md-input-container>
                             <h3>Legajo</h3>
-                            <input ng-disabled="habilitado" ng-model="empleado.Nombre" class="inp" />
+                            <input ng-model="empleado.Legajo" class="inp" />
                         </md-input-container>
                     </div>  
                     <div layout="column" flex layout-align="start start">
                         <br />
                         <h3>Fecha de ingreso</h3>
-                        <md-datepicker ng-disabled="habilitado" ng-model="empleado.FechaNac"></md-datepicker>
+                        <md-datepicker required ng-model="empleado.FechaInicioVigencia" ></md-datepicker>
 
                         
                     </div>                  
@@ -126,7 +126,7 @@
         </md-card>
     </md-dialog-content>
     <md-dialog-actions>
-        <md-button >Guardar</md-button>
+        <md-button ng-click="guardarEmpleado(empleado)" >Guardar</md-button>
         <md-button ng-click="cancel()">Cancelar</md-button>
     </md-dialog-actions>
 </md-dialog>

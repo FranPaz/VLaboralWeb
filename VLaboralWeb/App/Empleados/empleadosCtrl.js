@@ -34,22 +34,63 @@
     //#region Buscar empleado: esta funcion busca en la tabla empleados 
     // y si no encuentra los datos ahí, los busca en la tabla profesionales
     // luego si no encuentra los datos en profesionales habilita campos para completar
-    $scope.buscarEmpleado = function () {
-        empleadosDF.getEmpleado($scope.empleado.IdTipo, $scope.empleado.Valor).then(function (response) {
-            if (response != null) {
-                $scope.err = "Ya hay un empleado cargado";
-                return response;
-            }            
-        }).then(function (response) {
-            profesionalesDF.getProfesional(response.Id).then(function (response) {                
-                $scope.empleado = response;
-                
-            })
-            .then(function (response) {
-                if (response == null) {
+    $scope.buscarEmpleado = function (IdTipo, Valor) {
+
+        empleadosDF.getEmpleado(IdTipo, Valor).then(function (response) {
+            if (response == null) {
+                profesionalesDF.getProfesionalId(IdTipo, Valor).then(function (response) {
+                    $scope.empleado = response;
+                    $scope.empleado.FechaNac = new Date(response.FechaNac);
                     $scope.habilitado = true;
-                }
-            })
+                    angular.forEach(response.IdentificacionesProfesional, function (i) {
+                        if (parseInt(IdTipo) == i.TipoIdentificacionProfesionalId && Valor == i.Valor) {
+                            $scope.empleado.IdTipo = IdTipo;
+                            $scope.empleado.Valor = Valor;
+                        }
+                    })
+                });
+            }
+            else {
+                alert("ya hay un empleado cargado");
+                $scope.habilitado = true;
+            }
+
+        });
+
+        //empleadosDF.getEmpleado($scope.empleado.IdTipo, $scope.empleado.Valor).then(function (response) {
+        //    if (response != null) {
+        //        $scope.err = "Ya hay un empleado cargado";
+        //        return response;
+        //    }            
+        //}).then(function () {
+        //    profesionalesDF.getProfesionalId($scope.empleado.IdTipo, $scope.empleado.Valor).then(function (response) {                
+        //        $scope.empleado = response;
+                
+        //    })
+        //    .then(function (response) {
+        //        if (response == null) {
+        //            $scope.habilitado = true;
+        //        }
+        //    })
+        //})
+    }
+
+    $scope.guardarEmpleado = function (empleado) {
+        empleado.IdentificacionesEmpleado = [
+            {
+                IdentificacionEmpleadoId: empleado.IdTipo,
+                Valor: empleado.Valor
+            }
+        ];
+
+        empleadosDF.postEmpleado(empleado).then(function (response) {
+            if (response != null) {
+                alert("Empleado guardado");
+            }
+            else {
+                alert("Error");
+            }
+            
         })
     }
     //#endRegion

@@ -29,11 +29,11 @@
         return deferred.promise;
     }
 
-    var _getProfesionalId = function (tipoIdentificacion, valor) { //iafar: funcion para recuperar un profesional en particular segun Id
+    var _getProfesionalId = function (tipoIdentificacionId, valor) { //iafar: funcion para recuperar un profesional en particular segun Id
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/', {
             params: {
-                TipoIdentificacionProfesionalId: tipoIdentificacion,
+                tipoIdentificacion: tipoIdentificacionId,
                 valor: valor
             }
         }).then(
@@ -121,6 +121,7 @@
     profesionalesDF.putProfesional = _putProfesional;
     profesionalesDF.obtenerOpcionesFiltrosProfesionales = _obtenerOpcionesFiltrosProfesionales;
     profesionalesDF.obtenerProfesionalesFiltrados = _obtenerProfesionalesFiltrados;
+    profesionalesDF.getProfesionalId = _getProfesionalId;
     //#endregion
 
 
