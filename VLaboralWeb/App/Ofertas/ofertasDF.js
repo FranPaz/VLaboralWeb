@@ -160,7 +160,7 @@
         
         $http.post(urlApi + 'api/Ofertas/Search', prmQueryBusquedaFiltrada).then(
             function (response) {
-                deferred.resolve(response.data.results);
+                deferred.resolve(response.data);
             },
             function (response) {
                 deferred.reject(response.data);

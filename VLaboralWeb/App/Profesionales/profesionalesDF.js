@@ -89,7 +89,7 @@
 
         $http.post(urlApi + 'api/Profesionals/Search', prmQueryBusquedaFiltrada).then(
             function (response) {
-                deferred.resolve(response.data.results);
+                deferred.resolve(response.data);
             },
             function (response) {
                 deferred.reject(response.data);

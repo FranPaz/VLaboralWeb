@@ -9,7 +9,18 @@
     $scope.totalOfertas = listadoOfertas.TotalRows;
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
     $scope.opcionesFiltrosOfertas = listOpcionesFiltrosOfertas;
-    $scope.queryFiltros = {};
+    
+    //#region variables iniciales para paginacion
+    $scope.queryFiltros = { // tiene los parametros que voy a pasar para filtrar el listado. 
+        Rows: 5, //valor inicial de cantidad de filas mostradas
+        Page: 1 //valor inicial de la pagina mostrada
+    };
+
+    $scope.limitOptions = [1, 2, 5, 10, 15];// sirve para seleccionar la cantidad de filas que se van a mostrar en la tabla
+
+    $scope.TotalRows;
+    //#endregion
+
     //#endregion
     
     //#region fpaz: funciones para el manejo de filtros y ordenamiento en el listado de ofertas
@@ -18,7 +29,7 @@
         //si el valor pasado como parametro existe lo elimino, sino lo agrego
 
         //convierto el id en string
-        var id = filterValue.id.toString();
+        var id = filterValue.Id.toString();
 
         if ($scope.queryFiltros[filterType] && $scope.queryFiltros[filterType].indexOf(id) >= 0) {
             if (Array.isArray($scope.queryFiltros[filterType])) {
@@ -46,7 +57,8 @@
 
         ofertasDF.obtenerOfertasFiltradas(query).then(function (response) {
             console.log('entra a obtener ofertas filtradas');
-            $scope.ofertas = response;
+            $scope.ofertas = response.results;
+            $scope.TotalRows = response.totalPages;
         },
     function (err) {
         if (err) {
@@ -54,6 +66,13 @@
             alert("Error al Filtrar las Ofertas: " + $scope.error.Message);
         }
     });
+    }
+
+    $scope.logPaginationOfertas = function (page, limit) {
+        console.log('page: ', page);
+        console.log('limit: ', limit);
+        //llamo al webapi para obtener los valores filtrados
+        $scope.obtenerListadoFiltradoOfertas();
     }
 
     //#endregion
