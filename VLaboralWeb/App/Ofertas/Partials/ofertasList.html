@@ -14,8 +14,8 @@
                     <ul ng-repeat="valorFiltro in valoresFiltro">
                         <li>
                             <md-checkbox ng-click="setSelectedOfertas(tipoFiltro, valorFiltro)" 
-                                         ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.id.toString()) >= 0">
-                                {{valorFiltro.descripcion}} ({{valorFiltro.cantidad}})
+                                         ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.Id.toString()) >= 0">
+                                {{valorFiltro.Descripcion}} ({{valorFiltro.Cantidad}})
                             </md-checkbox>
                         </li>                        
                     </ul>
@@ -57,11 +57,19 @@
                     </table>
                 </md-table-container>
                 <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                     md-limit="queryFiltros.Rows"
+                                     md-limit-options="limitOptions"
+                                     md-page="queryFiltros.Page"
+                                     md-on-paginate="logPaginationOfertas"
+                                     md-total="{{TotalRows}}"
+                                     md-page-select></md-table-pagination>
+
+                <!--<md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
                                      md-limit="pagination.limit"
                                      md-limit-options="[5, 10, 15]"
                                      md-page="pagination.current"
                                      md-total="{{ofertas.length}}"
-                                     md-page-select></md-table-pagination>
+                                     md-page-select></md-table-pagination>-->
                     
 
                     <!--iafar: divisor de prueba-->

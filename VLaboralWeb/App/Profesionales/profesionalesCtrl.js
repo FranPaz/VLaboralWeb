@@ -25,18 +25,10 @@
 
     $scope.subRubroDisabled = true;
     $scope.ofertas = listadoOfertas;
-    $scope.totalOfertas = listadoOfertas.TotalRows;
+    //$scope.totalOfertas = listadoOfertas.TotalRows;
     
-    
-    $scope.pagination = {
-        current: 1,
-        limit: 5
-    };
-
-
     $scope.selectItems = []; //iafar: array de elementos seleccionados para eliminacion
     
-
     $scope.editValue = false; // variable que voy a usar para activar y desactivar los modos de edicion para hacer el update de la info
 
     $scope.usuarioLogueado = authSvc.authentication;//fpaz: obtiene la informacion del usuario logueado
@@ -45,7 +37,18 @@
 
     $scope.opcionesFiltrosOfertas = listOpcionesFiltrosOfertas;
     $scope.opcionesFiltrosProfesionales = listOpcionesFiltrosProfesionales;
-    $scope.queryFiltros = {};
+    
+    //#region variables iniciales para paginacion
+    $scope.queryFiltros = { // tiene los parametros que voy a pasar para filtrar el listado. 
+        Rows: 5, //valor inicial de cantidad de filas mostradas
+        Page: 1 //valor inicial de la pagina mostrada
+    };
+
+    $scope.limitOptions = [1, 2, 5, 10, 15];// sirve para seleccionar la cantidad de filas que se van a mostrar en la tabla
+
+    $scope.TotalRows;
+    //#endregion
+
     //#endregion
 
     //#region iafar: transformar habilidades de chips en strings
@@ -416,7 +419,7 @@
         //si el valor pasado como parametro existe lo elimino, sino lo agrego
 
         //convierto el id en string
-        var id = filterValue.id.toString();
+        var id = filterValue.Id.toString();
 
         if ($scope.queryFiltros[filterType] && $scope.queryFiltros[filterType].indexOf(id) >= 0) {
             if (Array.isArray($scope.queryFiltros[filterType])) {
@@ -444,7 +447,8 @@
 
         ofertasDF.obtenerOfertasFiltradas(query).then(function (response) {
             console.log('entra a obtener ofertas filtradas');            
-            $scope.ofertas = response;            
+            $scope.ofertas = response.results;
+            $scope.TotalRows = response.totalPages;
         },
     function (err) {
         if (err) {
@@ -454,6 +458,13 @@
     });
     }
 
+    $scope.logPaginationOfertas = function (page, limit) {
+        console.log('page: ', page);
+        console.log('limit: ', limit);
+        //llamo al webapi para obtener los valores filtrados
+        $scope.obtenerListadoFiltradoOfertas();
+    }
+
     //#endregion
 
     //#region fpaz: funciones para el manejo de filtros y ordenamiento en el listado de profesionales
@@ -461,7 +472,7 @@
         //si el valor pasado como parametro existe lo elimino, sino lo agrego
 
         //convierto el id en string
-        var id = filterValue.id.toString();
+        var id = filterValue.Id.toString();
 
         if ($scope.queryFiltros[filterType] && $scope.queryFiltros[filterType].indexOf(id) >= 0) {
             if (Array.isArray($scope.queryFiltros[filterType])) {
@@ -481,7 +492,7 @@
         $scope.obtenerListadoFiltradoProfesionales();
 
     }
-
+        
     $scope.obtenerListadoFiltradoProfesionales = function () {
         console.log('entra a $scope.obtenerListadoFiltradoProfesionales');
 
@@ -489,7 +500,8 @@
 
         profesionalesDF.obtenerProfesionalesFiltrados(query).then(function (response) {
             console.log('entra a obtener profesionales filtrados');
-            $scope.ofertas = response;
+            $scope.profesionalesList = response.results;
+            $scope.TotalRows = response.totalPages;
         },
     function (err) {
         if (err) {
@@ -497,6 +509,13 @@
             alert("Error al Filtrar los profesionales: " + $scope.error.Message);
         }
     });
+    }
+
+    $scope.logPaginationProfesionales = function (page, limit) {
+        console.log('page: ', page);
+        console.log('limit: ', limit);
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoProfesionales();
     }
     //#endregion
 
