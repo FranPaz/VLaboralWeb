@@ -18,9 +18,40 @@
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <h3>Buscar por Nombre:</h3>
+                    <ul>
+                        <li>
+                            <div layout="row">
+                                <md-input-container flex class="md-icon-float md-block md-title">
+                                    <label>Profesional</label>                                    
+                                    <input type="text" ng-model="nombreProfesional">
+                                </md-input-container>                                                                
+                            </div>                              
+                            <div layout="row">                                
+                                <md-button class="md-raised" flex ng-click="busquedaNombreProfesional(nombreProfesional)">
+                                    Buscar
+                                    <md-icon class="material-icons">search</md-icon>
+                                </md-button>
+                            </div>            
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="lista">
+                <md-toolbar>
+                    <div class="md-toolbar-tools t_list">                        
+                        <span flex></span>
+                        <md-input-container flex="40">
+                            <label>Ordenar por:</label>
+                            <md-select ng-model="queryFiltros.orderBy" ng-change="ordenProfesionalChanged()">
+                                <md-option ng-value="opt" ng-repeat="opt in opcionesFiltrosProfesionales.options.orderByOptions">{{ opt }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </md-toolbar>
+                
                 <md-table-container>
                     <table md-table ng-model="selectedItems" md-row-select="false">
                         <thead md-head></thead>

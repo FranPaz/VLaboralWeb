@@ -75,5 +75,17 @@
         $scope.obtenerListadoFiltradoOfertas();
     }
 
+    $scope.ordenOfertasChanged = function () {
+        console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoOfertas();
+    }
+
+    $scope.busquedaNombreOferta = function (prmNombre) {
+        console.log('Busqueda por nombre: ', $scope.queryFiltros.searchText);
+        $scope.queryFiltros.searchText = prmNombre;
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoOfertas();
+    }
     //#endregion
 });
