@@ -360,6 +360,12 @@
                 profesionalesList: function (profesionalesDF) {
                     return profesionalesDF.getProfesionales(1, 5);
                 },
+                listOpcionesFiltrosOfertas: function () {
+                    return { value: [] };
+                },
+                listOpcionesFiltrosProfesionales: function () {
+                    return { value: [] };
+                },
                 loadProfesionalesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(['App/Profesionales/profesionalesCtrl.js']);
                 }]

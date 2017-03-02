@@ -465,6 +465,18 @@
         $scope.obtenerListadoFiltradoOfertas();
     }
 
+    $scope.ordenOfertasChanged = function () {
+        console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoOfertas();
+    }
+
+    $scope.busquedaNombreOferta = function (prmNombre) {
+        console.log('Busqueda por nombre: ', $scope.queryFiltros.searchText);
+        $scope.queryFiltros.searchText = prmNombre;
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoOfertas();
+    }
     //#endregion
 
     //#region fpaz: funciones para el manejo de filtros y ordenamiento en el listado de profesionales
@@ -488,6 +500,8 @@
             $scope.queryFiltros[filterType].push(id);
         }
 
+        //siempre despues de filtar ordeno por valoracion
+        $scope.queryFiltros.orderBy = 'ValoracionDesc';
         //llamo al webapi para obtener los valores filtrados
         $scope.obtenerListadoFiltradoProfesionales();
 
@@ -514,6 +528,19 @@
     $scope.logPaginationProfesionales = function (page, limit) {
         console.log('page: ', page);
         console.log('limit: ', limit);
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoProfesionales();
+    }
+
+    $scope.ordenProfesionalChanged = function () {
+        console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
+        //llamo al webapi para obtener los valores filtrados        
+        $scope.obtenerListadoFiltradoProfesionales();
+    }
+
+    $scope.busquedaNombreProfesional = function (prmNombre) {
+        console.log('Busqueda por nombre: ', $scope.queryFiltros.searchText);
+        $scope.queryFiltros.searchText = prmNombre;
         //llamo al webapi para obtener los valores filtrados        
         $scope.obtenerListadoFiltradoProfesionales();
     }
