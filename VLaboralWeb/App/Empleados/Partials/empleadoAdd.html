@@ -19,7 +19,7 @@
                     <div flex="20" layout="row">
                         <md-input-container flex="10">
                             <label>Tipo</label>
-                            <md-select ng-model="empleado.IdTipo">
+                            <md-select ng-model="IdTipo">
                                 <!--<md-option><em>None</em></md-option>-->
                                 <md-option value=1>
                                     Dni
@@ -34,7 +34,7 @@
                         </md-input-container>
                         <md-input-container flex="35">
                             <label>Numero</label>
-                            <input required ng-model="empleado.Valor" ng-blur="buscarEmpleado(empleado.IdTipo,empleado.Valor)">
+                            <input required ng-model="Valor" ng-blur="buscarEmpleado(IdTipo,Valor)">
                             <!--<div ng-messages="empleado.Valor.$error">
                                 <div ng-message="err">{{err}}</div>
                             </div>-->
@@ -103,8 +103,8 @@
                         <md-input-container>
                             <h4>Sexo</h4>
                             <md-select ng-disabled="habilitado" ng-model="empleado.Sexo" >
-                                <md-option>Masculino</md-option>
-                                <md-option>Femenino</md-option>
+                                <md-option value="1">Masculino</md-option>
+                                <md-option value="2">Femenino</md-option>
                             </md-select>
                         </md-input-container>
 

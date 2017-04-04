@@ -1,6 +1,23 @@
-﻿vLaboralApp.controller('empleadosCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad,
+﻿vLaboralApp.controller('empleadosCtrl', function ($http, $scope, $mdMedia, $mdDialog, $ocLazyLoad,
     empleadosDF, profesionalesDF,
     empleados, authSvc) {
+
+    $http.get('Countries and States/countries.js').success(function (data) {
+        return $scope.paises = data;
+    })
+
+    
+
+    
+    
+    $scope.buscarProvincias = function () {
+        var url = 'Countries and States/countries/' + $scope.pais + '.js';
+        $http.get(url).success(function (data) {
+            return $scope.provincias = data;
+        })
+    }
+
+    
 
     $scope.empleados = empleados;
 
@@ -39,15 +56,22 @@
         empleadosDF.getEmpleado(IdTipo, Valor).then(function (response) {
             if (response == null) {
                 profesionalesDF.getProfesionalId(IdTipo, Valor).then(function (response) {
-                    $scope.empleado = response;
-                    $scope.empleado.FechaNac = new Date(response.FechaNac);
-                    $scope.habilitado = true;
-                    angular.forEach(response.IdentificacionesProfesional, function (i) {
-                        if (parseInt(IdTipo) == i.TipoIdentificacionProfesionalId && Valor == i.Valor) {
-                            $scope.empleado.IdTipo = IdTipo;
-                            $scope.empleado.Valor = Valor;
-                        }
-                    })
+                    if (response != null) {
+                        $scope.empleado = response;
+                        $scope.empleado.FechaNac = new Date(response.FechaNac);
+                        $scope.habilitado = true;
+                        angular.forEach(response.IdentificacionesProfesional, function (i) {
+                            if (parseInt(IdTipo) == i.TipoIdentificacionProfesionalId && Valor == i.Valor) {
+                                $scope.IdTipo = IdTipo;
+                                $scope.Valor = Valor;
+                            }
+                        })
+                    }
+                    else {
+                        $scope.IdTipo = IdTipo;
+                        $scope.Valor = Valor;
+                        $scope.habilitado = false;
+                    }
                 });
             }
             else {
@@ -78,10 +102,11 @@
     $scope.guardarEmpleado = function (empleado) {
         empleado.IdentificacionesEmpleado = [
             {
-                IdentificacionEmpleadoId: empleado.IdTipo,
-                Valor: empleado.Valor
+                TipoIdentificacionEmpleadoId: $scope.IdTipo,
+                Valor: $scope.Valor
             }
         ];
+        empleado.Domicilio = null;
 
         empleadosDF.postEmpleado(empleado).then(function (response) {
             if (response != null) {
