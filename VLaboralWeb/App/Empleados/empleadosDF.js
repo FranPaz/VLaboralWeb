@@ -32,18 +32,7 @@
             });
         return deferred.promise;
     }
-    
-    //#region fpaz: obtiene el listado de filtros disponibles y posibles valores de esos filtros
-    var _obtenerOpcionesFiltrosEmpleados = function () {
-        var deferred = $q.defer();
-        var options = {
-            Filters: [
-                "Rubros",
-                "Valoraciones"
-            ]
-        };
 
-        $http.post(urlApi + 'api/Empleados/QueryOptions', options).then(
     var _getEmpleadoId = function (tipoIdentificacionId, valor) { //iafar: funcion para recuperar un profesional en particular segun Id
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Empleadoes/', {
@@ -63,6 +52,27 @@
             });
         return deferred.promise;
     };
+    
+    //#region fpaz: obtiene el listado de filtros disponibles y posibles valores de esos filtros
+    var _obtenerOpcionesFiltrosEmpleados = function () {
+        var deferred = $q.defer();
+        var options = {
+            Filters: [
+                "Rubros",
+                "Valoraciones"
+            ]
+        };
+
+        $http.post(urlApi + 'api/Empleados/QueryOptions', options).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    };
+    
     //#endregion
 
     //#region fpaz: devuelve el listado de empleados filtrados
@@ -80,16 +90,6 @@
     };
     //#endregion
 
-    //#region iafar: area de asignacion de funciones a objeto
-    empleadosDF.getEmpleados = _getEmpleados;
-    empleadosDF.getEmpleado = _getEmpleado;
-    empleadosDF.obtenerOpcionesFiltrosEmpleados = _obtenerOpcionesFiltrosEmpleados;
-    empleadosDF.obtenerEmpleadosFiltrados = _obtenerEmpleadosFiltrados;
-    //#endregion
-
-
-    return empleadosDF;
-
     var _postEmpleado = function (data) {
         var deferred = $q.defer();
 
@@ -102,9 +102,17 @@
             });
         return deferred.promise;
     }
-    
+
+    //#region iafar: area de asignacion de funciones a objeto
+    empleadosDF.getEmpleados = _getEmpleados;
+    empleadosDF.getEmpleado = _getEmpleado;
+    empleadosDF.obtenerOpcionesFiltrosEmpleados = _obtenerOpcionesFiltrosEmpleados;
+    empleadosDF.obtenerEmpleadosFiltrados = _obtenerEmpleadosFiltrados;
     empleadosDF.getEmpleado = _getEmpleadoId;
     empleadosDF.postEmpleado = _postEmpleado;
+    //#endregion
+
+
     return empleadosDF;
 
 });

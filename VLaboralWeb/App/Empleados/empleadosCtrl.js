@@ -1,23 +1,19 @@
-﻿vLaboralApp.controller('empleadosCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad    
-    , authSvc, empleadosDF //fpaz: definicion de data factorys
+﻿vLaboralApp.controller('empleadosCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad, $http
+    , authSvc, empleadosDF, profesionalesDF //fpaz: definicion de data factorys
     , empleados, listOpcionesFiltrosEmpleados//fpaz: definicion de parametros de entrada    
     ) {
 
     //#region fpaz: Inicializacion de variables de Scope
     $http.get('Countries and States/countries.js').success(function (data) {
         return $scope.paises = data;
-    })
-
-    
-
-    
+    });
     
     $scope.buscarProvincias = function () {
         var url = 'Countries and States/countries/' + $scope.pais + '.js';
         $http.get(url).success(function (data) {
             return $scope.provincias = data;
         })
-    }
+    };
 
     
 
@@ -49,6 +45,9 @@
             fullscreen: true,
             resolve: {
                 empleados: function () {
+                    return { value: [] };
+                },
+                listOpcionesFiltrosEmpleados: function () {
                     return { value: [] };
                 },
                 loadOfertasCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

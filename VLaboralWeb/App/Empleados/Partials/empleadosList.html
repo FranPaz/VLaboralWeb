@@ -111,11 +111,15 @@
             </div>
         </section>
 
-        <div flex layout="column" layout-align="start end">
-            <md-button style="background-color:#ff0000; color:#ffffff" ng-click="nuevoEmpleado()">Nuevo empleado +</md-button>
-        </div>
+        
     </md-container>
 
+    <!--#region Menu De Herramientas Flotante-->
+    <nav mfb-menu position="br" effect="zoomin" label="Herramientas"
+         active-icon="fa fa-times" resting-icon="fa fa-plus"
+         toggling-method="hover">        
+        <button mfb-button icon="fa fa-user-plus" label="Nuevo Empleado" ng-click="nuevoEmpleado()"></button>        
+    </nav>
 
 </main>
 
