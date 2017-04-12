@@ -1,141 +1,122 @@
-﻿<main class="ad_ofer">
-    <div layout="row" layout-fill flex>
-        <md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id=" left" class="md-sidenav-left">
-            <h1 class="md-toolbar-tools">Filtrar</h1>
-            <md-content layout-padding layout="column">
-                <label>Valoracion</label>
-                <md-checkbox>5 Estrellas</md-checkbox>
-                <md-checkbox>4 Estrellas</md-checkbox>
-                <md-checkbox>3 Estrellas</md-checkbox>
-                <md-checkbox>2 Estrellas</md-checkbox>
-                <md-checkbox>1 Estrellas</md-checkbox>
-                <md-divider></md-divider>
-                <label>Rubro</label>
-                <md-checkbox>Informatica</md-checkbox>
-                <md-checkbox>Construcción</md-checkbox>
-                <md-divider></md-divider>
-                <label>Lugar de residencia</label>
-                <md-checkbox>Santiago del Estero</md-checkbox>
-                <md-checkbox>Tucuman</md-checkbox>
-                <md-checkbox>Salta</md-checkbox>
-                <md-divider></md-divider>
-                <label>Ordenar</label>
-                <md-checkbox>Nombre A-Z</md-checkbox>
-                <md-checkbox>Nombre Z-A</md-checkbox>
-                <md-divider></md-divider>
-                <md-button>Buscar</md-button>
-            </md-content>
-        </md-sidenav>
-
-        <div class="md-dialog-content" layout="column">
-            <div layout="column">
-                
-                <md-input-container>
-                    <h1>Buscar</h1>
-                    <input class="md-input" type="search" ng-model="search" />
-                </md-input-container>                
-            </div>
-            <md-card flex="100" layout="column">
-                <md-list>
-                    <md-list-item>
-                        <md-card-title>
-                            <md-card-title-media>
-                                <div class="md-media-lg card-media" layout-padding>
-                                    <img src="../../../img/perfil.jpg" />
-                                </div>
-                            </md-card-title-media>
-                            <md-card-title-text>
-                                <div layout="row" layout-padding flex>
-                                    <div flex class="ic_p">
-                                        <h3>Nombre del empleado</h3>
-                                        <br />
-                                        <p>Puesto</p>
-                                        <br />
-                                        <p>Dni: 1234</p>
-
-                                    </div>
-                                    <div layout="column" layout-align="start end">
-                                        <md-button style="background-color:#00C853; color:#ffffff">Ver perfil</md-button>
-                                    </div>
-
-                                </div>
-                            </md-card-title-text>
-
-                        </md-card-title>
-                        
-
-                    </md-list-item>
-                    <md-divider></md-divider>
-                    <md-list-item>
-                        <md-card-title>
-                            <md-card-title-media>
-                                <div class="md-media-lg card-media" layout-padding>
-                                    <img src="../../../img/perfil.jpg" />
-                                </div>
-                            </md-card-title-media>
-                            <md-card-title-text>
-                                <div layout="row" layout-padding flex>
-                                    <div flex class="ic_p">
-                                        <h3>Nombre del empleado</h3>
-                                        <br />
-                                        <p>Puesto</p>
-                                        <br />
-                                        <p>Dni: 1234</p>
-
-                                    </div>
-                                    <div layout="column" layout-align="start end">
-                                        <md-button style="background-color:#00C853; color:#ffffff">Ver perfil</md-button>
-                                    </div>
-
-                                </div>
-                            </md-card-title-text>
-
-                        </md-card-title>
-
-
-                    </md-list-item>
-                    <md-divider></md-divider>
-                    <md-list-item>
-                        <md-card-title>
-                            <md-card-title-media>
-                                <div class="md-media-lg card-media" layout-padding>
-                                    <img src="../../../img/perfil.jpg" />
-                                </div>
-                            </md-card-title-media>
-                            <md-card-title-text>
-                                <div layout="row" layout-padding flex>
-                                    <div flex class="ic_p">
-                                        <h3>Nombre del empleado</h3>
-                                        <br />
-                                        <p>Puesto</p>
-                                        <br />
-                                        <p>Dni: 1234</p>
-
-                                    </div>
-                                    <div layout="column" layout-align="start end">
-                                        <md-button style="background-color:#00C853; color:#ffffff">Ver perfil</md-button>
-                                    </div>
-
-                                </div>
-                            </md-card-title-text>
-
-                        </md-card-title>
-
-
-                    </md-list-item>
-                    <md-divider></md-divider>
-
-                </md-list>
-
-
-            </md-card>
+﻿ <!-- #region iafar: contenido de listado -->
+<main>
+    <md-container>
+        <!-- COMIENZO SECCION LISTA DE PROFESIONALES -->
+        <div class="t_list">
+            <h1>Listado de Empleados</h1>
         </div>
+        <section class="ofertas">
+            <div class="sidebar">
+                <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosEmpleados.options.selectableFilters">
+                    <h3>{{tipoFiltro}}  </h3>
+                    <ul ng-repeat="valorFiltro in valoresFiltro">
+                        <li>
+                            <md-checkbox ng-click="setSelectedEmpleados(tipoFiltro, valorFiltro)"
+                                         ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.Id.toString()) >= 0">
+                                {{valorFiltro.Descripcion}} ({{valorFiltro.Cantidad}})
+                            </md-checkbox>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Buscar por Nombre:</h3>
+                    <ul>
+                        <li>
+                            <div layout="row">
+                                <md-input-container flex class="md-icon-float md-block md-title">
+                                    <label>Empleado</label>
+                                    <input type="text" ng-model="nombreEmpleado">
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-button class="md-raised" flex ng-click="busquedaNombreEmpleado(nombreEmpleado)">
+                                    Buscar
+                                    <md-icon class="material-icons">search</md-icon>
+                                </md-button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lista">
+                <md-toolbar>
+                    <div class="md-toolbar-tools t_list">
+                        <span flex></span>
+                        <md-input-container flex="40">
+                            <label>Ordenar por:</label>
+                            <md-select ng-model="queryFiltros.orderBy" ng-change="ordenEmpleadoChanged()">
+                                <md-option ng-value="opt" ng-repeat="opt in opcionesFiltrosEmpleados.options.orderByOptions">{{ opt }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </md-toolbar>
+
+                <md-table-container>
+                    <table md-table ng-model="selectedItems" md-row-select="false">
+                        <thead md-head></thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="e in empleados">
+                                <td md-cell>
+                                    <article>
+                                        <div class="logo_ofer">
+                                            <img src="../../../img/perfil.jpg" />
+                                        </div>
+                                        <div class="info_ofer">
+                                            <h3>{{e.Apellido + ", " + e.Nombre }}</h3>
+                                            <hr>
+                                            <div class="d_ofer">
+                                                <md-chips ng-model="e.Subrubros"
+                                                          readonly="true"
+                                                          md-max-chips="5">
+                                                    <md-chip-template>
+                                                        <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
+                                                    </md-chip-template>
+                                                </md-chips>
+
+                                                <div flex class="ic_p">
+                                                    <p>Domicilio: {{e.Domicilio}}</p>
+                                                    <br />
+                                                    <p>Legajo: {{e.Legajo}}</p>                                                    
+                                                </div>
+
+                                            </div>
+
+
+                                            <div layout="column" layout-align="start end">
+                                                <md-button style="background-color:#00C853; color:#ffffff" ng-click="abrirDetalle(e.Id)">Ver Perfil</md-button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                     md-limit="queryFiltros.Rows"
+                                     md-limit-options="limitOptions"
+                                     md-page="queryFiltros.Page"
+                                     md-on-paginate="logPaginationEmpleados"
+                                     md-total="{{TotalRows}}"
+                                     md-page-select></md-table-pagination>                
+                
+                <!-- iafar: mensaje si no se encuentran resultados -->
+
+                <div class="text-center text-accent animate-show" ng-show="(empleados.length == 0)">
+                    <h4>No se encontraron Empleados</h4>
+                </div>
+                <md-divider></md-divider>
+
+            </div>
+        </section>
+
         <div flex layout="column" layout-align="start end">
             <md-button style="background-color:#ff0000; color:#ffffff" ng-click="nuevoEmpleado()">Nuevo empleado +</md-button>
         </div>
-    </div>
+    </md-container>
+
 
 </main>
-
 
 
