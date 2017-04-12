@@ -4,7 +4,7 @@
             <h2>Nuevo empleado</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon class="fa fa-times"></md-icon>
+                <a class="fa fa-times"></a>
             </md-button>
         </div>
     </md-toolbar>
@@ -12,17 +12,49 @@
         <md-card flex="100" layout="column">
             <md-card-content flex="50">
                 
+                <!--#region Tipo de identificacion-->
+                <br />
+                <div flex layout="column" class="ic_p">
+                    <h3>Identificacion</h3>
+                    <div flex="20" layout="row">
+                        <md-input-container flex="10">
+                            <label>Tipo</label>
+                            <md-select ng-model="IdTipo">
+                                <!--<md-option><em>None</em></md-option>-->
+                                <md-option value=1>
+                                    Dni
+                                </md-option>
+                                <md-option value=2>
+                                    Cuil
+                                </md-option>
+                                <md-option value=3>
+                                    Pasaporte
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex="35">
+                            <label>Numero</label>
+                            <input required ng-model="Valor" ng-blur="buscarEmpleado(IdTipo,Valor)">
+                            <!--<div ng-messages="empleado.Valor.$error">
+                                <div ng-message="err">{{err}}</div>
+                            </div>-->
+                        </md-input-container>
+                    </div>
+
+                </div>
+                <!--#endregion-->
+
                 <!--#region nombre y apellido-->
                 <div flex layout="row" class="ic_p">
 
                     <md-input-container flex="30">
                         <h3>Nombre</h3>
-                        <input md-placeholder="Ingrese" ng-model="profesional.Nombre" class="inp" />
+                        <input ng-disabled="habilitado" md-placeholder="Ingrese" ng-model="empleado.Nombre" class="inp" />
                     </md-input-container>
 
                     <md-input-container flex="30">
                         <h3>Apellido</h3>
-                        <input md-placeholder="Ingrese" ng-model="profesional.Apellido" class="inp" />
+                        <input ng-disabled="habilitado" md-placeholder="Ingrese" ng-model="empleado.Apellido" class="inp" />
                     </md-input-container>
 
                 </div>
@@ -34,13 +66,13 @@
                     <div flex="30">
                         <md-input-container>
                             <h3>Legajo</h3>
-                            <input ng-model="profesional.Nombre" class="inp" />
+                            <input ng-model="empleado.Legajo" class="inp" />
                         </md-input-container>
                     </div>  
                     <div layout="column" flex layout-align="start start">
                         <br />
                         <h3>Fecha de ingreso</h3>
-                        <md-datepicker ng-model="profesional.FechaNac"></md-datepicker>
+                        <md-datepicker required ng-model="empleado.FechaInicioVigencia" ></md-datepicker>
 
                         
                     </div>                  
@@ -48,41 +80,12 @@
                 </div>
                 
                 <!--#endregion-->
-                <!--#region Tipo de identificacion-->
-                <br />
-                <div flex layout="column" class="ic_p">
-                    <h3>Identificacion</h3>
-                    <div flex="20" layout="row">
-                        <md-input-container flex="10">
-                            <label>Tipo</label>
-                            <md-select ng-model="nuevoDoc.TipoIdentificacionProfesional">
-                                <!--<md-option><em>None</em></md-option>-->
-                                <md-option>
-                                    Dni
-                                </md-option>
-                                <md-option>
-                                    Pasaporte
-                                </md-option>
-                            </md-select>
-                        </md-input-container>
-                        <md-input-container flex="35">
-                            <label>Numero</label>
-                            <input required ng-model="nuevoDoc.Valor">
-                        </md-input-container>
-                    </div>
 
-                    <div flex="40">
-                        
-                    </div>
-
-
-                </div>
-                <!--#endregion-->
                 <!--#region Fecha de nacimiento-->
                 <div flex>
                     <h4>Fecha de Nacimiento</h4>
                     <br />
-                    <md-datepicker md-placeholder="Seleccione" ng-model="profesional.FechaNac"></md-datepicker>
+                    <md-datepicker ng-disabled="habilitado" md-placeholder="Seleccione" ng-model="empleado.FechaNac"></md-datepicker>
                 </div>
 
                 <!--#endregion-->
@@ -90,27 +93,27 @@
                 <div flex layout="row" class="ic_p">
                     <md-input-container flex="100">
                         <h4>Domicilio</h4>
-                        <input ng-model="profesional.Domicilio" class="inp">
+                        <input ng-disabled="habilitado" ng-model="empleado.Domicilio" class="inp">
                     </md-input-container>
                 </div>
                 <!--#endregion-->
                 <!--#region Sexo y Nacionalidad-->
                 <div flex layout="row">
-                    <div flex>
+                    <div flex="30">
                         <md-input-container>
                             <h4>Sexo</h4>
-                            <md-select ng-model="profesional.Sexo">
-                                <md-option>Masculino</md-option>
-                                <md-option>Femenino</md-option>
+                            <md-select ng-disabled="habilitado" ng-model="empleado.Sexo" >
+                                <md-option value="1">Masculino</md-option>
+                                <md-option value="2">Femenino</md-option>
                             </md-select>
                         </md-input-container>
 
                     </div>
 
-                    <div flex>
+                    <div flex="40">
                         <md-input-container>
                             <h4>Nacionalidad</h4>
-                            <md-select ng-model="profesional.Nacionalidad">
+                            <md-select ng-disabled="habilitado" ng-model="empleado.Nacionalidad">
                                 <md-option>Argentino</md-option>
                                 <md-option>Otro</md-option>
                             </md-select>
@@ -123,8 +126,8 @@
         </md-card>
     </md-dialog-content>
     <md-dialog-actions>
-        <md-button>Guardar</md-button>
-        <md-button>Cancelar</md-button>
+        <md-button ng-click="guardarEmpleado(empleado)" >Guardar</md-button>
+        <md-button ng-click="cancel()">Cancelar</md-button>
     </md-dialog-actions>
 </md-dialog>
 

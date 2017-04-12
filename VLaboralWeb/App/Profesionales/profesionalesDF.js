@@ -29,6 +29,23 @@
         return deferred.promise;
     }
 
+    var _getProfesionalId = function (tipoIdentificacionId, valor) { //iafar: funcion para recuperar un profesional en particular segun Id
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Profesionals/', {
+            params: {
+                tipoIdentificacion: tipoIdentificacionId,
+                valor: valor
+            }
+        }).then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function (response) {
+                deferred.reject(response.data);
+            });
+        return deferred.promise;
+    }
+
     var _getProfesional = function (prmIdPro) { //iafar: funcion para recuperar un profesional en particular segun Id
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Profesionals/' + prmIdPro).then(
@@ -104,6 +121,7 @@
     profesionalesDF.putProfesional = _putProfesional;
     profesionalesDF.obtenerOpcionesFiltrosProfesionales = _obtenerOpcionesFiltrosProfesionales;
     profesionalesDF.obtenerProfesionalesFiltrados = _obtenerProfesionalesFiltrados;
+    profesionalesDF.getProfesionalId = _getProfesionalId;
     //#endregion
 
 
