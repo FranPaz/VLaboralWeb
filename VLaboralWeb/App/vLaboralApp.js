@@ -549,6 +549,9 @@
                             },
                             profesionalesDF: 'profesionalesDF',
                             empleadosDF: 'empleadosDF',
+                            listOpcionesFiltrosEmpleados: function (empleadosDF) {
+                                return empleadosDF.obtenerOpcionesFiltrosEmpleados();
+                            },
                             loadEmpleadoslesCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load(['App/Empleados/empleadosCtrl.js']);
                             }]
