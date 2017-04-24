@@ -15,7 +15,7 @@
 
         authSvc.saveRegistrationEmpresa(prmNuevaEmpresa).then(function (response) { //llamo al servicio para registrar un nuevo usuario Empresa
             $scope.savedSuccessfully = true;
-            $scope.message = "Nuevo Usuario Registrado. \\n Le hemos enviado un e-mail al correo que indico en el formulario de registro, haga click en el enlace para confirmar su cuenta y poder comensar a utilizar UnMundo.";
+            $scope.message = "Nuevo Usuario Registrado. Le hemos enviado un e-mail al correo que indico en el formulario de registro, haga click en el enlace para confirmar su cuenta y poder comensar a utilizar Toroide Laboral.";
             startTimer();
             limpiarScope();
 
@@ -41,7 +41,7 @@
 
         authSvc.saveRegistrationProfesional(prmNuevoProfesional).then(function (response) { //llamo al servicio para registrar un nuevo usuario Empresa
             $scope.savedSuccessfully = true;
-            $scope.message = "Nuevo Usuario Registrado. \n Le hemos enviado un e-mail al correo que indico en el formulario de registro, haga click en el enlace para confirmar su cuenta y poder comensar a utilizar UnMundo.";
+            $scope.message = "Nuevo Usuario Registrado. \n Le hemos enviado un e-mail al correo que indico en el formulario de registro, haga click en el enlace para confirmar su cuenta y poder comensar a utilizar Toroide Laboral.";
             startTimer();
             limpiarScope();
 

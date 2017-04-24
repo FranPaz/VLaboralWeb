@@ -1,16 +1,16 @@
 ﻿<md-container >
     <section class="login_inicio bg_log">
         <form>
-            <h1>Ingrese sus datos</h1>
+            <h1>Indentificate</h1>
 
             <md-input-container class="ic">
 
-                <label class="lbl">Ingrese su e-mail..</label>
+                <label class="lbl">Ingrese su e-mail</label>
                 <input ng-model="loginData.userName" class="inp" required>
 
             </md-input-container>
             <md-input-container class="ic">
-                <label class="lbl">Ingrese una contraseña..</label>
+                <label class="lbl">Ingrese una contraseña</label>
                 <input type="password" ng-model="loginData.password" class="inp" required>
             </md-input-container>
             <input type="submit" name="enviar" value="INGRESAR" class="enviar" ng-click="login()">

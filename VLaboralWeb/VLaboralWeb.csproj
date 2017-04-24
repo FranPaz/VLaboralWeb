@@ -348,6 +348,8 @@
     <Content Include="img\11.jpg" />
     <Content Include="img\13.jpg" />
     <Content Include="img\15.jpeg" />
+    <Content Include="img\aseg.png" />
+    <Content Include="img\inti logo.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo2.png" />
     <Content Include="img\logo3.png" />

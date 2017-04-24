@@ -1,32 +1,29 @@
-﻿<h1>Edita tu perfil</h1>
-<md-container>
-    <md-card flex="100" layout layout-align="center center">
-        <md-card-content flex="50">
+﻿<div layout="row" flex layout-align="center center">
+    <md-card flex="70" layout="row" layout-align="center center">
+        <md-card-content layout="column" flex="100">
             <!--#region nombre y apellido-->
             <div flex layout="row" class="ic_p">
-                
+
                 <md-input-container flex="50">
                     <h3>Nombre</h3>
                     <input ng-model="profesional.Nombre" class="inp" />
                 </md-input-container>
-                
+
                 <md-input-container flex="50">
                     <h3>Apellido</h3>
                     <input ng-model="profesional.Apellido" class="inp" />
                 </md-input-container>
-                
+
             </div>
 
             <!--#endregion-->
-
             <!--#region Fecha de nacimiento-->
             <div flex>
                 <h4>Fecha de Nacimiento</h4>
                 <br />
-                <md-datepicker md-placeholder="Seleccione" ng-model="profesional.FechaNac"></md-datepicker>                
+                <md-datepicker md-placeholder="Seleccione" ng-model="profesional.FechaNac"></md-datepicker>
             </div>
             <!--#endregion-->
-
             <!--#region Domicilio-->
             <div flex layout="row" class="ic_p">
                 <md-input-container flex="100">
@@ -35,10 +32,9 @@
                 </md-input-container>
             </div>
             <!--#endregion-->
-            
             <!--#region Sexo y Nacionalidad-->
             <div flex layout="row">
-                <div flex >
+                <div flex>
                     <md-input-container>
                         <h4>Sexo</h4>
                         <md-select ng-model="profesional.Sexo">
@@ -46,7 +42,7 @@
                             <md-option>Femenino</md-option>
                         </md-select>
                     </md-input-container>
-                    
+
                 </div>
 
                 <div flex>
@@ -63,7 +59,6 @@
             <hr />
             <br />
             <!--#endregion-->
-
             <!--#region Tipo de identificacion-->
             <div flex layout="column" class="ic_p">
                 <h3>
@@ -172,7 +167,6 @@
             <hr />
             <br />
             <!--#endregion-->
-
             <!--#region Rubros y Sub Rubros-->
             <!--#region fpaz: subrubros del profesional-->
             <div flex layout="row">
@@ -224,12 +218,11 @@
                         </md-tab>
                     </md-tabs>
                 </div>
-                
+
             </div>
 
             <!--#endregion-->
             <!--#endregion-->
-           
             <!--#region Habilidades-->
             <div flex>
                 <md-tabs class="md-accent">
@@ -255,7 +248,7 @@
 
                                 </md-chips>
                             </div>
-                            
+
                         </md-tab-body>
                     </md-tab>
                 </md-tabs>
@@ -264,7 +257,6 @@
                 <br />
             </div>
             <!--#endregion-->
-
             <!--#region Descripcion curricular y objetivo profesional-->
             <div flex>
                 <h3>Objetivo Profesional</h3>
@@ -275,8 +267,8 @@
                 <br />
             </div>
             <div flex>
-                <h3>Descripcion curricular</h3>                
-                <br />                
+                <h3>Descripcion curricular</h3>
+                <br />
                 <textarea ng-model="profesional.DescripcionCurricular" type="text-area" class="ofer_tit ofer_desc ta" rows="6" placeholder="Escriba aqui..."></textarea>
                 <br>
             </div>
@@ -284,7 +276,6 @@
             <hr />
             <br />
             <!--#endregion-->
-
             <!--#region Experiencias Laborales-->
             <md-card>
                 <md-toolbar>
@@ -312,7 +303,6 @@
                 <md-button ng-click="nuevaExperiencia()"> Agregar +</md-button>
             </md-card>
             <!--#endregion-->
-
             <!--#region Formacion Educativa-->
             <md-card>
                 <md-toolbar>
@@ -334,7 +324,6 @@
                 <md-button ng-click="nuevaEducacion()"> Agregar +</md-button>
             </md-card>
             <!--#endregion-->
-
             <!--#region Cursos e Idiomas-->
             <div layout="row">
                 <div flex>
@@ -365,7 +354,7 @@
                         </md-toolbar>
                         <md-card-content>
                             <md-list>
-                                <md-list-item layout="column"  ng-repeat="i in profesional.IdiomasConocidos">
+                                <md-list-item layout="column" ng-repeat="i in profesional.IdiomasConocidos">
                                     <h3>Idioma: {{i.Idioma.Nombre}}</h3>
                                     <h4>Nivel: {{i.CompetenciaIdioma.Nombre}}</h4>
                                     <md-divider></md-divider>
@@ -381,24 +370,24 @@
             <hr />
             <br />
             <!--#endregion-->
-
             <!--#region Subir PDF-->
             <h3>Subir PDF de su curriculum.</h3>
             <input type="file" name="foto" class="archivos" style="margin:2em 0;">
             <br>
             <!--#endregion-->
 
+            <button layout="column" flex="100" layout-align="center center" ng-click="profesionalPerfilUpdate(profesional)" class="botones">Guardar</button>
         </md-card-content>
 
     </md-card>
-</md-container>
+</div>
 
-<nav mfb-menu position="br" effect="zoomin" label="Herramientas"
+<!--<nav mfb-menu position="br" effect="zoomin" label="Herramientas"
      active-icon="fa fa-times" resting-icon="fa fa-plus"
      toggling-method="hover">
     <button mfb-button icon="mdi-image-edit" label="Editar Perfil" ng-click="edit()"></button>
-    <button mfb-button icon="fa fa-floppy-o" label="Guardar Guardar Cambios" ng-click="profesionalPerfilUpdate(profesional)">
+    <button mfb-button icon="fa fa-floppy-o" label="Guardar Guardar Cambios" >
         <md-icon> face </md-icon>
     </button>
     <button mfb-button icon="fa fa-trash-o" label="Cancelar" ng-click="profesionalPerfilCancel()"></button>
-</nav>
+</nav>-->

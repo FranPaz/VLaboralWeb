@@ -30,8 +30,8 @@
 .home header ul a li { display: inline-block; margin: 0 1em; }
 .home header ul span a li { color: #f0f0f0; border: 1.5px solid #51caf5; border-radius: 20px; padding: 0.4em 1.2em; }
 .home header ul span:hover > a li { background: #51caf5; color: #f0f0f0; }
-.home header a { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 2em; color: #f0f0f0; text-decoration: none; transition: all 0.3s ease; }
-.home header a:hover { color: #51caf5; }
+.home header a { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 2em; color: #0c964d; text-decoration: none; transition: all 0.3s ease; }
+.home header a:hover { color: #d9b121; }
 .home .h_container { display: flex; flex-flow: wrap column; justify-content: center; align-items: center; margin-top: 5em; }
 .home .h_container h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 3.6em; color: #f0f0f0; text-align: center; margin-bottom: 0.5em; border: solid; padding: 20px; }
 .home .h_container h1 span { color: #51caf5; font-weight: 700; }
@@ -54,20 +54,20 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;*/ }
-.elegir .e_prof { width: 50%; padding: 8.5em 3em; background: rgba(240, 240, 240, 0.5); }
+.elegir .e_prof { width: 50%; padding: 8.5em 3em; background: rgb(217, 177, 33); }
 .elegir .e_prof h1 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 2.1em; color: #1e1e23; text-transform: uppercase; }
 .elegir .e_prof h1 span { font-weight: 700; }
 .elegir .e_prof h3 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1.4em; color: #323232; margin: 2em 0; }
 .elegir .e_prof a { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.9em; color: #f0f0f0; text-decoration: none; border-radius: 5px; padding: 0.8em 2.5em; background: #51caf5; transition: all 0.3s ease; }
 .elegir .e_prof a:hover { background: #3498db; color: #f0f0f0; }
-.elegir .e_empr { width: 50%; background: #3498db; padding: 8.5em 3em; }
+.elegir .e_empr { width: 50%; background: rgb(12, 150, 77); padding: 8.5em 3em; }
 .elegir .e_empr h1 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 2.1em; color: white; text-transform: uppercase; }
 .elegir .e_empr h1 span { font-weight: 700; }
 .elegir .e_empr h3 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1.4em; color: #d2d2d2; margin: 2em 0; }
 .elegir .e_empr a { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.9em; color: white; text-decoration: none; border-radius: 5px; padding: 0.8em 2.5em; background: #77da55; transition: all 0.3s ease; }
 .elegir .e_empr a:hover { background: #2ecc71; }
 
-.t_list { display: block; padding: 6em 0; background: linear-gradient(rgba(105, 203, 200, 0.4), #f0f0f0); }
+.t_list { display: block; padding: 6em 0; background: #f0f0f0); }
 .t_list h1 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 3.45em; color: #323232; text-align: center; text-transform: uppercase; }
 
 .ofertas .lista { display: inline-block; float: right; width: 80%; }
@@ -99,7 +99,7 @@
 .login_inicio form .t_form { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #323232; width: 80%; border: none; border-bottom: 1px solid #1e1e23; background: none; padding: 1em 0 0.35em 0.5em; margin-bottom: 1em; }
 .login_inicio form .t_form:focus { outline: none; border-bottom-color: #3498db; }
 .login_inicio form .t_form:hover { border-bottom-color: #3e8abb; }
-.login_inicio form .enviar { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #f0f0f0; text-decoration: none; background: #3e8abb; border-radius: 2px; text-align: center; padding: 0.6em 10em; margin-top: 1.5em; transition: all 0.2s ease; border: none; cursor: pointer; }
+.login_inicio form .enviar { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #f0f0f0; text-decoration: none; background: #0c964d; border-radius: 2px; text-align: center; padding: 0.6em 10em; margin-top: 1.5em; transition: all 0.2s ease; border: none; cursor: pointer; }
 .login_inicio form .enviar:hover { color: white; background: #3498db; }
 
 .bg_re { background: url(../img/11.jpg); }
@@ -118,13 +118,13 @@
 .login_inicio form .inp:hover { border-color: #3e8abb; }
 .login_inicio form .inp:focus { border-color: #51caf5; }
 .login_inicio form .ic { width: 70%; }
-.login_inicio form .enviar { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #f0f0f0; text-decoration: none; background: #3e8abb; border-radius: 2px; text-align: center; padding: 0.6em 10em; margin-top: 1.5em; transition: all 0.2s ease; border: none; cursor: pointer; }
-.login_inicio form .enviar:hover { color: white; background: #3498db; }
+.login_inicio form .enviar { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #f0f0f0; text-decoration: none; background: #0c964d; border-radius: 2px; text-align: center; padding: 0.6em 10em; margin-top: 1.5em; transition: all 0.2s ease; border: none; cursor: pointer; }
+.login_inicio form .enviar:hover { color: white; background: #d9b121; }
 
-nav { display: flex; flex-flow: wrap row; justify-content: space-between; align-items: center; background: whitesmoke; width: 100%; padding: 0.3em; box-shadow: 2px 1px 5px rgba(45, 45, 45, 0.5); position: fixed; z-index: 1; }
-nav a { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 2em; color: #3e8abb; text-decoration: none; color: #b4b4b4 !important; }
-nav a span { color: #3e8abb; transition: all 0.3s ease; }
-nav a:hover > span { color: #51caf5; }
+nav { display: flex; flex-flow: wrap row; justify-content: space-between; align-items: center; background: whitesmoke; width: 100%; padding: 0.3em; box-shadow: 2px 1px 5px rgba(45, 45, 45, 0.5); position: inherit; z-index: 1; }
+nav a { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 2em; color: #0c964d; text-decoration: none; color: #b4b4b4 !important; }
+nav a span { color: #0c964d; transition: all 0.3s ease; }
+nav a:hover > span { color: #d9b121; }
 nav ul { list-style: none; display: flex; flex-flow: wrap row; justify-content: space-between; align-items: center; }
 nav ul a { text-decoration: none; font-size: 1.8em; }
 nav ul a li { display: inline-block; padding: 0 0.5em; list-style: none; display: flex; flex-flow: wrap row; justify-content: space-between; align-items: center; }
@@ -210,4 +210,35 @@ main h2 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.
 .puestos_box .p_items .va { background-color: #3e8abb; color: #f0f0f0; padding: 0.2em 0.4em 0.3em; border-radius: 10px; }
 .puestos_box .p_items .etiquetas { background: #e1e1e1; border-radius: 16px; padding: 3px 10px; font-weight: 400; }
 
+.empresas_auspicio {background:white; padding: 1em 1em; }
+.es_hiring {padding: 100px 0 90px;}
+.enunciado {font-family: 'Lato', sans-serif; text-align: center; font-weight: 300;
+    font-size: 48px;
+    line-height: 55px;}
+
+.footer_h { background: rgb(217, 177, 33);
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    clear: both;}
+.contenido {
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.footer_final {
+    color: #5c5b5b;
+    font-size: 14px;
+    margin: 10px 0 15px;
+    text-align: center;
+    float: left;
+    width: 100%;
+}
+
+.botones {
+    font-family: 'Lato', sans-serif; font-weight: 400; font-size: 1em; color: #f0f0f0; text-decoration: none;
+    background: #0c964d; border-radius: 2px; text-align: center;
+    padding: 0.6em 10em; margin-top: 1.5em; transition: all 0.2s ease; border: none; cursor: pointer;
+
+    
+}
+.botones:hover { color: white; background: #d9b121; }
 /*# sourceMappingURL=styles.css.map */
