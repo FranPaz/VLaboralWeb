@@ -73,6 +73,7 @@
     <Content Include="App\Empleados\empleadosDF.js" />
     <Content Include="App\Empleados\Partials\empleadoAdd.html" />
     <Content Include="App\Empleados\Partials\empleadosList.html" />
+    <Content Include="App\Empresas\Partials\empresaPerfilModificable.html" />
     <Content Include="App\Empresas\Partials\empresaPerfilPublico.html" />
     <Content Include="App\EtapasOferta\etapasOfertaCtrl.js" />
     <Content Include="App\EtapasOferta\etapasOfertaDF.js" />

@@ -14,7 +14,7 @@
                 $state.go('empresa.ofertas');                
             } else {
                 notificacionesSvc.agregarHistorialNotificaciones();
-                $state.go('profesional.perfil', { idPro: authSvc.authentication.profesionalId });
+                $state.go('profesional.ofertas', { idPro: authSvc.authentication.profesionalId });
             }
         },
          function (err) {

@@ -1,124 +1,163 @@
-﻿ <!-- #region iafar: contenido de listado -->
-<main>
-    <md-container>
-        <!-- COMIENZO SECCION LISTA DE PROFESIONALES -->
-        <div class="t_list">
-            <h1>Listado de Profesionales</h1>
-        </div>
-        <section class="ofertas">
-            <div class="sidebar">
-                <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosProfesionales.options.selectableFilters">
-                    <h3>{{tipoFiltro}}  </h3>
-                    <ul ng-repeat="valorFiltro in valoresFiltro">
-                        <li>
-                            <md-checkbox ng-click="setSelectedProfesionales(tipoFiltro, valorFiltro)"
-                                         ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.Id.toString()) >= 0">
-                                {{valorFiltro.Descripcion}} ({{valorFiltro.Cantidad}})
-                            </md-checkbox>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Buscar por Nombre:</h3>
-                    <ul>
-                        <li>
-                            <div layout="row">
-                                <md-input-container flex class="md-icon-float md-block md-title">
-                                    <label>Profesional</label>                                    
-                                    <input type="text" ng-model="nombreProfesional">
-                                </md-input-container>                                                                
-                            </div>                              
-                            <div layout="row">                                
-                                <md-button class="md-raised" flex ng-click="busquedaNombreProfesional(nombreProfesional)">
-                                    Buscar
-                                    <md-icon class="material-icons">search</md-icon>
-                                </md-button>
-                            </div>            
-                        </li>
-                    </ul>
-                </div>
-            </div>
+﻿<md-container>
+    <!-- COMIENZO SECCION LISTA DE PROFESIONALES -->
+    <div class="t_list">
+        <h1>Listado de Profesionales</h1>
+    </div>
+    <section class="ofertas">
+        <div layout="row">
+            <md-card>
+                <md-card-content>
+                    <div class="sidebar">
+                        <div>
+                            <h3>Buscar por Nombre:</h3>
+                            <ul>
+                                <li>
+                                    <div layout="row">
+                                        <md-input-container flex class="md-icon-float md-block md-title">
+                                            <label>Profesional</label>
+                                            <input type="text" ng-model="nombreProfesional">
+                                        </md-input-container>
+                                    </div>
+                                    <div layout="row">
+                                        <md-button class="md-raised" flex ng-click="busquedaNombreProfesional(nombreProfesional)">
+                                            Buscar
+                                            <md-icon class="material-icons">search</md-icon>
+                                        </md-button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3>Filtrar</h3>
+                        <hr />
 
-            <div class="lista">
-                <md-toolbar>
-                    <div class="md-toolbar-tools t_list">                        
-                        <span flex></span>
-                        <md-input-container flex="40">
-                            <label>Ordenar por:</label>
-                            <md-select ng-model="queryFiltros.orderBy" ng-change="ordenProfesionalChanged()">
-                                <md-option ng-value="opt" ng-repeat="opt in opcionesFiltrosProfesionales.options.orderByOptions">{{ opt }}</md-option>
-                            </md-select>
-                        </md-input-container>
+                        <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosProfesionales.options.selectableFilters">
+                            <h3>{{tipoFiltro}}  </h3>
+                            <ul ng-repeat="valorFiltro in valoresFiltro">
+                                <li>
+                                    <md-checkbox ng-click="setSelectedProfesionales(tipoFiltro, valorFiltro)"
+                                                 ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.Id.toString()) >= 0">
+                                        {{valorFiltro.Descripcion}} ({{valorFiltro.Cantidad}})
+                                    </md-checkbox>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
-                </md-toolbar>
-                
-                <md-table-container>
-                    <table md-table ng-model="selectedItems" md-row-select="false">
-                        <thead md-head></thead>
-                        <tbody md-body>
-                            <tr md-row ng-repeat="p in profesionalesList">
-                                <td md-cell>
-                                    <article>
-                                        <div class="logo_ofer">
-                                            <img src="../../../img/perfil.jpg" />                                            
-                                        </div>
-                                        <div class="info_ofer">
-                                            <h3>{{p.Apellido + ", " + p.Nombre }}</h3>
-                                            <hr>
-                                            <div class="d_ofer">
-                                                <md-chips ng-model="p.Subrubros"
-                                                          readonly="true"
-                                                          md-max-chips="5">
-                                                    <md-chip-template>
-                                                        <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
-                                                    </md-chip-template>
-                                                </md-chips>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-content>
+                    <div class="lista">
+                        <div layout="column" flex>
+                            <section class="botonesOrdenByProfesional" layout="row" layout-align="end">
+                                <p>Ordernar por</p>
+                                <ul>
+                                    <li>
+                                        <span>Nombre</span>
+                                        <a ng-model="queryFiltros.orderBy = NombreCompleto" ng-click="ordenProfesionalChanged()">
+                                            <span title="Nombre Ascendente" class="fa fa-sort-alpha-asc"></span>
 
-                                                <div flex class="ic_p">
-                                                    <p>Domicilio: {{p.Domicilio}}</p>
-                                                    <br />
-                                                    <p>Valoracion: {{p.ValoracionPromedio + " estrellas"}}</p>                                                    
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-model="queryFiltros.orderBy" ng-click="ordenProfesionalChanged()" value="'NombreCompletoDesc'">
+                                            <span title="Nombre Descendente" class="fa fa-sort-alpha-desc"></span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <span>Valoración</span>
+                                        <a ng-model="queryFiltros.orderBy" ng-change="ordenProfesionalChanged()" value="Valoracion">
+                                            <span title="Valoracion Ascendente" class="fa fa-sort-numeric-desc"></span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-model="queryFiltros.orderBy" ng-change="ordenProfesionalChanged()" value="ValoracionDescx">
+                                            <span title="Valoracion Descendente" class="fa fa-sort-numeric-asc"></span>
+
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <!--<md-input-container flex="40">
+                                    <label>Ordenar por:</label>
+                                    <md-select ng-model="queryFiltros.orderBy" ng-change="ordenProfesionalChanged()">
+                                        <md-option ng-value="opt" ng-repeat="opt in opcionesFiltrosProfesionales.options.orderByOptions">{{ opt }}</md-option>
+                                    </md-select>
+                                </md-input-container>-->
+                            </section>
+                        </div>
+
+                        <md-table-container>
+                            <table md-table ng-model="selectedItems" md-row-select="false">
+                                <thead md-head></thead>
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="p in profesionalesList">
+                                        <td md-cell>
+                                            <article>
+                                                <div class="logo_ofer">
+                                                    <img src="../../../img/perfil.jpg" />
                                                 </div>
+                                                <div class="info_ofer">
+                                                    <h3>{{p.Apellido + ", " + p.Nombre }}</h3>
+                                                    <hr>
+                                                    <div class="d_ofer">
+                                                        <md-chips ng-model="p.Subrubros"
+                                                                  readonly="true"
+                                                                  md-max-chips="5">
+                                                            <md-chip-template>
+                                                                <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
+                                                            </md-chip-template>
+                                                        </md-chips>
 
-                                            </div>
+                                                        <div flex class="ic_p">
+                                                            <p>Domicilio: {{p.Domicilio}}</p>
+                                                            <br />
+                                                            <p>Valoracion: {{p.ValoracionPromedio + " estrellas"}}</p>
+                                                        </div>
 
-
-                                            <div layout="column" layout-align="start end">
-                                                <md-button style="background-color:#00C853; color:#ffffff" ui-sref="empresa.profesional({idPro: p.Id})">Ver Perfil</md-button>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </md-table-container>
-                <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
-                                     md-limit="queryFiltros.Rows"
-                                     md-limit-options="limitOptions"
-                                     md-page="queryFiltros.Page"
-                                     md-on-paginate="logPaginationProfesionales"
-                                     md-total="{{TotalRows}}"
-                                     md-page-select></md-table-pagination>
-                                     <!--md-total="{{profesionalesList.length - selectedPro.length}}"-->
-                                     
-
-                <!--iafar: divisor de prueba-->
-                <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
-                <md-divider hide-gt-sm ng-if="!$last"></md-divider>
-                <!-- iafar: mensaje si no se encuentran resultados -->
+                                                    </div>
 
 
-                <div class="text-center text-accent animate-show" ng-show="(profesionalesList.length == 0)">
-                    <h4>No se encontraron Profesionales</h4>
-                </div>
-                <md-divider></md-divider>
+                                                    <div layout="column" layout-align="start end">
+                                                        <md-button style="background-color:#00C853; color:#ffffff" ui-sref="empresa.profesional({idPro: p.Id})">Ver Perfil</md-button>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+                        <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                             md-limit="queryFiltros.Rows"
+                                             md-limit-options="limitOptions"
+                                             md-page="queryFiltros.Page"
+                                             md-on-paginate="logPaginationProfesionales"
+                                             md-total="{{TotalRows}}"
+                                             md-page-select></md-table-pagination>
+                        <!--md-total="{{profesionalesList.length - selectedPro.length}}"-->
+                        <!--iafar: divisor de prueba-->
+                        <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                        <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+                        <!-- iafar: mensaje si no se encuentran resultados -->
 
-            </div>
-        </section>
-    </md-container>
 
+                        <div class="text-center text-accent animate-show" ng-show="(profesionalesList.length == 0)">
+                            <h4>No se encontraron Profesionales</h4>
+                        </div>
+                        <md-divider></md-divider>
+
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+
+
+        
+    </section>
     
-</main>
+</md-container>
 
     

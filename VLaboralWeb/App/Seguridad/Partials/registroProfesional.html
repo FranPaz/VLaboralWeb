@@ -37,8 +37,8 @@
 
             </md-input-container>
 
-            <md-button class="md-primary md-raised" style="background:rgb(62, 138, 187);" ng-click="registrarProfesional(nuevoUser)">Registrarse</md-button>
-            
+            <!--<md-button class="md-primary md-raised enviar" style="background:#0c964d;" ng-click="">Registrarse</md-button>-->
+            <input type="submit" name="enviar" value="INGRESAR" class="enviar" ng-click="registrarProfesional(nuevoUser)">
             <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
                 {{message}}
             </div>
