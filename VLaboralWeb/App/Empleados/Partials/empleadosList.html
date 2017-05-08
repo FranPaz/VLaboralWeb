@@ -1,165 +1,163 @@
 ﻿ <!-- #region iafar: contenido de listado -->
-<main>
-    <md-container>
-        <!-- COMIENZO SECCION LISTA DE PROFESIONALES -->
-        <div class="t_list">
-            <h1>Listado de Empleados</h1>
-        </div>
-        
-        <section class="ofertas">
-            <div layout="row">
-                <md-card>
-                    <md-card-content>
-                        <div class="sidebar">
-                            
-                            <div>
-                                <h3>Buscar por Nombre:</h3>
+<md-container>
+    <!-- COMIENZO SECCION LISTA DE PROFESIONALES -->
+    <div class="t_list">
+        <h1>Listado de Empleados</h1>
+    </div>
+
+    <section class="ofertas">
+        <div layout="row">
+            <md-card>
+                <md-card-content>
+                    <div class="sidebar">
+
+                        <div>
+                            <h3>Buscar por Nombre:</h3>
+                            <ul>
+                                <li>
+                                    <div layout="row">
+                                        <md-input-container flex class="md-icon-float md-block md-title">
+                                            <label>Empleado</label>
+                                            <input type="text" ng-model="nombreEmpleado">
+                                        </md-input-container>
+                                    </div>
+                                    <div layout="row">
+                                        <input type="submit" class="enviar" name="buscar" value="Buscar" flex ng-click="busquedaNombreEmpleado(nombreEmpleado)" />
+                                        <!--<md-icon class="material-icons"></md-icon>
+                                        <md-button class="md-raised" >
+                                            Buscar
+                                            
+                                        </md-button>-->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3>Filtrar</h3>
+                        <hr />
+                        <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosEmpleados.options.selectableFilters">
+                            <h3>{{tipoFiltro}}  </h3>
+                            <ul ng-repeat="valorFiltro in valoresFiltro">
+                                <li>
+                                    <md-checkbox ng-click="setSelectedEmpleados(tipoFiltro, valorFiltro)"
+                                                 ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.Id.toString()) >= 0">
+                                        {{valorFiltro.Descripcion}} ({{valorFiltro.Cantidad}})
+                                    </md-checkbox>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-content>
+                    <div class="lista">
+                        <div layout="column" flex>
+                            <section class="botonesOrdenByProfesional" flex layout="row">
+                                <p>Ordenar por</p>
                                 <ul>
                                     <li>
-                                        <div layout="row">
-                                            <md-input-container flex class="md-icon-float md-block md-title">
-                                                <label>Empleado</label>
-                                                <input type="text" ng-model="nombreEmpleado">
-                                            </md-input-container>
-                                        </div>
-                                        <div layout="row">
-                                            <md-button class="md-raised" flex ng-click="busquedaNombreEmpleado(nombreEmpleado)">
-                                                Buscar
-                                                <md-icon class="material-icons">search</md-icon>
-                                            </md-button>
-                                        </div>
+                                        <span>Nombre</span>
+                                        <a ng-model="queryFiltros.orderBy" ng-value="Nombre" ng-click="ordenEmpleadoChanged()">
+                                            <span title="Orden por nombre" class="fa fa-sort-alpha-asc"></span>
+                                        </a>
                                     </li>
-                                </ul>
-                            </div>
-                            <h3>Filtrar</h3>
-                            <hr />
-                            <div ng-repeat="(tipoFiltro,valoresFiltro) in opcionesFiltrosEmpleados.options.selectableFilters">
-                                <h3>{{tipoFiltro}}  </h3>
-                                <ul ng-repeat="valorFiltro in valoresFiltro">
+
                                     <li>
-                                        <md-checkbox ng-click="setSelectedEmpleados(tipoFiltro, valorFiltro)"
-                                                     ng-checked="queryFiltros[tipoFiltro] && queryFiltros[tipoFiltro].indexOf(valorFiltro.Id.toString()) >= 0">
-                                            {{valorFiltro.Descripcion}} ({{valorFiltro.Cantidad}})
-                                        </md-checkbox>
+                                        <span>Legajo</span>
+                                        <a title="Ordenar por legajo" ng-click="ordenEmpleadoChanged()" ng-model="queryFiltros.orderBy" ng-value="Legajo" class="fa fa-sort-numeric-asc"></a>
+                                    </li>
+                                    <li>
+                                        <span>Fecha de Incorporación</span>
+                                        <a title="Ordenar por fecha de incorporacion" ng-click="ordenEmpleadoChanged()" ng-model="queryFiltros.orderBy" ng-value="FechaInicioRelacionLaboral" class="fa fa-calendar"></a>
                                     </li>
                                 </ul>
-                            </div>
+                            </section>
                         </div>
-                    </md-card-content>
-                </md-card>
-                <md-card>
-                    <md-card-content>
-                        <div class="lista">
-                            <div layout="column" flex>
-                                <section class="botonesOrdenByProfesional" flex layout="row">
-                                    <p>Ordenar por</p>
-                                    <ul>
-                                        <li>
-                                            <span>Nombre</span>
-                                            <a ng-model="queryFiltros.orderBy" ng-value="Nombre" ng-click="ordenEmpleadoChanged()">
-                                                <span title="Orden por nombre" class="fa fa-sort-alpha-asc"></span>
-                                            </a>
-                                        </li>
 
-                                        <li>
-                                            <span>Legajo</span>
-                                            <a title="Ordenar por legajo" ng-click="ordenEmpleadoChanged()" ng-model="queryFiltros.orderBy" ng-value="Legajo" class="fa fa-sort-numeric-asc"></a>
-                                        </li>
-                                        <li>
-                                            <span>Fecha de Incorporación</span>
-                                            <a title="Ordenar por fecha de incorporacion" ng-click="ordenEmpleadoChanged()" ng-model="queryFiltros.orderBy" ng-value="FechaInicioRelacionLaboral" class="fa fa-calendar"></a>
-                                        </li>
-                                    </ul>
-                                </section>
+                        <!--<md-toolbar>
+                            <div class="md-toolbar-tools t_list">
+                                <span flex></span>
+                                <md-input-container flex="40">
+                                    <label>Ordenar por:</label>
+                                    <md-select ng-model="queryFiltros.orderBy" ng-change="ordenEmpleadoChanged()">
+                                        <md-option ng-value="opt" ng-repeat="opt in opcionesFiltrosEmpleados.options.orderByOptions">{{ opt }}</md-option>
+                                    </md-select>
+                                </md-input-container>
                             </div>
-                            
-                            <!--<md-toolbar>
-                                <div class="md-toolbar-tools t_list">
-                                    <span flex></span>
-                                    <md-input-container flex="40">
-                                        <label>Ordenar por:</label>
-                                        <md-select ng-model="queryFiltros.orderBy" ng-change="ordenEmpleadoChanged()">
-                                            <md-option ng-value="opt" ng-repeat="opt in opcionesFiltrosEmpleados.options.orderByOptions">{{ opt }}</md-option>
-                                        </md-select>
-                                    </md-input-container>
-                                </div>
-                            </md-toolbar>-->
+                        </md-toolbar>-->
 
-                            <md-table-container>
-                                <table md-table ng-model="selectedItems" md-row-select="false">
-                                    <thead md-head></thead>
-                                    <tbody md-body>
-                                        <tr md-row ng-repeat="e in empleados">
-                                            <td md-cell>
-                                                <article>
-                                                    <div class="logo_ofer">
-                                                        <img src="../../../img/perfil.jpg" />
-                                                    </div>
-                                                    <div class="info_ofer">
-                                                        <h3>{{e.Apellido + ", " + e.Nombre }}</h3>
-                                                        <hr>
-                                                        <div class="d_ofer">
-                                                            <md-chips ng-model="e.Subrubros"
-                                                                      readonly="true"
-                                                                      md-max-chips="5">
-                                                                <md-chip-template>
-                                                                    <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
-                                                                </md-chip-template>
-                                                            </md-chips>
+                        <md-table-container>
+                            <table md-table ng-model="selectedItems" md-row-select="false">
+                                <thead md-head></thead>
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="e in empleados">
+                                        <td md-cell>
+                                            <article>
+                                                <div class="logo_ofer">
+                                                    <img src="../../../img/perfil.jpg" />
+                                                </div>
+                                                <div class="info_ofer">
+                                                    <h3>{{e.Apellido + ", " + e.Nombre }}</h3>
+                                                    <hr>
+                                                    <div class="d_ofer">
+                                                        <md-chips ng-model="e.Subrubros"
+                                                                  readonly="true"
+                                                                  md-max-chips="5">
+                                                            <md-chip-template>
+                                                                <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
+                                                            </md-chip-template>
+                                                        </md-chips>
 
-                                                            <div flex class="ic_p">
-                                                                <p>Domicilio: {{e.Domicilio}}</p>
-                                                                <br />
-                                                                <p>Legajo: {{e.Legajo}}</p>
-                                                            </div>
-
+                                                        <div flex class="ic_p">
+                                                            <p>Domicilio: {{e.Domicilio}}</p>
+                                                            <br />
+                                                            <p>Legajo: {{e.Legajo}}</p>
                                                         </div>
 
-
-                                                        <div layout="column" layout-align="start end">
-                                                            <md-button style="background-color:#00C853; color:#ffffff" ng-click="abrirDetalle(e.Id)">Ver Perfil</md-button>
-                                                        </div>
                                                     </div>
-                                                </article>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </md-table-container>
-                            <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
-                                                 md-limit="queryFiltros.Rows"
-                                                 md-limit-options="limitOptions"
-                                                 md-page="queryFiltros.Page"
-                                                 md-on-paginate="logPaginationEmpleados"
-                                                 md-total="{{TotalRows}}"
-                                                 md-page-select></md-table-pagination>
 
-                            <!-- iafar: mensaje si no se encuentran resultados -->
 
-                            <div class="text-center text-accent animate-show" ng-show="(empleados.length == 0)">
-                                <h4>No se encontraron Empleados</h4>
-                            </div>
-                            <md-divider></md-divider>
+                                                    <div layout="column" layout-align="start end">
+                                                        <md-button style="background-color:#00C853; color:#ffffff" ng-click="abrirDetalle(e.Id)">Ver Perfil</md-button>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+                        <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                             md-limit="queryFiltros.Rows"
+                                             md-limit-options="limitOptions"
+                                             md-page="queryFiltros.Page"
+                                             md-on-paginate="logPaginationEmpleados"
+                                             md-total="{{TotalRows}}"
+                                             md-page-select></md-table-pagination>
 
+                        <!-- iafar: mensaje si no se encuentran resultados -->
+
+                        <div class="text-center text-accent animate-show" ng-show="(empleados.length == 0)">
+                            <h4>No se encontraron Empleados</h4>
                         </div>
-                    </md-card-content>
-                </md-card>
-            </div>
-            
+                        <md-divider></md-divider>
 
-            
-        </section>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
 
-        
-    </md-container>
 
-    <!--#region Menu De Herramientas Flotante-->
-    <nav mfb-menu position="br" effect="zoomin" label="Herramientas"
-         active-icon="fa fa-times" resting-icon="fa fa-plus"
-         toggling-method="hover">        
-        <button mfb-button icon="fa fa-user-plus" label="Nuevo Empleado" ng-click="nuevoEmpleado()"></button>        
-    </nav>
 
-</main>
+    </section>
 
+
+</md-container>
+
+<!--#region Menu De Herramientas Flotante-->
+<nav mfb-menu position="br" effect="zoomin" label="Herramientas"
+     active-icon="fa fa-times" resting-icon="fa fa-plus"
+     toggling-method="hover">
+    <button mfb-button icon="fa fa-user-plus" label="Nuevo Empleado" ng-click="nuevoEmpleado()"></button>
+</nav>
 
