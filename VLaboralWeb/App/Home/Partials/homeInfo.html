@@ -1,5 +1,5 @@
 ﻿
-<section class="home">
+<section class="home" layout="column" flex>
     <header>
         <a href="index.html">TOROIDE LABORAL</a>
         <ul>
@@ -8,38 +8,38 @@
             <a ui-sref="login"><li>INGRESAR</li></a>
         </ul>
     </header>
-    <div class="h_container">
+    <div class="h_container" flex>
         <h1><span style="color:#0c964d">TOROIDE</span><span style="color:#d9b121">LABORAL.</span> </h1>
     </div>
-    <div class="e_content">
-        <article>
+    <section class="e_content" flex>
+        <article flex>
             <span class="icon-image icono"></span>
             <h1><span>FÁCIL</span> MANEJO</h1>
             <hr>
             <p>Una interfaz super intuitiva para seleccionar al profesional adecuado.</p>
         </article>
 
-        <article>
+        <article flex>
             <span class="icon-stack icono"></span>
             <h1><span>DIFERENTES</span> OPCIONES</h1>
             <hr>
             <p>Gran cantidad de personas capacitadas en distintas áreas de trabajo.</p>
         </article>
 
-        <article>
+        <article flex>
             <span class="icon-profile icono"></span>
             <h1><span>INFORMACIÓN</span> AL ALCANCE</h1>
             <hr>
             <p>Una visualizacion completa de toda la información de cada profesional.</p>
         </article>
 
-        <article>
+        <article flex>
             <span class="icon-spinner10 icono"></span>
             <h1><span>ACTUALIZACIÓN</span> CONSTANTE</h1>
             <hr>
             <p>Constante flujo de ofertas de todo tipo esperando a ser contratadas.</p>
         </article>
-    </div>
+    </section>
 </section>
 <!-- FIN DE PANTALLA DE INICIO-->
 <!-- COMIENZO DE SECCION PARA ELEGIR TIPO DE REGISTRO (PROFESIONAL/EMPRESA)-->
@@ -49,14 +49,14 @@
     <p>Conecta con miles de Empresas y Profesionales en todas partes. Elegí el mejor. Empezá a hacer que tu proyecto sea existoso.</p>
 </section>-->
 
-<section class="elegir">
-    <div class="e_prof">
+<section class="elegir" layout="row">
+    <div class="e_prof" flex>
         <h1>¿ Eres un <span>profesional</span> y buscas ofertas laborales?</h1>
         <h3>Registrate y comienza elegir las mejores ofertas laborales.</h3>
         <a ui-sref="registroProfesional">COMENZAR</a>
     </div>
 
-    <div class="e_empr">
+    <div class="e_empr" flex>
         <h1>¿ Buscas profesionales para tu <span>empresa</span>?</h1>
         <h3>Encuentra los profesionales mas aptos para tu empresa</h3>
         <a ui-sref="registroEmpresa">COMENZAR</a>
@@ -64,7 +64,7 @@
 </section>
 <!-- COMIENZO DE SECCION PARA ELEGIR TIPO DE REGISTRO (PROFESIONAL/EMPRESA)-->
 <!-- COMIENZO SECCION LISTA DE OFERTAS -->
-<section class="empresas_auspicio">
+<section class="empresas_auspicio" layout="column" flex>
     <h1 class="enunciado">Estas empresas ya trabajan con nosotros</h1>
     <div class="e_content" layout="row" layout-align="center center">
         

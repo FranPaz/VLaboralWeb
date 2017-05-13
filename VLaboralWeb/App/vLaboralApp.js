@@ -129,7 +129,7 @@
                 url: '/perfil/:idEmpresa',
                 views: {
                     'contenido@empresa': {
-                        templateUrl: '/App/Empresas/Partials/empresaPerfilPublico.html',
+                        templateUrl: '/App/Empresas/Partials/empresaPerfilModificable.html',
                         controller: 'empresasCtrl',
                         resolve: {
                             empresasDF: 'empresasDF',

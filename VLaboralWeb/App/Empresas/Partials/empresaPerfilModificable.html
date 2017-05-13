@@ -1,7 +1,74 @@
-﻿<div layout="column">
+﻿<div layout="column"flex="40">
+
+</div>
+<div layout="column" flex="60" layout-align="rigth">
     <md-card>
+
         <md-card-content>
+            <md-card-title layout="row">
+                <input type="file">
+
+                    <img src="../../../img/inti logo.png" />
+                
+            </md-card-title>
+            <section layout="row">
+
+                <md-media-title>
+                    <img ng-model="" ng-click="" class="mdi-image-camera" />
+                </md-media-title>
+                <md-input-container>
+                    <label>Razon social</label>
+                    <input ng-model="empresa.RazonSocial" disabled readonly />
+                </md-input-container>
+                <md-input-container>
+                    <label>Cuit</label>
+                    <input ng-model="empresa.Cuit" disabled readonly />
+                </md-input-container>
+            </section>
+
+        </md-card-content>
+
+    </md-card>
+    <md-card>
+        <md-card-title>
+            <h3>Descripción</h3>
+        </md-card-title>
+        <md-card-content layout="column">
+            <md-input-container>
+                <label>Nombre de Fantasia</label>
+                <input ng-model="empresa.NombreFantasia" />
+            </md-input-container>
+            <md-input-container>
+                <label>Descrpición</label>
+                <textarea ng-model="empresa.Descripcion"></textarea>
+            </md-input-container>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        
+        <md-card-title>
+            <h3>Contacto</h3>
+        </md-card-title>
+        <md-card-content layout="column padding">
+            
+                <md-input-container>
+                    <label>Dirección</label>
+                    <input ng-model="empresa.Direccion" />
+                </md-input-container>
+                <md-input-container>
+                    <label>Telefono</label>
+                    <input ng-model="empresa.Telefono" />
+                </md-input-container>
+                <md-input-container>
+                    <label>Sitio Web</label>
+                    <input ng-model="empresa.SitioWeb" type="url" />
+                </md-input-container>
+            
 
         </md-card-content>
     </md-card>
+
+    <md-divider></md-divider>
+    <md-button>Guardar</md-button>
 </div>
