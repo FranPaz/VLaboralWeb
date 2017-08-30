@@ -143,12 +143,41 @@
 
     }
 
+    //#region reset password
+    var _resetPassword = function (resetPasswordData) {
+        var deferred = $q.defer();
+        $http.post(urlApi + "api/accounts/ResetPassword", resetPasswordData).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+    //#endregion 
+
+    //#region cambiar contraseña
+    var _changePassword = function (changePasswordData) {
+        var deferred = $q.defer();
+        $http.post(urlApi + "api/accounts/ChangePassword", changePasswordData).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+    //#endregion
+
+    authServiceFactory.changePassword = _changePassword;
     authServiceFactory.saveRegistrationEmpresa = _saveRegistrationEmpresa;
     authServiceFactory.saveRegistrationProfesional = _saveRegistrationProfesional;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;
     authServiceFactory.authentication = _authentication;
-
+    authServiceFactory.resetPassword = _resetPassword;
     return authServiceFactory;
 });

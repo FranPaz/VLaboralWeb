@@ -1,5 +1,5 @@
-﻿vLaboralApp.controller('empresasCtrl', function ($scope
-    , authSvc, ofertasDF//fpaz: definicion de data factorys
+﻿vLaboralApp.controller('empresasCtrl', function ($scope,$window
+    , authSvc, ofertasDF, empresasDF, blobsDataFactory//fpaz: definicion de data factorys
     , listadoOfertas, infoEmpresa, listOpcionesFiltrosOfertas//fpaz: definicion de parametros de entrada    
     ) {
 
@@ -75,9 +75,20 @@
         $scope.obtenerListadoFiltradoOfertas();
     }
 
-    $scope.ordenOfertasChanged = function () {
-        console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
-        //llamo al webapi para obtener los valores filtrados        
+    //$scope.ordenOfertasChanged = function () {
+    //    console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
+    //    //llamo al webapi para obtener los valores filtrados        
+    //    $scope.obtenerListadoFiltradoOfertas();
+    //}
+    $scope.ordenOfertasFechaInicio = function () {
+        $scope.FechaInicioConvocatoria = 'FechaInicioConvocatoria';
+        console.log('Ordenamiento', $scope.FechaInicioConvocatoria);
+        $scope.obtenerListadoFiltradoOfertas();
+    }
+
+    $scope.ordenOfertasFechaFin = function () {
+        $scope.FechaFinConvocatoria = 'FechaInicioFin';
+        console.log('Ordenamiento', $scope.FechaFinConvocatoria);
         $scope.obtenerListadoFiltradoOfertas();
     }
 
@@ -88,4 +99,64 @@
         $scope.obtenerListadoFiltradoOfertas();
     }
     //#endregion
+
+    //#region Modificacion de perfil de la empresa
+    $scope.guardarEmpresa = function (prmEmpresa) {
+        empresasDF.putEmpresa(prmEmpresa).then(function (response) {
+            alert("Perfil actualizado con exito");
+            $scope.empresa = response;
+        },
+        function (err) {
+            if (err) {
+                $scope.err = err;
+                alert("Error al actualizar el perfil");
+                $scope.empresa = infoEmpresa;
+            }
+        })
+    }
+    //#endregion
+
+
+    $scope.guardarImagenEmpresa = function (empresa, foto)
+    {
+        blobsDataFactory.postImagen(foto)
+            .then(function (response) {
+                empresa.UrlImagenPerfil = response.FileUrl;
+                empresasDF.putEmpresa(empresa)
+                    .then(function (prmEmp) {
+                        console.log("Ok");
+                    });
+                
+                var prmImagenEmpresa = response;
+                prmImagenEmpresa.EmpresaId = empresa.Id;
+                prmImagenEmpresa.Tipo = "img";
+
+                empresasDF.postImagenEmpresa(prmImagenEmpresa);
+                console.log("ok");
+                $window.location.reload();
+
+            })
+            .then(function(response){
+                
+            });
+
+    }
+
+
+    $scope.descargarCurriculum = function (prmFile) {
+        var prm = new URL(prmFile);
+        var end = prm.pathname.split('/');
+        var final = end[2];
+        blobsDataFactory.getFile(final)
+        .then(
+            function (response) {
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(response);
+                a.target = '_blank';
+                a.download = response.fileName;
+                document.body.appendChild(a);
+                a.click();
+            }
+        )
+    }
 });

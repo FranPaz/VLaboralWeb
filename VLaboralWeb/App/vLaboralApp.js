@@ -97,6 +97,20 @@
                     url: "/solicitud",
                     templateUrl: '/App/Seguridad/Partials/confirmCuenta.html'
                 })
+                .state('resetPassword', {
+                    url: "/resetPassword",
+                    templateUrl: '/App/Seguridad/Partials/resetPassword.html',
+                    controller: 'resetPassCtrl',
+                    params: {
+                        userId: null,
+                        code: null
+                    },
+                    resolve: {
+                        loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['App/Seguridad/resetPasswordCtrl.js']);
+                        }]
+                    }
+                })
 
         //#endregion
 
@@ -153,6 +167,23 @@
             })
             //#endregion
 
+            //#region Cambiar contraseña empresa
+            .state('empresa.cambiarPass', {
+                url: '/cambiarContraseña',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Seguridad/Partials/changePassword.html',
+                        controller: 'changePasswordCtrl',
+                        resolve: {
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Seguridad/changePasswordCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+            })
+            //#endregion
+
             //#region Ofertas para Usuarios Empresa
             .state('empresa.ofertas', {
                 url: '/ofertas',
@@ -161,6 +192,7 @@
                         templateUrl: '/App/Ofertas/Partials/ofertasList.html',
                         controller: 'empresasCtrl',
                         resolve: {
+                            empresasDF: 'empresasDF',
                             infoEmpresa: function () {
                                 return { value: [] };
                             },
@@ -724,6 +756,22 @@
                 }
 
             })
+            //#region Cambiar contraseña profesional
+            .state('profesional.cambiarPass', {
+                url: '/cambiarContraseña',
+                views: {
+                    'contenido@empresa': {
+                        templateUrl: '/App/Seguridad/Partials/changePassword.html',
+                        controller: 'changePasswordCtrl',
+                        resolve: {
+                            loadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(['App/Seguridad/changePasswordCtrl.js']);
+                            }]
+                        }
+                    }
+                }
+            })
+            //#endregion
             //#endregion
 
             //#region Ofertas Para Profesionales

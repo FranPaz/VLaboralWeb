@@ -5,12 +5,48 @@
             
             <section layout="row">
                 <div layout="column" style="display:block">
-                    <a style="text-decoration: none; color: black">
-                        <div style="height: 75px;float: left;width: 100%;">
-                            <span class="fa fa-user"></span>
+
+                    <div flex="50">
+                        <button>
+                            <div ngf-drop="" ngf-select="" ng-model="foto"
+                                 class="b-a b-dashed p-lg bg-white text-center m-b"
+                                 ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ngf-max-size="10MB">
+                                <img ngf-thumbnail="foto" class="thumb img-responsive" style="max-height: 100px ; max-width: 100px">
+                                <p ng-show="!foto">Foto</p>
+                            </div>
+                            <i ng-show="myForm.file.$error.maxSize">
+                                File too large
+                                {{noticia.Foto.size / 1000000|number:1}}MB: max 5M
+                            </i>
+                        </button>
+                        <button ng-click="descargarCurriculum(empresa.UrlImagenPerfil)"> descargar </button>
+                    </div>
+                    <md-button ng-click="guardarImagenEmpresa(empresa, foto)">
+                        Guardar foto
+                    </md-button>
+                    <!--<label>
+                        Foto del producto o servicio
+                        <input ng-model="foto" type="file" class="campos" required />
+                        
+                    </label> 
+                    <md-button ng-click="guardarImagenEmpresa(empresa, foto)">
+                        Guardar foto
+                    </md-button>-->
+                    <!--<button>
+                        <div ngf-drop="" ngf-select="" ng-model="noticia.Foto[1]"
+                             class="b-a b-dashed p-lg bg-white text-center m-b"
+                             ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ngf-max-size="10MB">
+                            <img ngf-thumbnail="noticia.Foto[1]" class="thumb img-responsive" style="max-height: 100px ; max-width: 100px">
+                            <p ng-show="!noticia.Foto[1]">Foto</p>
                         </div>
-                    </a>
-                    <input type="file"/>
+                        <i ng-show="myForm.file.$error.maxSize">
+                            File too large
+                            {{noticia.Foto.size / 1000000|number:1}}MB: max 5M
+                        </i>
+                    </button>-->
+                    
+                    <!--<img src="../../../img/ny_street.jpg" style="z-index:1; max-height:100px; max-width:100px"/>-->
+                    <!--<img src="../|" style="z-index:1"/>-->
                 </div>
                 <md-media-title>
                     <img ng-model="" ng-click="" class="mdi-image-camera" />
@@ -69,5 +105,5 @@
     </md-card>
 
     <md-divider></md-divider>
-    <md-button>Guardar</md-button>
+    <md-button ng-click="guardarEmpresa(empresa)">Guardar</md-button>
 </div>

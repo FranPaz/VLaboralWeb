@@ -7,6 +7,7 @@
 
     <section class="ofertas">
         <div layout="row">
+            
             <md-card>
                 <md-card-content>
                     <div class="sidebar">
@@ -92,36 +93,50 @@
                                 <tbody md-body>
                                     <tr md-row ng-repeat="e in empleados">
                                         <td md-cell>
-                                            <article>
-                                                <div class="logo_ofer">
-                                                    <img src="../../../img/perfil.jpg" />
-                                                </div>
-                                                <div class="info_ofer">
-                                                    <h3>{{e.Apellido + ", " + e.Nombre }}</h3>
-                                                    <hr>
-                                                    <div class="d_ofer">
-                                                        <md-chips ng-model="e.Subrubros"
-                                                                  readonly="true"
-                                                                  md-max-chips="5">
-                                                            <md-chip-template>
-                                                                <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
-                                                            </md-chip-template>
-                                                        </md-chips>
+                                            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <h3>{{e.Apellido + ", " + e.Nombre }}</h3>
+                                                        <hr>
+                                                        <div class="d_ofer">
+                                                            <md-chips ng-model="e.Subrubros"
+                                                                      readonly="true"
+                                                                      md-max-chips="5">
+                                                                <md-chip-template>
+                                                                    <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
+                                                                </md-chip-template>
+                                                            </md-chips>
 
-                                                        <div flex class="ic_p">
-                                                            <p>Domicilio: {{e.Domicilio}}</p>
-                                                            <br />
-                                                            <p>Legajo: {{e.Legajo}}</p>
+                                                            <div flex class="ic_p">
+                                                                <p>Domicilio: {{e.Domicilio}}</p>
+                                                                <br />
+                                                                <p>Legajo: {{e.Legajo}}</p>
+                                                            </div>
+
                                                         </div>
-
-                                                    </div>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-sm card-media logo_ofer">
+                                                            <img src="../../../img/perfil.jpg" />
+                                                        </div>
+                                                        
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button style="background-color:#0c964d; color:#ffffff" ng-click="abrirDetalle(e.Id)">Ver Perfil</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                            <!--<article>
+                                                
+                                                <div class="info_ofer">
+                                                    
 
 
                                                     <div layout="column" layout-align="start end">
-                                                        <md-button style="background-color:#00C853; color:#ffffff" ng-click="abrirDetalle(e.Id)">Ver Perfil</md-button>
+                                                        
                                                     </div>
                                                 </div>
-                                            </article>
+                                            </article>-->
                                         </td>
                                     </tr>
                                 </tbody>
@@ -145,8 +160,15 @@
                     </div>
                 </md-card-content>
             </md-card>
-        </div>
+            
+            <div flex="" layout="row" layout-align="end center" layout-padding="" class="layout-padding layout-align-end-center layout-row flex">
+                <img src="../../../img/publicite aqui expectacular.png" style="border:solid;position: inherit;margin-right: 30px;">
 
+            </div>
+        </div>
+        <!--<div flex>
+            
+        </div>-->
 
 
     </section>

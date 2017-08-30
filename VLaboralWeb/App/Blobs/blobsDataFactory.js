@@ -22,8 +22,23 @@
         return deferred.promise;
     };
 
+    var _getFile = function (blobId) {
+        var deferred = $q.defer();
+        $http.get(urlApi + 'api/Imagenes/', {
+            params: {blobId: blobId}
+        }
+        ).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
     
     blobsDataFactory.postImagen = _postBlob;
+    blobsDataFactory.getFile = _getFile;
     return blobsDataFactory;
 });
 

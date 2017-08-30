@@ -36,7 +36,7 @@
 .home .h_container h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 3.6em; color: #f0f0f0; text-align: center; margin-bottom: 0.5em; border: solid; padding: 20px; }
 .home .h_container h1 span { color: #51caf5; font-weight: 700; }
 .home .e_content { display: flex; width: 100%; justify-content: center; align-items: center; flex-wrap: wrap; flex-direction: row; transition: all 1.1s ease; margin-bottom: 1em }
-.home .e_content article { padding: 1em 0 3em 0; width: 22%; display: flex; justify-content: center; align-items: center;flex-direction: column; }
+.home .e_content article { padding: 1em 0 3em 0; width: 22%; display: inline-flex; justify-content: center; align-items: center;flex-direction: column; }
 .home .e_content article .icono { font-size: 4em; color: #d2d2d2; border-radius: 100%; padding-top: 0.35em; transition: all 0.3s ease; }
 .home .e_content article .icono:hover { color: #51caf5; border-color: #69cbc8; cursor: pointer; }
 .home .e_content article h1 { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 1.2em; color: #f0f0f0; margin-top: 1.3em; text-align:center;}
@@ -71,7 +71,7 @@
 .t_list h1 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 3.45em; color: #323232; text-align: center; text-transform: uppercase; }
 
 .ofertas .lista { display: inline-block; float: right; width: 100%; }
-.ofertas .lista article { display: flex; flex-flow: wrap row; padding: 10%; justify-content: space-between; align-items: center; background: white; }
+.ofertas .lista article { display: inline-flex; flex-flow: wrap row; padding: 10%; justify-content: space-between; align-items: center; background: white; }
 /*.ofertas .lista article:hover { background: #f0f0f0; }*/
 .ofertas .lista article .logo_ofer { display: flex; flex-flow: wrap column; align-items: center; justify-content: center; }
 .ofertas .lista article .logo_ofer img { width: 8em; }
@@ -334,3 +334,103 @@ main h2 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.
 
 
 /*# sourceMappingURL=styles.css.map */
+/* style 6 */
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
+}
+
+.inputfile-6 + label {
+    color: #ec9b1b;
+}
+
+.inputfile-6:focus + label,
+.inputfile-6.has-focus + label,
+.inputfile-6 + label:hover {
+    color: #d47e03;
+}
+
+.inputfile-6 + label figure {
+    width: 100px;
+    height: 135px;
+    background-color: #ec9b1b;
+    display: block;
+    position: relative;
+    padding: 30px;
+    margin: 0 auto 10px;
+}
+
+.inputfile-6:focus + label figure,
+.inputfile-6.has-focus + label figure,
+.inputfile-6 + label:hover figure {
+    background-color: #d47e03;
+}
+
+.inputfile-6 + label figure::before,
+.inputfile-6 + label figure::after {
+    width: 0;
+    height: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.inputfile-6 + label figure::before {
+    border-top: 20px solid #05354e;
+    border-left: 20px solid transparent;
+}
+
+.inputfile-6 + label figure::after {
+    border-bottom: 20px solid #d47e03;
+    border-right: 20px solid transparent;
+}
+
+.inputfile-6:focus + label figure::after,
+.inputfile-6.has-focus + label figure::after,
+.inputfile-6 + label:hover figure::after {
+    border-bottom-color: #ec9b1b;
+}
+
+.inputfile-6 + label svg {
+    width: 100%;
+    height: 100%;
+    fill: #f1e5e6;
+}
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
+}

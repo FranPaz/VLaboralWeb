@@ -1,66 +1,76 @@
-﻿<md-dialog aria-label="Mango (Fruit)">
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Editar postulación</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                  
-                </md-button>
-            </div>
-        </md-toolbar>
-        <md-dialog-content>
-            <md-content>
-                <div>
-                    <span class="md-headline">{{postulacionShow.Profesional.Apellido+ ", "+ postulacionShow.Profesional.Nombre}}</span>
-                    <span class="md-subhead description">Cuil: {{postulacionShow.Profesional.Cuil}}</span>
-                    <span class="md-subhead description">Fecha Nacimiento: {{postulacionShow.Profesional.FechaNac}}</span>
-                </div>
-                <div flex-gt-sm="80">
-                 
-                    <p>
-                    </p>
-
-                </div>
-                <md-input-container>
-                    <label>Comentario</label>
-                    <input md-maxlength="200" ng-model="postulacionShow.Comentario">
-                </md-input-container>
-                <md-input-container>
-                    <label>Puntaje</label>
-                    <md-select ng-model="postulacionShow.Valoracion">
-                        <md-option>1</md-option>
-                        <md-option>2</md-option>
-                        <md-option>3</md-option>
-                        <md-option>4</md-option>
-                        <md-option>5</md-option>
-                        <md-option>6</md-option>
-                        <md-option>7</md-option>
-                        <md-option>8</md-option>
-                        <md-option>9</md-option>
-                        <md-option>10</md-option>
-                    </md-select>
-                </md-input-container>
-                <!--<md-input-container>
-                    <label>Valoración</label>
-                    <input md-maxlength="2" required md-no-asterisk ng-model="postulacionShow.Valoracion">
-                </md-input-container>-->
-                <md-input-container>
-                    <label>Aprueba Etapa</label>
-                    <md-checkbox ng-model="postulacionShow.PasaEtapa">
-                    </md-checkbox>
-                </md-input-container>    
-            </md-content>
-        </md-dialog-content>
-        <md-dialog-actions layout="row">
+﻿<md-dialog layout="column" flex="70" layout-padding>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Editar postulación</h2>
             <span flex></span>
-            <md-button ng-click="cancel()">
-                Cancelar
+            <md-button class="md-icon-button" ng-click="cancel()">
+
             </md-button>
-            <md-button ng-click="guardar(postulacionShow)">
-                Guardar cambios
-            </md-button>
-        </md-dialog-actions>
-    </form>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div layout="column">
+            <!--<md-card>
+                <md-card-content>
+                </md-card-content>
+                <span class="md-headline"></span>
+                <span class="md-subhead description"></span>
+                <span class="md-subhead description">Fecha Nacimiento: {{postulacionShow.Profesional.FechaNac}}</span>
+            </md-card>-->
+            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media"></div>
+                    </md-card-title-media>
+                    <md-card-title-text>
+                        <span class="md-headline">{{postulacionShow.Profesional.Apellido+ ", "+ postulacionShow.Profesional.Nombre}}</span>
+                        <span class="md-subhead">Dni: {{postulacionShow.Profesional.Dni}}</span>
+                    </md-card-title-text>
+                    
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="empresa.profesional({idPro: postulacionShow.Profesional.Id})" ng-click="cancel()">Ir a perfil</md-button>                    
+                </md-card-actions>
+            </md-card>
+            <md-input-container>
+                <label>Comentario</label>
+                <input md-maxlength="200" ng-model="postulacionShow.Comentario">
+            </md-input-container>
+            <md-input-container>
+                <label>Puntaje</label>
+                <md-select ng-model="postulacionShow.Valoracion">
+                    <md-option value="1">1</md-option>
+                    <md-option value="2">2</md-option>
+                    <md-option value="3">3</md-option>
+                    <md-option value="4">4</md-option>
+                    <md-option value="5">5</md-option>
+                    <md-option value="6">6</md-option>
+                    <md-option value="7">7</md-option>
+                    <md-option value="8">8</md-option>
+                    <md-option value="9">9</md-option>
+                    <md-option value="10">10</md-option>
+                </md-select>
+            </md-input-container>
+            <!--<md-input-container>
+                <label>Valoración</label>
+                <input md-maxlength="2" required md-no-asterisk ng-model="postulacionShow.Valoracion">
+            </md-input-container>-->
+            <md-input-container>
+                <!--<label></label>-->
+                <md-checkbox ng-model="postulacionShow.PasaEtapa">
+                    Aprueba Etapa
+                </md-checkbox>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Cancelar
+        </md-button>
+        <md-button ng-click="guardar(postulacionShow)">
+            Guardar cambios
+        </md-button>
+    </md-dialog-actions>
 </md-dialog>
 

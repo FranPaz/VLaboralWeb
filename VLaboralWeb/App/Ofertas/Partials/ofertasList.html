@@ -63,13 +63,13 @@
                                     <p>Ordenar por</p>
                                     <ul>
                                         <li>
-                                            <a ng-model="queryFiltros.orderBy" ng-value="FechaInicioConvocatoria" ng-click="ordenOfertasChanged()">
+                                            <a ng-click="ordenOfertasFechaInicio()">
                                                 <span title="Fecha de Inicio" class="fa fa-calendar"></span>
                                                 <span>Fecha inicio</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-model="queryFiltros.orderBy" ng-value="FechaFinConvocatoria" ng-click="ordenOfertasChanged()">
+                                            <a ng-click="ordenOfertasFechaFin()">
                                                 <span title="Fecha de Inicio" class="fa fa-calendar"></span>
                                                 <span>Fecha fin</span>
                                             </a>
@@ -101,10 +101,9 @@
                                     <tbody md-body>
                                         <tr md-row ng-repeat="oferta in ofertas">
                                             <td md-cell>
-                                                <article>
+                                                <!--<article>
                                                     <div class="logo_ofer">
-                                                        <img src="img/logo.png">
-                                                        <h2>{{ oferta.Empresa.Nombre }}</h2>
+                                                        
                                                     </div>
                                                     <div class="info_ofer">
                                                         <h1>{{ oferta.Nombre }}</h1>
@@ -118,13 +117,49 @@
                                                         </div>
                                                         <h3>{{ oferta.Descripcion }}</h3>
                                                         <div flex layout="row" layout-align="end end">
-                                                            <a layout="row" layout-align="center center" ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isEmpresa">Ver más</a>
-                                                            <a ui-sref="profesional.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isProfesional">ver más</a>
+                                                            
                                                         </div>
                                                         
                                                     </div>
                                                 </article>
-                                                <md-divider></md-divider>
+                                                <md-divider></md-divider>-->
+                                                <md-card class="info_ofer">
+                                                    <md-card-title>
+                                                        <md-card-title-text>
+                                                            <div>
+                                                                <h2>{{ oferta.Nombre }}</h2>
+                                                                <hr>
+                                                                <br />
+                                                                <h3>Fecha de convocatoria: {{ oferta.FechaInicioConvocatoria  |  date:'dd/MM/yyyy' }} a {{ oferta.FechaFinConvocatoria  |  date:'dd/MM/yyyy' }}</h3>
+                                                                <br />
+                                                                <div ng-switch on="oferta.Publica">
+                                                                    <h5 ng-switch-when="true">Pública</h5>
+                                                                    <h5 ng-switch-when="false">Privada</h5>
+                                                                </div>
+                                                                <!--<div class="d_ofer">
+                                                                    
+                                                                    
+                                                                </div>-->
+                                                                <br>
+                                                                <p>{{ oferta.Descripcion }}</p>
+                                                            </div>
+
+                                                            <!--<div flex layout="row" layout-align="end end">
+                    <a layout="row" layout-align="center center" ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isEmpresa">Ver más</a>
+                    <a ui-sref="profesional.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isProfesional">ver más</a>
+                </div>-->
+                                                        </md-card-title-text>
+                                                        <md-card-title-media>
+                                                            <div class="md-media-sm card-media logo_ofer">
+                                                                <img src="img/logo.png"><h2>{{ oferta.Empresa.Nombre }}</h2>
+                                                            </div>
+                                                        </md-card-title-media>
+                                                    </md-card-title>
+                                                    <md-card-actions layout="row" layout-align="end center">
+                                                        <md-button style="background-color:#0c964d; color:#ffffff" layout="row" layout-align="center center" ui-sref="empresa.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isEmpresa">Ver más</md-button>
+                                                        <md-button style="background-color:#0c964d; color:#ffffff" ui-sref="profesional.ofertas.detalleOferta({idOferta: oferta.Id})" ng-show="usuarioLogueado.isProfesional">ver más</md-button>
+                                                    </md-card-actions>
+                                                </md-card>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -158,7 +193,10 @@
                         </div>
                     </md-card-content>
                 </md-card>
-                
+                <div flex="" layout="row" layout-align="end center" layout-padding="" class="layout-padding layout-align-end-center layout-row flex">
+                    <img src="../../../img/publicite aqui expectacular.png" style="border:solid;position: inherit;margin-right: 30px;">
+
+                </div>
             </div>
             
             

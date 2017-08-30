@@ -1,5 +1,5 @@
-﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad //fpaz: definicion de inyectores de dependencias
-    , rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
+﻿vLaboralApp.controller('profesionalesCtrl', function ($scope, $mdMedia, $mdDialog, $ocLazyLoad,$window //fpaz: definicion de inyectores de dependencias
+    , blobsDataFactory, rubrosDF, habilidadesDF, tiposIdentificacionDF, profesionalesDF, ofertasDF, authSvc, empresasDF //fpaz: definicion de data factorys
     , profesionalesList, listadoRubros, listadoHabilidades, listadoIdentificacionPro, listadoOfertas, infoProfesional, selectedPro
     , listOpcionesFiltrosOfertas, listOpcionesFiltrosProfesionales//fpaz: definicion de parametros de entrada    
     ) {
@@ -465,11 +465,23 @@
         $scope.obtenerListadoFiltradoOfertas();
     }
 
-    $scope.ordenOfertasChanged = function () {
-        console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
-        //llamo al webapi para obtener los valores filtrados        
+    //$scope.ordenOfertasChanged = function () {
+    //    console.log('Ordenamiento: ', $scope.queryFiltros.orderBy);
+    //    //llamo al webapi para obtener los valores filtrados        
+    //    $scope.obtenerListadoFiltradoOfertas();
+    //}
+    $scope.ordenOfertasFechaInicio = function () {
+        $scope.FechaInicioConvocatoria = 'FechaInicioConvocatoria';
+        console.log('Ordenamiento', $scope.FechaInicioConvocatoria);
         $scope.obtenerListadoFiltradoOfertas();
     }
+
+    $scope.ordenOfertasFechaFin = function () {
+        $scope.FechaFinConvocatoria = 'FechaInicioFin';
+        console.log('Ordenamiento', $scope.FechaFinConvocatoria);
+        $scope.obtenerListadoFiltradoOfertas();
+    }
+
 
     $scope.busquedaNombreOferta = function (prmNombre) {
         console.log('Busqueda por nombre: ', $scope.queryFiltros.searchText);
@@ -546,4 +558,36 @@
     }
     //#endregion
 
+
+    $scope.guardarImagenEmpresa = function (profesional, foto) {
+        blobsDataFactory.postImagen(foto)
+            .then(
+            function (response) {
+                profesional.UrlImagenPerfil = response.UrlFile;
+                profesionalesDF.putEmpresa(profesional);
+            })
+            .then(
+            function (response) {
+                prmImagenProfesional = response;
+                prmImagenProfesional.ProfesionalId = profesional.Id;
+                prmImagenProfesional.Tipo = "img";
+                empresasDF.postImagenProfesional(prmImagenProfesional);
+                $window.location.reload();
+            });
+    }
+
+    $scope.guardarCurriculum = function (profesional, curriculumn) {
+        blobsDataFactory.postCurriculumn(curriculumn)
+        .then(function (response) {
+            profesiona.UrlCurriculumn = response.UrlCurriculumn;
+            profesionalesDF.putProfesional(profesional);
+        })
+        .then(function (response) {
+            prmCurriculumnProfesional = response;
+            prmCurriculumnProfesional.ProfesionalId = profesional.Id;
+            prmCurriculumnProfesional.Tipo = "pdf";
+            empresaDF.postImagenProfesional(prmImagenProfesional);
+            $window.location.reload();
+        })
+    }
 });

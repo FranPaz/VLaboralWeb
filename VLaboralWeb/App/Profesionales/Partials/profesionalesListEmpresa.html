@@ -96,9 +96,39 @@
                                 <tbody md-body>
                                     <tr md-row ng-repeat="p in profesionalesList">
                                         <td md-cell>
-                                            <article>
+                                            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+                                                <md-card-title>
+                                                    <md-card-title-text class="info_ofer">
+                                                        <h3>{{p.Apellido + ", " + p.Nombre }}</h3>
+                                                        <hr>
+                                                        <div class="d_ofer">
+                                                            <md-chips ng-model="p.Subrubros"
+                                                                      readonly="true"
+                                                                      md-max-chips="5">
+                                                                <md-chip-template>
+                                                                    <span class="md-caption">{{$chip.Rubro.Nombre}}</span>
+                                                                </md-chip-template>
+                                                            </md-chips>
+
+                                                            <div flex class="ic_p">
+                                                                <p>Domicilio: {{p.Domicilio}}</p>
+                                                                <br />
+                                                                <p>Valoracion: {{p.ValoracionPromedio + " estrellas"}}</p>
+                                                            </div>
+
+                                                        </div>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-sm card-media logo_ofer"><img src="../../../img/perfil.jpg" /></div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button style="background-color:#0c964d; color:#ffffff" ui-sref="empresa.profesional({idPro: p.Id})">Ver Perfil</md-button>                                                    
+                                                </md-card-actions>
+                                            </md-card>
+                                            <!--<article>
                                                 <div class="logo_ofer">
-                                                    <img src="../../../img/perfil.jpg" />
+                                                    
                                                 </div>
                                                 <div class="info_ofer">
                                                     <h3>{{p.Apellido + ", " + p.Nombre }}</h3>
@@ -125,7 +155,7 @@
                                                         <md-button style="background-color:#00C853; color:#ffffff" ui-sref="empresa.profesional({idPro: p.Id})">Ver Perfil</md-button>
                                                     </div>
                                                 </div>
-                                            </article>
+                                            </article>-->
                                         </td>
                                     </tr>
                                 </tbody>
@@ -153,10 +183,15 @@
                     </div>
                 </md-card-content>
             </md-card>
+            
+            <div flex="" layout="row" layout-align="end center" layout-padding="" class="layout-padding layout-align-end-center layout-row flex">
+                <img src="../../../img/publicite aqui expectacular.png" style="border:solid;position: inherit;margin-right: 30px;">
+
+            </div>
         </div>
 
 
-        
+            
     </section>
     
 </md-container>

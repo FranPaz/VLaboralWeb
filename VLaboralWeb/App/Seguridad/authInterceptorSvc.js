@@ -1,7 +1,7 @@
 ﻿vLaboralApp.service('authInterceptorSvc', function ($q, $location, localStorageService) { // servicio para interceptar todas las llamadas al webapi de backend y mostrar los datos solo si el usuario esta logueado
     var authInterceptorServiceFactory = {};
 
-    var _request = function (config) {// cada ves que haga un request primero configuro el header con los datos del token y demas guardados en el localstorage del navegador y luego hago el request necesario
+    var _request = function (config) {// cada vez que haga un request primero configuro el header con los datos del token y demas guardados en el localstorage del navegador y luego hago el request necesario
 
         config.headers = config.headers || {};
 
@@ -16,7 +16,7 @@
 
     var _responseError = function (rejection) { // funcion que se dispara solo si la peticion al web api devolvio un response con error
         if (rejection.status === 401) { // verifico que el error sea 401, que el web api lo devuelve si el usuario no esta autorizado a acceseder a ese recurso
-            $location.path('/seguridad/login'); // en ese caso rmando al usuario a la pagina de login
+            $location.path('/seguridad/login'); // en ese caso mando al usuario a la pagina de login
         }
         return $q.reject(rejection);
     }

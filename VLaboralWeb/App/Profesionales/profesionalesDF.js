@@ -65,10 +65,10 @@
         return deferred.promise;
     }
 
-    var _putProfesional = function (prmId, data) { // iafar: Modifica un Profesional segun Id
+    var _putProfesional = function (prmProfesional) { // iafar: Modifica un Profesional segun Id
         var deferred = $q.defer();
 
-        $http.put(urlApi + 'api/Profesionals/' + prmId, data).then(
+        $http.put(urlApi + 'api/Profesionals/' + prmProfesional.Id, prmProfesional).then(
             function (response) {
                 deferred.resolve(response.data);
             },
@@ -115,6 +115,17 @@
     };
     //#endregion
 
+    var _postImagenProfesional = function (file) {
+        var deferred = $q.defer;
+        $http.post(urlApi + 'api/Profesional/Imagen', file).then(
+            function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response);
+            });
+    }
+
     //#region iafar: area de asignacion de funciones a objeto
     profesionalesDF.getProfesional = _getProfesional;
     profesionalesDF.getProfesionales = _getProfesionales;
@@ -122,6 +133,7 @@
     profesionalesDF.obtenerOpcionesFiltrosProfesionales = _obtenerOpcionesFiltrosProfesionales;
     profesionalesDF.obtenerProfesionalesFiltrados = _obtenerProfesionalesFiltrados;
     profesionalesDF.getProfesionalId = _getProfesionalId;
+    profesionalesDF.postImagenProfesional = _postImagenProfesional;
     //#endregion
 
 
