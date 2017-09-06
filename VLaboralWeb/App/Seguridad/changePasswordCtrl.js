@@ -1,4 +1,6 @@
 ﻿vLaboralApp.controller('changePasswordCtrl', function ($scope, $location, $timeout, authSvc, $state, notificacionesSvc) {
+
+    //#region cambiar contraseña
     $scope.ChangePasswordModel = {
         OldPassword: '',
         NewPassword: '',
@@ -12,8 +14,9 @@
                 authSvc.logOut();
             },
             function () {
-                alert("ops! algo ocurrio")
+                alert("ops! algo ocurrio");
             }
             )
     }
+    //#end region
 });

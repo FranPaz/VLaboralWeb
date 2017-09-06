@@ -22,11 +22,14 @@
         return deferred.promise;
     };
 
+
+    //#region descarga de archivos
     var _getFile = function (blobId) {
+        var config = { responseType: 'blob' };
         var deferred = $q.defer();
         $http.get(urlApi + 'api/Imagenes/', {
             params: {blobId: blobId}
-        }
+        }, config
         ).then(
             function (response) {
                 deferred.resolve(response);
@@ -36,7 +39,9 @@
             });
         return deferred.promise;
     }
-    
+    //#endregion
+
+
     blobsDataFactory.postImagen = _postBlob;
     blobsDataFactory.getFile = _getFile;
     return blobsDataFactory;

@@ -97,6 +97,7 @@
                     url: "/solicitud",
                     templateUrl: '/App/Seguridad/Partials/confirmCuenta.html'
                 })
+            //state para resetear el password
                 .state('resetPassword', {
                     url: "/resetPassword",
                     templateUrl: '/App/Seguridad/Partials/resetPassword.html',

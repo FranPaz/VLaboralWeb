@@ -150,12 +150,65 @@
         blobsDataFactory.getFile(final)
         .then(
             function (response) {
-                var a = document.createElement('a');
-                a.href = URL.createObjectURL(response);
-                a.target = '_blank';
-                a.download = response.fileName;
-                document.body.appendChild(a);
-                a.click();
+                var saveData = (function () {
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    return function (data, fileName) {
+                        var json = JSON.stringify(data),
+                            blob = new Blob([json], { type: "octet/stream" }),
+                            url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = fileName;
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    };
+                }());
+                saveData(response.data, response.config.params.blobId);
+                
+                //var octetStreamMime = 'application/jpg';
+                //var success = false;
+
+                //// Get the headers
+                //var headers = response.headers;
+
+                //// Get the filename from the x-filename header or default to "download.bin"
+                //var filename = headers['x-filename'] || 'download';
+
+                //// Determine the content type from the header or default to "application/octet-stream"
+                //var contentType = headers['content-type'] || octetStreamMime;
+
+                //try {
+
+                //    console.log(filename);
+                //    // Try using msSaveBlob if supported
+                //    console.log("Trying saveBlob method ...");
+                //    var blob = new Blob([response.data], { type: contentType });
+                //    saveAs(blob, 'filename');
+                //    if (navigator.msSaveBlob)
+                //        navigator.msSaveBlob(blob, filename);
+                //    else {
+                //        // Try using other saveBlob implementations, if available
+                //        var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
+                //        if (saveBlob === undefined) throw "Not supported";
+                //        saveBlob(blob, filename);
+                //    }
+                //    console.log("saveBlob succeeded");
+                //    success = true;
+                //} catch (ex) {
+                //    console.log("saveBlob method failed with the following exception:");
+                //    console.log(ex);
+                //}
+                
+                //var blob = new Blob([response.data], { type: 'application/jpg'});
+                //saveAs(blob, 'curriculum.jpg');
+                //var url = URL.createObjectURL(new Blob([response.data]));
+                //var a = document.createElement('a');
+                //a.href = url;
+                
+                //a.download = 'document_name';
+                //a.target = '_blank';
+                //a.click();
             }
         )
     }

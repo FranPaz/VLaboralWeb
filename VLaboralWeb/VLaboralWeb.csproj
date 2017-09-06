@@ -148,6 +148,7 @@
     <Content Include="App\TiposIdentificacion\TiposIdentificacionDF.js" />
     <Content Include="App\ExperienciasLaborales\Partials\VerificarExperienciasProfesional.html" />
     <Content Include="App\TiposNotificaciones\tiposNotificacionesDF.js" />
+    <Content Include="Blob\Blob.js" />
     <Content Include="Countries and States\countries\afghanistan.js" />
     <Content Include="Countries and States\countries\albania.js" />
     <Content Include="Countries and States\countries\algeria.js" />
